@@ -787,11 +787,7 @@ const FinalModeQuiz = ({ onProgressChange }) => {
 
   // Use QUIZ_SCREENS for Career Roadmap Tool
   const quizScreens = QUIZ_SCREENS;
-  const totalSteps = quizScreens.length; // 3 screens: welcome, skills, timeline
-
-  console.log('Quiz Screens:', quizScreens);
-  console.log('Total Steps:', totalSteps);
-  console.log('Current Step:', currentStep);
+  const totalSteps = quizScreens.length; // 2 screens: welcome, skills
 
   useEffect(() => {
     const progress = ((currentStep + 1) / totalSteps) * 100;
@@ -799,20 +795,15 @@ const FinalModeQuiz = ({ onProgressChange }) => {
   }, [currentStep, totalSteps, onProgressChange]);
 
   const handleQuizResponse = (questionId, option) => {
-    console.log('handleQuizResponse called:', { questionId, option });
-
     // For Career Roadmap Tool - store responses
     if (Array.isArray(option)) {
       // Multi-select (skills)
-      console.log('Saving as array:', option);
       setQuizResponse(questionId, option);
     } else if (typeof option === 'string') {
       // Single select (timeline)
-      console.log('Saving as string:', option);
       setQuizResponse(questionId, option);
     } else if (option && typeof option === 'object') {
       // Object with value/label
-      console.log('Saving from object.value:', option.value);
       setQuizResponse(questionId, option.value);
       const labelFields = ['currentRole', 'targetRole', 'targetCompany'];
       if (labelFields.includes(questionId)) {
@@ -826,14 +817,13 @@ const FinalModeQuiz = ({ onProgressChange }) => {
       setCurrentStep(currentStep + 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      console.log('Final quiz responses before navigating to roadmap:', quizResponses);
-      console.log('currentSkills:', quizResponses.currentSkills);
-      console.log('timeline:', quizResponses.timeline);
-
-      // Small delay to ensure state is persisted
-      setTimeout(() => {
+      // Navigate to roadmap page
+      try {
         router.push('/roadmap-new');
-      }, 100);
+      } catch (error) {
+        // Fallback for navigation issues
+        window.location.href = '/roadmap-new';
+      }
     }
   };
 
@@ -862,16 +852,11 @@ const FinalModeQuiz = ({ onProgressChange }) => {
   const renderContent = () => {
     const screenIndex = currentStep;
 
-    console.log('renderContent called:', { screenIndex, quizScreensLength: quizScreens?.length });
-
     if (screenIndex >= 0 && screenIndex < quizScreens.length) {
       const screen = quizScreens[screenIndex];
 
-      console.log('Current screen:', screen);
-
       // Safety check
       if (!screen || !screen.questions) {
-        console.error('Invalid screen:', screen);
         return <div>Error: Invalid screen configuration</div>;
       }
 
