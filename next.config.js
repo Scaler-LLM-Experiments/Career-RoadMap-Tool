@@ -8,9 +8,10 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000',
   },
-  // AWS Amplify configuration
+  // Image optimization configuration
   images: {
-    domains: ['cdn.brandfetch.io'], // For company logos
+    domains: ['cdn.brandfetch.io', 'img.logo.dev'], // For company and skill logos
+    unoptimized: false,
   },
   // Webpack configuration for SVG imports
   webpack(config) {

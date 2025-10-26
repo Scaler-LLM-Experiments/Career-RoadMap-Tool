@@ -21,7 +21,10 @@ const Navbar = () => {
             <Link href="/quiz" className="hidden md:block text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">
               RE-EVALUATE
             </Link>
-            <button className="hidden lg:block px-6 py-3 bg-primary text-white font-bold text-sm tracking-wider rounded-none hover:bg-primary/90 transition-colors">
+            <button
+              onClick={() => window.open('/callback', '_blank')}
+              className="hidden lg:block px-6 py-3 bg-primary text-white font-bold text-sm tracking-wider rounded-none hover:bg-primary/90 transition-colors"
+            >
               BOOK FREE CAREER CALL
             </button>
           </div>
