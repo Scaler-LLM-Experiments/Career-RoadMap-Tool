@@ -84,7 +84,7 @@ const CompanyTicker = ({ companies }) => {
         <div className="flex gap-4 ticker-scroll-left">
           {duplicatedRow1.map((company, idx) => {
             const domain = getCompanyDomain(company);
-            const logoUrl = `https://img.logo.dev/${domain}?token=pk_X-18mHGdQfuhjN7ywKkE-Q`;
+            const logoUrl = `https://logo.clearbit.com/${domain}`;
             return (
               <div
                 key={idx}
@@ -117,7 +117,7 @@ const CompanyTicker = ({ companies }) => {
         <div className="flex gap-4 ticker-scroll-right">
           {duplicatedRow2.map((company, idx) => {
             const domain = getCompanyDomain(company);
-            const logoUrl = `https://img.logo.dev/${domain}?token=pk_X-18mHGdQfuhjN7ywKkE-Q`;
+            const logoUrl = `https://logo.clearbit.com/${domain}`;
             return (
               <div
                 key={idx}
