@@ -42,6 +42,8 @@ const RoadmapNew = () => {
 
   // Loader animation - 6 second fake loader
   useEffect(() => {
+    // Ensure loader always shows on mount
+    setIsLoading(true);
     setLoadingProgress(0);
     setLoadingStep(0);
 
