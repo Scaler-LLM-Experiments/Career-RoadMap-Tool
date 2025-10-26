@@ -5,12 +5,7 @@
 import React, { useEffect } from 'react';
 
 const CompanyTicker = ({ companies }) => {
-  useEffect(() => {
-    console.log('CompanyTicker mounted with companies:', companies);
-  }, [companies]);
-
   if (!companies || companies.length === 0) {
-    console.log('No companies provided to ticker');
     return null;
   }
 
@@ -22,7 +17,7 @@ const CompanyTicker = ({ companies }) => {
   const duplicatedRow1 = [...row1, ...row1, ...row1, ...row1];
   const duplicatedRow2 = [...row2, ...row2, ...row2, ...row2];
 
-  // Get company domain for Brandfetch
+  // Get company domain for logo API
   const getCompanyDomain = (companyName) => {
     const domainMap = {
       'Razorpay': 'razorpay.com',
@@ -77,8 +72,6 @@ const CompanyTicker = ({ companies }) => {
     return domainMap[companyName] || companyName.toLowerCase().replace(/\s+/g, '') + '.com';
   };
 
-  console.log('Rendering ticker with row1:', row1, 'row2:', row2);
-
   return (
     <div className="space-y-6">
       {/* Row 1 - Scroll Left */}
@@ -90,8 +83,8 @@ const CompanyTicker = ({ companies }) => {
 
         <div className="flex gap-4 ticker-scroll-left">
           {duplicatedRow1.map((company, idx) => {
-            const logoUrl = `https://logo.clearbit.com/${getCompanyDomain(company)}`;
-            console.log(`Logo URL for ${company}:`, logoUrl);
+            const domain = getCompanyDomain(company);
+            const logoUrl = `https://img.logo.dev/${domain}?token=pk_X-18mHGdQfuhjN7ywKkE-Q`;
             return (
               <div
                 key={idx}
@@ -101,11 +94,11 @@ const CompanyTicker = ({ companies }) => {
                   src={logoUrl}
                   alt={company}
                   className="w-full h-full object-contain"
-                  onLoad={() => console.log(`Logo loaded for ${company}`)}
                   onError={(e) => {
-                    console.log(`Logo failed for ${company}, using fallback`);
                     e.target.onerror = null;
-                    e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(company)}&background=f1f5f9&color=334155&bold=true&size=128`;
+                    // Fallback to generic company icon placeholder
+                    e.target.style.display = 'none';
+                    e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center text-xs font-bold text-slate-700 bg-slate-100">${company.substring(0, 2).toUpperCase()}</div>`;
                   }}
                 />
               </div>
@@ -123,7 +116,8 @@ const CompanyTicker = ({ companies }) => {
 
         <div className="flex gap-4 ticker-scroll-right">
           {duplicatedRow2.map((company, idx) => {
-            const logoUrl = `https://logo.clearbit.com/${getCompanyDomain(company)}`;
+            const domain = getCompanyDomain(company);
+            const logoUrl = `https://img.logo.dev/${domain}?token=pk_X-18mHGdQfuhjN7ywKkE-Q`;
             return (
               <div
                 key={idx}
@@ -133,11 +127,11 @@ const CompanyTicker = ({ companies }) => {
                   src={logoUrl}
                   alt={company}
                   className="w-full h-full object-contain"
-                  onLoad={() => console.log(`Logo loaded for ${company}`)}
                   onError={(e) => {
-                    console.log(`Logo failed for ${company}, using fallback`);
                     e.target.onerror = null;
-                    e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(company)}&background=f1f5f9&color=334155&bold=true&size=128`;
+                    // Fallback to generic company icon placeholder
+                    e.target.style.display = 'none';
+                    e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center text-xs font-bold text-slate-700 bg-slate-100">${company.substring(0, 2).toUpperCase()}</div>`;
                   }}
                 />
               </div>
