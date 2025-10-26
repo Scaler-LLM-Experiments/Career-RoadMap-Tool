@@ -389,7 +389,7 @@ const RoadmapNew = () => {
     return (
       <>
         <Navbar />
-        <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-white flex items-center justify-center z-50 -mt-20">
           <div className="flex flex-col items-center justify-center w-full max-w-[700px] mx-auto px-8">
             {/* Loading Icon and Text */}
             <div className="flex flex-col items-center gap-4 mb-10 opacity-100 animate-pulse">
