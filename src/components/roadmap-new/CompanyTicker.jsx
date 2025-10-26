@@ -84,7 +84,7 @@ const CompanyTicker = ({ companies }) => {
         <div className="flex gap-4 ticker-scroll-left">
           {duplicatedRow1.map((company, idx) => {
             const domain = getCompanyDomain(company);
-            const logoUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+            const logoUrl = `https://logo.clearbit.com/${domain}`;
             return (
               <div
                 key={idx}
