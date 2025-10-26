@@ -14,7 +14,7 @@ import Hero from '../src/components/roadmap-new/Hero';
 import Sidebar from '../src/components/roadmap-new/Sidebar';
 import SkillMapNew from '../src/components/roadmap/SkillMapNew';
 import CompanyTicker from '../src/components/roadmap-new/CompanyTicker';
-import { GraduationCap, CheckCircle, ArrowRight, Target, CurrencyDollar, Users, TrendUp, Clock, ChartBar, X, Code, SquaresFour, Tree, GraphicsCard, Function, Check, Phone, ArrowUpRight, Gauge, Timer } from 'phosphor-react';
+import { GraduationCap, CheckCircle, ArrowRight, Target, CurrencyDollar, Users, TrendUp, Clock, ChartBar, X, Code, SquaresFour, Tree, GraphicsCard, Function, Check, Phone, ArrowUpRight, Gauge, Timer, MagnifyingGlass, BriefcaseMetal, ChartLine, Sparkle } from 'phosphor-react';
 import projectsData from '../src/data/projects.json';
 import projectStepsData from '../src/data/projectSteps.json';
 
@@ -26,6 +26,57 @@ const RoadmapNew = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Loader states
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [loadingStep, setLoadingStep] = useState(0);
+
+  const loadingSteps = [
+    { icon: <MagnifyingGlass size={28} weight="bold" />, text: 'Analyzing your skills...', subtext: 'Evaluating your current skill level' },
+    { icon: <Target size={28} weight="bold" />, text: 'Building your roadmap...', subtext: 'Creating a personalized learning path' },
+    { icon: <BriefcaseMetal size={28} weight="bold" />, text: 'Finding relevant companies...', subtext: 'Matching you with top opportunities' },
+    { icon: <ChartLine size={28} weight="bold" />, text: 'Curating project ideas...', subtext: 'Selecting projects to build your portfolio' },
+    { icon: <Sparkle size={28} weight="bold" />, text: 'Finalizing your roadmap...', subtext: 'Almost there!' }
+  ];
+
+  // Loader animation - 6 second fake loader
+  useEffect(() => {
+    setLoadingProgress(0);
+    setLoadingStep(0);
+
+    const progressInterval = setInterval(() => {
+      setLoadingProgress(prev => {
+        if (prev >= 95) {
+          clearInterval(progressInterval);
+          return 95;
+        }
+        return prev + 1.6;
+      });
+    }, 100); // Update every 100ms
+
+    const stepInterval = setInterval(() => {
+      setLoadingStep(prev => {
+        if (prev >= loadingSteps.length - 1) {
+          clearInterval(stepInterval);
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 1200); // Change step every 1.2 seconds
+
+    // Hide loader after 6 seconds
+    const loaderTimeout = setTimeout(() => {
+      setLoadingProgress(100);
+      setTimeout(() => setIsLoading(false), 300); // Small delay for smooth transition
+    }, 6000);
+
+    return () => {
+      clearInterval(progressInterval);
+      clearInterval(stepInterval);
+      clearTimeout(loaderTimeout);
+    };
+  }, []);
 
   // Scroll progress tracking
   useEffect(() => {
@@ -331,6 +382,42 @@ const RoadmapNew = () => {
   };
 
   const currentCompany = companyTypes[selectedCompanyType];
+
+  // Show loader for 6 seconds
+  if (isLoading) {
+    const currentStep = loadingSteps[loadingStep];
+    return (
+      <>
+        <Navbar />
+        <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
+          <div className="flex flex-col items-center justify-center w-full max-w-[700px] mx-auto px-8">
+            {/* Loading Icon and Text */}
+            <div className="flex flex-col items-center gap-4 mb-10 opacity-100 animate-pulse">
+              <div className="w-14 h-14 bg-slate-100 border border-slate-200 rounded-none flex items-center justify-center text-[#B30158]">
+                {currentStep.icon}
+              </div>
+              <div className="text-center">
+                <div className="text-xl font-semibold text-slate-900 mb-1.5">
+                  {currentStep.text}
+                </div>
+                <div className="text-sm text-slate-600">
+                  {currentStep.subtext}
+                </div>
+              </div>
+            </div>
+
+            {/* Progress Bar - Wider */}
+            <div className="w-full max-w-[500px] h-2 bg-slate-200 rounded-none overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-[#B30158] to-[#E91E63] transition-all duration-300 ease-out"
+                style={{ width: `${loadingProgress}%` }}
+              />
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
