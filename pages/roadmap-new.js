@@ -190,7 +190,7 @@ const RoadmapNew = () => {
           name: 'System Design',
           difficulty: 'hard',
           duration: '60 mins',
-          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
+          videoUrl: 'https://www.youtube.com/embed/o39hGS4ef6E',
           points: [
             'Design scalable systems (e.g., URL shortener, chat app)',
             'Discuss tradeoffs and bottlenecks',
@@ -201,7 +201,7 @@ const RoadmapNew = () => {
           name: 'Hiring Manager',
           difficulty: 'easy',
           duration: '30 mins',
-          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
+          videoUrl: 'https://www.youtube.com/embed/3Pq9blTtKfE',
           points: [
             'Cultural fit and past experience',
             'Problem-solving approach',
@@ -251,7 +251,7 @@ const RoadmapNew = () => {
           name: 'Technical Interview',
           difficulty: 'hard',
           duration: '60 mins',
-          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
+          videoUrl: 'https://www.youtube.com/embed/o39hGS4ef6E',
           points: [
             'Live coding with advanced DSA problems',
             'System design discussion',
@@ -262,7 +262,7 @@ const RoadmapNew = () => {
           name: 'Managerial Round',
           difficulty: 'medium',
           duration: '45 mins',
-          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
+          videoUrl: 'https://www.youtube.com/embed/3Pq9blTtKfE',
           points: [
             'Leadership and team collaboration',
             'Handling ambiguity and conflicts',
@@ -323,7 +323,7 @@ const RoadmapNew = () => {
           name: 'HR Round',
           difficulty: 'easy',
           duration: '30 mins',
-          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
+          videoUrl: 'https://www.youtube.com/embed/3Pq9blTtKfE',
           points: [
             'Background verification',
             'Salary negotiation',
@@ -373,7 +373,7 @@ const RoadmapNew = () => {
           name: 'Onsite Coding Rounds',
           difficulty: 'hard',
           duration: '4-5 hours',
-          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
+          videoUrl: 'https://www.youtube.com/embed/o39hGS4ef6E',
           points: [
             'Multiple rounds with medium-hard DSA problems',
             'System design for senior roles',
@@ -384,7 +384,7 @@ const RoadmapNew = () => {
           name: 'Behavioral Round',
           difficulty: 'medium',
           duration: '45 mins',
-          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
+          videoUrl: 'https://www.youtube.com/embed/3Pq9blTtKfE',
           points: [
             'Leadership principles and values',
             'Past experiences and conflict resolution',
