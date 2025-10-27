@@ -454,7 +454,7 @@ const RoadmapNew = () => {
               />
 
               {/* Main Content */}
-              <main className="flex-1 min-w-0 overflow-hidden">
+              <main className="flex-1 min-w-0">
                 <div className="space-y-20">
                   {/* Section 1: Skills Analysis */}
                   <section id="skills" className="scroll-mt-24">
@@ -477,7 +477,7 @@ const RoadmapNew = () => {
                           </div>
                           <h3 className="text-xl font-bold text-slate-900 pt-0.5">Your Skill Map</h3>
                         </div>
-                        <div className="w-full max-w-full md:ml-14 overflow-hidden">
+                        <div className="md:ml-14">
 
                           <div className="flex flex-col lg:flex-row-reverse gap-8 lg:gap-12 items-start">
                             {/* RIGHT: Chart (LEFT on desktop after flex-row-reverse) */}
@@ -514,7 +514,7 @@ const RoadmapNew = () => {
                           </div>
                           <h3 className="text-xl font-bold text-slate-900 pt-0.5">Skill Analysis</h3>
                         </div>
-                        <div className="w-full max-w-full md:ml-14 overflow-hidden">
+                        <div className="md:ml-14">
 
                           <p className="text-base text-slate-600 leading-relaxed mb-8">
                             We understand that you have good proficiency in{' '}
@@ -703,7 +703,7 @@ const RoadmapNew = () => {
                           </div>
                           <h3 className="text-xl font-bold text-slate-900 pt-0.5">Your Fit Analysis</h3>
                         </div>
-                        <div className="w-full max-w-full md:ml-14 space-y-6 overflow-hidden">
+                        <div className="md:ml-14 space-y-6">
                           {/* Fit Banner with Icon */}
                           <div className={`flex items-center gap-3 p-4 rounded-sm border ${
                             currentCompany.fit.color === 'green'
@@ -795,7 +795,7 @@ const RoadmapNew = () => {
                           </div>
                           <h3 className="text-xl font-bold text-slate-900 pt-0.5">Selection Process</h3>
                         </div>
-                        <div className="w-full max-w-full md:ml-14 overflow-hidden">
+                        <div className="md:ml-14">
                           {/* Accordion - Exact copy of reference */}
                           <div className="space-y-0 border border-slate-200">
                             {currentCompany.rounds.map((round, idx) => {
@@ -907,7 +907,7 @@ const RoadmapNew = () => {
                           <h3 className="text-xl font-bold text-slate-900 pt-0.5">Master Data Structures & Algorithms</h3>
                         </div>
 
-                        <div className="w-full max-w-full md:ml-14 space-y-6 overflow-hidden">
+                        <div className="md:ml-14 space-y-6">
                           {/* What You'll Learn with Video */}
                           <div className="bg-gradient-to-b from-white to-slate-50 p-6 rounded-sm">
                             <h4 className="text-lg font-bold text-slate-900 mb-6">What You'll Learn</h4>
@@ -1009,7 +1009,7 @@ const RoadmapNew = () => {
                           <h3 className="text-xl font-bold text-slate-900 pt-0.5">Learn System Design Fundamentals</h3>
                         </div>
 
-                        <div className="w-full max-w-full md:ml-14 space-y-6 overflow-hidden">
+                        <div className="md:ml-14 space-y-6">
                           {/* What You'll Learn with Video - FLIPPED LAYOUT */}
                           <div className="bg-gradient-to-b from-white to-slate-50 p-6 rounded-sm">
                             <h4 className="text-lg font-bold text-slate-900 mb-6">What You'll Learn</h4>
@@ -1111,7 +1111,7 @@ const RoadmapNew = () => {
                           <h3 className="text-xl font-bold text-slate-900 pt-0.5">Build Real-World Projects</h3>
                         </div>
 
-                        <div className="w-full max-w-full md:ml-14 space-y-6 overflow-hidden">
+                        <div className="md:ml-14 space-y-6">
                           {/* What You'll Learn with Video */}
                           <div className="bg-gradient-to-b from-white to-slate-50 p-6 rounded-sm">
                             <h4 className="text-lg font-bold text-slate-900 mb-6">What You'll Learn</h4>
