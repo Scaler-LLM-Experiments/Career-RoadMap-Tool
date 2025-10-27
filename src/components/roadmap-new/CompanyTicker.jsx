@@ -95,6 +95,7 @@ const CompanyTicker = ({ companies }) => {
                   alt={company}
                   className="w-full h-full object-contain"
                   crossOrigin="anonymous"
+                  referrerPolicy="no-referrer"
                   onError={(e) => {
                     e.target.onerror = null;
                     // Fallback to generic company icon placeholder
@@ -129,6 +130,7 @@ const CompanyTicker = ({ companies }) => {
                   alt={company}
                   className="w-full h-full object-contain"
                   crossOrigin="anonymous"
+                  referrerPolicy="no-referrer"
                   onError={(e) => {
                     e.target.onerror = null;
                     // Fallback to generic company icon placeholder

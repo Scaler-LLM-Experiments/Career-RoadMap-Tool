@@ -10,7 +10,7 @@ const nextConfig = {
   },
   // Image optimization configuration
   images: {
-    domains: ['cdn.brandfetch.io', 'img.logo.dev'], // For company and skill logos
+    domains: ['cdn.brandfetch.io', 'img.logo.dev', 'logo.clearbit.com'], // For company and skill logos
     unoptimized: false,
   },
   // Webpack configuration for SVG imports
