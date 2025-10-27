@@ -443,7 +443,7 @@ const RoadmapNew = () => {
 
       {/* Main Content Area */}
       <div className="w-full">
-        <div className="mx-auto px-5 py-16 pb-32 lg:px-[120px] max-w-[1440px]">
+        <div className="mx-auto px-5 py-16 pb-32 lg:px-[100px] max-w-[1440px]">
           <div className="max-w-[1200px] mx-auto">
             <div className="flex gap-12">
 
