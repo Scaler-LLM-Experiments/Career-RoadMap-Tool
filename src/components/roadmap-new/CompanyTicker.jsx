@@ -84,7 +84,7 @@ const CompanyTicker = ({ companies }) => {
         <div className="flex gap-4 ticker-scroll-left">
           {duplicatedRow1.map((company, idx) => {
             const domain = getCompanyDomain(company);
-            const logoUrl = `https://logo.clearbit.com/${domain}`;
+            const logoUrl = `/api/logo/${domain}`;
             return (
               <div
                 key={idx}
@@ -119,7 +119,7 @@ const CompanyTicker = ({ companies }) => {
         <div className="flex gap-4 ticker-scroll-right">
           {duplicatedRow2.map((company, idx) => {
             const domain = getCompanyDomain(company);
-            const logoUrl = `https://logo.clearbit.com/${domain}`;
+            const logoUrl = `/api/logo/${domain}`;
             return (
               <div
                 key={idx}
