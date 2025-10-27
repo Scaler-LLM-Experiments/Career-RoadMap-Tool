@@ -179,6 +179,7 @@ const RoadmapNew = () => {
           name: 'Coding Assessment',
           difficulty: 'medium',
           duration: '45 mins',
+          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
           points: [
             '2-3 DSA problems (arrays, strings, trees)',
             'Focus on optimal time complexity',
@@ -189,6 +190,7 @@ const RoadmapNew = () => {
           name: 'System Design',
           difficulty: 'hard',
           duration: '60 mins',
+          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
           points: [
             'Design scalable systems (e.g., URL shortener, chat app)',
             'Discuss tradeoffs and bottlenecks',
@@ -199,6 +201,7 @@ const RoadmapNew = () => {
           name: 'Hiring Manager',
           difficulty: 'easy',
           duration: '30 mins',
+          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
           points: [
             'Cultural fit and past experience',
             'Problem-solving approach',
@@ -237,6 +240,7 @@ const RoadmapNew = () => {
           name: 'Online Assessment',
           difficulty: 'medium',
           duration: '90 mins',
+          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
           points: [
             '3-4 DSA problems with increasing difficulty',
             'Focus on clean, well-documented code',
@@ -247,6 +251,7 @@ const RoadmapNew = () => {
           name: 'Technical Interview',
           difficulty: 'hard',
           duration: '60 mins',
+          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
           points: [
             'Live coding with advanced DSA problems',
             'System design discussion',
@@ -257,6 +262,7 @@ const RoadmapNew = () => {
           name: 'Managerial Round',
           difficulty: 'medium',
           duration: '45 mins',
+          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
           points: [
             'Leadership and team collaboration',
             'Handling ambiguity and conflicts',
@@ -295,6 +301,7 @@ const RoadmapNew = () => {
           name: 'Aptitude Test',
           difficulty: 'easy',
           duration: '60 mins',
+          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
           points: [
             'Logical reasoning and quantitative aptitude',
             'Basic programming concepts',
@@ -305,6 +312,7 @@ const RoadmapNew = () => {
           name: 'Technical Interview',
           difficulty: 'medium',
           duration: '45 mins',
+          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
           points: [
             'Core language concepts (Java/Python)',
             'Database queries and OOP',
@@ -315,6 +323,7 @@ const RoadmapNew = () => {
           name: 'HR Round',
           difficulty: 'easy',
           duration: '30 mins',
+          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
           points: [
             'Background verification',
             'Salary negotiation',
@@ -353,6 +362,7 @@ const RoadmapNew = () => {
           name: 'Phone Screen',
           difficulty: 'medium',
           duration: '45 mins',
+          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
           points: [
             '1-2 medium DSA problems',
             'Focus on communication and approach',
@@ -363,6 +373,7 @@ const RoadmapNew = () => {
           name: 'Onsite Coding Rounds',
           difficulty: 'hard',
           duration: '4-5 hours',
+          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
           points: [
             'Multiple rounds with medium-hard DSA problems',
             'System design for senior roles',
@@ -373,6 +384,7 @@ const RoadmapNew = () => {
           name: 'Behavioral Round',
           difficulty: 'medium',
           duration: '45 mins',
+          videoUrl: 'https://www.youtube.com/embed/sg5pwazWomM',
           points: [
             'Leadership principles and values',
             'Past experiences and conflict resolution',
@@ -937,7 +949,7 @@ const RoadmapNew = () => {
                               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                                 <iframe
                                   className="absolute top-0 left-0 w-full h-full rounded-sm border-0"
-                                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                  src="https://www.youtube.com/embed/_dl8KiU1HYY"
                                   title="DSA Fundamentals"
                                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                   allowFullScreen
@@ -1007,7 +1019,7 @@ const RoadmapNew = () => {
                               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                                 <iframe
                                   className="absolute top-0 left-0 w-full h-full rounded-sm border-0"
-                                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                  src="https://www.youtube.com/embed/o39hGS4ef6E"
                                   title="System Design Fundamentals"
                                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                   allowFullScreen
@@ -1141,7 +1153,7 @@ const RoadmapNew = () => {
                               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                                 <iframe
                                   className="absolute top-0 left-0 w-full h-full rounded-sm border-0"
-                                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                  src="https://www.youtube.com/embed/6yJ8eTtId8A"
                                   title="Build Production Projects"
                                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                   allowFullScreen
@@ -1195,7 +1207,7 @@ const RoadmapNew = () => {
                   </section>
 
                   {/* Section 4: Project Ideas */}
-                  <section id="projects" className="scroll-mt-24 mb-24">
+                  <section id="projects" className="scroll-mt-24 mb-40">
                     <div className="mb-8">
                       <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">BUILD & SHOWCASE</p>
                       <h2 className="text-3xl font-bold text-slate-900">
