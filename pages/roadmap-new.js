@@ -201,7 +201,7 @@ const RoadmapNew = () => {
           name: 'Hiring Manager',
           difficulty: 'easy',
           duration: '30 mins',
-          videoUrl: 'https://www.youtube.com/embed/3Pq9blTtKfE',
+          videoUrl: 'https://www.youtube.com/embed/6yJ8eTtId8A',
           points: [
             'Cultural fit and past experience',
             'Problem-solving approach',
@@ -262,7 +262,7 @@ const RoadmapNew = () => {
           name: 'Managerial Round',
           difficulty: 'medium',
           duration: '45 mins',
-          videoUrl: 'https://www.youtube.com/embed/3Pq9blTtKfE',
+          videoUrl: 'https://www.youtube.com/embed/6yJ8eTtId8A',
           points: [
             'Leadership and team collaboration',
             'Handling ambiguity and conflicts',
@@ -323,7 +323,7 @@ const RoadmapNew = () => {
           name: 'HR Round',
           difficulty: 'easy',
           duration: '30 mins',
-          videoUrl: 'https://www.youtube.com/embed/3Pq9blTtKfE',
+          videoUrl: 'https://www.youtube.com/embed/6yJ8eTtId8A',
           points: [
             'Background verification',
             'Salary negotiation',
@@ -384,7 +384,7 @@ const RoadmapNew = () => {
           name: 'Behavioral Round',
           difficulty: 'medium',
           duration: '45 mins',
-          videoUrl: 'https://www.youtube.com/embed/3Pq9blTtKfE',
+          videoUrl: 'https://www.youtube.com/embed/6yJ8eTtId8A',
           points: [
             'Leadership principles and values',
             'Past experiences and conflict resolution',
@@ -443,7 +443,7 @@ const RoadmapNew = () => {
 
       {/* Main Content Area */}
       <div className="w-full">
-        <div className="mx-auto px-5 py-16 lg:px-[120px] max-w-[1440px]">
+        <div className="mx-auto px-5 py-16 pb-32 lg:px-[120px] max-w-[1440px]">
           <div className="max-w-[1200px] mx-auto">
             <div className="flex gap-12">
 
@@ -454,7 +454,7 @@ const RoadmapNew = () => {
               />
 
               {/* Main Content */}
-              <main className="flex-1 min-w-0">
+              <main className="flex-1 min-w-0 overflow-hidden">
                 <div className="space-y-20">
                   {/* Section 1: Skills Analysis */}
                   <section id="skills" className="scroll-mt-24">
@@ -477,7 +477,7 @@ const RoadmapNew = () => {
                           </div>
                           <h3 className="text-xl font-bold text-slate-900 pt-0.5">Your Skill Map</h3>
                         </div>
-                        <div className="w-full md:ml-14">
+                        <div className="w-full max-w-full md:ml-14 overflow-hidden">
 
                           <div className="flex flex-col lg:flex-row-reverse gap-8 lg:gap-12 items-start">
                             {/* RIGHT: Chart (LEFT on desktop after flex-row-reverse) */}
@@ -514,7 +514,7 @@ const RoadmapNew = () => {
                           </div>
                           <h3 className="text-xl font-bold text-slate-900 pt-0.5">Skill Analysis</h3>
                         </div>
-                        <div className="w-full md:ml-14">
+                        <div className="w-full max-w-full md:ml-14 overflow-hidden">
 
                           <p className="text-base text-slate-600 leading-relaxed mb-8">
                             We understand that you have good proficiency in{' '}
@@ -703,7 +703,7 @@ const RoadmapNew = () => {
                           </div>
                           <h3 className="text-xl font-bold text-slate-900 pt-0.5">Your Fit Analysis</h3>
                         </div>
-                        <div className="w-full md:ml-14 space-y-6">
+                        <div className="w-full max-w-full md:ml-14 space-y-6 overflow-hidden">
                           {/* Fit Banner with Icon */}
                           <div className={`flex items-center gap-3 p-4 rounded-sm border ${
                             currentCompany.fit.color === 'green'
@@ -795,7 +795,7 @@ const RoadmapNew = () => {
                           </div>
                           <h3 className="text-xl font-bold text-slate-900 pt-0.5">Selection Process</h3>
                         </div>
-                        <div className="w-full md:ml-14">
+                        <div className="w-full max-w-full md:ml-14 overflow-hidden">
                           {/* Accordion - Exact copy of reference */}
                           <div className="space-y-0 border border-slate-200">
                             {currentCompany.rounds.map((round, idx) => {
@@ -907,7 +907,7 @@ const RoadmapNew = () => {
                           <h3 className="text-xl font-bold text-slate-900 pt-0.5">Master Data Structures & Algorithms</h3>
                         </div>
 
-                        <div className="w-full md:ml-14 space-y-6">
+                        <div className="w-full max-w-full md:ml-14 space-y-6 overflow-hidden">
                           {/* What You'll Learn with Video */}
                           <div className="bg-gradient-to-b from-white to-slate-50 p-6 rounded-sm">
                             <h4 className="text-lg font-bold text-slate-900 mb-6">What You'll Learn</h4>
@@ -1009,7 +1009,7 @@ const RoadmapNew = () => {
                           <h3 className="text-xl font-bold text-slate-900 pt-0.5">Learn System Design Fundamentals</h3>
                         </div>
 
-                        <div className="w-full md:ml-14 space-y-6">
+                        <div className="w-full max-w-full md:ml-14 space-y-6 overflow-hidden">
                           {/* What You'll Learn with Video - FLIPPED LAYOUT */}
                           <div className="bg-gradient-to-b from-white to-slate-50 p-6 rounded-sm">
                             <h4 className="text-lg font-bold text-slate-900 mb-6">What You'll Learn</h4>
@@ -1111,7 +1111,7 @@ const RoadmapNew = () => {
                           <h3 className="text-xl font-bold text-slate-900 pt-0.5">Build Real-World Projects</h3>
                         </div>
 
-                        <div className="w-full md:ml-14 space-y-6">
+                        <div className="w-full max-w-full md:ml-14 space-y-6 overflow-hidden">
                           {/* What You'll Learn with Video */}
                           <div className="bg-gradient-to-b from-white to-slate-50 p-6 rounded-sm">
                             <h4 className="text-lg font-bold text-slate-900 mb-6">What You'll Learn</h4>
