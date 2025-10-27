@@ -810,7 +810,7 @@ const RoadmapNew = () => {
                                     {/* Title and tags */}
                                     <div className="flex-1 flex items-center gap-3 flex-wrap">
                                       <h4 className="text-base font-semibold text-slate-900">
-                                        {round.name}
+                                        Round {idx + 1}: {round.name}
                                       </h4>
                                       <div className="flex items-center gap-2">
                                         <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium border rounded-none ${diffStyle.bg} ${diffStyle.text} ${diffStyle.border}`}>
@@ -1195,7 +1195,7 @@ const RoadmapNew = () => {
                   </section>
 
                   {/* Section 4: Project Ideas */}
-                  <section id="projects" className="scroll-mt-24">
+                  <section id="projects" className="scroll-mt-24 mb-24">
                     <div className="mb-8">
                       <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">BUILD & SHOWCASE</p>
                       <h2 className="text-3xl font-bold text-slate-900">
@@ -1368,9 +1368,12 @@ const RoadmapNew = () => {
         </div>
       )}
 
-      {/* Floating CTA Button - Mobile Only */}
+      {/* Floating CTA Button - Visible on both mobile and desktop */}
       <button
-        className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#B30158] hover:bg-[#8A0145] text-white font-bold py-3 px-6 rounded-none shadow-2xl hover:shadow-2xl transition-all duration-200 z-50 uppercase tracking-wide text-sm flex items-center gap-2.5 md:hidden"
+        className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#B30158] hover:bg-[#8A0145] text-white font-bold py-3 px-6 rounded-none transition-all duration-200 z-50 uppercase tracking-wide text-sm flex items-center gap-2.5"
+        style={{
+          boxShadow: '0 4px 14px 0 rgba(179, 1, 88, 0.39)'
+        }}
         onClick={() => window.open('/callback', '_blank')}
       >
         <Phone size={20} weight="fill" className="flex-shrink-0" />

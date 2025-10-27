@@ -26,15 +26,15 @@ export const VIDEO_IDS = {
   // INTERVIEW PREP - TECH PROFESSIONALS
   interviewRounds: {
     tech: {
-      onlineAssessment: '3Pq9blTtKfE',      // Round 1: OA prep
-      technicalScreening: '3Pq9blTtKfE',     // Round 2: Technical interview
-      systemDesign: '3Pq9blTtKfE',           // Round 3: System design
-      hiringManager: '3Pq9blTtKfE',          // Round 4: Behavioral
+      onlineAssessment: 'sg5pwazWomM',      // Screening Round
+      technicalScreening: 'sg5pwazWomM',     // Machine Coding
+      systemDesign: 'sg5pwazWomM',           // DSA Round
+      hiringManager: 'sg5pwazWomM',          // HR Round
     },
     nonTech: {
-      basicCoding: '3Pq9blTtKfE',            // Round 1: Basic coding
-      projectDiscussion: '3Pq9blTtKfE',      // Round 2: Projects
-      behavioral: '3Pq9blTtKfE',             // Round 3: Culture fit
+      basicCoding: 'sg5pwazWomM',            // Screening Round
+      projectDiscussion: 'sg5pwazWomM',      // Machine Coding
+      behavioral: 'sg5pwazWomM',             // HR Round
     },
   },
 
@@ -54,9 +54,9 @@ export const VIDEO_IDS = {
   // LEARNING PATH SECTION (optional future use)
   learningPath: {
     gettingStarted: '3Pq9blTtKfE',
-    dsaFundamentals: '3Pq9blTtKfE',
-    systemDesignIntro: '3Pq9blTtKfE',
-    backendDevelopment: '3Pq9blTtKfE',
+    dsaFundamentals: '_dl8KiU1HYY',        // DSA
+    systemDesignIntro: 'o39hGS4ef6E',       // System Design
+    backendDevelopment: '6yJ8eTtId8A',      // Real-World Projects
     databaseDesign: '3Pq9blTtKfE',
   },
 
