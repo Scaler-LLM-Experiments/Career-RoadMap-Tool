@@ -188,22 +188,23 @@ const HorizontalNavigation = ({ activeSection, onSectionChange }) => {
           style={{
             backgroundColor: '#B30158',
             color: '#fff',
-            padding: '12px 24px',
-            borderRadius: '50px',
+            width: '56px',
+            height: '56px',
+            borderRadius: '0px',
             border: 'none',
             fontSize: '14px',
             fontWeight: 'bold',
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
+            justifyContent: 'center',
             cursor: 'pointer',
-            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)'
+            boxShadow: '0 4px 14px rgba(179, 1, 88, 0.39)'
           }}
           onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#8A0145'}
           onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#B30158'}
+          title="Book a Free Career Call"
         >
-          <Phone size={18} weight="fill" />
-          <span>Book a Free Call</span>
+          <Phone size={24} weight="fill" />
         </button>
       </div>
     </>
