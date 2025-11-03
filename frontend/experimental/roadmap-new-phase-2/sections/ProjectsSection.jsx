@@ -57,10 +57,10 @@ const ProjectsSection = ({ config }) => {
         <div className="mb-12">
           <div>
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">BUILD & SHOWCASE</p>
-            <h2 className="text-4xl font-bold text-slate-900">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900">
               Project Ideas to Crack Your Role
             </h2>
-            <p className="text-slate-600 mt-3">
+            <p className="text-sm md:text-base text-slate-600 mt-3">
               Build these projects to demonstrate your skills and stand out in interviews
             </p>
           </div>

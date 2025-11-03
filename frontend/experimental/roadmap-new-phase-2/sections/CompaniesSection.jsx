@@ -283,13 +283,13 @@ const CompaniesSection = ({ config }) => {
       <div className="mb-12">
         {/* Title Section */}
         <div className="text-left mb-3">
-          <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3 whitespace-nowrap">TARGET COMPANIES</p>
-          <h2 className="text-3.5xl font-bold text-slate-900 leading-snug whitespace-nowrap">
+          <p className="text-xs md:text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">TARGET COMPANIES</p>
+          <h2 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-slate-900 leading-snug">
             See Which Type of Companies You Fit Into
           </h2>
         </div>
         {/* Description Below */}
-        <p className="text-base text-slate-600 leading-relaxed whitespace-nowrap">
+        <p className="text-sm md:text-base text-slate-600 leading-relaxed">
           Explore company types, their interview processes, and what they're looking for.
         </p>
       </div>

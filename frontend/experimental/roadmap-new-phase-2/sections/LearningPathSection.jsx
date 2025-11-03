@@ -66,12 +66,12 @@ const LearningPathSection = ({ config }) => {
     <section id="learning" className="scroll-mt-24">
       <div className="mb-12">
         <div className="text-left mb-3">
-          <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3 whitespace-nowrap">ROADMAP TO SUCCESS</p>
-          <h2 className="text-3.5xl font-bold text-slate-900 leading-snug whitespace-nowrap">
+          <p className="text-xs md:text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">ROADMAP TO SUCCESS</p>
+          <h2 className="text-2xl md:text-3xl lg:text-3.5xl font-bold text-slate-900 leading-snug">
             Your Personalised Learning Path
           </h2>
         </div>
-        <p className="text-base text-slate-600 leading-relaxed whitespace-nowrap">
+        <p className="text-sm md:text-base text-slate-600 leading-relaxed">
           A structured plan to master the skills you need, with milestones and progress checkpoints.
         </p>
       </div>
