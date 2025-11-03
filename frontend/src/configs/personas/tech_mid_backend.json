@@ -1,0 +1,748 @@
+{
+  "metadata": {
+    "id": "tech_mid_backend",
+    "label": "Mid-Level Backend Engineer",
+    "description": "Software engineer with 3-7 years experience aiming for senior backend role",
+    "targetRoles": ["Backend Engineer", "Senior Backend Engineer"],
+    "expectedTimeline": ["6-9 months", "9-12 months"]
+  },
+
+  "hero": {
+    "greeting": "Hey {userName}! 👋",
+    "title": "Your personalized roadmap to become a Senior Backend Engineer is ready!",
+    "stats": {
+      "skillsToLearn": {
+        "total": 12,
+        "description": "critical skills for the next level"
+      },
+      "estimatedEffort": {
+        "value": "12-15",
+        "unit": "hrs/week"
+      }
+    },
+    "videoUrl": "https://youtu.be/founder-message-senior-backend"
+  },
+
+  "skillsGap": {
+    "title": "Understand Where You Stand Right Now",
+    "description": "See what you have and what you need to master to reach your goal.",
+    "matchScore": 72,
+    "currentSkills": [
+      {
+        "skill": "Python",
+        "level": "advanced",
+        "priority": "high"
+      },
+      {
+        "skill": "SQL",
+        "level": "advanced",
+        "priority": "high"
+      },
+      {
+        "skill": "Git",
+        "level": "intermediate",
+        "priority": "medium"
+      }
+    ],
+    "missingSkills": {
+      "highPriority": [
+        {
+          "skill": "System Design",
+          "description": "Design scalable distributed systems",
+          "importance": "critical",
+          "estimatedWeeks": 8
+        },
+        {
+          "skill": "Microservices Architecture",
+          "description": "Build distributed system architecture",
+          "importance": "critical",
+          "estimatedWeeks": 6
+        },
+        {
+          "skill": "Advanced Database Design",
+          "description": "Optimize databases at scale",
+          "importance": "critical",
+          "estimatedWeeks": 5
+        },
+        {
+          "skill": "Message Queues",
+          "description": "Handle async job processing",
+          "importance": "critical",
+          "estimatedWeeks": 4
+        },
+        {
+          "skill": "Kubernetes Basics",
+          "description": "Container orchestration fundamentals",
+          "importance": "high",
+          "estimatedWeeks": 4
+        }
+      ],
+      "mediumPriority": [
+        {
+          "skill": "Docker",
+          "description": "Container management",
+          "importance": "high",
+          "estimatedWeeks": 3
+        },
+        {
+          "skill": "API Design",
+          "description": "RESTful and GraphQL API patterns",
+          "importance": "high",
+          "estimatedWeeks": 3
+        },
+        {
+          "skill": "Caching Strategies",
+          "description": "Redis and in-memory caching",
+          "importance": "medium",
+          "estimatedWeeks": 2
+        }
+      ],
+      "lowPriority": [
+        {
+          "skill": "Monitoring & Observability",
+          "description": "System health tracking",
+          "importance": "medium",
+          "estimatedWeeks": 2
+        }
+      ]
+    }
+  },
+
+  "learningPath": {
+    "totalPhases": 3,
+    "estimatedDuration": "6-9 months",
+    "phases": [
+      {
+        "phaseNumber": 1,
+        "title": "Foundation: System Design Deep Dive",
+        "duration": "8 weeks",
+        "description": "Master the fundamentals of designing large-scale systems",
+        "keyTopics": [
+          "Scalability patterns",
+          "Load balancing",
+          "Distributed caching",
+          "Database sharding",
+          "CAP theorem"
+        ],
+        "learningPoints": [
+          {
+            "title": "Scalability & Load Balancing",
+            "description": "Design systems that handle millions of users efficiently"
+          },
+          {
+            "title": "Databases & Caching",
+            "description": "Master SQL, NoSQL, Redis, and database optimization"
+          },
+          {
+            "title": "Distributed System Fundamentals",
+            "description": "Understand CAP theorem, consistency models, and trade-offs"
+          },
+          {
+            "title": "API Design & Communication",
+            "description": "Design robust APIs and handle inter-service communication"
+          }
+        ],
+        "learningVideoUrl": "https://www.youtube.com/embed/o39hGS4ef6E",
+        "videoPosition": "right",
+        "target": {
+          "metric": "10+ System Designs",
+          "description": "Design popular systems like URL shortener, Twitter, Netflix, and Uber to understand real-world patterns"
+        },
+        "whyItMatters": [
+          "Mandatory for senior positions",
+          "Tests architectural thinking",
+          "Critical for scalable systems",
+          "Differentiates senior engineers"
+        ],
+        "if_companyType": {
+          "startup": {
+            "emphasis": ["mvp_first_approach", "rapid_iterations"],
+            "skipTopics": ["advanced_consistency"],
+            "addResources": [
+              {
+                "type": "article",
+                "title": "Building for Scale from Day One",
+                "duration": "30 min read"
+              }
+            ]
+          },
+          "bigtech": {
+            "emphasis": ["detailed_case_studies", "interview_prep"],
+            "addResources": [
+              {
+                "type": "video",
+                "title": "Google Infrastructure Deep Dive",
+                "duration": "2 hours"
+              }
+            ]
+          }
+        }
+      },
+
+      {
+        "phaseNumber": 2,
+        "title": "Specialization: Microservices & Distributed Systems",
+        "duration": "6 weeks",
+        "description": "Learn to build and operate microservices at scale",
+        "keyTopics": [
+          "Microservices architecture",
+          "Service discovery",
+          "API gateways",
+          "Message queues (Kafka, RabbitMQ)",
+          "Distributed tracing",
+          "Service mesh basics"
+        ],
+        "learningPoints": [
+          {
+            "title": "Microservices Architecture",
+            "description": "Break monoliths into scalable microservices"
+          },
+          {
+            "title": "Message Queues & Event Streams",
+            "description": "Master async communication with Kafka, RabbitMQ"
+          },
+          {
+            "title": "Service Orchestration",
+            "description": "Deploy and manage services with Docker & Kubernetes"
+          },
+          {
+            "title": "Distributed System Patterns",
+            "description": "Implement resilience patterns and failure handling"
+          }
+        ],
+        "learningVideoUrl": "https://www.youtube.com/embed/6yJ8eTtId8A",
+        "videoPosition": "left",
+        "target": {
+          "metric": "5+ Microservices Projects",
+          "description": "Build and deploy progressively complex microservices architectures with message queues and service discovery"
+        },
+        "whyItMatters": [
+          "Industry standard for scalable systems",
+          "Required skill for senior backend roles",
+          "Directly applicable to company challenges",
+          "Demonstrates DevOps & infrastructure knowledge"
+        ],
+        "if_companyType": {
+          "scaleup": {
+            "emphasis": ["production_deployment", "reliability"],
+            "addTopics": ["monitoring", "logging", "alerting"]
+          },
+          "startup": {
+            "emphasis": ["pragmatic_approach"],
+            "skipTopics": ["service_mesh"]
+          }
+        }
+      },
+
+      {
+        "phaseNumber": 3,
+        "title": "Mastery: Interview Prep & System Design Practice",
+        "duration": "4-6 weeks",
+        "description": "Polish your skills and prepare for senior-level interviews",
+        "keyTopics": [
+          "Real-world system design problems",
+          "Trade-off analysis",
+          "Performance optimization",
+          "Cost optimization",
+          "Interview communication"
+        ],
+        "learningPoints": [
+          {
+            "title": "Real-World Case Studies",
+            "description": "Analyze and discuss popular systems like YouTube, Uber, Slack"
+          },
+          {
+            "title": "Trade-off Analysis",
+            "description": "Master the art of making architectural trade-offs"
+          },
+          {
+            "title": "Interview Communication",
+            "description": "Explain your design clearly to interviewers"
+          },
+          {
+            "title": "Performance & Cost Optimization",
+            "description": "Optimize for latency, throughput, and operational costs"
+          }
+        ],
+        "learningVideoUrl": "https://www.youtube.com/embed/_dl8KiU1HYY",
+        "videoPosition": "right",
+        "target": {
+          "metric": "3-5 Full Mock Interviews",
+          "description": "Complete mock interviews covering backend engineering scenarios from your target companies"
+        },
+        "whyItMatters": [
+          "Proves production-ready skills",
+          "Conversation starters in interviews",
+          "Validates technical expertise",
+          "Showcases end-to-end capability"
+        ],
+        "mockInterviews": true,
+        "if_companyType": {
+          "bigtech": {
+            "emphasis": ["company_specific_case_studies", "deep_dives"],
+            "addResources": [
+              {
+                "type": "study_group",
+                "title": "BigTech System Design Group",
+                "frequency": "3x per week"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+
+  "companiesInsight": {
+    "title": "Where You Can Land",
+    "description": "Companies actively looking for senior backend engineers with your profile",
+    "companyTypes": [
+      {
+        "type": "startup",
+        "label": "High-Growth Startups",
+        "description": "Fast-paced, wear-many-hats, high equity upside",
+        "fit": {
+          "level": "good",
+          "color": "green",
+          "message": "Great fit - Your system design skills and experience align perfectly with startup needs"
+        },
+        "whyFit": [
+          "You have proven system design skills that startups desperately need",
+          "Your microservices experience matches their scaling challenges",
+          "You can immediately contribute to building robust infrastructure"
+        ],
+        "whatToDo": [
+          "Brush up on rapid prototyping and MVP thinking",
+          "Practice designing systems under time constraints",
+          "Be ready to discuss practical scaling solutions"
+        ],
+        "salaryRange": "₹20-35L + equity",
+        "companies": ["Dukaan", "Razorpay", "Freshworks"],
+        "rounds": [
+          {
+            "name": "Coding Round",
+            "difficulty": "medium",
+            "duration": "90 mins",
+            "description": "2 coding problems",
+            "focus": "Problem-solving speed",
+            "videoUrl": "https://youtu.be/startup-coding-round",
+            "points": [
+              "Focus on optimal time complexity",
+              "Clean, readable code",
+              "Explain your approach clearly"
+            ]
+          },
+          {
+            "name": "System Design Round",
+            "difficulty": "hard",
+            "duration": "60 mins",
+            "description": "Design a large-scale system",
+            "focus": "Architecture decisions",
+            "videoUrl": "https://youtu.be/startup-system-design",
+            "points": [
+              "Design for scale from day one",
+              "Discuss tradeoffs and bottlenecks",
+              "Show understanding of databases, caching, load balancing"
+            ]
+          },
+          {
+            "name": "Manager Round",
+            "difficulty": "medium",
+            "duration": "45 mins",
+            "description": "Team fit and growth discussion",
+            "focus": "Culture fit",
+            "videoUrl": "https://youtu.be/manager-round-guide",
+            "points": [
+              "Discuss your past growth and learning",
+              "Show eagerness to wear multiple hats",
+              "Demonstrate ownership mindset"
+            ]
+          }
+        ],
+        "totalDuration": "4-6 weeks"
+      },
+
+      {
+        "type": "scaleup",
+        "label": "Scaled Startups / Unicorns",
+        "description": "Growing at scale, building infrastructure, good comp & culture",
+        "fit": {
+          "level": "excellent",
+          "color": "green",
+          "message": "Perfect fit - This is your ideal next move. You have exactly what they need"
+        },
+        "whyFit": [
+          "Your system design skills match their scaling challenges perfectly",
+          "You have direct experience with microservices and distributed systems",
+          "Your mid-level experience + growth mindset is exactly what scaleups value"
+        ],
+        "whatToDo": [
+          "Deep dive into their specific tech stack via blog posts and tech talks",
+          "Practice designing systems at their scale (millions of users)",
+          "Prepare stories about scaling systems from 0 to X"
+        ],
+        "salaryRange": "₹30-50L + equity",
+        "companies": ["Zomato", "Flipkart", "OYO"],
+        "rounds": [
+          {
+            "name": "Screening Round",
+            "difficulty": "medium",
+            "duration": "30 mins",
+            "description": "Phone screen with hiring manager",
+            "focus": "Experience review",
+            "videoUrl": "https://youtu.be/scaleup-screening",
+            "points": [
+              "Discuss your scaling journey",
+              "Highlight system design work",
+              "Show enthusiasm for their problems"
+            ]
+          },
+          {
+            "name": "Coding Round",
+            "difficulty": "medium-hard",
+            "duration": "90 mins",
+            "description": "2-3 algorithmic problems",
+            "focus": "Problem-solving at scale",
+            "videoUrl": "https://youtu.be/scaleup-coding",
+            "points": [
+              "Optimize for scalability",
+              "Think about edge cases",
+              "Discuss complexity analysis"
+            ]
+          },
+          {
+            "name": "System Design Round",
+            "difficulty": "hard",
+            "duration": "60 mins",
+            "description": "Design their actual systems",
+            "focus": "Deep understanding",
+            "videoUrl": "https://youtu.be/scaleup-system-design",
+            "points": [
+              "Reference their actual products",
+              "Discuss real constraints they face",
+              "Show deep system thinking"
+            ]
+          },
+          {
+            "name": "Technical Leadership Round",
+            "difficulty": "hard",
+            "duration": "45 mins",
+            "description": "Past projects and mentoring experience",
+            "focus": "Tech leadership",
+            "videoUrl": "https://youtu.be/tech-leadership",
+            "points": [
+              "Discuss technical decisions you've made",
+              "Show mentoring and knowledge sharing",
+              "Demonstrate impact at scale"
+            ]
+          },
+          {
+            "name": "Bar Raiser Round",
+            "difficulty": "hard",
+            "duration": "60 mins",
+            "description": "Senior engineer round",
+            "focus": "Exceeding standards",
+            "videoUrl": "https://youtu.be/bar-raiser",
+            "points": [
+              "Demonstrate exceptional technical depth",
+              "Show innovative thinking",
+              "Prove you can set high standards"
+            ]
+          }
+        ],
+        "totalDuration": "6-8 weeks"
+      },
+
+      {
+        "type": "service",
+        "label": "Service Companies",
+        "description": "IT consulting with diverse projects and strong stability",
+        "fit": {
+          "level": "achievable",
+          "color": "blue",
+          "message": "Good fallback - Lower competition, but less growth potential. Consider if scaleups don't work out"
+        },
+        "whyFit": [
+          "Your system design skills are above their typical requirements",
+          "You can quickly become a senior architect in service companies",
+          "Stable career with good domain exposure"
+        ],
+        "whatToDo": [
+          "Highlight client-facing skills and communication",
+          "Practice explaining complex systems simply",
+          "Show flexibility and adaptability"
+        ],
+        "salaryRange": "₹25-40L",
+        "companies": ["TCS", "Infosys", "Wipro"],
+        "rounds": [
+          {
+            "name": "Online Assessment",
+            "difficulty": "medium",
+            "duration": "60 mins",
+            "description": "Coding test + aptitude",
+            "focus": "Fundamentals",
+            "videoUrl": "https://youtu.be/service-company-assessment",
+            "points": [
+              "Standard algorithmic problems",
+              "Clean code practices",
+              "Time complexity optimization"
+            ]
+          },
+          {
+            "name": "Technical Interview",
+            "difficulty": "medium",
+            "duration": "60 mins",
+            "description": "Problem-solving and system design",
+            "focus": "Technical depth",
+            "videoUrl": "https://youtu.be/service-company-tech",
+            "points": [
+              "Discuss your projects clearly",
+              "Show problem-solving approach",
+              "Be ready for detailed questions"
+            ]
+          },
+          {
+            "name": "HR Round",
+            "difficulty": "easy",
+            "duration": "30 mins",
+            "description": "Fit for organization and culture",
+            "focus": "Cultural alignment",
+            "videoUrl": "https://youtu.be/hr-round-guide",
+            "points": [
+              "Show enthusiasm to learn",
+              "Discuss long-term growth plans",
+              "Demonstrate team collaboration"
+            ]
+          }
+        ],
+        "totalDuration": "3-4 weeks"
+      },
+
+      {
+        "type": "bigtech",
+        "label": "Big Tech Companies",
+        "description": "Global scale, best infra, highest comp, most competitive",
+        "fit": {
+          "level": "stretched",
+          "color": "orange",
+          "message": "Challenging but achievable - You're close. Need to perfect system design and interview skills"
+        },
+        "whyFit": [
+          "Your system design fundamentals are solid",
+          "You have distributed systems experience",
+          "Your learning ability can bridge the gap"
+        ],
+        "whatToDo": [
+          "Solve 100+ LeetCode problems (hard level)",
+          "Master system design at Google/Amazon scale",
+          "Practice behavioral interviews with STAR method"
+        ],
+        "salaryRange": "₹40-80L + stock options",
+        "companies": ["Google", "Microsoft", "Amazon"],
+        "rounds": [
+          {
+            "name": "Phone Screening",
+            "difficulty": "medium",
+            "duration": "45 mins",
+            "description": "Initial fit assessment",
+            "focus": "Background and motivation",
+            "videoUrl": "https://youtu.be/bigtech-screening",
+            "points": [
+              "Tell your story clearly",
+              "Show passion for engineering",
+              "Highlight relevant experience"
+            ]
+          },
+          {
+            "name": "Coding Round 1",
+            "difficulty": "hard",
+            "duration": "60 mins",
+            "description": "2 advanced algorithmic problems",
+            "focus": "Deep problem-solving",
+            "videoUrl": "https://youtu.be/bigtech-coding-1",
+            "points": [
+              "Solve hard problems efficiently",
+              "Optimize for time and space",
+              "Think out loud while coding"
+            ]
+          },
+          {
+            "name": "Coding Round 2",
+            "difficulty": "hard",
+            "duration": "60 mins",
+            "description": "System design or architecture",
+            "focus": "Large system thinking",
+            "videoUrl": "https://youtu.be/bigtech-coding-2",
+            "points": [
+              "Design for billions of users",
+              "Consider reliability and scalability",
+              "Discuss tradeoffs deeply"
+            ]
+          },
+          {
+            "name": "System Design",
+            "difficulty": "hard",
+            "duration": "75 mins",
+            "description": "Design Google-scale system",
+            "focus": "Scale, trade-offs",
+            "videoUrl": "https://youtu.be/bigtech-system-design",
+            "points": [
+              "Think about consistency models",
+              "Discuss failover and redundancy",
+              "Show deep infrastructure knowledge"
+            ]
+          },
+          {
+            "name": "Behavioral",
+            "difficulty": "medium",
+            "duration": "45 mins",
+            "description": "Leadership, teamwork, impact",
+            "focus": "Cultural fit",
+            "videoUrl": "https://youtu.be/bigtech-behavioral",
+            "points": [
+              "Use STAR method for stories",
+              "Show leadership and ownership",
+              "Discuss impact on teams and projects"
+            ]
+          }
+        ],
+        "totalDuration": "8-12 weeks"
+      }
+    ]
+  },
+
+  "projects": {
+    "title": "Build Real-World Projects",
+    "description": "Projects to demonstrate your system design and backend mastery",
+    "projects": [
+      {
+        "tier": "tier1_foundation",
+        "title": "Build a Distributed Cache System",
+        "difficulty": "medium",
+        "duration": "2 weeks",
+        "description": "Implement Redis-like distributed caching with TTL and eviction policies",
+        "technologies": ["Python", "RabbitMQ", "Docker"],
+        "learnings": ["Caching strategies", "Distributed computing", "Data structures"],
+        "portfolio_value": "high",
+        "githubTemplate": "https://github.com/scaler/distributed-cache"
+      },
+
+      {
+        "tier": "tier2_intermediate",
+        "title": "Payment Processing System",
+        "difficulty": "hard",
+        "duration": "3-4 weeks",
+        "description": "Build idempotent payment system with retry logic and eventual consistency",
+        "technologies": ["Python", "PostgreSQL", "Kafka", "Docker", "Kubernetes"],
+        "learnings": ["Microservices", "Message queues", "Distributed transactions"],
+        "portfolio_value": "very_high",
+        "if_companyType": {
+          "scaleup": {
+            "emphasis": ["production_readiness", "monitoring"],
+            "addRequirement": "Include OpenTelemetry instrumentation"
+          },
+          "bigtech": {
+            "emphasis": ["scale", "fault_tolerance"],
+            "addRequirement": "Handle 10k+ transactions per second"
+          }
+        }
+      },
+
+      {
+        "tier": "tier3_advanced",
+        "title": "Design Your Own Social Media Backend",
+        "difficulty": "very_hard",
+        "duration": "4-6 weeks",
+        "description": "Full-scale backend for Twitter/Instagram-like platform with real-time features",
+        "technologies": ["Python", "PostgreSQL", "Redis", "Kafka", "Elasticsearch"],
+        "learnings": ["System design", "Microservices", "Real-time systems", "Analytics"],
+        "portfolio_value": "exceptional",
+        "interviewFlex": "This is your best interview talking point"
+      }
+    ]
+  },
+
+  "interviewPrep": {
+    "title": "Interview Preparation Guide",
+    "systemDesignTopics": [
+      "URL shortener",
+      "Twitter/Social media feed",
+      "Payment processing system",
+      "Video streaming platform",
+      "Chat system (realtime)",
+      "Ride-sharing backend"
+    ],
+    "topicsToPractice": {
+      "algorithms": [
+        "Binary search and variants",
+        "Graph algorithms (BFS, DFS, Dijkstra)",
+        "Dynamic programming (medium-hard)",
+        "String manipulation"
+      ],
+      "systemDesign": [
+        "Scalability patterns",
+        "Database design and optimization",
+        "Caching strategies",
+        "Message queues and async processing",
+        "Microservices trade-offs"
+      ],
+      "behavioral": [
+        "Leadership examples",
+        "Conflict resolution",
+        "Technical growth journey",
+        "Mentoring experience"
+      ]
+    },
+    "resources": {
+      "courses": [
+        {
+          "title": "System Design Interview Masterclass",
+          "provider": "Scaler",
+          "duration": "4 weeks"
+        }
+      ],
+      "books": [
+        {
+          "title": "Designing Data-Intensive Applications",
+          "author": "Martin Kleppmann"
+        }
+      ],
+      "mockInterviews": {
+        "frequency": "2-3 per week",
+        "duration": "Last 2 weeks before interviews"
+      }
+    }
+  },
+
+  "timeline": {
+    "startDate": "immediately",
+    "endDate": "6-9 months",
+    "milestonesToHit": [
+      {
+        "week": "Week 1-2",
+        "goal": "Complete system design fundamentals",
+        "checklist": ["Understand CAP theorem", "Learn about load balancing", "Study caching"]
+      },
+      {
+        "week": "Week 3-4",
+        "goal": "Build first distributed system project",
+        "checklist": ["Design cache system", "Implement with Docker", "Deploy locally"]
+      },
+      {
+        "week": "Week 5-8",
+        "goal": "Master microservices",
+        "checklist": ["Complete microservices course", "Build payment system", "Use Kafka"]
+      },
+      {
+        "week": "Week 9-20",
+        "goal": "Interview preparation phase",
+        "checklist": ["3 mock interviews per week", "Practice system design questions", "Behavioral prep"]
+      },
+      {
+        "week": "Week 21+",
+        "goal": "Start applying and interviewing",
+        "checklist": ["Active job search", "Interview tracking", "Negotiation prep"]
+      }
+    ]
+  }
+}

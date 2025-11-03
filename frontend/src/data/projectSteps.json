@@ -1,0 +1,74 @@
+{
+  "1": {
+    "steps": [
+      {
+        "title": "Set up project structure",
+        "description": "Initialize a new HTML/CSS/JavaScript project. Set up folder structure with separate folders for assets (images, icons), stylesheets, and scripts. Create index.html as the main entry point."
+      },
+      {
+        "title": "Design layout with HTML & CSS",
+        "description": "Create sections for Header (name, tagline), About (bio), Skills (list your tech stack), Projects (showcase 3-5 projects with images and descriptions), and Contact (email, LinkedIn, GitHub links). Use semantic HTML5 tags like <header>, <section>, <footer>."
+      },
+      {
+        "title": "Make it responsive",
+        "description": "Use CSS media queries and flexbox/grid to ensure your site looks great on mobile, tablet, and desktop. Test on different screen sizes using browser dev tools."
+      },
+      {
+        "title": "Add interactivity with JavaScript",
+        "description": "Implement smooth scrolling, a hamburger menu for mobile navigation, and animations (e.g., fade-in effects) using vanilla JavaScript or a lightweight library."
+      },
+      {
+        "title": "Deploy to GitHub Pages or Netlify",
+        "description": "Push your code to a GitHub repository. Enable GitHub Pages in the repo settings or connect to Netlify for continuous deployment. Share your live portfolio link!"
+      }
+    ]
+  },
+  "2": {
+    "steps": [
+      {
+        "title": "Set up backend with Node.js & Express",
+        "description": "Initialize a Node.js project with npm init. Install Express, dotenv for environment variables, and set up a basic server listening on port 5000. Create routes for user registration, login, and todo CRUD operations."
+      },
+      {
+        "title": "Integrate MongoDB database",
+        "description": "Set up MongoDB Atlas (cloud database) or local MongoDB. Install Mongoose ODM and create schemas for User (username, email, password) and Todo (title, description, completed status, user reference)."
+      },
+      {
+        "title": "Implement JWT authentication",
+        "description": "Install jsonwebtoken and bcrypt. Hash passwords before saving to database. Generate JWT tokens on successful login and verify tokens with middleware for protected routes."
+      },
+      {
+        "title": "Build React frontend",
+        "description": "Create a React app with components for Login, Register, TodoList, and TodoItem. Use React hooks (useState, useEffect) for state management and Axios for API calls to backend."
+      },
+      {
+        "title": "Deploy application",
+        "description": "Deploy backend to Heroku or Railway. Deploy frontend to Vercel or Netlify. Update API endpoints to point to deployed backend URL. Test end-to-end functionality."
+      }
+    ]
+  },
+  "3": {
+    "steps": [
+      {
+        "title": "Design database schema",
+        "description": "Create MongoDB schemas for User, Product (name, price, description, image, category, stock), Order (user, items, total, status), and Review (user, product, rating, comment)."
+      },
+      {
+        "title": "Build backend API",
+        "description": "Create Express routes for products (GET all, GET by ID, CREATE, UPDATE, DELETE), cart management, order processing, and user authentication. Implement middleware for authentication and admin-only actions."
+      },
+      {
+        "title": "Integrate Stripe payment",
+        "description": "Install Stripe SDK and create checkout sessions. Handle payment success/failure webhooks. Store order details in database only after successful payment."
+      },
+      {
+        "title": "Create React storefront",
+        "description": "Build components for ProductList, ProductDetail, ShoppingCart, Checkout, and OrderHistory. Implement search and filter functionality. Use Context API or Redux for global state management."
+      },
+      {
+        "title": "Test and deploy",
+        "description": "Test the complete user flow from browsing products to checkout. Handle edge cases (out of stock, payment failures). Deploy to cloud platforms and monitor logs."
+      }
+    ]
+  }
+}
