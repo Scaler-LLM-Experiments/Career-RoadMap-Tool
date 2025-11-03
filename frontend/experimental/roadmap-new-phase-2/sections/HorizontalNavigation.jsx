@@ -191,7 +191,7 @@ const HorizontalNavigation = ({ activeSection, onSectionChange }) => {
             padding: '12px 16px',
             borderRadius: '0px',
             border: 'none',
-            fontSize: '11px',
+            fontSize: '13px',
             fontWeight: '700',
             display: 'flex',
             alignItems: 'center',
