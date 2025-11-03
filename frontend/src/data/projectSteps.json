@@ -866,5 +866,145 @@
         "description": "Optimize Canvas rendering. Implement delta compression. Add caching. Deploy with WebSocket load balancing. Monitor collaboration metrics."
       }
     ]
+  },
+  "Build a Distributed Cache System": {
+    "steps": [
+      {
+        "title": "Set up Redis and understand caching concepts",
+        "description": "Install and run Redis locally or use Redis Cloud. Understand key-value storage, TTL (Time To Live), and cache expiration. Create a Node.js project with redis client library (redis or ioredis). Connect to Redis instance and test basic commands."
+      },
+      {
+        "title": "Implement basic cache get/set operations",
+        "description": "Create Cache class with get() and set() methods. Implement proper error handling for Redis operations. Add TTL/expiration to cached keys. Test cache hits and misses. Implement cache invalidation strategies."
+      },
+      {
+        "title": "Add LRU eviction and memory management",
+        "description": "Understand Least Recently Used (LRU) eviction policy. Implement cache size limits. Add monitoring for memory usage. Create methods to clear expired keys. Implement different eviction policies (LRU, LFU, FIFO)."
+      },
+      {
+        "title": "Build distributed cache with pub/sub",
+        "description": "Implement Redis pub/sub for cache invalidation across multiple servers. Create cache update mechanism that notifies all subscribers. Test with multiple client instances. Add logging for cache events."
+      },
+      {
+        "title": "Implement advanced features and testing",
+        "description": "Add cache warming/preloading functionality. Implement cache statistics (hit ratio, evictions). Add compression for large cache values. Write unit tests for all cache operations. Write integration tests with Redis."
+      },
+      {
+        "title": "Deploy and monitor performance",
+        "description": "Deploy Redis to production (Redis Cloud or self-hosted). Implement monitoring and alerting for cache health. Add metrics collection (hit rate, memory usage). Document cache strategy and configuration. Optimize based on production data."
+      }
+    ]
+  },
+  "Payment Processing System": {
+    "steps": [
+      {
+        "title": "Design payment system architecture",
+        "description": "Plan payment processor abstraction layer for flexibility. Design webhook handling for payment events. Create transaction logging system. Plan fee calculation and settlements. Document API contracts."
+      },
+      {
+        "title": "Implement payment provider integration",
+        "description": "Integrate with Stripe for payments. Implement payment intent creation. Add card tokenization for security. Handle payment confirmations. Implement refund processing."
+      },
+      {
+        "title": "Build transaction management system",
+        "description": "Create transaction tracking system with status updates. Implement settlement processing. Build reconciliation logic comparing payments to orders. Create transaction history. Implement dispute handling."
+      },
+      {
+        "title": "Add error handling and retries",
+        "description": "Implement idempotency keys for safe retries. Add exponential backoff for failed payments. Handle network timeouts gracefully. Implement dead letter queues for failed transactions. Add comprehensive logging."
+      },
+      {
+        "title": "Implement webhooks and notifications",
+        "description": "Create secure webhook endpoints for payment events. Add webhook signature verification for security. Implement email notifications for payment status. Add webhook retries for reliability. Create webhook delivery logs."
+      },
+      {
+        "title": "Test, secure, and deploy",
+        "description": "Write comprehensive integration tests. Ensure PCI DSS compliance. Add encryption for sensitive data. Implement audit logging. Deploy to production with monitoring."
+      }
+    ]
+  },
+  "Design Your Own Social Media Backend": {
+    "steps": [
+      {
+        "title": "Design User and Post database schema",
+        "description": "Create User model with followers/following arrays, profile information. Create Post model with content, author reference, likes array, comments array with nested replies, timestamps, and privacy settings. Create indexes for efficient queries."
+      },
+      {
+        "title": "Build user authentication and profile endpoints",
+        "description": "Implement user registration, login with JWT. Create endpoints: GET /users/:id (profile), PUT /users/:id (edit profile), POST /users/:id/follow, DELETE /users/:id/follow. Add profile picture upload with Cloudinary or AWS S3."
+      },
+      {
+        "title": "Implement post creation and feed algorithm",
+        "description": "Create POST /posts endpoint to create posts. Build GET /feed endpoint that returns personalized feed: posts from followers + recommended posts. Implement pagination for infinite scroll. Add basic feed algorithm (chronological or engagement-based)."
+      },
+      {
+        "title": "Add comments, likes, and real-time features",
+        "description": "Create endpoints for likes (POST /posts/:id/like, DELETE /posts/:id/like). Build comment system (POST /posts/:id/comments, PUT comments/:id, DELETE comments/:id). Consider Socket.io for real-time notifications on new posts and likes."
+      },
+      {
+        "title": "Implement proper caching and optimization",
+        "description": "Add Redis caching for frequently accessed data (popular posts, user profiles, feed). Implement database query optimization with proper indexes. Cache feed results with TTL to reduce database load. Monitor performance with logging."
+      },
+      {
+        "title": "Add search, hashtags, and deployment",
+        "description": "Implement full-text search for posts and users. Add hashtag system with trending hashtags endpoint. Implement feed filtering (friends only, public). Write integration tests. Deploy to production with monitoring."
+      }
+    ]
+  },
+  "E-Commerce Platform": {
+    "steps": [
+      {
+        "title": "Design and implement complete backend",
+        "description": "Set up Node.js backend with User, Product, Cart, and Order models. Implement user authentication with JWT. Create all product management endpoints. Build shopping cart endpoints. Integrate Stripe for payments. Write comprehensive documentation."
+      },
+      {
+        "title": "Build product listing and search frontend",
+        "description": "Create React component for product grid. Implement ProductCard component. Build search and filter functionality. Add pagination or infinite scroll. Implement product detail page with full information and images."
+      },
+      {
+        "title": "Implement shopping cart and checkout flow",
+        "description": "Create Cart context/Redux store for state management. Build CartPage with item management (add, remove, update quantities). Implement checkout form with address and payment information. Integrate Stripe payment modal."
+      },
+      {
+        "title": "Add user authentication and order history",
+        "description": "Implement login/register pages. Create protected routes for authenticated users. Build user profile page. Create order history page showing past orders. Implement order tracking/details view."
+      },
+      {
+        "title": "Optimize performance and add admin features",
+        "description": "Code split React components for faster loading. Implement image optimization and lazy loading. Create admin panel for product management (add, edit, delete). Add analytics dashboard showing sales and orders."
+      },
+      {
+        "title": "Style and deploy production-ready application",
+        "description": "Create professional UI with Tailwind CSS. Implement responsive design for mobile. Add loading states and error handling throughout. Deploy backend and frontend. Set up CI/CD pipeline for automatic deployments."
+      }
+    ]
+  },
+  "Collaborative Whiteboard/Project Management Tool": {
+    "steps": [
+      {
+        "title": "Set up real-time collaboration with Socket.io",
+        "description": "Create Node.js backend with Socket.io for real-time communication. Create React frontend. Implement WebSocket connection handling. Set up room-based collaboration (multiple whiteboards). Add user presence tracking."
+      },
+      {
+        "title": "Build canvas drawing functionality",
+        "description": "Implement HTML5 Canvas for drawing. Add basic drawing tools (pencil, eraser, shapes). Implement color picker and brush size controls. Add drawing event handlers (mouse/touch). Broadcast drawing actions to all connected users."
+      },
+      {
+        "title": "Implement real-time synchronization",
+        "description": "Send drawing events through Socket.io with minimal latency. Implement conflict resolution for simultaneous edits. Add operation transformation or CRDT for consistency. Maintain single source of truth on server. Handle connection drops gracefully."
+      },
+      {
+        "title": "Add layers, undo/redo, and collaboration features",
+        "description": "Implement layer system for organizing drawings. Add undo/redo functionality for individual users. Implement user cursors showing where others are drawing. Add chat for real-time communication. Show user colors for identification."
+      },
+      {
+        "title": "Implement save, export, and permissions",
+        "description": "Add save to database functionality. Implement export as image (PNG, SVG). Add version history/snapshots. Implement sharing with specific users. Add permission levels (view only, edit, admin). Implement access control."
+      },
+      {
+        "title": "Optimize performance and deploy",
+        "description": "Optimize Canvas rendering for performance. Implement delta updates instead of full state. Add compression for network packets. Monitor WebSocket connection health. Deploy backend and frontend. Add monitoring for collaboration metrics."
+      }
+    ]
   }
 }
