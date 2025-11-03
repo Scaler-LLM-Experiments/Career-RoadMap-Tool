@@ -302,7 +302,7 @@ export default function AdminDashboard() {
   const loadPersonaConfig = async (personaId) => {
     setLoading(true);
     try {
-      const config = await import(`@/configs/personas/${personaId}.json`);
+      const config = await import(`../../configs/personas/${personaId}.json`);
       setPersonaConfig(config.default || config);
     } catch (error) {
       console.error('Failed to load persona config:', error);
