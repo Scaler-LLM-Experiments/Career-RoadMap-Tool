@@ -54,8 +54,8 @@ const Hero = ({ roadmapData }) => {
                       <CardContent className="p-4">
                         <div className="flex items-center gap-3">
                           <Icon size={28} weight="duotone" color="#3B82F6" className="flex-shrink-0" />
-                          <div>
-                            <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1">
+                          <div className="min-w-0">
+                            <div className="text-xs text-slate-500 font-semibold uppercase tracking-normal mb-1 whitespace-nowrap">
                               {stat.label}
                             </div>
                             <div className="text-base font-semibold text-slate-900">
