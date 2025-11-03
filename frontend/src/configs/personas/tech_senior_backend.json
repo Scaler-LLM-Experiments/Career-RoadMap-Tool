@@ -1,0 +1,190 @@
+{
+  "metadata": {
+    "id": "tech_senior_backend",
+    "label": "Senior Backend Engineer",
+    "description": "Backend engineer with 7+ years targeting staff/principal engineer roles at big tech",
+    "targetRoles": ["Staff Engineer", "Principal Engineer", "Distinguished Engineer"],
+    "expectedTimeline": ["4-6 months"]
+  },
+  "hero": {
+    "greeting": "Hey {userName}! 👋",
+    "title": "Your personalized roadmap to Staff/Principal Engineer is ready!",
+    "stats": {
+      "skillsToLearn": {"total": 8, "description": "strategic skills for staff-level"},
+      "estimatedEffort": {"value": "8-12", "unit": "hrs/week"}
+    },
+    "videoUrl": "https://youtu.be/founder-message-staff-backend"
+  },
+  "skillsGap": {
+    "title": "Understand Where You Stand Right Now",
+    "description": "You have exceptional technical foundation. This is about scope, influence, and architectural thinking.",
+    "matchScore": 78,
+    "currentSkills": [
+      {"skill": "Advanced Backend Development", "level": "expert", "priority": "high"},
+      {"skill": "System Design (Senior)", "level": "advanced", "priority": "high"},
+      {"skill": "Microservices Architecture", "level": "expert", "priority": "high"},
+      {"skill": "Database Optimization", "level": "advanced", "priority": "high"},
+      {"skill": "Distributed Systems", "level": "advanced", "priority": "high"},
+      {"skill": "Team Leadership", "level": "intermediate-advanced", "priority": "high"}
+    ],
+    "missingSkills": {
+      "highPriority": [
+        {"skill": "Staff-Level System Design", "description": "Design for 1B+ users with regional failover", "importance": "critical", "estimatedWeeks": 6},
+        {"skill": "Production Excellence", "description": "99.99%+ uptime, chaos engineering, SRE", "importance": "critical", "estimatedWeeks": 4},
+        {"skill": "Technical Strategy", "description": "Multi-quarter roadmaps, build vs buy", "importance": "critical", "estimatedWeeks": 5},
+        {"skill": "Cross-Functional Influence", "description": "Work with product, design, data teams", "importance": "high", "estimatedWeeks": 4}
+      ],
+      "mediumPriority": [
+        {"skill": "Big Tech Interview Patterns", "description": "Staff-level interview preparation", "importance": "high", "estimatedWeeks": 5},
+        {"skill": "Team Scaling & Mentorship", "description": "Scale teams from 5 to 50 engineers", "importance": "high", "estimatedWeeks": 3}
+      ],
+      "lowPriority": [
+        {"skill": "Emerging Technologies", "description": "AI/ML for infrastructure", "importance": "medium", "estimatedWeeks": 2}
+      ]
+    }
+  },
+  "learningPath": {
+    "totalPhases": 3,
+    "estimatedDuration": "4-6 months",
+    "phases": [
+      {
+        "phaseNumber": 1,
+        "title": "Staff Engineer Skills & Architectural Thinking",
+        "duration": "5 weeks",
+        "description": "Master staff-level system design, technical strategy, and architecture at massive scale",
+        "keyTopics": ["Staff-level system design", "Technical strategy", "Cross-functional leadership"],
+        "learningPoints": [
+          {"title": "Staff-Level System Design", "description": "Design for 1B+ users with regional failover"},
+          {"title": "Technical Strategy", "description": "Multi-quarter roadmaps and architectural decisions"},
+          {"title": "Cross-Functional Leadership", "description": "Influence without authority"}
+        ],
+        "learningVideoUrl": "https://www.youtube.com/embed/example_staff_design",
+        "videoPosition": "right",
+        "target": {"metric": "Design 1B+ user system", "description": "With multi-region failover and capacity planning"},
+        "whyItMatters": ["Demonstrates staff-level thinking", "Required for big tech", "Shows architectural vision"]
+      },
+      {
+        "phaseNumber": 2,
+        "title": "Scaling & Production Excellence",
+        "duration": "4 weeks",
+        "description": "Master reliability, observability, and chaos engineering for massive-scale systems",
+        "keyTopics": ["SRE principles", "Chaos engineering", "Observability", "Incident management"],
+        "learningPoints": [
+          {"title": "Site Reliability Engineering", "description": "99.99%+ uptime with incident management"},
+          {"title": "Chaos Engineering", "description": "Proactive failure testing"},
+          {"title": "Observability at Scale", "description": "Metrics, logs, traces for millions of requests"}
+        ],
+        "learningVideoUrl": "https://www.youtube.com/embed/example_sre",
+        "videoPosition": "left",
+        "target": {"metric": "Implement chaos engineering", "description": "In microservices app"},
+        "whyItMatters": ["Shows production mindset", "Critical for scale", "Differentiates staff engineers"]
+      },
+      {
+        "phaseNumber": 3,
+        "title": "Big Tech Interview Mastery (Staff Level)",
+        "duration": "4 weeks",
+        "description": "Prepare for staff-level interviews at FAANG+ with ambiguous, large-scale design problems",
+        "keyTopics": ["Staff system design questions", "Behavioral interviews", "Technical coding"],
+        "learningPoints": [
+          {"title": "Staff-Level System Design", "description": "Design Instagram for 2B users"},
+          {"title": "Behavioral Interviews", "description": "Impact, influence, technical leadership"},
+          {"title": "Coding at Staff Level", "description": "Architecture + implementation"}
+        ],
+        "learningVideoUrl": "https://www.youtube.com/embed/example_staff_interview",
+        "videoPosition": "right",
+        "target": {"metric": "Complete 10 mock staff interviews", "description": "With 80%+ success rate"},
+        "whyItMatters": ["Demonstrates readiness", "Shows staff-level capability", "Proves architectural expertise"]
+      }
+    ]
+  },
+  "companiesInsight": {
+    "title": "Where You Can Land",
+    "description": "Big tech companies hiring for staff/principal engineer roles",
+    "companyTypes": [
+      {
+        "type": "bigtech",
+        "label": "Big Tech (FAANG+)",
+        "description": "Google, Meta, Amazon, Apple, Netflix",
+        "fit": {"level": "excellent", "color": "green", "message": "Perfect target"},
+        "salaryRange": "₹100-150L + significant stocks",
+        "companies": ["Google L6-L7", "Meta E6", "Amazon Principal", "Microsoft L66", "Netflix Senior"],
+        "rounds": [
+          {"name": "Recruiter Screen", "difficulty": "easy", "duration": "30 mins"},
+          {"name": "System Design 1", "difficulty": "very hard", "duration": "60 mins"},
+          {"name": "System Design 2", "difficulty": "very hard", "duration": "60 mins"},
+          {"name": "Coding + Architecture", "difficulty": "very hard", "duration": "60 mins"},
+          {"name": "Behavioral + Leadership", "difficulty": "hard", "duration": "45 mins"},
+          {"name": "Hiring Manager", "difficulty": "medium", "duration": "30 mins"}
+        ],
+        "totalDuration": "8-12 weeks"
+      },
+      {
+        "type": "scaleup",
+        "label": "High-Growth Startups (Series C+)",
+        "description": "Stripe, Databricks, Rippling, Notion",
+        "fit": {"level": "excellent", "color": "green", "message": "Great opportunity"},
+        "salaryRange": "₹80-120L + significant equity",
+        "companies": ["Stripe", "Databricks", "Rippling", "Notion"],
+        "rounds": [
+          {"name": "System Design", "difficulty": "very hard", "duration": "75 mins"},
+          {"name": "Technical Deep Dive", "difficulty": "very hard", "duration": "90 mins"},
+          {"name": "Coding Round", "difficulty": "hard", "duration": "60 mins"},
+          {"name": "Founder Round", "difficulty": "hard", "duration": "45 mins"}
+        ],
+        "totalDuration": "4-6 weeks"
+      }
+    ]
+  },
+  "projects": {
+    "title": "Build Staff-Level Projects",
+    "description": "Demonstrate architectural thinking and production excellence",
+    "projects": [
+      {
+        "tier": "tier1",
+        "title": "High-Availability Payment System",
+        "difficulty": "advanced",
+        "duration": "6-8 weeks",
+        "description": "Handle millions of transactions per day with 99.99% uptime",
+        "technologies": ["Distributed systems", "Raft/Paxos", "Event sourcing", "Kafka", "Kubernetes"],
+        "learnings": ["Distributed consensus", "Payment systems", "High availability"]
+      },
+      {
+        "tier": "tier2",
+        "title": "Global Content Delivery Platform",
+        "difficulty": "advanced",
+        "duration": "8-10 weeks",
+        "description": "Like YouTube/Netflix: multi-region, adaptive streaming",
+        "technologies": ["Multi-region", "CDN", "CRDT", "Kafka", "Kubernetes"],
+        "learnings": ["Global systems", "Consistency", "Real-time sync"]
+      },
+      {
+        "tier": "tier3",
+        "title": "Database-as-a-Service",
+        "difficulty": "expert",
+        "duration": "10-12 weeks",
+        "description": "Managed database like AWS RDS",
+        "technologies": ["Kubernetes Operators", "Automated failover", "Backup/recovery"],
+        "learnings": ["Self-healing systems", "Database internals", "Orchestration"]
+      }
+    ]
+  },
+  "interviewPrep": {
+    "title": "Staff-Level Interview Preparation",
+    "systemDesignTopics": ["Design Instagram for 2B users", "Global payment system", "YouTube at scale", "WhatsApp with E2E"],
+    "topicsToPractice": {
+      "algorithms": ["Hard LeetCode problems (50+)", "Graph algorithms", "DP at scale"],
+      "systemDesign": ["1B+ user systems", "Multi-region architectures", "Consistency models"],
+      "behavioral": ["Impact stories", "Technical vision", "Mentoring experience", "Cross-org influence"]
+    }
+  },
+  "timeline": {
+    "startDate": "immediately",
+    "endDate": "4-6 months",
+    "milestonesToHit": [
+      {"week": "Week 1-5", "goal": "Master staff skills", "checklist": ["Design systems", "Read staff eng book", "10 system designs"]},
+      {"week": "Week 6-9", "goal": "Production excellence", "checklist": ["SRE course", "Chaos engineering", "Incident response"]},
+      {"week": "Week 10-13", "goal": "Interview prep", "checklist": ["20 mock interviews", "STAR stories", "Company research"]},
+      {"week": "Week 14-24", "goal": "Active interviews", "checklist": ["Apply to 10+ companies", "Complete loops", "Negotiate"]}
+    ]
+  }
+}

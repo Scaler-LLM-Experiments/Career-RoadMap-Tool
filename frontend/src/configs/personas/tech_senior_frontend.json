@@ -1,0 +1,175 @@
+{
+  "metadata": {
+    "id": "tech_senior_frontend",
+    "label": "Senior Frontend Engineer",
+    "description": "Frontend engineer with 7+ years targeting staff/principal engineer roles",
+    "targetRoles": ["Staff Frontend Engineer", "Principal Engineer"],
+    "expectedTimeline": ["4-6 months"]
+  },
+  "hero": {
+    "greeting": "Hey {userName}! 👋",
+    "title": "Your personalized roadmap to Staff/Principal Frontend Engineer is ready!",
+    "stats": {
+      "skillsToLearn": {"total": 8, "description": "strategic skills for staff-level"},
+      "estimatedEffort": {"value": "8-12", "unit": "hrs/week"}
+    },
+    "videoUrl": "https://youtu.be/founder-message-staff-frontend"
+  },
+  "skillsGap": {
+    "title": "Understand Where You Stand Right Now",
+    "description": "Exceptional technical foundation. Focus on scale, influence, and architectural vision.",
+    "matchScore": 76,
+    "currentSkills": [
+      {"skill": "Advanced React", "level": "expert", "priority": "high"},
+      {"skill": "Performance Optimization", "level": "advanced", "priority": "high"},
+      {"skill": "Design Systems", "level": "advanced", "priority": "high"},
+      {"skill": "Team Leadership", "level": "intermediate-advanced", "priority": "high"},
+      {"skill": "TypeScript", "level": "advanced", "priority": "high"}
+    ],
+    "missingSkills": {
+      "highPriority": [
+        {"skill": "Frontend Architecture at Scale", "description": "Micro-frontends, module federation", "importance": "critical", "estimatedWeeks": 4},
+        {"skill": "Accessibility Mastery (WCAG AAA)", "description": "Screen readers, keyboard nav", "importance": "critical", "estimatedWeeks": 3},
+        {"skill": "Advanced Performance Profiling", "description": "Memory leaks, rendering optimization", "importance": "critical", "estimatedWeeks": 3},
+        {"skill": "Emerging Web Standards", "description": "Web Components, View Transitions", "importance": "high", "estimatedWeeks": 2}
+      ],
+      "mediumPriority": [
+        {"skill": "Cross-Browser Testing", "description": "Legacy browser support", "importance": "medium", "estimatedWeeks": 2},
+        {"skill": "Advanced TypeScript", "description": "Generics, conditional types", "importance": "medium", "estimatedWeeks": 2},
+        {"skill": "Frontend Security", "description": "XSS, CSRF, CSP", "importance": "medium", "estimatedWeeks": 2}
+      ]
+    }
+  },
+  "learningPath": {
+    "totalPhases": 3,
+    "estimatedDuration": "4-6 months",
+    "phases": [
+      {
+        "phaseNumber": 1,
+        "title": "Frontend Architecture & Performance at Scale",
+        "duration": "5 weeks",
+        "description": "Master large-scale frontend systems and optimization",
+        "keyTopics": ["Micro-frontends", "Module federation", "Performance", "Browser internals"],
+        "learningPoints": [
+          {"title": "Micro-Frontend Architecture", "description": "Design systems for multi-team orgs"},
+          {"title": "Advanced Performance", "description": "Profile and optimize at scale"},
+          {"title": "Browser Internals", "description": "Rendering pipeline and optimization"}
+        ],
+        "learningVideoUrl": "https://www.youtube.com/embed/example_arch",
+        "videoPosition": "right",
+        "target": {"metric": "Design micro-frontend platform", "description": "With independent deployment"},
+        "whyItMatters": ["Shows architectural vision", "Required for big tech", "Rare expertise"]
+      },
+      {
+        "phaseNumber": 2,
+        "title": "Design Systems Leadership & Accessibility",
+        "duration": "4 weeks",
+        "description": "Lead design system initiatives, master accessibility",
+        "keyTopics": ["Design systems", "WCAG AAA", "Component APIs", "Documentation"],
+        "learningPoints": [
+          {"title": "Design System Mastery", "description": "50+ components, theming, documentation"},
+          {"title": "WCAG AAA Compliance", "description": "Screen readers, keyboard nav"},
+          {"title": "Component API Design", "description": "Polymorphic, flexible components"}
+        ],
+        "learningVideoUrl": "https://www.youtube.com/embed/example_ds",
+        "videoPosition": "left",
+        "target": {"metric": "Build enterprise design system", "description": "50+ components, AAA compliance"},
+        "whyItMatters": ["Multiplies team productivity", "Shows leadership", "Demonstrates mentoring"]
+      },
+      {
+        "phaseNumber": 3,
+        "title": "Big Tech Interview Mastery",
+        "duration": "4 weeks",
+        "description": "Prepare for staff-level frontend interviews",
+        "keyTopics": ["System design", "Architecture", "Behavioral", "Leadership"],
+        "learningPoints": [
+          {"title": "Frontend System Design", "description": "Design Instagram, Figma, Netflix"},
+          {"title": "Architecture Decisions", "description": "Discuss trade-offs deeply"},
+          {"title": "Leadership Stories", "description": "Impact and influence"}
+        ],
+        "learningVideoUrl": "https://www.youtube.com/embed/example_interview",
+        "videoPosition": "right",
+        "target": {"metric": "Complete 10 mock staff interviews", "description": "80%+ success rate"},
+        "whyItMatters": ["Proves staff-level readiness", "Shows architectural expertise"]
+      }
+    ]
+  },
+  "companiesInsight": {
+    "title": "Where You Can Land",
+    "description": "Big tech and unicorns hiring staff-level frontend engineers",
+    "companyTypes": [
+      {
+        "type": "bigtech",
+        "label": "Big Tech (Google, Meta, etc)",
+        "description": "FAANG+ companies",
+        "fit": {"level": "excellent", "color": "green", "message": "Perfect target"},
+        "salaryRange": "₹100-150L + stock",
+        "companies": ["Google L6-L7", "Meta E6", "Netflix Senior", "Microsoft L65"],
+        "rounds": 6,
+        "totalDuration": "8-12 weeks"
+      },
+      {
+        "type": "unicorn",
+        "label": "High-Growth Unicorns",
+        "description": "Stripe, Figma, Netflix, Airbnb",
+        "fit": {"level": "excellent", "color": "green", "message": "Great opportunity"},
+        "salaryRange": "₹80-120L + equity",
+        "companies": ["Stripe", "Figma", "Airbnb"],
+        "rounds": 4,
+        "totalDuration": "4-6 weeks"
+      }
+    ]
+  },
+  "projects": {
+    "title": "Build Staff-Level Projects",
+    "description": "Demonstrate frontend architecture expertise",
+    "projects": [
+      {
+        "tier": "tier1",
+        "title": "Component Library with Accessibility",
+        "difficulty": "advanced",
+        "duration": "6-8 weeks",
+        "description": "50+ components, WCAG AAA, theming",
+        "technologies": ["React", "TypeScript", "Storybook", "Playwright"],
+        "learnings": ["Design systems", "Accessibility", "Documentation"]
+      },
+      {
+        "tier": "tier2",
+        "title": "High-Performance Dashboard",
+        "difficulty": "advanced",
+        "duration": "6-8 weeks",
+        "description": "100k+ data points, sub-100ms latency",
+        "technologies": ["React", "Web Workers", "Virtual scrolling", "WebSocket"],
+        "learnings": ["Performance", "Real-time", "Virtualization"]
+      },
+      {
+        "tier": "tier3",
+        "title": "Design System at Scale",
+        "difficulty": "expert",
+        "duration": "8-10 weeks",
+        "description": "Material Design-caliber system",
+        "technologies": ["Monorepo", "Design tokens", "Multiple themes", "50+ components"],
+        "learnings": ["Architecture", "Leadership", "Design systems mastery"]
+      }
+    ]
+  },
+  "interviewPrep": {
+    "title": "Staff-Level Interview Preparation",
+    "systemDesignTopics": ["Design Instagram", "Design Figma", "Design Netflix", "Design Airbnb"],
+    "topicsToPractice": {
+      "algorithms": ["Hard LeetCode (50+)", "Frontend-specific problems"],
+      "systemDesign": ["Large-scale UIs", "Design systems", "Micro-frontends"],
+      "behavioral": ["Impact stories", "Design system leadership", "Mentoring", "Cross-org influence"]
+    }
+  },
+  "timeline": {
+    "startDate": "immediately",
+    "endDate": "4-6 months",
+    "milestonesToHit": [
+      {"week": "Week 1-5", "goal": "Master architecture", "checklist": ["Micro-frontends", "Performance", "10 designs"]},
+      {"week": "Week 6-9", "goal": "Design systems", "checklist": ["Build system", "AAA compliance", "50 components"]},
+      {"week": "Week 10-13", "goal": "Interview prep", "checklist": ["20 mocks", "STAR stories", "Research"]},
+      {"week": "Week 14-24", "goal": "Active interviews", "checklist": ["10+ companies", "Loops", "Negotiate"]}
+    ]
+  }
+}

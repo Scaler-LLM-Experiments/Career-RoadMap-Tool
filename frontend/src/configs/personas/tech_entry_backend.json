@@ -1,0 +1,708 @@
+{
+  "metadata": {
+    "id": "tech_entry_backend",
+    "label": "Entry-Level Backend Engineer",
+    "description": "Computer Science graduate or early career developer targeting backend engineer role",
+    "targetRoles": ["Backend Engineer", "Associate Backend Engineer"],
+    "expectedTimeline": ["3-6 months", "6-9 months"]
+  },
+
+  "hero": {
+    "greeting": "Hey {userName}! 👋",
+    "title": "Your personalized roadmap to land your first Backend Engineer role is ready!",
+    "stats": {
+      "skillsToLearn": {
+        "total": 8,
+        "description": "essential backend development skills"
+      },
+      "estimatedEffort": {
+        "value": "15-20",
+        "unit": "hrs/week"
+      }
+    },
+    "videoUrl": "https://youtu.be/founder-message-entry-backend"
+  },
+
+  "skillsGap": {
+    "title": "Understand Where You Stand Right Now",
+    "description": "See what you have and what you need to master to land your first backend role.",
+    "matchScore": 42,
+    "currentSkills": [
+      {
+        "skill": "Java/Python",
+        "level": "intermediate",
+        "priority": "high"
+      },
+      {
+        "skill": "Data Structures & Algorithms",
+        "level": "intermediate",
+        "priority": "high"
+      },
+      {
+        "skill": "Basic SQL",
+        "level": "beginner",
+        "priority": "high"
+      }
+    ],
+    "missingSkills": {
+      "highPriority": [
+        {
+          "skill": "REST API Development",
+          "description": "Build production-grade APIs",
+          "importance": "critical",
+          "estimatedWeeks": 4
+        },
+        {
+          "skill": "Database Design & SQL",
+          "description": "Schema design, queries, indexing",
+          "importance": "critical",
+          "estimatedWeeks": 5
+        },
+        {
+          "skill": "Web Frameworks",
+          "description": "Express.js, Django, Spring Boot",
+          "importance": "critical",
+          "estimatedWeeks": 4
+        },
+        {
+          "skill": "System Design Basics",
+          "description": "Understand scalability fundamentals",
+          "importance": "high",
+          "estimatedWeeks": 3
+        },
+        {
+          "skill": "Git & Version Control",
+          "description": "Collaboration and code management",
+          "importance": "high",
+          "estimatedWeeks": 2
+        }
+      ],
+      "mediumPriority": [
+        {
+          "skill": "Authentication & Authorization",
+          "description": "JWT, OAuth, session management",
+          "importance": "high",
+          "estimatedWeeks": 2
+        },
+        {
+          "skill": "Docker Basics",
+          "description": "Containerization fundamentals",
+          "importance": "medium",
+          "estimatedWeeks": 2
+        },
+        {
+          "skill": "Testing & Debugging",
+          "description": "Unit tests, integration tests",
+          "importance": "medium",
+          "estimatedWeeks": 2
+        }
+      ],
+      "lowPriority": [
+        {
+          "skill": "CI/CD Basics",
+          "description": "Continuous integration pipelines",
+          "importance": "medium",
+          "estimatedWeeks": 1
+        }
+      ]
+    }
+  },
+
+  "learningPath": {
+    "totalPhases": 3,
+    "estimatedDuration": "3-6 months",
+    "phases": [
+      {
+        "phaseNumber": 1,
+        "title": "Foundation: Core Backend Skills",
+        "duration": "6 weeks",
+        "description": "Master the fundamentals of backend development and web frameworks",
+        "keyTopics": [
+          "REST APIs",
+          "Web frameworks",
+          "Database fundamentals",
+          "HTTP protocols",
+          "Request-response cycles"
+        ],
+        "learningPoints": [
+          {
+            "title": "Web Frameworks & API Development",
+            "description": "Learn Express.js, Django, or Spring Boot to build production APIs"
+          },
+          {
+            "title": "Database Design & SQL",
+            "description": "Design schemas, write queries, understand indexing and optimization"
+          },
+          {
+            "title": "HTTP & REST Principles",
+            "description": "Master status codes, headers, request methods, and RESTful design"
+          },
+          {
+            "title": "Authentication Basics",
+            "description": "Implement JWT, password hashing, and session management"
+          }
+        ],
+        "learningVideoUrl": "https://www.youtube.com/embed/h2J0FuBB4Yo",
+        "videoPosition": "right",
+        "target": {
+          "metric": "3 REST APIs",
+          "description": "Build 3 simple REST APIs: Todo app, User management system, Blog backend"
+        },
+        "whyItMatters": [
+          "90% of backend interview questions use REST APIs",
+          "First skill companies test in interviews",
+          "Foundation for all backend roles",
+          "Directly applicable to day-1 tasks"
+        ]
+      },
+
+      {
+        "phaseNumber": 2,
+        "title": "Building Blocks: Advanced Backend Concepts",
+        "duration": "5 weeks",
+        "description": "Deepen your understanding of scalability and system design basics",
+        "keyTopics": [
+          "Database optimization",
+          "Caching strategies",
+          "Error handling",
+          "Logging & debugging",
+          "API versioning",
+          "Rate limiting"
+        ],
+        "learningPoints": [
+          {
+            "title": "Database Optimization",
+            "description": "Write efficient queries, use indexes, understand query plans"
+          },
+          {
+            "title": "Caching & Performance",
+            "description": "Implement caching layers, Redis basics, performance optimization"
+          },
+          {
+            "title": "Error Handling & Validation",
+            "description": "Proper exception handling, input validation, graceful failures"
+          },
+          {
+            "title": "System Design Basics",
+            "description": "Understand load balancing, scaling, and basic architecture patterns"
+          }
+        ],
+        "learningVideoUrl": "https://www.youtube.com/embed/xpZXdY_vLaA",
+        "videoPosition": "left",
+        "target": {
+          "metric": "2 Complex Projects",
+          "description": "Build a multi-tier API with caching and an e-commerce backend with proper error handling"
+        },
+        "whyItMatters": [
+          "Separates junior from senior juniors",
+          "Shows production mindset",
+          "Asked in mid-round interviews",
+          "Critical for code quality"
+        ]
+      },
+
+      {
+        "phaseNumber": 3,
+        "title": "Polish: Interview Preparation & Portfolio",
+        "duration": "4-5 weeks",
+        "description": "Prepare for interviews and create a portfolio that lands offers",
+        "keyTopics": [
+          "Coding problems (medium difficulty)",
+          "System design basics",
+          "Behavioral preparation",
+          "Portfolio projects",
+          "Resume optimization"
+        ],
+        "learningPoints": [
+          {
+            "title": "Coding Interview Problems",
+            "description": "Solve medium-level DSA problems commonly asked for backend roles"
+          },
+          {
+            "title": "System Design Fundamentals",
+            "description": "Design simple systems like URL shortener, social media feed basics"
+          },
+          {
+            "title": "Real-World Debugging",
+            "description": "Debug production issues, improve existing codebases"
+          },
+          {
+            "title": "Interview Communication",
+            "description": "Explain your code clearly, discuss trade-offs, ask clarifying questions"
+          }
+        ],
+        "learningVideoUrl": "https://www.youtube.com/embed/H3xk64J9jH0",
+        "videoPosition": "right",
+        "target": {
+          "metric": "1 Portfolio Project",
+          "description": "Create one polished project showcasing all learned skills - your best interview talking point"
+        },
+        "whyItMatters": [
+          "Portfolio projects are interview conversation starters",
+          "Shows ability to build end-to-end",
+          "Demonstrates code quality and best practices",
+          "Sets you apart from other candidates"
+        ]
+      }
+    ]
+  },
+
+  "companiesInsight": {
+    "title": "Where You Can Land",
+    "description": "Companies actively hiring backend engineers for entry-level roles",
+    "companyTypes": [
+      {
+        "type": "startup",
+        "label": "High-Growth Startups",
+        "description": "Fast-paced, learn quickly, wear many hats, high growth potential",
+        "fit": {
+          "level": "excellent",
+          "color": "green",
+          "message": "Perfect for entry-level - They hire fresh talent and teach real-world skills"
+        },
+        "whyFit": [
+          "Startups actively hire fresh graduates",
+          "You'll learn production systems quickly",
+          "Less competition than big companies",
+          "Growth opportunities are rapid"
+        ],
+        "whatToDo": [
+          "Build 1-2 full-stack projects to show capability",
+          "Focus on coding problem-solving speed",
+          "Show eagerness to learn and take ownership",
+          "Practice explaining your projects clearly"
+        ],
+        "salaryRange": "₹6-15L + equity",
+        "companies": ["Dukaan", "Cashfree", "Razorpay"],
+        "rounds": [
+          {
+            "name": "Online Coding Round",
+            "difficulty": "medium",
+            "duration": "90 mins",
+            "description": "2-3 coding problems",
+            "focus": "Problem-solving",
+            "videoUrl": "https://youtu.be/startup-entry-coding",
+            "points": [
+              "Solve both problems with clean code",
+              "Explain your approach clearly",
+              "Handle edge cases"
+            ]
+          },
+          {
+            "name": "System Design Round",
+            "difficulty": "easy-medium",
+            "duration": "45 mins",
+            "description": "Design a simple system",
+            "focus": "Scalability thinking",
+            "videoUrl": "https://youtu.be/startup-entry-design",
+            "points": [
+              "Design URL shortener or simple notification system",
+              "Discuss basic databases and caching",
+              "Show understanding of scale"
+            ]
+          },
+          {
+            "name": "Project Walkthrough",
+            "difficulty": "easy",
+            "duration": "30 mins",
+            "description": "Present your best project",
+            "focus": "Communication",
+            "videoUrl": "https://youtu.be/project-walkthrough",
+            "points": [
+              "Explain what you built clearly",
+              "Discuss decisions and trade-offs",
+              "Show code quality and testing"
+            ]
+          },
+          {
+            "name": "HR Round",
+            "difficulty": "easy",
+            "duration": "30 mins",
+            "description": "Culture fit and growth mindset",
+            "focus": "Eagerness to learn",
+            "videoUrl": "https://youtu.be/hr-round-guide",
+            "points": [
+              "Show enthusiasm for the role",
+              "Discuss your learning goals",
+              "Ask thoughtful questions about the company"
+            ]
+          }
+        ],
+        "totalDuration": "2-3 weeks"
+      },
+
+      {
+        "type": "scaleup",
+        "label": "Scaled Startups / Unicorns",
+        "description": "Established startups with great products, strong team, good learning",
+        "fit": {
+          "level": "good",
+          "color": "green",
+          "message": "Good fit - Strong teams, established systems, best learning environment"
+        },
+        "whyFit": [
+          "Amazing learning from experienced engineers",
+          "Product-focused teams",
+          "Better work-life balance than early startups",
+          "Good salaries and benefits"
+        ],
+        "whatToDo": [
+          "Prepare strong coding fundamentals",
+          "Show understanding of their product",
+          "Build systems thinking (basic level)",
+          "Practice all interview rounds"
+        ],
+        "salaryRange": "₹10-20L + equity",
+        "companies": ["PhonePe", "Flipkart", "Zomato"],
+        "rounds": [
+          {
+            "name": "Online Assessment",
+            "difficulty": "medium",
+            "duration": "120 mins",
+            "description": "Coding + simple design",
+            "focus": "Problem-solving",
+            "videoUrl": "https://youtu.be/scaleup-entry-assessment",
+            "points": [
+              "Focus on clean, efficient code",
+              "Write test cases",
+              "Optimize for complexity"
+            ]
+          },
+          {
+            "name": "Coding Round",
+            "difficulty": "medium",
+            "duration": "60 mins",
+            "description": "1-2 medium-level problems",
+            "focus": "Algorithm knowledge",
+            "videoUrl": "https://youtu.be/scaleup-entry-coding",
+            "points": [
+              "Show step-by-step thinking",
+              "Optimize solutions",
+              "Discuss trade-offs"
+            ]
+          },
+          {
+            "name": "System Design Round",
+            "difficulty": "medium",
+            "duration": "45 mins",
+            "description": "Design a real-world system",
+            "focus": "Scalability basics",
+            "videoUrl": "https://youtu.be/scaleup-entry-design",
+            "points": [
+              "Use their actual products as reference",
+              "Discuss database choices",
+              "Show caching knowledge"
+            ]
+          },
+          {
+            "name": "Technical Lead Round",
+            "difficulty": "medium",
+            "duration": "45 mins",
+            "description": "Project discussion and growth",
+            "focus": "Learning ability",
+            "videoUrl": "https://youtu.be/tech-lead-entry",
+            "points": [
+              "Discuss your best project in detail",
+              "Show code quality",
+              "Ask good technical questions"
+            ]
+          },
+          {
+            "name": "HR Round",
+            "difficulty": "easy",
+            "duration": "30 mins",
+            "description": "Values and culture fit",
+            "focus": "Growth mindset",
+            "videoUrl": "https://youtu.be/hr-round-guide",
+            "points": [
+              "Show passion for the role",
+              "Discuss learning goals",
+              "Talk about your growth journey"
+            ]
+          }
+        ],
+        "totalDuration": "3-4 weeks"
+      },
+
+      {
+        "type": "service",
+        "label": "Service Companies",
+        "description": "IT consulting with diverse projects, stability, and learning opportunities",
+        "fit": {
+          "level": "achievable",
+          "color": "blue",
+          "message": "Good stepping stone - Stable, structured learning, good pay for freshers"
+        },
+        "whyFit": [
+          "Actively hire freshers",
+          "Structured training programs",
+          "Stable and predictable roles",
+          "Exposure to diverse projects"
+        ],
+        "whatToDo": [
+          "Master core Java/Python and DSA",
+          "Practice online assessments (like Cocubes, HackerEarth)",
+          "Be ready for multiple technical rounds",
+          "Show eagerness to learn diverse technologies"
+        ],
+        "salaryRange": "₹3.5-6L",
+        "companies": ["TCS", "Infosys", "Wipro"],
+        "rounds": [
+          {
+            "name": "Online Assessment",
+            "difficulty": "easy-medium",
+            "duration": "90 mins",
+            "description": "Coding + aptitude + English",
+            "focus": "Fundamentals",
+            "videoUrl": "https://youtu.be/service-entry-assessment",
+            "points": [
+              "Practice with official prep platforms",
+              "Know basic data structures",
+              "Time management is key"
+            ]
+          },
+          {
+            "name": "Group Discussion / Technical Interview",
+            "difficulty": "easy",
+            "duration": "30 mins",
+            "description": "Basic technical questions",
+            "focus": "Communication",
+            "videoUrl": "https://youtu.be/service-entry-interview",
+            "points": [
+              "Explain concepts clearly",
+              "Discuss your college projects",
+              "Show enthusiasm for learning"
+            ]
+          },
+          {
+            "name": "HR Round",
+            "difficulty": "easy",
+            "duration": "20 mins",
+            "description": "Personal and professional fit",
+            "focus": "Reliability",
+            "videoUrl": "https://youtu.be/hr-round-guide",
+            "points": [
+              "Be honest about your journey",
+              "Show willingness to relocate if needed",
+              "Ask questions about growth"
+            ]
+          }
+        ],
+        "totalDuration": "1-2 weeks"
+      },
+
+      {
+        "type": "bigtech",
+        "label": "Big Tech Companies",
+        "description": "Google, Amazon, Microsoft - Learn from the best but highly competitive",
+        "fit": {
+          "level": "challenging",
+          "color": "orange",
+          "message": "Difficult for freshers - Highly competitive but great if you can crack it"
+        },
+        "whyFit": [
+          "Best brands in the industry",
+          "Highest salaries and benefits",
+          "World-class engineering practices",
+          "Opens all doors for future"
+        ],
+        "whatToDo": [
+          "Solve 50+ LeetCode problems (mix of easy-medium)",
+          "Master data structures and algorithms",
+          "Prepare system design basics",
+          "Practice behavioral interviews"
+        ],
+        "salaryRange": "₹15-30L + stock options",
+        "companies": ["Google", "Amazon", "Microsoft"],
+        "rounds": [
+          {
+            "name": "Online Challenge",
+            "difficulty": "medium-hard",
+            "duration": "120 mins",
+            "description": "Advanced coding problems",
+            "focus": "Algorithm mastery",
+            "videoUrl": "https://youtu.be/bigtech-entry-challenge",
+            "points": [
+              "Optimize solutions",
+              "Think about edge cases",
+              "Know time/space complexity"
+            ]
+          },
+          {
+            "name": "Phone Screening",
+            "difficulty": "medium",
+            "duration": "45 mins",
+            "description": "Quick problem-solving",
+            "focus": "Fundamentals",
+            "videoUrl": "https://youtu.be/bigtech-screening",
+            "points": [
+              "Clean code first",
+              "Talk through your solution",
+              "Show problem-solving process"
+            ]
+          },
+          {
+            "name": "Coding Round",
+            "difficulty": "hard",
+            "duration": "60 mins",
+            "description": "2 hard coding problems",
+            "focus": "Algorithm expertise",
+            "videoUrl": "https://youtu.be/bigtech-entry-coding",
+            "points": [
+              "Solve hard problems under pressure",
+              "Optimize both time and space",
+              "Clear communication with interviewer"
+            ]
+          },
+          {
+            "name": "Behavioral Round",
+            "difficulty": "medium",
+            "duration": "45 mins",
+            "description": "Culture fit and teamwork",
+            "focus": "Growth mindset",
+            "videoUrl": "https://youtu.be/bigtech-behavioral",
+            "points": [
+              "Tell your coding journey story",
+              "Show eagerness to learn",
+              "Ask thoughtful questions"
+            ]
+          }
+        ],
+        "totalDuration": "4-6 weeks"
+      }
+    ]
+  },
+
+  "projects": {
+    "title": "Build Real-World Projects",
+    "description": "Projects to demonstrate your backend skills and land interviews",
+    "projects": [
+      {
+        "tier": "tier1_foundation",
+        "title": "Build a Todo API with Authentication",
+        "difficulty": "easy",
+        "duration": "1-2 weeks",
+        "description": "Create a complete REST API for a todo application with user authentication and proper database design",
+        "technologies": ["Node.js/Python", "Express/Django", "PostgreSQL", "JWT"],
+        "learnings": ["REST API design", "Authentication", "Database schema", "CRUD operations"],
+        "portfolio_value": "high",
+        "githubTemplate": "https://github.com/scaler/todo-api"
+      },
+
+      {
+        "tier": "tier2_intermediate",
+        "title": "E-Commerce Backend System",
+        "difficulty": "medium",
+        "duration": "2-3 weeks",
+        "description": "Build a product catalog, shopping cart, and order management system with proper error handling",
+        "technologies": ["Node.js/Python", "Express/Django", "PostgreSQL", "Redis (basic)"],
+        "learnings": ["Complex API design", "Database optimization", "Error handling", "Caching basics"],
+        "portfolio_value": "very_high",
+        "if_companyType": {
+          "startup": {
+            "emphasis": ["rapid_development", "lean_approach"],
+            "addRequirement": "Add basic payment integration (Stripe mock)"
+          },
+          "scaleup": {
+            "emphasis": ["code_quality", "testing"],
+            "addRequirement": "Include unit tests and API documentation"
+          }
+        }
+      },
+
+      {
+        "tier": "tier3_advanced",
+        "title": "Social Media Feed Backend",
+        "difficulty": "hard",
+        "duration": "3-4 weeks",
+        "description": "Build a simplified Twitter-like backend with posts, comments, likes, and user interactions",
+        "technologies": ["Node.js/Python", "PostgreSQL", "Redis", "Docker"],
+        "learnings": ["Scalability patterns", "Complex queries", "Caching strategies", "System design thinking"],
+        "portfolio_value": "exceptional",
+        "interviewFlex": "This is your strongest interview talking point - shows production-ready thinking"
+      }
+    ]
+  },
+
+  "interviewPrep": {
+    "title": "Interview Preparation Guide",
+    "systemDesignTopics": [
+      "URL shortener",
+      "Notification system",
+      "Chat system (simple)",
+      "Social media feed (basic)"
+    ],
+    "topicsToPractice": {
+      "algorithms": [
+        "Arrays and strings (easy-medium)",
+        "Linked lists (easy-medium)",
+        "Trees and graphs (easy-medium)",
+        "Sorting and searching"
+      ],
+      "systemDesign": [
+        "Basic scalability concepts",
+        "Database design",
+        "API design patterns",
+        "Caching strategies",
+        "Load balancing basics"
+      ],
+      "behavioral": [
+        "Your coding journey",
+        "Biggest challenge you overcame",
+        "Teamwork examples",
+        "Learning mindset stories"
+      ]
+    },
+    "resources": {
+      "courses": [
+        {
+          "title": "Backend Development Bootcamp",
+          "provider": "Scaler",
+          "duration": "8 weeks"
+        }
+      ],
+      "books": [
+        {
+          "title": "System Design Interview",
+          "author": "Alex Xu"
+        }
+      ],
+      "mockInterviews": {
+        "frequency": "2 per week",
+        "duration": "Last 3 weeks before interviews"
+      }
+    }
+  },
+
+  "timeline": {
+    "startDate": "immediately",
+    "endDate": "3-6 months",
+    "milestonesToHit": [
+      {
+        "week": "Week 1-2",
+        "goal": "Master web frameworks and REST APIs",
+        "checklist": ["Complete framework course", "Build first API", "Understand HTTP protocols"]
+      },
+      {
+        "week": "Week 3-4",
+        "goal": "Deep dive into databases",
+        "checklist": ["Learn SQL thoroughly", "Design first schema", "Practice queries"]
+      },
+      {
+        "week": "Week 5-8",
+        "goal": "Build first complete project",
+        "checklist": ["Todo API with auth", "Database optimization", "Error handling"]
+      },
+      {
+        "week": "Week 9-14",
+        "goal": "Build portfolio with 2 strong projects",
+        "checklist": ["E-commerce backend", "Code reviews", "Write tests"]
+      },
+      {
+        "week": "Week 15+",
+        "goal": "Interview preparation",
+        "checklist": ["Coding practice", "Mock interviews", "Company research"]
+      }
+    ]
+  }
+}

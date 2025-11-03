@@ -1,0 +1,721 @@
+{
+  "metadata": {
+    "id": "tech_entry_frontend",
+    "label": "Entry-Level Frontend Engineer",
+    "description": "Computer Science graduate or early career developer targeting frontend engineer role",
+    "targetRoles": ["Frontend Engineer", "Junior Frontend Engineer"],
+    "expectedTimeline": ["3-6 months", "6-9 months"]
+  },
+
+  "hero": {
+    "greeting": "Hey {userName}! 👋",
+    "title": "Your personalized roadmap to land your first Frontend Engineer role is ready!",
+    "stats": {
+      "skillsToLearn": {
+        "total": 9,
+        "description": "essential frontend development skills"
+      },
+      "estimatedEffort": {
+        "value": "15-20",
+        "unit": "hrs/week"
+      }
+    },
+    "videoUrl": "https://youtu.be/founder-message-entry-frontend"
+  },
+
+  "skillsGap": {
+    "title": "Understand Where You Stand Right Now",
+    "description": "See what you have and what you need to master to land your first frontend role.",
+    "matchScore": 38,
+    "currentSkills": [
+      {
+        "skill": "JavaScript",
+        "level": "intermediate",
+        "priority": "high"
+      },
+      {
+        "skill": "HTML & CSS",
+        "level": "intermediate",
+        "priority": "high"
+      },
+      {
+        "skill": "DOM Manipulation",
+        "level": "beginner",
+        "priority": "high"
+      }
+    ],
+    "missingSkills": {
+      "highPriority": [
+        {
+          "skill": "React Fundamentals",
+          "description": "Components, hooks, state management",
+          "importance": "critical",
+          "estimatedWeeks": 5
+        },
+        {
+          "skill": "Advanced JavaScript",
+          "description": "Closures, async/await, promises, prototypes",
+          "importance": "critical",
+          "estimatedWeeks": 4
+        },
+        {
+          "skill": "CSS Mastery",
+          "description": "Flexbox, Grid, responsive design",
+          "importance": "critical",
+          "estimatedWeeks": 3
+        },
+        {
+          "skill": "API Integration",
+          "description": "Fetch, axios, REST APIs",
+          "importance": "high",
+          "estimatedWeeks": 2
+        },
+        {
+          "skill": "State Management",
+          "description": "Redux basics, Context API",
+          "importance": "high",
+          "estimatedWeeks": 3
+        }
+      ],
+      "mediumPriority": [
+        {
+          "skill": "Web Performance",
+          "description": "Optimization, lazy loading, caching",
+          "importance": "high",
+          "estimatedWeeks": 2
+        },
+        {
+          "skill": "Testing",
+          "description": "Unit tests, integration tests",
+          "importance": "medium",
+          "estimatedWeeks": 2
+        },
+        {
+          "skill": "Git & Version Control",
+          "description": "Collaboration and code management",
+          "importance": "medium",
+          "estimatedWeeks": 1
+        }
+      ],
+      "lowPriority": [
+        {
+          "skill": "Accessibility (a11y)",
+          "description": "WCAG standards, semantic HTML",
+          "importance": "medium",
+          "estimatedWeeks": 1
+        }
+      ]
+    }
+  },
+
+  "learningPath": {
+    "totalPhases": 3,
+    "estimatedDuration": "3-6 months",
+    "phases": [
+      {
+        "phaseNumber": 1,
+        "title": "Foundation: Core Frontend Skills",
+        "duration": "6 weeks",
+        "description": "Master JavaScript, HTML, CSS and React fundamentals",
+        "keyTopics": [
+          "Advanced JavaScript",
+          "React hooks and components",
+          "CSS and responsive design",
+          "API integration",
+          "DOM manipulation"
+        ],
+        "learningPoints": [
+          {
+            "title": "Advanced JavaScript",
+            "description": "Master closures, async/await, promises, and modern ES6+ features"
+          },
+          {
+            "title": "React Fundamentals",
+            "description": "Learn components, hooks, state, props, and lifecycle"
+          },
+          {
+            "title": "CSS & Responsive Design",
+            "description": "Master Flexbox, Grid, media queries, and mobile-first design"
+          },
+          {
+            "title": "API Integration",
+            "description": "Fetch data with fetch API/axios and handle loading/error states"
+          }
+        ],
+        "learningVideoUrl": "https://www.youtube.com/embed/SqcY0GlETPk",
+        "videoPosition": "right",
+        "target": {
+          "metric": "3 React Apps",
+          "description": "Build weather app, todo list, and simple e-commerce product listing with real APIs"
+        },
+        "whyItMatters": [
+          "React is most in-demand frontend skill",
+          "90% of frontend job interviews use React",
+          "Portfolio with React projects stands out",
+          "Foundation for all UI development"
+        ]
+      },
+
+      {
+        "phaseNumber": 2,
+        "title": "Building Blocks: Advanced Frontend Concepts",
+        "duration": "5 weeks",
+        "description": "Deepen your understanding of state management, performance, and component design",
+        "keyTopics": [
+          "State management patterns",
+          "Performance optimization",
+          "Component composition",
+          "Error handling & debugging",
+          "Design systems basics",
+          "Responsive patterns"
+        ],
+        "learningPoints": [
+          {
+            "title": "State Management",
+            "description": "Master Redux basics, Context API, and when to use each"
+          },
+          {
+            "title": "Performance Optimization",
+            "description": "Optimize rendering, memoization, code splitting, lazy loading"
+          },
+          {
+            "title": "Component Patterns",
+            "description": "Reusable components, composition patterns, custom hooks"
+          },
+          {
+            "title": "Web Standards & Accessibility",
+            "description": "Semantic HTML, ARIA, responsive images, SEO basics"
+          }
+        ],
+        "learningVideoUrl": "https://www.youtube.com/embed/XxVg_s8xAte",
+        "videoPosition": "left",
+        "target": {
+          "metric": "2 Full-Featured Apps",
+          "description": "Build a social media feed with state management and a dashboard with real data"
+        },
+        "whyItMatters": [
+          "Separates junior from mid-level engineers",
+          "Shows production mindset",
+          "Tested in technical interviews",
+          "Critical for building scalable UIs"
+        ]
+      },
+
+      {
+        "phaseNumber": 3,
+        "title": "Polish: Interview Preparation & Portfolio",
+        "duration": "4-5 weeks",
+        "description": "Prepare for interviews and create a portfolio that lands offers",
+        "keyTopics": [
+          "Coding problems (easy-medium)",
+          "Web design basics",
+          "Performance debugging",
+          "Behavioral preparation",
+          "Portfolio optimization"
+        ],
+        "learningPoints": [
+          {
+            "title": "Frontend Coding Problems",
+            "description": "Solve common frontend interview problems (DOM, events, CSS)"
+          },
+          {
+            "title": "Performance & Debugging",
+            "description": "Profile apps, identify bottlenecks, optimize rendering"
+          },
+          {
+            "title": "Project Polish",
+            "description": "Add animations, transitions, error boundaries"
+          },
+          {
+            "title": "Interview Communication",
+            "description": "Explain your code, discuss trade-offs, ask clarifying questions"
+          }
+        ],
+        "learningVideoUrl": "https://www.youtube.com/embed/FZ0ap2CX3vc",
+        "videoPosition": "right",
+        "target": {
+          "metric": "1 Standout Portfolio Project",
+          "description": "Create one polished project showcasing UI/UX skills - your best interview talking point"
+        },
+        "whyItMatters": [
+          "Portfolio projects get you interviews",
+          "Shows ability to build end-to-end",
+          "Demonstrates design and code quality",
+          "Sets you apart from other candidates"
+        ]
+      }
+    ]
+  },
+
+  "companiesInsight": {
+    "title": "Where You Can Land",
+    "description": "Companies actively hiring frontend engineers for entry-level roles",
+    "companyTypes": [
+      {
+        "type": "startup",
+        "label": "High-Growth Startups",
+        "description": "Fast-paced, ship features quickly, learn UI/UX best practices",
+        "fit": {
+          "level": "excellent",
+          "color": "green",
+          "message": "Perfect for entry-level - They hire fresh talent and ship real products"
+        },
+        "whyFit": [
+          "Startups hire fresh talent actively",
+          "You'll ship real features quickly",
+          "Less competition than big companies",
+          "Growth opportunities are rapid"
+        ],
+        "whatToDo": [
+          "Build 2-3 polished React projects",
+          "Show design sensibility and attention to detail",
+          "Practice common coding problems",
+          "Show eagerness to learn and iterate"
+        ],
+        "salaryRange": "₹6-15L + equity",
+        "companies": ["Dukaan", "Cashfree", "Razorpay"],
+        "rounds": [
+          {
+            "name": "Online Coding Round",
+            "difficulty": "easy-medium",
+            "duration": "90 mins",
+            "description": "DOM manipulation and JavaScript problems",
+            "focus": "JavaScript fundamentals",
+            "videoUrl": "https://youtu.be/startup-entry-frontend",
+            "points": [
+              "Solve DOM and event problems",
+              "Show JavaScript knowledge",
+              "Write clean, readable code"
+            ]
+          },
+          {
+            "name": "React Coding Round",
+            "difficulty": "medium",
+            "duration": "60 mins",
+            "description": "Build a React component",
+            "focus": "React skills",
+            "videoUrl": "https://youtu.be/startup-react-round",
+            "points": [
+              "Build component from mockup",
+              "Handle state and props correctly",
+              "Show styling skills"
+            ]
+          },
+          {
+            "name": "Project Walkthrough",
+            "difficulty": "easy",
+            "duration": "30 mins",
+            "description": "Present your best project",
+            "focus": "Communication",
+            "videoUrl": "https://youtu.be/project-walkthrough",
+            "points": [
+              "Explain design decisions",
+              "Discuss UX choices",
+              "Show code quality and responsiveness"
+            ]
+          },
+          {
+            "name": "HR Round",
+            "difficulty": "easy",
+            "duration": "30 mins",
+            "description": "Culture fit and growth mindset",
+            "focus": "Eagerness to learn",
+            "videoUrl": "https://youtu.be/hr-round-guide",
+            "points": [
+              "Show enthusiasm for the role",
+              "Discuss your design/coding journey",
+              "Ask thoughtful questions about the company"
+            ]
+          }
+        ],
+        "totalDuration": "2-3 weeks"
+      },
+
+      {
+        "type": "scaleup",
+        "label": "Scaled Startups / Unicorns",
+        "description": "Established startups with great design teams, strong mentorship",
+        "fit": {
+          "level": "good",
+          "color": "green",
+          "message": "Good fit - Great design systems, amazing learning from senior engineers"
+        },
+        "whyFit": [
+          "Amazing design systems and patterns",
+          "Mentorship from senior frontend engineers",
+          "Products used by millions",
+          "Good salaries and benefits"
+        ],
+        "whatToDo": [
+          "Master React and state management",
+          "Show design sensibility",
+          "Practice coding and system design",
+          "Study their tech blogs and design decisions"
+        ],
+        "salaryRange": "₹10-20L + equity",
+        "companies": ["PhonePe", "Flipkart", "Zomato"],
+        "rounds": [
+          {
+            "name": "Online Assessment",
+            "difficulty": "medium",
+            "duration": "120 mins",
+            "description": "Coding + component building",
+            "focus": "JavaScript and React",
+            "videoUrl": "https://youtu.be/scaleup-entry-assessment",
+            "points": [
+              "Focus on clean, efficient code",
+              "Handle edge cases",
+              "Show React knowledge"
+            ]
+          },
+          {
+            "name": "Component Design Round",
+            "difficulty": "medium",
+            "duration": "60 mins",
+            "description": "Build a component with requirements",
+            "focus": "React and CSS skills",
+            "videoUrl": "https://youtu.be/scaleup-component-round",
+            "points": [
+              "Build from requirements",
+              "Show CSS mastery",
+              "Handle responsive design"
+            ]
+          },
+          {
+            "name": "System Design Round",
+            "difficulty": "medium",
+            "duration": "45 mins",
+            "description": "Design a UI system or feature",
+            "focus": "Architecture thinking",
+            "videoUrl": "https://youtu.be/scaleup-entry-design",
+            "points": [
+              "Discuss component structure",
+              "Show state management planning",
+              "Discuss scalability"
+            ]
+          },
+          {
+            "name": "Technical Lead Round",
+            "difficulty": "medium",
+            "duration": "45 mins",
+            "description": "Project discussion and growth",
+            "focus": "Learning ability",
+            "videoUrl": "https://youtu.be/tech-lead-entry",
+            "points": [
+              "Discuss best project in detail",
+              "Show design and code quality",
+              "Ask good technical questions"
+            ]
+          },
+          {
+            "name": "HR Round",
+            "difficulty": "easy",
+            "duration": "30 mins",
+            "description": "Values and culture fit",
+            "focus": "Growth mindset",
+            "videoUrl": "https://youtu.be/hr-round-guide",
+            "points": [
+              "Show passion for frontend",
+              "Discuss learning goals",
+              "Talk about your growth journey"
+            ]
+          }
+        ],
+        "totalDuration": "3-4 weeks"
+      },
+
+      {
+        "type": "service",
+        "label": "Service Companies",
+        "description": "IT consulting with diverse projects, stability, and structured learning",
+        "fit": {
+          "level": "achievable",
+          "color": "blue",
+          "message": "Good stepping stone - Stable, structured learning, good pay for freshers"
+        },
+        "whyFit": [
+          "Actively hire freshers",
+          "Structured training programs",
+          "Stable and predictable roles",
+          "Exposure to diverse projects"
+        ],
+        "whatToDo": [
+          "Master HTML, CSS, JavaScript fundamentals",
+          "Know basic jQuery (some legacy projects)",
+          "Practice online assessments",
+          "Show eagerness to learn diverse frameworks"
+        ],
+        "salaryRange": "₹3.5-6L",
+        "companies": ["TCS", "Infosys", "Wipro"],
+        "rounds": [
+          {
+            "name": "Online Assessment",
+            "difficulty": "easy-medium",
+            "duration": "90 mins",
+            "description": "Coding + aptitude + English",
+            "focus": "Fundamentals",
+            "videoUrl": "https://youtu.be/service-entry-assessment",
+            "points": [
+              "Practice with official prep platforms",
+              "Know HTML/CSS/JS basics",
+              "Time management is key"
+            ]
+          },
+          {
+            "name": "Group Discussion / Technical Interview",
+            "difficulty": "easy",
+            "duration": "30 mins",
+            "description": "Basic technical questions",
+            "focus": "Communication",
+            "videoUrl": "https://youtu.be/service-entry-interview",
+            "points": [
+              "Explain concepts clearly",
+              "Discuss your web projects",
+              "Show enthusiasm for learning"
+            ]
+          },
+          {
+            "name": "HR Round",
+            "difficulty": "easy",
+            "duration": "20 mins",
+            "description": "Personal and professional fit",
+            "focus": "Reliability",
+            "videoUrl": "https://youtu.be/hr-round-guide",
+            "points": [
+              "Be honest about your journey",
+              "Show willingness to relocate if needed",
+              "Ask questions about growth"
+            ]
+          }
+        ],
+        "totalDuration": "1-2 weeks"
+      },
+
+      {
+        "type": "bigtech",
+        "label": "Big Tech Companies",
+        "description": "Google, Microsoft - Learn from the best but highly competitive",
+        "fit": {
+          "level": "challenging",
+          "color": "orange",
+          "message": "Difficult for freshers - Highly competitive but great if you can crack it"
+        },
+        "whyFit": [
+          "Best brands in the industry",
+          "Highest salaries and benefits",
+          "World-class design and engineering",
+          "Opens all doors for future"
+        ],
+        "whatToDo": [
+          "Master JavaScript and React deeply",
+          "Solve 50+ LeetCode frontend problems",
+          "Practice system design for frontend",
+          "Study their design systems"
+        ],
+        "salaryRange": "₹15-30L + stock options",
+        "companies": ["Google", "Microsoft", "Meta"],
+        "rounds": [
+          {
+            "name": "Online Challenge",
+            "difficulty": "medium-hard",
+            "duration": "120 mins",
+            "description": "Advanced coding problems",
+            "focus": "JavaScript mastery",
+            "videoUrl": "https://youtu.be/bigtech-entry-challenge",
+            "points": [
+              "Optimize solutions",
+              "Think about edge cases",
+              "Show problem-solving process"
+            ]
+          },
+          {
+            "name": "Phone Screening",
+            "difficulty": "medium",
+            "duration": "45 mins",
+            "description": "Quick problem-solving",
+            "focus": "Fundamentals",
+            "videoUrl": "https://youtu.be/bigtech-screening",
+            "points": [
+              "Clean code first",
+              "Talk through your solution",
+              "Show problem-solving process"
+            ]
+          },
+          {
+            "name": "Component Design Round",
+            "difficulty": "hard",
+            "duration": "60 mins",
+            "description": "Complex React component",
+            "focus": "React expertise",
+            "videoUrl": "https://youtu.be/bigtech-entry-component",
+            "points": [
+              "Build complex component",
+              "Show optimization thinking",
+              "Handle all edge cases"
+            ]
+          },
+          {
+            "name": "System Design Round",
+            "difficulty": "hard",
+            "duration": "60 mins",
+            "description": "Design a large UI system",
+            "focus": "Architecture thinking",
+            "videoUrl": "https://youtu.be/bigtech-entry-design",
+            "points": [
+              "Think about scalability",
+              "Discuss component structure",
+              "Show deep frontend knowledge"
+            ]
+          },
+          {
+            "name": "Behavioral Round",
+            "difficulty": "medium",
+            "duration": "45 mins",
+            "description": "Culture fit and teamwork",
+            "focus": "Growth mindset",
+            "videoUrl": "https://youtu.be/bigtech-behavioral",
+            "points": [
+              "Tell your coding journey",
+              "Show eagerness to learn",
+              "Ask thoughtful questions"
+            ]
+          }
+        ],
+        "totalDuration": "4-6 weeks"
+      }
+    ]
+  },
+
+  "projects": {
+    "title": "Build Real-World Projects",
+    "description": "Projects to demonstrate your frontend skills and land interviews",
+    "projects": [
+      {
+        "tier": "tier1_foundation",
+        "title": "Build a Weather App with Real APIs",
+        "difficulty": "easy",
+        "duration": "1-2 weeks",
+        "description": "Create a responsive weather app using OpenWeather API with location-based forecasts",
+        "technologies": ["React", "JavaScript", "CSS/Tailwind", "REST APIs"],
+        "learnings": ["API integration", "State management", "Responsive design", "Error handling"],
+        "portfolio_value": "high",
+        "githubTemplate": "https://github.com/scaler/weather-app"
+      },
+
+      {
+        "tier": "tier2_intermediate",
+        "title": "Social Media Feed Component",
+        "difficulty": "medium",
+        "duration": "2-3 weeks",
+        "description": "Build a Twitter-like feed with posts, comments, likes, and infinite scroll with proper state management",
+        "technologies": ["React", "Redux/Context", "React Router", "CSS-in-JS", "REST APIs"],
+        "learnings": ["State management", "Component composition", "Performance optimization", "Responsive patterns"],
+        "portfolio_value": "very_high",
+        "if_companyType": {
+          "startup": {
+            "emphasis": ["rapid_feature_shipping", "mobile_first"],
+            "addRequirement": "Add dark mode toggle"
+          },
+          "scaleup": {
+            "emphasis": ["code_quality", "performance"],
+            "addRequirement": "Include unit tests and storybook stories"
+          }
+        }
+      },
+
+      {
+        "tier": "tier3_advanced",
+        "title": "E-Commerce Product Dashboard",
+        "difficulty": "hard",
+        "duration": "3-4 weeks",
+        "description": "Build a full-featured product dashboard with filtering, sorting, cart management, and checkout flow",
+        "technologies": ["React", "Redux", "React Router", "Advanced CSS", "Payment APIs"],
+        "learnings": ["Complex state management", "Advanced routing", "Form handling", "Performance optimization"],
+        "portfolio_value": "exceptional",
+        "interviewFlex": "This is your strongest interview talking point - shows production-ready frontend engineering"
+      }
+    ]
+  },
+
+  "interviewPrep": {
+    "title": "Interview Preparation Guide",
+    "systemDesignTopics": [
+      "Design a dropdown component",
+      "Design a carousel",
+      "Design an image gallery",
+      "Design a todo app"
+    ],
+    "topicsToPractice": {
+      "algorithms": [
+        "Array and string manipulation",
+        "DOM traversal and manipulation",
+        "Event handling and delegation",
+        "Promises and async/await"
+      ],
+      "systemDesign": [
+        "Component architecture",
+        "State management patterns",
+        "Responsive design strategies",
+        "Performance optimization",
+        "Accessibility basics"
+      ],
+      "behavioral": [
+        "Your coding journey",
+        "Biggest frontend challenge you overcame",
+        "Teamwork examples",
+        "Design thinking stories"
+      ]
+    },
+    "resources": {
+      "courses": [
+        {
+          "title": "React & Frontend Master Class",
+          "provider": "Scaler",
+          "duration": "8 weeks"
+        }
+      ],
+      "books": [
+        {
+          "title": "JavaScript: The Good Parts",
+          "author": "Douglas Crockford"
+        }
+      ],
+      "mockInterviews": {
+        "frequency": "2 per week",
+        "duration": "Last 3 weeks before interviews"
+      }
+    }
+  },
+
+  "timeline": {
+    "startDate": "immediately",
+    "endDate": "3-6 months",
+    "milestonesToHit": [
+      {
+        "week": "Week 1-2",
+        "goal": "Master advanced JavaScript",
+        "checklist": ["Understand closures and async", "Learn promises/async-await", "Master ES6+ features"]
+      },
+      {
+        "week": "Week 3-5",
+        "goal": "Deep dive into React",
+        "checklist": ["Learn hooks thoroughly", "Understand state and props", "Build 2 simple apps"]
+      },
+      {
+        "week": "Week 6-7",
+        "goal": "CSS mastery",
+        "checklist": ["Master Flexbox/Grid", "Learn responsive design", "Build responsive layouts"]
+      },
+      {
+        "week": "Week 8-12",
+        "goal": "Build strong portfolio projects",
+        "checklist": ["Weather app", "Social feed app", "Code reviews and polish"]
+      },
+      {
+        "week": "Week 13+",
+        "goal": "Interview preparation",
+        "checklist": ["Coding practice", "Mock interviews", "Company research"]
+      }
+    ]
+  }
+}

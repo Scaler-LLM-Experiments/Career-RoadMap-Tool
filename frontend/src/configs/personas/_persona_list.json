@@ -7,7 +7,8 @@
       "userType": "tech_professional",
       "experience": "0-3 years",
       "targetRole": "Backend Engineer",
-      "file": "tech_entry_backend.json"
+      "file": "tech_entry_backend.json",
+      "status": "COMPLETE"
     },
     {
       "id": "tech_entry_frontend",
@@ -15,7 +16,8 @@
       "userType": "tech_professional",
       "experience": "0-3 years",
       "targetRole": "Frontend Engineer",
-      "file": "tech_entry_frontend.json"
+      "file": "tech_entry_frontend.json",
+      "status": "COMPLETE"
     },
     {
       "id": "tech_entry_fullstack",
@@ -23,7 +25,8 @@
       "userType": "tech_professional",
       "experience": "0-3 years",
       "targetRole": "Full Stack Engineer",
-      "file": "tech_entry_fullstack.json"
+      "file": "tech_entry_fullstack.json",
+      "status": "COMPLETE"
     },
     {
       "id": "tech_mid_backend",
@@ -40,7 +43,8 @@
       "userType": "tech_professional",
       "experience": "3-7 years",
       "targetRole": "Frontend Engineer / Senior Frontend Engineer",
-      "file": "tech_mid_frontend.json"
+      "file": "tech_mid_frontend.json",
+      "status": "COMPLETE"
     },
     {
       "id": "tech_mid_fullstack",
@@ -48,7 +52,8 @@
       "userType": "tech_professional",
       "experience": "3-7 years",
       "targetRole": "Full Stack Engineer",
-      "file": "tech_mid_fullstack.json"
+      "file": "tech_mid_fullstack.json",
+      "status": "COMPLETE"
     },
     {
       "id": "tech_senior_backend",
@@ -56,7 +61,8 @@
       "userType": "tech_professional",
       "experience": "7+ years",
       "targetRole": "Senior Backend Engineer / Staff Engineer",
-      "file": "tech_senior_backend.json"
+      "file": "tech_senior_backend.json",
+      "status": "COMPLETE"
     },
     {
       "id": "tech_senior_frontend",
@@ -64,7 +70,8 @@
       "userType": "tech_professional",
       "experience": "7+ years",
       "targetRole": "Senior Frontend Engineer / Staff Engineer",
-      "file": "tech_senior_frontend.json"
+      "file": "tech_senior_frontend.json",
+      "status": "COMPLETE"
     },
     {
       "id": "switcher_early_backend",
@@ -72,7 +79,8 @@
       "userType": "career_switcher",
       "experience": "0-3 years (in tech)",
       "targetRole": "Backend Engineer",
-      "file": "switcher_early_backend.json"
+      "file": "switcher_early_backend.json",
+      "status": "COMPLETE"
     },
     {
       "id": "switcher_early_frontend",
@@ -89,7 +97,8 @@
       "userType": "career_switcher",
       "experience": "3-7+ years (in other field)",
       "targetRole": "Backend Engineer / Senior Backend Engineer",
-      "file": "switcher_advanced_backend.json"
+      "file": "switcher_advanced_backend.json",
+      "status": "COMPLETE"
     },
     {
       "id": "switcher_advanced_frontend",
@@ -97,7 +106,8 @@
       "userType": "career_switcher",
       "experience": "3-7+ years (in other field)",
       "targetRole": "Frontend Engineer / Senior Frontend Engineer",
-      "file": "switcher_advanced_frontend.json"
+      "file": "switcher_advanced_frontend.json",
+      "status": "COMPLETE"
     }
   ],
 
