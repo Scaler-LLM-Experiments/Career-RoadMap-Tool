@@ -17,8 +17,8 @@ const Navbar = () => {
           </Link>
 
           {/* Actions */}
-          <div className="flex items-center gap-4">
-            <Link href="/quiz" className="hidden md:block text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">
+          <div className="flex items-center gap-2 md:gap-4">
+            <Link href="/quiz" className="text-xs md:text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors px-3 md:px-0">
               RE-EVALUATE
             </Link>
             <button

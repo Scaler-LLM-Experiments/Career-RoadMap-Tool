@@ -121,7 +121,7 @@ const LearningPathSection = ({ config }) => {
             >
               {/* Phase Header */}
               <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-3">
-                <div className="bg-[#073CA0] text-white px-3 py-1 rounded-none text-xs lg:text-sm font-bold whitespace-nowrap">
+                <div className="bg-[#073CA0] text-white px-3 py-1 rounded-none text-xs lg:text-sm font-bold whitespace-nowrap w-fit">
                   {phase.phase}
                 </div>
                 <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-slate-900">{phase.title}</h2>
