@@ -182,32 +182,33 @@ const HorizontalNavigation = ({ activeSection, onSectionChange }) => {
       </div>
 
       {/* FLOATING CTA BUTTON - Mobile Only */}
-      <div className="mobile-cta" style={{ flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+      <div className="mobile-cta">
         <button
           onClick={handleCTA}
           style={{
             backgroundColor: '#B30158',
             color: '#fff',
-            width: '56px',
-            height: '56px',
+            padding: '12px 16px',
             borderRadius: '0px',
             border: 'none',
-            fontSize: '14px',
-            fontWeight: 'bold',
+            fontSize: '11px',
+            fontWeight: '700',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            gap: '8px',
             cursor: 'pointer',
-            boxShadow: '0 4px 14px rgba(179, 1, 88, 0.39)'
+            boxShadow: '0 4px 14px rgba(179, 1, 88, 0.39)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.6px',
+            whiteSpace: 'nowrap'
           }}
           onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#8A0145'}
           onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#B30158'}
         >
-          <Phone size={24} weight="fill" />
+          <Phone size={18} weight="fill" />
+          <span>Book a Free Career Call</span>
         </button>
-        <span style={{ fontSize: '12px', fontWeight: '600', color: '#4b5563', whiteSpace: 'nowrap' }}>
-          Book a Free Career Call
-        </span>
       </div>
     </>
   );
