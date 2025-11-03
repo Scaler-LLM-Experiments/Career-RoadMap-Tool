@@ -10,9 +10,21 @@ import projectStepsData from '../../../src/data/projectSteps.json';
 const ProjectsSection = ({ config }) => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Get projects from persona config
   const projectsData = config?.projects?.projects || [];
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
 
   // Prevent background scroll when drawer is open
   useEffect(() => {
@@ -144,11 +156,27 @@ const ProjectsSection = ({ config }) => {
           {/* Drawer */}
           <div style={{
             position: 'fixed',
-            top: 0,
-            right: 0,
-            bottom: 0,
-            width: '100%',
-            maxWidth: '42rem',
+            ...(isMobile
+              ? {
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  top: 'auto',
+                  height: '90vh',
+                  width: '100%',
+                  borderRadius: '16px 16px 0 0'
+                }
+              : {
+                  top: 0,
+                  right: 0,
+                  bottom: 0,
+                  left: 'auto',
+                  height: 'auto',
+                  width: '100%',
+                  maxWidth: '42rem',
+                  borderRadius: '0'
+                }
+            ),
             backgroundColor: '#fff',
             boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
             display: 'flex',
