@@ -31,6 +31,26 @@ const ProjectsSection = ({ config }) => {
     setIsDrawerOpen(true);
   };
 
+  // Helper function to format tier display
+  const formatTierDisplay = (tier) => {
+    if (!tier) return 'Intermediate';
+    return tier
+      .replace(/tier\d_/, '')
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
+  // Helper function to get tier CSS classes
+  const getTierClasses = (tier) => {
+    if (tier?.includes('foundation')) {
+      return 'bg-green-50 text-green-700 border border-green-200';
+    } else if (tier?.includes('intermediate')) {
+      return 'bg-blue-50 text-blue-700 border border-blue-200';
+    }
+    return 'bg-purple-50 text-purple-700 border border-purple-200';
+  };
+
   return (
     <>
       <section id="projects" className="scroll-mt-24 mb-40">
@@ -46,64 +66,64 @@ const ProjectsSection = ({ config }) => {
           </div>
         </div>
 
-        {/* Project Cards Grid - 4 COLUMNS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {projectsData.slice(0, 4).map((project, index) => {
-            // Cycle through different icon colors and icons
-            const iconColors = [
-              { bg: 'bg-blue-50', text: 'text-blue-600', border: 'border-blue-100', icon: Code },
-              { bg: 'bg-purple-50', text: 'text-purple-600', border: 'border-purple-100', icon: SquaresFour },
-              { bg: 'bg-green-50', text: 'text-green-600', border: 'border-green-100', icon: Tree }
-            ];
-            const colorScheme = iconColors[index % iconColors.length];
-            const IconComponent = colorScheme.icon;
+        {/* Project Cards Grid - 3 COLUMNS */}
+        {projectsData && projectsData.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projectsData.map((project, index) => {
+              // Cycle through different icon colors and icons
+              const iconColors = [
+                { bg: 'bg-blue-50', text: 'text-blue-600', border: 'border-blue-100', icon: Code },
+                { bg: 'bg-purple-50', text: 'text-purple-600', border: 'border-purple-100', icon: SquaresFour },
+                { bg: 'bg-green-50', text: 'text-green-600', border: 'border-green-100', icon: Tree }
+              ];
+              const colorScheme = iconColors[index % iconColors.length];
+              const IconComponent = colorScheme.icon;
+              const tierDisplay = formatTierDisplay(project.tier);
+              const tierClasses = getTierClasses(project.tier);
 
-            return (
-              <div
-                key={project.id}
-                onClick={() => handleProjectClick(project)}
-                className="border border-slate-200 rounded-sm p-6 cursor-pointer hover:border-slate-400 hover:shadow-lg transition-all bg-white flex flex-col"
-              >
-                {/* Icon Container */}
-                <div className={`w-12 h-12 ${colorScheme.bg} border ${colorScheme.border} rounded-sm flex items-center justify-center mb-4`}>
-                  <IconComponent size={24} weight="bold" className={colorScheme.text} />
-                </div>
-
-                {/* Title */}
-                <h3 className="text-lg font-bold text-slate-900 mb-3">{project.title}</h3>
-
-                {/* Tags */}
-                <div className="flex items-center gap-2 mb-4">
-                  <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-none ${
-                    project.tier === 'Beginner'
-                      ? 'bg-green-50 text-green-700 border border-green-200'
-                      : project.tier === 'Intermediate'
-                      ? 'bg-blue-50 text-blue-700 border border-blue-200'
-                      : 'bg-purple-50 text-purple-700 border border-purple-200'
-                  }`}>
-                    <Gauge size={12} weight="bold" />
-                    {project.tier}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-none bg-slate-50 text-slate-700 border border-slate-200">
-                    <Timer size={12} weight="bold" />
-                    {project.estimatedTime}
-                  </span>
-                </div>
-
-                {/* Description */}
-                <p className="text-sm text-slate-600 mb-4 line-clamp-3 flex-grow">{project.description}</p>
-
-                {/* CTA Button */}
-                <button
-                  className="w-full py-2.5 px-4 text-sm font-bold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-300 hover:border-slate-400 transition-all rounded-sm flex items-center justify-center gap-2 uppercase tracking-wider"
+              return (
+                <div
+                  key={index}
+                  onClick={() => handleProjectClick(project)}
+                  className="border border-slate-200 rounded-sm p-6 cursor-pointer hover:border-slate-400 hover:shadow-lg transition-all bg-white flex flex-col"
                 >
-                  VIEW DETAILS
-                  <ArrowUpRight size={14} weight="bold" />
-                </button>
-              </div>
-            );
-          })}
-        </div>
+                  {/* Icon Container */}
+                  <div className={`w-12 h-12 ${colorScheme.bg} border ${colorScheme.border} rounded-sm flex items-center justify-center mb-4`}>
+                    <IconComponent size={24} weight="bold" className={colorScheme.text} />
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-lg font-bold text-slate-900 mb-3">{project.title}</h3>
+
+                  {/* Tags */}
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-none ${tierClasses}`}>
+                      <Gauge size={12} weight="bold" />
+                      {tierDisplay}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-none bg-slate-50 text-slate-700 border border-slate-200">
+                      <Timer size={12} weight="bold" />
+                      {project.duration || project.estimatedTime || '2-3 weeks'}
+                    </span>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-sm text-slate-600 mb-4 line-clamp-3 flex-grow">{project.description}</p>
+
+                  {/* CTA Button */}
+                  <button className="w-full py-2.5 px-4 text-sm font-bold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-300 hover:border-slate-400 transition-all rounded-sm flex items-center justify-center gap-2 uppercase tracking-wider">
+                    VIEW DETAILS
+                    <ArrowUpRight size={14} weight="bold" />
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-slate-500">No projects available for this persona yet.</p>
+          </div>
+        )}
       </section>
 
       {/* Project Drawer */}
@@ -160,17 +180,17 @@ const ProjectsSection = ({ config }) => {
                     fontSize: '12px',
                     fontWeight: '500',
                     borderRadius: 0,
-                    ...(selectedProject.tier === 'Beginner'
+                    ...(selectedProject.tier?.includes('foundation')
                       ? { backgroundColor: '#dcfce7', color: '#15803d', border: '1px solid #bbf7d0' }
-                      : selectedProject.tier === 'Intermediate'
+                      : selectedProject.tier?.includes('intermediate')
                       ? { backgroundColor: '#dbeafe', color: '#1e40af', border: '1px solid #bfdbfe' }
                       : { backgroundColor: '#f3e8ff', color: '#7c3aed', border: '1px solid #ddd6fe' })
                   }}>
-                    {selectedProject.tier}
+                    {formatTierDisplay(selectedProject.tier)}
                   </span>
                   <span style={{ fontSize: '14px', color: '#4b5563', display: 'flex', alignItems: 'center', gap: '6px' }}>
                     <Clock size={14} weight="bold" />
-                    {selectedProject.estimatedTime}
+                    {selectedProject.duration || selectedProject.estimatedTime || '2-3 weeks'}
                   </span>
                 </div>
               </div>
@@ -205,24 +225,26 @@ const ProjectsSection = ({ config }) => {
               </div>
 
               {/* Skills */}
-              <div className="mb-6">
-                <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">Skills You'll Learn</h3>
-                <div className="flex flex-wrap gap-2">
-                  {selectedProject.skills.map((skill, idx) => (
-                    <span key={idx} className="px-3 py-1.5 bg-slate-100 text-slate-700 text-sm font-medium rounded-none border border-slate-200">
-                      {skill}
-                    </span>
-                  ))}
+              {selectedProject.learnings && selectedProject.learnings.length > 0 && (
+                <div className="mb-6">
+                  <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">Skills You'll Learn</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.learnings.map((skill, idx) => (
+                      <span key={idx} className="px-3 py-1.5 bg-slate-100 text-slate-700 text-sm font-medium rounded-none border border-slate-200">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Implementation Steps */}
               <div>
                 <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">Implementation Steps</h3>
 
-                {projectStepsData[selectedProject.id] ? (
+                {projectStepsData[selectedProject.title] ? (
                   <div className="space-y-0 border border-slate-200">
-                    {projectStepsData[selectedProject.id].steps.map((step, idx) => (
+                    {projectStepsData[selectedProject.title].steps.map((step, idx) => (
                       <details key={idx} className="group border-b border-slate-200 last:border-b-0">
                         <summary className="flex items-center gap-4 p-4 cursor-pointer list-none bg-slate-50 transition-colors">
                           <svg className="w-4 h-4 text-slate-600 group-open:rotate-90 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
