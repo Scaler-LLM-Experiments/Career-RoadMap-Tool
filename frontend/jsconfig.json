@@ -6,7 +6,8 @@
       "@/context/*": ["src/context/*"],
       "@/utils/*": ["src/utils/*"],
       "@/assets/*": ["src/assets/*"],
-      "@/lib/*": ["src/lib/*"]
+      "@/lib/*": ["src/lib/*"],
+      "@/configs/*": ["src/configs/*"]
     }
   },
   "exclude": ["node_modules", ".next"]
