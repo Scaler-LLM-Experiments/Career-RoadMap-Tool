@@ -78,8 +78,8 @@ const LearningPathSection = ({ config }) => {
 
       {/* TAB-BASED LAYOUT: Left Navigation + Right Content */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
-        {/* LEFT: Phase Navigation Tabs */}
-        <div className="flex flex-col gap-3">
+        {/* LEFT: Phase Navigation Tabs - Hidden on Mobile */}
+        <div className="hidden lg:flex flex-col gap-3">
           {phases.map((phase) => {
             const Icon = phase.icon;
             return (
@@ -111,7 +111,7 @@ const LearningPathSection = ({ config }) => {
         </div>
 
         {/* RIGHT: Phase Content - Scrollable */}
-        <div ref={contentRef} className="lg:col-span-3 max-h-[70vh] overflow-y-auto pr-4 space-y-16">
+        <div ref={contentRef} className="col-span-1 lg:col-span-3 max-h-none lg:max-h-[70vh] overflow-y-auto lg:pr-4 space-y-16">
           {phases.map((phase) => (
             <div
               key={phase.id}
@@ -120,17 +120,17 @@ const LearningPathSection = ({ config }) => {
               className="space-y-8"
             >
               {/* Phase Header */}
-              <div className="flex items-center gap-3">
-                <div className="bg-[#073CA0] text-white px-3 py-1 rounded-none text-sm font-bold">
+              <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-3">
+                <div className="bg-[#073CA0] text-white px-3 py-1 rounded-none text-xs lg:text-sm font-bold whitespace-nowrap">
                   {phase.phase}
                 </div>
-                <h2 className="text-3xl font-bold text-slate-900">{phase.title}</h2>
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-slate-900">{phase.title}</h2>
               </div>
 
               {/* WHAT YOU'LL LEARN SECTION */}
               {phase.learningPoints && phase.learningPoints.length > 0 && (
-                <div className="bg-gradient-to-b from-white to-slate-50 p-8 rounded-sm border border-slate-200">
-                  <h3 className="text-xl font-bold text-slate-900 mb-8">What You'll Learn</h3>
+                <div className="bg-gradient-to-b from-white to-slate-50 p-4 md:p-6 lg:p-8 rounded-sm border border-slate-200">
+                  <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-6 md:mb-8">What You'll Learn</h3>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                     {/* Learning Points (or Video, depending on position) */}
                     {phase.videoPosition !== 'left' ? (

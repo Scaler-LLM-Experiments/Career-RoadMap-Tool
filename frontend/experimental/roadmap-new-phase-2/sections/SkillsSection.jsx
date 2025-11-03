@@ -173,13 +173,13 @@ const SkillsSection = ({
             </div>
 
             {/* Table Content */}
-            <div className="grid grid-cols-3 gap-4 md:gap-6 py-4 px-4 bg-white">
+            <div className="grid grid-cols-3 gap-2 md:gap-4 lg:gap-6 py-4 px-2 md:px-4 bg-white overflow-hidden">
               {/* High Priority */}
               <div className="flex flex-col gap-2">
                 {highPrioritySkills.map((skill, idx) => (
-                  <div key={idx} className="group inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-red-50 border border-red-200 rounded-sm relative">
-                    <GraduationCap size={14} weight="fill" className="text-red-600 flex-shrink-0" />
-                    <span className="text-red-800 text-xs font-medium break-words">{skill.name}</span>
+                  <div key={idx} className="group flex items-center gap-1 px-2 py-1.5 bg-red-50 border border-red-200 rounded-sm relative">
+                    <GraduationCap size={12} weight="fill" className="text-red-600 flex-shrink-0" />
+                    <span className="text-red-800 text-xs font-medium break-words hyphens-auto">{skill.name}</span>
                     <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block z-20">
                       <div className="bg-slate-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">{skill.description}</div>
                       <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-slate-900"></div>
@@ -191,9 +191,9 @@ const SkillsSection = ({
               {/* Medium Priority */}
               <div className="flex flex-col gap-2">
                 {mediumPrioritySkills.map((skill, idx) => (
-                  <div key={idx} className="group inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-orange-50 border border-orange-200 rounded-sm relative">
-                    <GraduationCap size={14} weight="fill" className="text-orange-600 flex-shrink-0" />
-                    <span className="text-orange-800 text-xs font-medium break-words">{skill.name}</span>
+                  <div key={idx} className="group flex items-center gap-1 px-2 py-1.5 bg-orange-50 border border-orange-200 rounded-sm relative">
+                    <GraduationCap size={12} weight="fill" className="text-orange-600 flex-shrink-0" />
+                    <span className="text-orange-800 text-xs font-medium break-words hyphens-auto">{skill.name}</span>
                     <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block z-20">
                       <div className="bg-slate-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">{skill.description}</div>
                       <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-slate-900"></div>
@@ -205,9 +205,9 @@ const SkillsSection = ({
               {/* Low Priority */}
               <div className="flex flex-col gap-2">
                 {lowPrioritySkills.map((skill, idx) => (
-                  <div key={idx} className="group inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-slate-100 border border-slate-300 rounded-sm relative">
-                    <GraduationCap size={14} weight="fill" className="text-slate-600 flex-shrink-0" />
-                    <span className="text-slate-700 text-xs font-medium break-words">{skill.name}</span>
+                  <div key={idx} className="group flex items-center gap-1 px-2 py-1.5 bg-slate-100 border border-slate-300 rounded-sm relative">
+                    <GraduationCap size={12} weight="fill" className="text-slate-600 flex-shrink-0" />
+                    <span className="text-slate-700 text-xs font-medium break-words hyphens-auto">{skill.name}</span>
                     <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block z-20">
                       <div className="bg-slate-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">{skill.description}</div>
                       <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-slate-900"></div>
