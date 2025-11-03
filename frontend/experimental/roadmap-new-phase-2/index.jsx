@@ -16,6 +16,7 @@ import SkillsSection from './sections/SkillsSection';
 import CompaniesSection from './sections/CompaniesSection';
 import LearningPathSection from './sections/LearningPathSection';
 import ProjectsSection from './sections/ProjectsSection';
+import FloatingCTA from './sections/FloatingCTA';
 import { getPersonalizedRoadmapConfig } from '../../src/utils/personaMatching';
 import { MagnifyingGlass, Target, BriefcaseMetal, ChartLine, Sparkle } from 'phosphor-react';
 
