@@ -1,216 +1,110 @@
-// Skills taxonomy for different target roles
-// Simplified version from Scaler CRT
+/**
+ * Skills Data - Integrated with Modular Skill Definitions
+ *
+ * This module provides dynamic skill loading based on target roles.
+ * Skills are now loaded from role-specific JSON files with priorities.
+ */
 
-export const getSkillsForRole = (targetRole) => {
-  const skillTaxonomy = {
-    "Software Engineering": [
-      "JavaScript",
-      "TypeScript",
-      "Python",
-      "Java",
-      "C++",
-      "Go",
-      "Rust",
-      "Data structures",
-      "Algorithms",
-      "System design",
-      "Object-oriented programming",
-      "Functional programming",
-      "SQL",
-      "PostgreSQL",
-      "MySQL",
-      "MongoDB",
-      "Redis",
-      "React",
-      "Angular",
-      "Vue.js",
-      "Node.js",
-      "Express.js",
-      "Django",
-      "Spring Boot",
-      "REST APIs",
-      "GraphQL",
-      "Git",
-      "Docker",
-      "Kubernetes",
-      "AWS",
-      "Azure",
-      "GCP",
-      "CI/CD",
-      "Testing (Unit, Integration)",
-      "Agile/Scrum",
-      "Microservices",
-      "Message queues (RabbitMQ, Kafka)",
-      "Caching strategies"
-    ],
-    "Backend Engineering": [
-      "Python",
-      "Java",
-      "Node.js",
-      "Go",
-      "Data Structures & Algorithms",
-      "System Design",
-      "SQL & Databases",
-      "NoSQL (MongoDB/Redis)",
-      "REST APIs",
-      "GraphQL",
-      "Microservices Architecture",
-      "Docker",
-      "Kubernetes",
-      "AWS/Cloud Platforms",
-      "Message Queues (Kafka/RabbitMQ)",
-      "Caching Strategies",
-      "API Design & Documentation",
-      "Authentication & Security",
-      "CI/CD Pipelines",
-      "Performance Optimization"
-    ],
-    "Senior Backend Engineer": [
-      "Python",
-      "Java",
-      "Node.js",
-      "Go",
-      "Data Structures & Algorithms",
-      "System Design",
-      "SQL & Databases",
-      "NoSQL (MongoDB/Redis)",
-      "REST APIs",
-      "GraphQL",
-      "Microservices Architecture",
-      "Docker",
-      "Kubernetes",
-      "AWS/Cloud Platforms",
-      "Message Queues (Kafka/RabbitMQ)",
-      "Caching Strategies",
-      "API Design & Documentation",
-      "Authentication & Security",
-      "CI/CD Pipelines",
-      "Performance Optimization"
-    ],
-    "Data Science": [
-      "Python",
-      "R",
-      "SQL",
-      "Statistics",
-      "Probability",
-      "Linear algebra",
-      "Calculus",
-      "Machine learning",
-      "Deep learning",
-      "Natural language processing",
-      "Computer vision",
-      "TensorFlow",
-      "PyTorch",
-      "Scikit-learn",
-      "Pandas",
-      "NumPy",
-      "Matplotlib",
-      "Seaborn",
-      "Jupyter notebooks",
-      "Data visualization",
-      "Feature engineering",
-      "Model evaluation",
-      "A/B testing",
-      "Experimental design",
-      "Big data (Spark, Hadoop)"
-    ],
-    "Data Analytics": [
-      "SQL",
-      "Python",
-      "R",
-      "Excel",
-      "Power BI",
-      "Tableau",
-      "Looker",
-      "Data visualization",
-      "Statistics",
-      "Business intelligence",
-      "ETL processes",
-      "Data warehousing",
-      "Google Analytics",
-      "A/B testing",
-      "Dashboard creation",
-      "Data modeling",
-      "Pandas",
-      "NumPy"
-    ],
-    "DevOps & Cloud Computing": [
-      "Linux/Unix",
-      "Bash scripting",
-      "Python",
-      "Git",
-      "Docker",
-      "Kubernetes",
-      "AWS",
-      "Azure",
-      "GCP",
-      "Terraform",
-      "Ansible",
-      "Jenkins",
-      "GitLab CI",
-      "GitHub Actions",
-      "Monitoring (Prometheus, Grafana)",
-      "Logging (ELK stack)",
-      "Networking",
-      "Security",
-      "Infrastructure as Code",
-      "Container orchestration",
-      "CI/CD pipelines",
-      "Cloud architecture"
-    ],
-    "Frontend Engineering": [
-      "JavaScript",
-      "TypeScript",
-      "HTML",
-      "CSS",
-      "React",
-      "Vue.js",
-      "Angular",
-      "Svelte",
-      "Next.js",
-      "Nuxt.js",
-      "Redux",
-      "State management",
-      "Responsive design",
-      "CSS frameworks (Tailwind, Bootstrap)",
-      "Webpack",
-      "Vite",
-      "npm/yarn",
-      "Git",
-      "REST APIs",
-      "GraphQL",
-      "Testing (Jest, React Testing Library)",
-      "Accessibility (WCAG)",
-      "Performance optimization",
-      "Browser DevTools",
-      "Progressive Web Apps"
-    ],
-    "Machine Learning": [
-      "Python",
-      "Mathematics",
-      "Statistics",
-      "Linear algebra",
-      "Calculus",
-      "Probability",
-      "Machine learning algorithms",
-      "Deep learning",
-      "Neural networks",
-      "TensorFlow",
-      "PyTorch",
-      "Scikit-learn",
-      "Pandas",
-      "NumPy",
-      "Model training",
-      "Model evaluation",
-      "Feature engineering",
-      "Hyperparameter tuning",
-      "MLOps",
-      "Model deployment",
-      "Computer vision",
-      "NLP"
-    ]
-  };
+import { getAllSkillsForRole } from './skillDefinitions';
 
-  // Default to Software Engineering if role not found
-  return skillTaxonomy[targetRole] || skillTaxonomy["Software Engineering"];
+/**
+ * Map old/generic role names to our standardized role names
+ * Handles both old category names and new role names
+ */
+const roleMapping = {
+  // Old category names (from quiz)
+  "Backend Engineering": "Backend Engineer",
+  "Frontend Engineering": "Frontend Engineer",
+  "Software Engineering": "Full Stack Engineer",
+  "DevOps & Cloud Computing": "DevOps Engineer",
+  "Data Science": "Data Science Engineer",
+  "Data Analytics": "Data Science Engineer",
+  "Machine Learning": "Data Science Engineer",
+
+  // New role names (already correct)
+  "Backend Engineer": "Backend Engineer",
+  "Frontend Engineer": "Frontend Engineer",
+  "Full Stack Engineer": "Full Stack Engineer",
+  "DevOps Engineer": "DevOps Engineer",
+  "Data Science Engineer": "Data Science Engineer",
 };
+
+/**
+ * Normalize role name to standard format
+ * Handles both old and new naming conventions
+ */
+const normalizeRole = (role) => {
+  // Try direct mapping first
+  if (roleMapping[role]) {
+    return roleMapping[role];
+  }
+
+  // If no mapping found, return as-is (might be standard already)
+  return role;
+};
+
+/**
+ * Get skills for a specific role
+ * Integrates with modular skill definition system
+ *
+ * NO FALLBACKS - Throws error if skills cannot be loaded
+ * Use RoadmapCompositionOrchestrator for roadmap data instead
+ *
+ * @param {string} targetRole - The target role (e.g., "Backend Engineer")
+ * @returns {Array} Array of skill names sorted by priority
+ */
+export const getSkillsForRole = (targetRole) => {
+  // Normalize the role name
+  const normalizedRole = normalizeRole(targetRole);
+
+  // Get all skills for the role from our skill definitions
+  // NO FALLBACKS - Let error propagate if loading fails
+  const allSkills = getAllSkillsForRole(normalizedRole);
+
+  if (!allSkills || allSkills.length === 0) {
+    throw new Error(`No skills found for role: ${targetRole}`);
+  }
+
+  // Return skills sorted by priority (critical first)
+  return allSkills.map(skill => skill.name);
+};
+
+/**
+ * Get detailed skill information for a role
+ * Includes priority levels and estimated weeks
+ *
+ * NO FALLBACKS - Throws error if skills cannot be loaded
+ *
+ * @param {string} targetRole - The target role
+ * @returns {Array} Array of skill objects with metadata
+ */
+export const getDetailedSkillsForRole = (targetRole) => {
+  const normalizedRole = normalizeRole(targetRole);
+  const allSkills = getAllSkillsForRole(normalizedRole);
+
+  if (!allSkills || allSkills.length === 0) {
+    throw new Error(`No skill details found for role: ${targetRole}`);
+  }
+
+  return allSkills;
+};
+
+/**
+ * Get supported roles from skill definitions
+ * @returns {Array} Array of supported role names
+ */
+export const getSupportedRoles = () => {
+  return [
+    "Backend Engineer",
+    "Frontend Engineer",
+    "Full Stack Engineer",
+    "DevOps Engineer",
+    "Data Science Engineer"
+  ];
+};
+
+// REMOVED: All hardcoded fallback skill taxonomies
+// REMOVED: getFallbackSkills function
+//
+// Rationale: All skill data must come from the modular composition system
+// via RoadmapCompositionOrchestrator. No hardcoded defaults allowed.

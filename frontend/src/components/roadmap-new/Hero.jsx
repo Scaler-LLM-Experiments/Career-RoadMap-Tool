@@ -12,6 +12,14 @@ const Hero = ({ roadmapData }) => {
   const heroTitle = roadmapData._fullConfig?.hero?.title ||
                     `Your roadmap to become a ${roadmapData.targetRole} is ready!`;
 
+  // Debug: Log what we're receiving
+  if (typeof window !== 'undefined') {
+    console.log('🎯 Hero Component Received:');
+    console.log(`   Title: "${heroTitle}"`);
+    console.log(`   Target Role: "${roadmapData.targetRole}"`);
+    console.log(`   Missing Skills:`, roadmapData.missingSkills);
+  }
+
   const stats = [
     {
       icon: Target,

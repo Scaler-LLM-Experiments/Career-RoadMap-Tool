@@ -1,0 +1,260 @@
+{
+  "metadata": {
+    "companyType": "service",
+    "label": "Service & Consulting Companies",
+    "description": "Project-based companies working with external clients"
+  },
+
+  "learningPathTweaks": {
+    "title": "Learning Path Optimized for Service Company Success",
+    "subtitle": "What you need to succeed at service and consulting firms",
+
+    "phaseAdaptations": [
+      {
+        "phase": 1,
+        "emphasis": [
+          "practical_coding",
+          "multiple_tech_stacks",
+          "quick_onboarding"
+        ],
+        "skipTopics": [
+          "theoretical_algorithms",
+          "ultra_advanced_topics"
+        ],
+        "accelerateTopics": [
+          "common_patterns_across_languages",
+          "client_communication_basics",
+          "project_estimation",
+          "code_readability_and_documentation"
+        ],
+        "addResources": [
+          "Clean Code by Robert Martin",
+          "Code reading and debugging guides",
+          "Project estimation techniques",
+          "Client communication templates"
+        ],
+        "adjustDuration": 0.9,
+        "note": "Service companies need practical coding skills faster - focus on readability and teamwork"
+      },
+      {
+        "phase": 2,
+        "emphasis": [
+          "project_execution",
+          "client_understanding",
+          "delivery_focused_development"
+        ],
+        "skipTopics": [
+          "bleeding_edge_technologies",
+          "research_and_theory"
+        ],
+        "accelerateTopics": [
+          "testing_and_quality",
+          "performance_debugging",
+          "technical_documentation",
+          "client_requirement_translation"
+        ],
+        "addResources": [
+          "Agile and project management practices",
+          "Client management skills",
+          "Requirement gathering techniques",
+          "Quality assurance processes"
+        ],
+        "adjustDuration": 0.95,
+        "note": "Delivery and client satisfaction are key - focus on pragmatic solutions"
+      },
+      {
+        "phase": 3,
+        "emphasis": [
+          "team_leadership",
+          "client_relationships",
+          "domain_expertise"
+        ],
+        "skipTopics": [],
+        "accelerateTopics": [
+          "mentoring_team_members",
+          "project_management",
+          "business_understanding",
+          "solution_architecture"
+        ],
+        "addResources": [
+          "Leadership and mentorship guides",
+          "Project management methodologies",
+          "Business acumen for engineers",
+          "Solution selling for technical people"
+        ],
+        "adjustDuration": 0.95,
+        "note": "Service companies value engineers who can lead projects and understand business"
+      }
+    ]
+  },
+
+  "interviewFocusAreas": {
+    "title": "What Service Companies Look For",
+    "areas": [
+      {
+        "area": "Practical Coding Skills",
+        "description": "Can you write maintainable, readable code?",
+        "emphasis": "Code quality, testing, following best practices"
+      },
+      {
+        "area": "Problem-Solving",
+        "description": "Can you solve real-world problems?",
+        "emphasis": "Pragmatic approach, working solutions, not theoretical perfection"
+      },
+      {
+        "area": "Communication",
+        "description": "Can you work with clients and teams?",
+        "emphasis": "Clarity, explaining technical concepts to non-technical people"
+      },
+      {
+        "area": "Adaptability",
+        "description": "Can you work with different technologies?",
+        "emphasis": "Quick learning, flexibility, not being dogmatic"
+      },
+      {
+        "area": "Project Ownership",
+        "description": "Can you own a complete project?",
+        "emphasis": "From requirements to deployment, taking responsibility"
+      }
+    ]
+  },
+
+  "roleExpectations": {
+    "title": "What You'll Do at a Service Company",
+    "responsibilities": [
+      "Own complete client projects from requirement gathering to delivery",
+      "Work with clients to understand their needs",
+      "Write code that other developers can maintain and extend",
+      "Estimate and track project timelines",
+      "Train or transition code to client teams",
+      "Support and maintain deployed solutions",
+      "Collaborate with other team members on projects"
+    ]
+  },
+
+  "skillPrioritiesForService": {
+    "highPriority": [
+      "Core programming fundamentals",
+      "Communication skills",
+      "Code readability and documentation",
+      "Testing and quality assurance",
+      "Git and version control",
+      "Common web technologies"
+    ],
+    "mediumPriority": [
+      "Project management basics",
+      "Client communication",
+      "Performance debugging",
+      "Mentorship and teamwork",
+      "Requirement analysis"
+    ],
+    "lowPriority": [
+      "Cutting-edge technologies",
+      "Research and theory",
+      "Specialized domains (unless client-specific)"
+    ]
+  },
+
+  "companyFitAnalysis": {
+    "fitScore": 82,
+    "fitLevel": "Great Fit",
+    "reasoning": [
+      "Service companies value practical skills and project ownership",
+      "Good learning opportunities across different projects and clients",
+      "Clear skill progression from junior to senior roles",
+      "Good work-life balance typically"
+    ],
+    "whatYouNeed": [
+      "Practical coding and testing skills",
+      "Ability to communicate with non-technical people",
+      "Willingness to learn new technologies for different projects",
+      "Team collaboration mindset"
+    ],
+    "growthOpportunities": [
+      "Project leadership roles",
+      "Solution architect positions",
+      "Delivery manager roles",
+      "Practice lead or domain expert roles",
+      "Partner/ownership track"
+    ]
+  },
+
+  "interviewProcess": {
+    "rounds": [
+      {
+        "number": 1,
+        "name": "Initial Screening",
+        "description": "Discussion about experience and fit",
+        "difficulty": "Easy",
+        "duration": "30 minutes",
+        "focus": "Communication and background"
+      },
+      {
+        "number": 2,
+        "name": "Technical Interview",
+        "description": "Coding problem or project assessment",
+        "difficulty": "Medium",
+        "duration": "60 minutes",
+        "focus": "Code quality and approach"
+      },
+      {
+        "number": 3,
+        "name": "Project Discussion",
+        "description": "Deep dive into a project you built",
+        "difficulty": "Medium",
+        "duration": "45 minutes",
+        "focus": "Problem-solving approach and decisions"
+      },
+      {
+        "number": 4,
+        "name": "Team & Culture Fit",
+        "description": "Interaction with team members",
+        "difficulty": "Easy",
+        "duration": "45 minutes",
+        "focus": "Teamwork and communication"
+      }
+    ]
+  },
+
+  "timelineAdjustment": {
+    "multiplier": 0.9,
+    "explanation": "Service company interviews are typically faster and more practical"
+  },
+
+  "estimatedTimeToHire": {
+    "value": "8-10 weeks",
+    "explanation": "From current level to being job-ready for a service company role"
+  },
+
+  "commonChallengesAndTips": [
+    {
+      "challenge": "Multiple technology stacks",
+      "tip": "Learn to focus on fundamentals that transfer across languages"
+    },
+    {
+      "challenge": "Client communication",
+      "tip": "Practice explaining technical concepts simply - this is a valuable skill"
+    },
+    {
+      "challenge": "Deadline pressure",
+      "tip": "Learn estimation and time management - deliver on promises"
+    },
+    {
+      "challenge": "Code hand-off",
+      "tip": "Write code for the next person, not for the compiler - documentation matters"
+    },
+    {
+      "challenge": "Diverse projects",
+      "tip": "See this as an advantage - you'll learn more in 2 years than many do in 5"
+    }
+  ],
+
+  "advantageOfServiceCareers": [
+    "Exposure to many different projects and technologies",
+    "Strong business and client understanding",
+    "Learn how to ship products and deliver value",
+    "Good foundation for future roles",
+    "Mentorship from experienced professionals",
+    "Clear career path to leadership"
+  ]
+}

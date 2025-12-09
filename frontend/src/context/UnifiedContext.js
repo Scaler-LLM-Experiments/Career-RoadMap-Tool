@@ -75,6 +75,8 @@ const defaultState = {
   error: null,
 };
 
+// Load from localStorage if available, otherwise use defaultState
+// With the new quiz flow, there are no async hydration issues
 const initialState = loadStateFromStorage() || defaultState;
 
 // Action types

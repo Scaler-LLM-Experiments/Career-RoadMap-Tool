@@ -64,8 +64,9 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 0;
   gap: 36px;
+  align-items: flex-start;
 
   /* Move content up on desktop if flag is set */
   @media (min-width: 769px) {
@@ -159,8 +160,8 @@ const Header = styled.div`
 `;
 
 const BotAvatar = styled.div`
-  width: 48px;
-  height: 48px;
+  width: 72px;
+  height: 72px;
   border-radius: 0;
   background: transparent;
   display: flex;
@@ -170,8 +171,8 @@ const BotAvatar = styled.div`
   overflow: hidden;
 
   @media (max-width: 768px) {
-    width: 40px;
-    height: 40px;
+    width: 56px;
+    height: 56px;
   }
 `;
 
@@ -185,11 +186,12 @@ const ChatBubble = styled.div`
   background: #fefce8;
   border: 2px solid #fde047;
   border-radius: 0;
-  padding: 20px 24px;
+  padding: 20px;
   position: relative;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  max-width: 100%;
-  width: 100%;
+  max-width: 90%;
+  width: auto;
+  height: auto;
 
   &::before {
     content: '';
@@ -222,7 +224,6 @@ const ChatText = styled.div`
   color: #1e293b;
   line-height: 1.6;
   animation: ${slideInFromLeft} 0.6s ease-out;
-  margin-bottom: 16px;
   white-space: pre-line;
 `;
 
@@ -540,7 +541,7 @@ const OptionContent = styled.div`
 const OptionText = styled.div`
   font-size: 0.95rem;
   color: #1e293b;
-  font-weight: 500;
+  font-weight: ${props => props.isFirstScreen ? '600' : '400'};
   line-height: 1.4;
 `;
 
@@ -751,7 +752,10 @@ const GroupedQuestionScreen = ({
   onChatTextChange,
   hideChat = false,
   showMobileChat = false,
-  moveUpOnDesktop = false
+  showChatAboveQuestions = false,
+  singleColumn = false,
+  moveUpOnDesktop = false,
+  isFirstScreen = false
 }) => {
   const [chatText, setChatText] = useState(initialChatText);
 
@@ -759,6 +763,11 @@ const GroupedQuestionScreen = ({
   if (!questions || questions.length === 0) {
     return <div>Loading questions...</div>;
   }
+
+  // Helper function to check if all questions on this screen are answered
+  const areAllQuestionsAnswered = () => {
+    return questions.every(q => responses[q.id] !== undefined && responses[q.id] !== null && responses[q.id] !== '');
+  };
 
   const handleCTAClick = (questionId, ctaValue, shouldSaveResponse = true) => {
     // Only save response for info-with-cta types
@@ -829,7 +838,16 @@ const GroupedQuestionScreen = ({
       }, 200);
     }
 
-    // Auto-advance removed - user must click Continue/Generate Roadmap button
+    // Auto-advance if all questions on this screen are answered
+    // Check on next tick to ensure response is updated
+    if (isLastQuestion && onAutoAdvance) {
+      setTimeout(() => {
+        if (areAllQuestionsAnswered()) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          onAutoAdvance();
+        }
+      }, 100);
+    }
   };
 
   return (
@@ -842,21 +860,6 @@ const GroupedQuestionScreen = ({
           </BotAvatar>
           <ChatBubble>
             <ChatText key={chatText}>{chatText}</ChatText>
-            {profileDetails && profileDetails.length > 0 && (
-              <ProfileDetailsContainer>
-                {profileDetails.map((detail, index) => (
-                  <ProfileDetailItem key={index}>
-                    <ProfileDetailIconWrapper>
-                      {getProfileDetailIcon(detail.icon)}
-                    </ProfileDetailIconWrapper>
-                    <ProfileDetailContent>
-                      <ProfileDetailLabel>{detail.label}</ProfileDetailLabel>
-                      <ProfileDetailValue>{detail.value}</ProfileDetailValue>
-                    </ProfileDetailContent>
-                  </ProfileDetailItem>
-                ))}
-              </ProfileDetailsContainer>
-            )}
           </ChatBubble>
         </Header>
       )}
@@ -869,23 +872,20 @@ const GroupedQuestionScreen = ({
           </MobileBotAvatar>
           <MobileChatBubble>
             <MobileChatText>{initialChatText}</MobileChatText>
-            {profileDetails && profileDetails.length > 0 && (
-              <ProfileDetailsContainer>
-                {profileDetails.map((detail, index) => (
-                  <ProfileDetailItem key={index}>
-                    <ProfileDetailIconWrapper>
-                      {getProfileDetailIcon(detail.icon)}
-                    </ProfileDetailIconWrapper>
-                    <ProfileDetailContent>
-                      <ProfileDetailLabel>{detail.label}</ProfileDetailLabel>
-                      <ProfileDetailValue>{detail.value}</ProfileDetailValue>
-                    </ProfileDetailContent>
-                  </ProfileDetailItem>
-                ))}
-              </ProfileDetailsContainer>
-            )}
           </MobileChatBubble>
         </MobileChatHeader>
+      )}
+
+      {/* Chat above questions (first screen only) */}
+      {showChatAboveQuestions && initialChatText && (
+        <Header>
+          <BotAvatar>
+            <BotImage src="/ChatBot.png" alt="Chat Bot" />
+          </BotAvatar>
+          <ChatBubble>
+            <ChatText>{initialChatText}</ChatText>
+          </ChatBubble>
+        </Header>
       )}
 
       <QuestionsContainer>
@@ -932,9 +932,74 @@ const GroupedQuestionScreen = ({
                   </MultiSelectPillsContainer>
                   {/* Show Continue button if at least one skill is selected */}
                   {hasSelections && (
-                    <CTAButtonWrapper>
+                    <CTAButtonWrapper hideMobile={true}>
                       <CTAButton onClick={() => handleCTAClick(question.id, 'continue', false)}>
                         BUILD MY ROADMAP
+                      </CTAButton>
+                    </CTAButtonWrapper>
+                  )}
+                </>
+              ) : question.type === 'button-grid' ? (
+                <>
+                  <QuestionLabel>{question.question}</QuestionLabel>
+                  <OptionsRow singleColumn={singleColumn}>
+                    {question.options && question.options.map((option) => {
+                      const isSelected = responses[question.id] === option.value;
+                      return (
+                        <OptionPill
+                          key={option.value}
+                          selected={isSelected}
+                          onClick={() => handleOptionSelect(question.id, option, questionIndex)}
+                        >
+                          <OptionIconWrapper selected={isSelected}>
+                            {option.icon || getOptionIcon(option.value)}
+                          </OptionIconWrapper>
+                          <OptionContent>
+                            <OptionTextColumn>
+                              <OptionText isFirstScreen={isFirstScreen}>{option.label}</OptionText>
+                              {option.description && (
+                                <OptionDescription>{option.description}</OptionDescription>
+                              )}
+                            </OptionTextColumn>
+                            <CheckIcon selected={isSelected}>
+                              <Check size={20} weight="bold" />
+                            </CheckIcon>
+                          </OptionContent>
+                        </OptionPill>
+                      );
+                    })}
+                  </OptionsRow>
+                </>
+              ) : question.type === 'radio-buttons' ? (
+                <>
+                  <QuestionLabel>{question.question}</QuestionLabel>
+                  <OptionsRow>
+                    {question.options && question.options.map((option) => {
+                      const isSelected = responses[question.id] === option.value;
+                      return (
+                        <OptionPill
+                          key={option.value}
+                          selected={isSelected}
+                          onClick={() => handleOptionSelect(question.id, option, questionIndex)}
+                        >
+                          <OptionIconWrapper selected={isSelected}>
+                            {option.icon || getOptionIcon(option.value)}
+                          </OptionIconWrapper>
+                          <OptionContent>
+                            <OptionText isFirstScreen={isFirstScreen}>{option.label}</OptionText>
+                            <CheckIcon selected={isSelected}>
+                              <Check size={20} weight="bold" />
+                            </CheckIcon>
+                          </OptionContent>
+                        </OptionPill>
+                      );
+                    })}
+                  </OptionsRow>
+                  {/* Show GENERATE ROADMAP button for last question (timeline) */}
+                  {responses[question.id] && question.id === 'timeline' && (
+                    <CTAButtonWrapper>
+                      <CTAButton onClick={() => handleCTAClick(question.id, 'continue', false)}>
+                        GENERATE ROADMAP
                       </CTAButton>
                     </CTAButtonWrapper>
                   )}
@@ -1000,7 +1065,7 @@ const GroupedQuestionScreen = ({
                             {option.icon || getOptionIcon(option.value)}
                           </OptionIconWrapper>
                           <OptionContent>
-                            <OptionText>{option.label}</OptionText>
+                            <OptionText isFirstScreen={isFirstScreen}>{option.label}</OptionText>
                             <CheckIcon selected={isSelected}>
                               <Check size={20} weight="bold" />
                             </CheckIcon>

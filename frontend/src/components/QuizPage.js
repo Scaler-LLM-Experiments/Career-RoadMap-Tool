@@ -3,8 +3,6 @@ import { useRouter } from 'next/router';
 import { useProfile } from '../context/UnifiedContext';
 import styled, { keyframes } from 'styled-components';
 import QuizOrchestrator from './quiz/QuizOrchestrator';
-import { CaretLeft } from 'phosphor-react';
-import { fetchProfileData } from '../utils/mockData';
 
 const fadeIn = keyframes`
   0% {
@@ -120,31 +118,8 @@ const ValidationWarning = styled.div`
 function QuizPage({ onProgressChange, quizMode = 'final' }) {
   const router = useRouter();
   const {
-    background,
-    setBackground,
-    setQuizResponse,
-    quizResponses,
-    clearQuizResponses,
     evaluationResults
   } = useProfile();
-
-  // Load profile data if not already loaded
-  useEffect(() => {
-    const loadProfileData = async () => {
-      if (!quizResponses.userName) {
-        try {
-          const data = await fetchProfileData();
-          Object.entries(data).forEach(([key, value]) => {
-            setQuizResponse(key, value);
-          });
-        } catch (error) {
-          console.error('Failed to load profile data:', error);
-        }
-      }
-    };
-
-    loadProfileData();
-  }, [quizResponses.userName, setQuizResponse]);
 
   // Redirect to results if evaluation already exists (prevent direct URL access)
   useEffect(() => {

@@ -1,0 +1,183 @@
+{
+  "metadata": {
+    "level": "mid",
+    "yearsRange": "3-7 years",
+    "description": "Experienced professional aiming for senior role"
+  },
+
+  "hero": {
+    "greeting": "Hey {userName}! 👋",
+    "title": "Your personalized roadmap to become a Senior {role} Engineer is ready!",
+    "subtitle": "Accelerated path to the next level",
+
+    "stats": {
+      "skillsToLearn": {
+        "total": 12,
+        "description": "critical skills for the next level"
+      },
+      "estimatedEffort": {
+        "value": "12-15",
+        "unit": "hrs/week"
+      },
+      "estimatedDuration": "6-9 months"
+    },
+
+    "videoUrl": "https://youtu.be/example-senior-path",
+    "videoTitle": "Message from Founder"
+  },
+
+  "learningPath": {
+    "title": "Your Learning Path",
+    "totalPhases": 3,
+    "estimatedDuration": "6-9 months",
+
+    "phases": [
+      {
+        "phaseNumber": 1,
+        "title": "Foundation: Advanced Concepts Deep Dive",
+        "duration": "8 weeks",
+        "description": "Master the advanced fundamentals needed for senior roles",
+
+        "keyTopics": [
+          "System design at scale",
+          "Architectural patterns",
+          "Distributed systems",
+          "Performance optimization",
+          "Advanced databases"
+        ],
+
+        "learningPoints": [
+          {
+            "title": "Scalability & Load Balancing",
+            "description": "Design systems that handle millions of concurrent users"
+          },
+          {
+            "title": "Advanced Database Optimization",
+            "description": "Indexing strategies, query optimization, sharding, partitioning"
+          },
+          {
+            "title": "Distributed System Patterns",
+            "description": "CAP theorem, eventual consistency, distributed tracing"
+          },
+          {
+            "title": "Caching & Replication",
+            "description": "Redis, memcached, database replication strategies"
+          }
+        ],
+
+        "learningVideoUrl": "https://www.youtube.com/embed/example",
+        "videoPosition": "right",
+
+        "target": {
+          "metric": "10+ Architecture Designs",
+          "description": "Design popular systems like Netflix, Twitter, Uber at scale"
+        },
+
+        "whyItMatters": [
+          "Mandatory skill for senior technical interviews",
+          "Shows architectural thinking",
+          "Required for senior role responsibilities",
+          "Differentiates senior from mid-level engineers"
+        ]
+      },
+
+      {
+        "phaseNumber": 2,
+        "title": "Specialization: Mastering Your Domain",
+        "duration": "6 weeks",
+        "description": "Deep dive into role-specific advanced topics",
+
+        "keyTopics": [
+          "Role-specific advanced patterns",
+          "Production challenges",
+          "Scalability patterns",
+          "Testing at scale",
+          "Monitoring & observability"
+        ],
+
+        "learningPoints": [
+          {
+            "title": "Advanced Patterns",
+            "description": "Microservices, event sourcing, CQRS, saga patterns"
+          },
+          {
+            "title": "Production Systems",
+            "description": "Debugging production issues, monitoring, alerting"
+          },
+          {
+            "title": "Reliability & Resilience",
+            "description": "Circuit breakers, retry logic, graceful degradation"
+          },
+          {
+            "title": "Testing Strategies",
+            "description": "Integration testing, performance testing, chaos engineering"
+          }
+        ],
+
+        "learningVideoUrl": "https://www.youtube.com/embed/example",
+        "videoPosition": "left",
+
+        "target": {
+          "metric": "5+ Production Projects",
+          "description": "Build and deploy progressively complex systems at scale"
+        },
+
+        "whyItMatters": [
+          "Required for handling real production systems",
+          "Senior engineers spend most time here",
+          "Shows practical experience",
+          "Demonstrates maturity and responsibility"
+        ]
+      },
+
+      {
+        "phaseNumber": 3,
+        "title": "Mastery: Interview Prep & Leadership",
+        "duration": "4-6 weeks",
+        "description": "Polish your skills and prepare for senior-level interviews",
+
+        "keyTopics": [
+          "Real-world case studies",
+          "Trade-off analysis",
+          "Cost optimization",
+          "Leadership skills",
+          "Behavioral preparation"
+        ],
+
+        "learningPoints": [
+          {
+            "title": "Case Study Analysis",
+            "description": "Study real systems: Google, Amazon, Netflix, Uber"
+          },
+          {
+            "title": "Trade-off Thinking",
+            "description": "Master the art of making architectural trade-offs"
+          },
+          {
+            "title": "Cost Optimization",
+            "description": "Optimize for latency, throughput, cost"
+          },
+          {
+            "title": "Communication Skills",
+            "description": "Explain complex designs clearly to interviewers"
+          }
+        ],
+
+        "learningVideoUrl": "https://www.youtube.com/embed/example",
+        "videoPosition": "right",
+
+        "target": {
+          "metric": "3-5 Mock Interviews",
+          "description": "Complete mock interviews at senior level from target companies"
+        },
+
+        "whyItMatters": [
+          "Proves you're production-ready at senior level",
+          "Interview conversation starters",
+          "Validates technical expertise",
+          "Showcases end-to-end capability"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "companyType": "startup",
+    "label": "High Growth Startups",
+    "description": "Fast-scaling companies that prioritize speed and impact"
+  },
+
+  "learningPathTweaks": {
+    "phase1": {
+      "emphasis": [
+        "mvp_first_approach",
+        "rapid_iterations",
+        "pragmatic_solutions",
+        "speed_over_perfection"
+      ],
+      "skipTopics": [
+        "advanced_consistency",
+        "enterprise_patterns",
+        "legacy_compatibility"
+      ],
+      "accelerateTopics": [
+        "rapid_prototyping",
+        "quick_learning",
+        "iteration_speed"
+      ],
+      "addResources": [
+        {
+          "type": "article",
+          "title": "Building for Scale from Day One",
+          "url": "https://example.com/scale-from-day-one",
+          "duration": "30 min read"
+        },
+        {
+          "type": "article",
+          "title": "Startup Engineering: Speed vs Perfection",
+          "url": "https://example.com/speed-vs-perfection",
+          "duration": "20 min read"
+        }
+      ]
+    },
+
+    "phase2": {
+      "emphasis": [
+        "production_deployment",
+        "rapid_reliability",
+        "monitoring_basics",
+        "incident_response"
+      ],
+      "skipTopics": [
+        "advanced_monitoring",
+        "service_mesh_advanced"
+      ],
+      "accelerateTopics": [
+        "quick_deployment",
+        "basic_monitoring",
+        "alerting_basics"
+      ],
+      "addResources": [
+        {
+          "type": "video",
+          "title": "Deploying Fast at Startups",
+          "url": "https://youtu.be/example",
+          "duration": "45 mins"
+        }
+      ]
+    },
+
+    "phase3": {
+      "emphasis": [
+        "quick_learning",
+        "on_the_job_skills",
+        "practical_interviews",
+        "company_culture_fit"
+      ],
+      "addResources": [
+        {
+          "type": "article",
+          "title": "Startup Interview Tips",
+          "url": "https://example.com/startup-interviews",
+          "duration": "15 min read"
+        }
+      ]
+    }
+  },
+
+  "companiesInsight": {
+    "tipForStartups": "Startups care about impact and speed. Show that you can learn fast and don't need hand-holding.",
+    "interviewTips": [
+      "Ask about technical debt and how they handle it",
+      "Discuss their deployment frequency",
+      "Show examples of rapid iteration in your projects",
+      "Demonstrate comfort with ambiguity"
+    ]
+  },
+
+  "estimatedTimeline": {
+    "note": "Startups often move faster, so timeline can be compressed",
+    "multiplier": 0.9,
+    "explanation": "You can move 10% faster due to less bureaucracy"
+  }
+}

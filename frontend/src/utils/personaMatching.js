@@ -93,16 +93,20 @@ export const calculatePersonaMatchScore = (quizResponses, persona) => {
 
 /**
  * Find the best matching persona from quiz responses
- * Implements fallback logic for edge cases
+ * DEPRECATED - Use RoadmapCompositionOrchestrator instead
+ *
+ * Kept for backward compatibility only
+ * New system uses modular decomposition which has NO FALLBACKS
  */
 export const findMatchingPersona = async (quizResponses) => {
+  console.warn('⚠️ findMatchingPersona is deprecated. Use RoadmapCompositionOrchestrator instead.');
+
   // Validate required fields
   if (!quizResponses || !quizResponses.userType || !quizResponses.targetRole) {
-    console.warn('Invalid quiz responses for persona matching:', quizResponses);
-    return null;
+    throw new Error('Invalid quiz responses: missing userType or targetRole');
   }
 
-  // Ensure config is loaded
+  // NO FALLBACKS - let it throw if data is invalid
   const config = await ensurePersonaMatchingLoaded();
   const personas = config.persona_definitions;
   const scores = {};
@@ -123,42 +127,13 @@ export const findMatchingPersona = async (quizResponses) => {
     }
   });
 
-  // Edge case: no persona matched well
-  if (highestScore < 30) {
-    console.warn('Weak persona match. Score:', highestScore);
-    // Fallback: match on targetRole alone
-    bestPersona = await fallbackToTargetRole(quizResponses.targetRole, quizResponses.userType);
+  // REMOVED: No fallbacks - throw error if match is weak
+  if (!bestPersona || highestScore < 30) {
+    throw new Error(`No suitable persona found. Best score: ${highestScore}. Use modular composition instead.`);
   }
 
   console.log('Selected persona:', bestPersona?.id, 'with score:', highestScore);
   return bestPersona;
-};
-
-/**
- * Fallback: match persona by target role only
- */
-const fallbackToTargetRole = async (targetRole, userType) => {
-  const config = await ensurePersonaMatchingLoaded();
-  const personas = config.persona_definitions;
-
-  // Priority: match user type first, then target role
-  const matching = Object.values(personas).find(
-    (p) => p.matching_criteria.userType?.includes(userType) &&
-           p.matching_criteria.targetRole?.some(role =>
-             targetRole.toLowerCase().includes(role.toLowerCase())
-           )
-  );
-
-  // If no exact match, just match target role
-  if (!matching) {
-    return Object.values(personas).find(
-      (p) => p.matching_criteria.targetRole?.some(role =>
-        targetRole.toLowerCase().includes(role.toLowerCase())
-      )
-    );
-  }
-
-  return matching;
 };
 
 /**
@@ -207,46 +182,26 @@ export const applyCompanyTypeTweaks = (personaConfig, companyType) => {
 
 /**
  * Main function: Get complete roadmap config for a user
- * Takes quiz responses and returns personalized roadmap
+ * NOW USES MODULAR COMPOSITION ORCHESTRATOR
+ *
+ * Takes quiz responses and returns fully personalized, enriched roadmap config
+ * All data flows through modular composition system - NO FALLBACKS
  */
-export const getPersonalizedRoadmapConfig = async (quizResponses) => {
+export const getPersonalizedRoadmapConfig = async (quizResponses, profileData = {}) => {
   try {
-    console.log('🚀 Starting getPersonalizedRoadmapConfig with:', quizResponses);
+    // Import the new orchestrator
+    const { generatePersonalizedRoadmap } = await import('./RoadmapCompositionOrchestrator');
 
-    // Step 1: Find matching persona
-    const personaDefinition = await findMatchingPersona(quizResponses);
-    console.log('📊 Found persona definition:', personaDefinition);
+    console.log('🚀 Using RoadmapCompositionOrchestrator for modular composition');
 
-    if (!personaDefinition) {
-      throw new Error('Could not find matching persona for quiz responses');
+    // Use new modular composition system - NO FALLBACKS
+    const result = await generatePersonalizedRoadmap(quizResponses, profileData);
+
+    if (!result.success) {
+      throw new Error('Modular composition failed');
     }
 
-    console.log('✓ Persona matched:', personaDefinition.id);
-
-    // Step 2: Load persona config file
-    const personaConfig = await loadPersonaConfig(personaDefinition.id);
-    console.log('📦 Loaded persona config:', personaConfig?.metadata?.label);
-
-    if (!personaConfig) {
-      throw new Error(`Could not load config for persona: ${personaDefinition.id}`);
-    }
-
-    // Step 3: Apply company type tweaks if provided
-    let finalConfig = personaConfig;
-    if (quizResponses.targetCompanyType) {
-      console.log('🎯 Applying company type tweaks for:', quizResponses.targetCompanyType);
-      finalConfig = applyCompanyTypeTweaks(personaConfig, quizResponses.targetCompanyType);
-    }
-
-    // Step 4: Add metadata
-    finalConfig.metadata = finalConfig.metadata || {};
-    finalConfig.metadata.selectedPersonaId = personaDefinition.id;
-    finalConfig.metadata.selectedPersonaLabel = personaDefinition.label;
-    finalConfig.metadata.generatedAt = new Date().toISOString();
-    finalConfig.metadata.quizResponses = quizResponses; // Store for reference
-
-    console.log('✅ Final config ready:', finalConfig.metadata);
-    return finalConfig;
+    return result.data;
   } catch (error) {
     console.error('❌ Error generating personalized roadmap:', error);
     throw error;
@@ -255,19 +210,21 @@ export const getPersonalizedRoadmapConfig = async (quizResponses) => {
 
 /**
  * Load persona config file dynamically
- * Supports both development and production environments
+ * DEPRECATED - Use RoadmapCompositionOrchestrator instead
+ *
+ * Throws error if config cannot be loaded - NO SILENT FAILURES
  */
 export const loadPersonaConfig = async (personaId) => {
   try {
     // Fetch from API endpoint
     const response = await fetch(`/api/config/persona/${personaId}`);
     if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
+      throw new Error(`HTTP ${response.status}: Failed to load persona config for ${personaId}`);
     }
     return await response.json();
   } catch (error) {
-    console.error(`Failed to load persona config for ${personaId}:`, error);
-    return null;
+    // NO FALLBACKS - throw the error, don't silently return null
+    throw new Error(`Failed to load persona config for ${personaId}: ${error.message}`);
   }
 };
 
@@ -340,4 +297,185 @@ export const debugPersonaMatching = (quizResponses) => {
   });
 
   return results;
+};
+
+/**
+ * DECOMPOSE TO MODULAR PERSONA
+ *
+ * Converts a persona ID or quiz responses into modular components
+ * that can be used to compose a roadmap from templates
+ *
+ * Maps the 16 personas to role/level/userType/companyType combinations:
+ *
+ * TECH PROFESSIONALS:
+ * - tech_entry_backend → role:backend, level:entry, userType:tech_professional
+ * - tech_entry_frontend → role:frontend, level:entry, userType:tech_professional
+ * - tech_entry_fullstack → role:fullstack, level:entry, userType:tech_professional
+ * - tech_mid_backend → role:backend, level:mid, userType:tech_professional
+ * - tech_mid_frontend → role:frontend, level:mid, userType:tech_professional
+ * - tech_mid_fullstack → role:fullstack, level:mid, userType:tech_professional
+ * - tech_senior_backend → role:backend, level:senior, userType:tech_professional
+ * - tech_senior_frontend → role:frontend, level:senior, userType:tech_professional
+ *
+ * CAREER SWITCHERS:
+ * - switcher_early_backend → role:backend, level:entry, userType:career_switcher
+ * - switcher_early_frontend → role:frontend, level:entry, userType:career_switcher
+ * - switcher_advanced_backend → role:backend, level:mid, userType:career_switcher
+ * - switcher_advanced_frontend → role:frontend, level:mid, userType:career_switcher
+ * - (4 more advanced variants for fullstack and data)
+ *
+ * Company type is extracted from quiz responses
+ *
+ * @param {string|Object} personaOrResponses - Either persona ID string or quiz responses object
+ * @returns {Object} Modular persona with { role, level, userType, companyType }
+ */
+export const decomposeToModularPersona = (personaOrResponses) => {
+  // Mapping of persona IDs to modular components
+  const personaDecomposition = {
+    'tech_entry_backend': { role: 'backend', level: 'entry', userType: 'tech_professional' },
+    'tech_entry_frontend': { role: 'frontend', level: 'entry', userType: 'tech_professional' },
+    'tech_entry_fullstack': { role: 'fullstack', level: 'entry', userType: 'tech_professional' },
+    'tech_mid_backend': { role: 'backend', level: 'mid', userType: 'tech_professional' },
+    'tech_mid_frontend': { role: 'frontend', level: 'mid', userType: 'tech_professional' },
+    'tech_mid_fullstack': { role: 'fullstack', level: 'mid', userType: 'tech_professional' },
+    'tech_senior_backend': { role: 'backend', level: 'senior', userType: 'tech_professional' },
+    'tech_senior_frontend': { role: 'frontend', level: 'senior', userType: 'tech_professional' },
+    'tech_senior_fullstack': { role: 'fullstack', level: 'senior', userType: 'tech_professional' },
+    'switcher_early_backend': { role: 'backend', level: 'entry', userType: 'career_switcher' },
+    'switcher_early_frontend': { role: 'frontend', level: 'entry', userType: 'career_switcher' },
+    'switcher_early_fullstack': { role: 'fullstack', level: 'entry', userType: 'career_switcher' },
+    'switcher_advanced_backend': { role: 'backend', level: 'mid', userType: 'career_switcher' },
+    'switcher_advanced_frontend': { role: 'frontend', level: 'mid', userType: 'career_switcher' },
+    'switcher_advanced_fullstack': { role: 'fullstack', level: 'mid', userType: 'career_switcher' },
+    'switcher_advanced_data': { role: 'data', level: 'mid', userType: 'career_switcher' }
+  };
+
+  let personaId = null;
+  let companyType = null;
+
+  // Case 1: Persona ID string provided
+  if (typeof personaOrResponses === 'string') {
+    personaId = personaOrResponses;
+  }
+  // Case 2: Quiz responses object provided - find matching persona first
+  else if (typeof personaOrResponses === 'object' && personaOrResponses !== null) {
+    const quizResponses = personaOrResponses;
+
+    // Extract company type from responses
+    companyType = mapCompanyTypeFromResponses(quizResponses);
+
+    // If persona ID is provided in responses, use it
+    if (quizResponses.selectedPersonaId) {
+      personaId = quizResponses.selectedPersonaId;
+    } else {
+      // Otherwise, build persona ID from quiz responses
+      personaId = buildPersonaIdFromResponses(quizResponses);
+    }
+  }
+
+  if (!personaId) {
+    throw new Error('Could not determine persona ID from input');
+  }
+
+  const decomposed = personaDecomposition[personaId];
+
+  if (!decomposed) {
+    // NO FALLBACKS - throw error instead
+    throw new Error(`Unknown persona ID: ${personaId}. Cannot decompose.`);
+  }
+
+  // Add company type if extracted from responses
+  if (companyType) {
+    decomposed.companyType = companyType;
+  }
+
+  console.log('✅ Decomposed persona:', decomposed);
+  return decomposed;
+};
+
+/**
+ * Helper: Build persona ID from quiz responses
+ * Constructs the persona ID based on the user's quiz answers
+ */
+const buildPersonaIdFromResponses = (quizResponses) => {
+  const userType = quizResponses.userType || 'tech_professional';
+  const yearsExp = quizResponses.yearsOfExperience || '0-2';
+  const targetRole = quizResponses.targetRole || 'backend';
+
+  let level = 'entry';
+  if (yearsExp === '5-7' || yearsExp === '7+' || yearsExp === '8+') {
+    level = 'senior';
+  } else if (yearsExp === '3-5') {
+    level = 'mid';
+  }
+
+  // Map targetRole to role ID (backend, frontend, fullstack, etc)
+  let role = 'backend';
+  if (targetRole.toLowerCase().includes('frontend')) {
+    role = 'frontend';
+  } else if (targetRole.toLowerCase().includes('fullstack') || targetRole.toLowerCase().includes('full-stack')) {
+    role = 'fullstack';
+  }
+
+  // Build persona ID
+  if (userType === 'career_switcher') {
+    if (level === 'entry') {
+      return `switcher_early_${role}`;
+    } else if (level === 'mid') {
+      return `switcher_advanced_${role}`;
+    } else {
+      // NO FALLBACKS - throw instead
+      throw new Error(`Invalid level for career_switcher: ${level}`);
+    }
+  } else {
+    return `tech_${level}_${role}`;
+  }
+};
+
+/**
+ * Helper: Map company type from quiz responses
+ * Extracts the company type from targetCompanyType field
+ */
+const mapCompanyTypeFromResponses = (quizResponses) => {
+  const companyType = quizResponses.targetCompanyType || quizResponses.companyType;
+
+  if (!companyType) {
+    return null;
+  }
+
+  const lowerCase = companyType.toLowerCase();
+
+  // Map various company type names to canonical values
+  if (lowerCase.includes('startup') && !lowerCase.includes('scale')) {
+    return 'startup';
+  }
+  if (lowerCase.includes('scale') || lowerCase.includes('unicorn')) {
+    return 'scaleup';
+  }
+  if (lowerCase.includes('faang') || lowerCase.includes('big') || lowerCase.includes('google') ||
+      lowerCase.includes('amazon') || lowerCase.includes('microsoft') || lowerCase.includes('meta') ||
+      lowerCase.includes('apple')) {
+    return 'bigtech';
+  }
+  if (lowerCase.includes('service') || lowerCase.includes('consulting')) {
+    return 'service';
+  }
+
+  return null;
+};
+
+/**
+ * Decompose persona with full validation
+ * REMOVED FALLBACK - Now throws on any error
+ * Use RoadmapCompositionOrchestrator.decomposeToModularPersona instead
+ */
+export const decomposeToModularPersonaWithValidation = (personaOrResponses) => {
+  // NO FALLBACKS - Let errors propagate
+  const decomposed = decomposeToModularPersona(personaOrResponses);
+
+  return {
+    valid: true,
+    decomposed,
+    errors: []
+  };
 };

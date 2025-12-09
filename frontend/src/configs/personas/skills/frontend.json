@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "role": "frontend",
+    "roleLabel": "Frontend Engineer",
+    "description": "Frontend engineer specializing in user interfaces, web performance, and interactive experiences",
+    "radarCategories": [
+      "JavaScript/TypeScript",
+      "React & Frameworks",
+      "CSS & Styling",
+      "State Management",
+      "Web Performance"
+    ]
+  },
+
+  "skills": [
+    {"name": "JavaScript/TypeScript Mastery", "category": "fundamentals", "radarAxis": "JavaScript/TypeScript", "priority": "critical", "description": "Core language skills, async/await, closures, prototypes, type systems", "estimatedWeeks": 5, "interviewCritical": true, "topics": ["ES6+", "Async/Await", "Closures", "Prototypes", "TypeScript Basics", "Event Loop"]},
+    {"name": "React/Vue/Angular Fundamentals", "category": "frontend", "radarAxis": "React & Frameworks", "priority": "critical", "description": "Component libraries, state management, hooks, lifecycle, optimization", "estimatedWeeks": 6, "interviewCritical": true, "topics": ["Components", "JSX", "Hooks", "Lifecycle", "Props & State", "Context API"]},
+    {"name": "CSS & Responsive Design", "category": "frontend", "radarAxis": "CSS & Styling", "priority": "critical", "description": "Flexbox, Grid, animations, responsive design, CSS-in-JS", "estimatedWeeks": 4, "interviewCritical": false, "topics": ["Flexbox", "CSS Grid", "Responsive Design", "Media Queries", "Animations", "CSS-in-JS"]},
+    {"name": "State Management", "category": "frontend", "radarAxis": "State Management", "priority": "critical", "description": "Redux, Context API, Zustand, Recoil, managing application state", "estimatedWeeks": 4, "interviewCritical": false, "topics": ["Redux Basics", "Context API", "Zustand", "State Lifting", "Props Drilling Solutions"]},
+    {"name": "API Integration", "category": "backend-integration", "radarAxis": "JavaScript/TypeScript", "priority": "critical", "description": "REST, GraphQL, WebSockets, error handling, data fetching", "estimatedWeeks": 3, "interviewCritical": false, "topics": ["Fetch API", "Axios", "GraphQL Clients", "Error Handling", "Loading States", "Caching"]},
+    {"name": "Web Performance Optimization", "category": "quality", "radarAxis": "Web Performance", "priority": "critical", "description": "Rendering optimization, code splitting, lazy loading, metrics", "estimatedWeeks": 3, "interviewCritical": false, "topics": ["Code Splitting", "Lazy Loading", "Tree Shaking", "Memoization", "Web Vitals"]},
+    {"name": "Testing (Jest/React Testing Library)", "category": "quality", "radarAxis": "Web Performance", "priority": "high", "description": "Jest, React Testing Library, E2E testing, TDD", "estimatedWeeks": 3, "interviewCritical": false, "topics": ["Unit Testing", "React Testing Library", "Mocking", "E2E Testing", "Test Coverage"]},
+    {"name": "Accessibility (a11y)", "category": "quality", "radarAxis": "CSS & Styling", "priority": "high", "description": "WCAG standards, ARIA, keyboard navigation, screen readers", "estimatedWeeks": 2, "interviewCritical": false, "topics": ["WCAG Standards", "ARIA Attributes", "Keyboard Navigation", "Semantic HTML"]},
+    {"name": "Build Tools & DevOps", "category": "operations", "radarAxis": "Web Performance", "priority": "high", "description": "Webpack, Vite, npm/yarn, CI/CD, Docker basics", "estimatedWeeks": 2, "interviewCritical": false, "topics": ["Webpack", "Vite", "npm/yarn", "GitHub Actions", "Docker Basics"]},
+    {"name": "Design Systems & Components", "category": "frontend", "radarAxis": "React & Frameworks", "priority": "medium", "description": "Storybook, reusable components, design tokens, component libraries", "estimatedWeeks": 2, "interviewCritical": false, "topics": ["Storybook", "Design Tokens", "Component Props", "Documentation", "Pattern Library"]},
+    {"name": "Data Structures & Algorithms", "category": "fundamentals", "radarAxis": "JavaScript/TypeScript", "priority": "medium", "description": "Interview preparation, problem-solving", "estimatedWeeks": 4, "interviewCritical": true, "topics": ["Arrays", "Objects", "Sorting", "Searching", "Trees", "Graphs"]},
+    {"name": "System Design for Frontend", "category": "architecture", "radarAxis": "State Management", "priority": "medium", "description": "Component architecture, micro-frontends, app scaling", "estimatedWeeks": 2, "interviewCritical": true, "topics": ["Component Hierarchy", "Micro-frontends", "Module Federation", "App Scaling"]}
+  ]
+}

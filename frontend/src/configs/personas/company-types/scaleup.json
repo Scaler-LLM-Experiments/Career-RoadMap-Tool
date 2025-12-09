@@ -1,0 +1,196 @@
+{
+  "metadata": {
+    "companyType": "scaleup",
+    "label": "Scaled Startup (500-5000 people)",
+    "description": "Growing companies with increasing structure and specialization"
+  },
+
+  "learningPathTweaks": {
+    "title": "Learning Path Optimized for Scaleup Success",
+    "subtitle": "What you need to succeed at scaled startups",
+
+    "phaseAdaptations": [
+      {
+        "phase": 1,
+        "emphasis": [
+          "system_design",
+          "distributed_systems",
+          "architecture_patterns"
+        ],
+        "skipTopics": [],
+        "accelerateTopics": [
+          "database_optimization",
+          "caching_strategies",
+          "api_design_at_scale"
+        ],
+        "addResources": [
+          "Designing Data-Intensive Applications",
+          "System Design Interview guide",
+          "Scaleup engineering challenges case studies"
+        ],
+        "adjustDuration": 1.1,
+        "note": "Scaleups face real-world scale challenges - emphasize this early"
+      },
+      {
+        "phase": 2,
+        "emphasis": [
+          "production_readiness",
+          "monitoring_and_observability",
+          "incident_response"
+        ],
+        "skipTopics": [],
+        "accelerateTopics": [
+          "performance_tuning",
+          "reliability_patterns",
+          "graceful_degradation"
+        ],
+        "addResources": [
+          "SRE book chapters on monitoring",
+          "Debugging production systems guide",
+          "Incident response playbooks"
+        ],
+        "adjustDuration": 1.0,
+        "note": "Production experience is critical at this stage"
+      },
+      {
+        "phase": 3,
+        "emphasis": [
+          "mentorship",
+          "code_review_culture",
+          "knowledge_sharing"
+        ],
+        "skipTopics": [],
+        "accelerateTopics": [
+          "system_redesign_planning",
+          "tech_debt_management",
+          "team_scale_challenges"
+        ],
+        "addResources": [
+          "How to lead without authority",
+          "Code review best practices",
+          "Growing engineering teams"
+        ],
+        "adjustDuration": 1.0,
+        "note": "Leadership and influence become important at scaleups"
+      }
+    ]
+  },
+
+  "interviewFocusAreas": {
+    "title": "What Scaleups Look For",
+    "areas": [
+      {
+        "area": "Scalability Thinking",
+        "description": "How do you think about systems that grow 10x?",
+        "emphasis": "Experience with growth challenges, caching, database scaling"
+      },
+      {
+        "area": "Code Quality at Scale",
+        "description": "Can you maintain quality as teams grow?",
+        "emphasis": "Testing, documentation, maintainability"
+      },
+      {
+        "area": "Collaboration",
+        "description": "How do you work with growing teams?",
+        "emphasis": "Code review, communication, mentorship"
+      },
+      {
+        "area": "Production Experience",
+        "description": "Real-world debugging and optimization?",
+        "emphasis": "Monitoring, logging, performance optimization"
+      },
+      {
+        "area": "Initiative Taking",
+        "description": "Can you own larger projects?",
+        "emphasis": "Technical leadership, ownership"
+      }
+    ]
+  },
+
+  "roleExpectations": {
+    "title": "What You'll Do at a Scaleup",
+    "responsibilities": [
+      "Own complete features from design through deployment",
+      "Participate in architectural decisions",
+      "Mentor junior engineers on your team",
+      "Contribute to system reliability and performance",
+      "Balance speed with sustainability",
+      "Influence technical direction on your domain"
+    ]
+  },
+
+  "skillPrioritiesForScaleup": {
+    "highPriority": [
+      "System Design (scaling concerns)",
+      "Database optimization",
+      "Performance profiling",
+      "Code quality and testing",
+      "Monitoring and observability",
+      "Your specific tech stack at scale"
+    ],
+    "mediumPriority": [
+      "Leadership and mentorship",
+      "Cross-team communication",
+      "Technical documentation",
+      "Production debugging",
+      "Team processes"
+    ],
+    "lowPriority": [
+      "Experimental technologies",
+      "Bleeding-edge frameworks",
+      "Academic research"
+    ]
+  },
+
+  "companyFitAnalysis": {
+    "fitScore": 85,
+    "fitLevel": "Great Fit",
+    "reasoning": [
+      "Scaleups value engineers who can handle growth challenges",
+      "Your system design skills directly apply",
+      "Opportunity for technical leadership",
+      "Good balance of learning and stability"
+    ],
+    "whatYouNeed": [
+      "Understanding of scalability patterns",
+      "Production experience is valuable",
+      "Ability to wear multiple hats",
+      "Interest in building robust systems"
+    ],
+    "growthOpportunities": [
+      "Technical leadership roles",
+      "Architect roles",
+      "Engineering manager opportunities",
+      "Domain expert roles"
+    ]
+  },
+
+  "timelineAdjustment": {
+    "multiplier": 0.95,
+    "explanation": "Scaleup interview timelines are slightly faster than big tech, but expect deeper discussions"
+  },
+
+  "estimatedTimeToHire": {
+    "value": "8-12 weeks",
+    "explanation": "From current level to being job-ready for a scaleup role"
+  },
+
+  "commonChallengesAndTips": [
+    {
+      "challenge": "Balancing speed and quality",
+      "tip": "Learn to write tests fast; practice TDD to build confidence"
+    },
+    {
+      "challenge": "Handling ambiguous requirements",
+      "tip": "Practice architectural thinking and clarifying scope early"
+    },
+    {
+      "challenge": "Scaling systems you didn't design",
+      "tip": "Study existing architectures and understand their decisions"
+    },
+    {
+      "challenge": "Growing alongside the company",
+      "tip": "Focus on fundamentals that scale with you"
+    }
+  ]
+}

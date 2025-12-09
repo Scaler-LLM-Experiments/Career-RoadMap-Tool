@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "role": "data",
+    "roleLabel": "Data Science / ML Engineer",
+    "description": "Data engineer or ML engineer specializing in data pipelines, analytics, and machine learning",
+    "radarCategories": [
+      "Python Programming",
+      "SQL & Databases",
+      "Data Analysis & Statistics",
+      "Machine Learning",
+      "Big Data & ETL"
+    ]
+  },
+
+  "skills": [
+    {"name": "Python Programming Mastery", "category": "fundamentals", "radarAxis": "Python Programming", "priority": "critical", "description": "Python fundamentals, OOP, functional programming, data manipulation", "estimatedWeeks": 5, "interviewCritical": true, "topics": ["Python Basics", "OOP", "Functional Programming", "Modules/Libraries", "File I/O", "Error Handling"]},
+    {"name": "SQL & Database Queries", "category": "data", "radarAxis": "SQL & Databases", "priority": "critical", "description": "SQL mastery, complex queries, query optimization, database design", "estimatedWeeks": 5, "interviewCritical": true, "topics": ["SQL Queries", "Joins", "Aggregations", "Subqueries", "Query Optimization", "Database Design"]},
+    {"name": "Data Structures & Algorithms", "category": "fundamentals", "radarAxis": "Python Programming", "priority": "critical", "description": "DSA fundamentals, problem-solving, algorithm complexity", "estimatedWeeks": 4, "interviewCritical": true, "topics": ["Arrays", "Linked Lists", "Trees", "Sorting", "Searching", "Complexity Analysis"]},
+    {"name": "Data Manipulation (Pandas/NumPy)", "category": "data", "radarAxis": "Data Analysis & Statistics", "priority": "critical", "description": "Pandas dataframes, NumPy arrays, data cleaning, transformation", "estimatedWeeks": 4, "interviewCritical": false, "topics": ["Pandas DataFrames", "NumPy Arrays", "Data Cleaning", "Feature Engineering", "Data Transformation"]},
+    {"name": "Statistical Analysis", "category": "data", "radarAxis": "Data Analysis & Statistics", "priority": "critical", "description": "Statistics fundamentals, hypothesis testing, distributions, inference", "estimatedWeeks": 4, "interviewCritical": true, "topics": ["Probability", "Distributions", "Hypothesis Testing", "Correlation", "Regression Basics"]},
+    {"name": "Machine Learning Fundamentals", "category": "ml", "radarAxis": "Machine Learning", "priority": "critical", "description": "ML algorithms, supervised/unsupervised learning, model evaluation", "estimatedWeeks": 6, "interviewCritical": true, "topics": ["Supervised Learning", "Unsupervised Learning", "Model Evaluation", "Cross Validation", "Overfitting"]},
+    {"name": "Data Visualization", "category": "data", "radarAxis": "Data Analysis & Statistics", "priority": "high", "description": "Matplotlib, Seaborn, Plotly, creating insightful visualizations", "estimatedWeeks": 2, "interviewCritical": false, "topics": ["Matplotlib", "Seaborn", "Plotly", "Dashboard Design", "Storytelling with Data"]},
+    {"name": "Big Data Technologies (Spark)", "category": "data", "radarAxis": "Big Data & ETL", "priority": "high", "description": "Apache Spark, distributed computing, Hadoop ecosystem", "estimatedWeeks": 4, "interviewCritical": false, "topics": ["Spark Basics", "RDD/DataFrames", "Distributed Computing", "Hadoop", "Data Partitioning"]},
+    {"name": "ETL Pipelines & Data Engineering", "category": "data", "radarAxis": "Big Data & ETL", "priority": "high", "description": "ETL design, data pipelines, Apache Airflow, data quality", "estimatedWeeks": 3, "interviewCritical": false, "topics": ["ETL Design", "Apache Airflow", "Data Pipelines", "Data Quality", "Scheduling"]},
+    {"name": "Cloud Platforms (AWS/GCP)", "category": "infrastructure", "radarAxis": "Big Data & ETL", "priority": "medium", "description": "Cloud data services, S3, BigQuery, Redshift, data warehousing", "estimatedWeeks": 3, "interviewCritical": false, "topics": ["S3", "BigQuery", "Redshift", "Data Warehousing", "Cloud ML Services"]},
+    {"name": "Feature Engineering & Selection", "category": "ml", "radarAxis": "Machine Learning", "priority": "medium", "description": "Feature creation, selection, scaling, dimensionality reduction", "estimatedWeeks": 2, "interviewCritical": true, "topics": ["Feature Creation", "Feature Selection", "Scaling", "Encoding", "Dimensionality Reduction"]},
+    {"name": "Version Control & Git", "category": "tools", "radarAxis": "Python Programming", "priority": "medium", "description": "Git workflows, collaboration, version control best practices", "estimatedWeeks": 1, "interviewCritical": false, "topics": ["Git Basics", "Branching", "Commits", "Collaboration", "GitHub"]}
+  ]
+}

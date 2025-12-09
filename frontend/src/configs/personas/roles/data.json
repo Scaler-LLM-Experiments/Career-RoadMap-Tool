@@ -1,0 +1,918 @@
+{
+  "metadata": {
+    "role": "data",
+    "roleLabel": "Data / ML Engineer",
+    "description": "Data engineer or ML engineer specializing in data pipelines, analytics, and machine learning",
+    "skills": [
+      {
+        "name": "SQL & Databases",
+        "category": "data",
+        "priority": "critical"
+      },
+      {
+        "name": "Python Programming",
+        "category": "fundamentals",
+        "priority": "critical"
+      },
+      {
+        "name": "Data Structures & Algorithms",
+        "category": "fundamentals",
+        "priority": "critical"
+      },
+      {
+        "name": "Data Manipulation (Pandas, NumPy)",
+        "category": "data",
+        "priority": "high"
+      },
+      {
+        "name": "Machine Learning Basics",
+        "category": "ml",
+        "priority": "high"
+      },
+      {
+        "name": "Statistical Analysis",
+        "category": "data",
+        "priority": "high"
+      },
+      {
+        "name": "Data Visualization",
+        "category": "data",
+        "priority": "high"
+      },
+      {
+        "name": "Big Data Technologies",
+        "category": "data",
+        "priority": "high"
+      },
+      {
+        "name": "ETL Pipelines",
+        "category": "data",
+        "priority": "high"
+      },
+      {
+        "name": "Cloud Platforms (AWS/GCP)",
+        "category": "infrastructure",
+        "priority": "medium"
+      },
+      {
+        "name": "System Design",
+        "category": "architecture",
+        "priority": "medium"
+      },
+      {
+        "name": "Version Control",
+        "category": "tools",
+        "priority": "medium"
+      }
+    ]
+  },
+  "hero": {
+    "greeting": "Hey {userName}! \ud83d\udc4b",
+    "title": "Your personalized roadmap to become a {targetRole} is ready!",
+    "description": "Based on your experience and goals, we've created a focused path to help you reach the next level.",
+    "stats": {
+      "skillsToLearn": {
+        "total": 12,
+        "description": "critical skills you need to master"
+      },
+      "estimatedEffort": {
+        "value": "{hoursPerWeek}",
+        "unit": "hrs/week"
+      },
+      "timeline": "{estimatedTimeline}"
+    },
+    "videoUrl": "PLACEHOLDER_DATA_FOUNDER_VIDEO"
+  },
+  "skillsGap": {
+    "title": "Understand Where You Stand Right Now",
+    "description": "See what you already know and what you need to master to reach your goal."
+  },
+  "learningPath": {
+    "title": "Your Personalized Learning Path",
+    "description": "Master data engineering and analytics fundamentals to production scale",
+    "phasesStructure": [
+      {
+        "phaseNumber": 1,
+        "phaseName": "Python & SQL Mastery",
+        "duration": "4-6 weeks",
+        "focus": "Core languages for data work",
+        "videoPlaceholder": "PLACEHOLDER_DATA_PHASE1_VIDEO",
+        "topics": [
+          "Python fundamentals",
+          "SQL deep dive",
+          "Data structures",
+          "Query optimization",
+          {
+            "name": "Service & Enterprise Companies",
+            "key": "service",
+            "description": "Delivery-focused, client satisfaction, proven processes",
+            "emphasis": [
+              "quality",
+              "delivery",
+              "process",
+              "client_focus"
+            ],
+            "interviewFocus": [
+              "Practical problem-solving",
+              "Communication",
+              "Project delivery"
+            ]
+          }
+        ],
+        "resources": [
+          {
+            "name": "Python Official Documentation",
+            "url": "https://docs.python.org/3/",
+            "type": "docs"
+          },
+          {
+            "name": "Real Python - Python Fundamentals",
+            "url": "https://realpython.com",
+            "type": "tutorial"
+          },
+          {
+            "name": "LeetCode SQL Problems",
+            "url": "https://leetcode.com/tag/database/",
+            "type": "course"
+          },
+          {
+            "name": "Mode Analytics - SQL Tutorial",
+            "url": "https://mode.com/sql-tutorial/",
+            "type": "tutorial"
+          },
+          {
+            "name": "Scaler - SQL Mastery Course",
+            "url": "https://www.scaler.com/topics/sql/",
+            "type": "tutorial"
+          }
+        ]
+      },
+      {
+        "phaseNumber": 2,
+        "phaseName": "Data Analysis & ML Fundamentals",
+        "duration": "6-8 weeks",
+        "focus": "Learn data manipulation and ML concepts",
+        "videoPlaceholder": "PLACEHOLDER_DATA_PHASE2_VIDEO",
+        "topics": [
+          "Pandas & NumPy",
+          "Statistical analysis",
+          "ML basics",
+          "Feature engineering",
+          {
+            "name": "Service & Enterprise Companies",
+            "key": "service",
+            "description": "Delivery-focused, client satisfaction, proven processes",
+            "emphasis": [
+              "quality",
+              "delivery",
+              "process",
+              "client_focus"
+            ],
+            "interviewFocus": [
+              "Practical problem-solving",
+              "Communication",
+              "Project delivery"
+            ]
+          }
+        ],
+        "resources": [
+          {
+            "name": "Pandas Official Documentation",
+            "url": "https://pandas.pydata.org/docs/",
+            "type": "docs"
+          },
+          {
+            "name": "NumPy Documentation",
+            "url": "https://numpy.org/doc/",
+            "type": "docs"
+          },
+          {
+            "name": "Kaggle Learn - Data Analysis",
+            "url": "https://www.kaggle.com/learn/pandas",
+            "type": "course"
+          },
+          {
+            "name": "Andrew Ng - Machine Learning Course",
+            "url": "https://www.coursera.org/learn/machine-learning",
+            "type": "course"
+          },
+          {
+            "name": "StatQuest with Josh Starmer - Statistics for ML",
+            "url": "https://www.youtube.com/c/joshstarmer",
+            "type": "tutorial"
+          }
+        ]
+      },
+      {
+        "phaseNumber": 3,
+        "phaseName": "Big Data & ETL",
+        "duration": "4-6 weeks",
+        "focus": "Work with large-scale data systems",
+        "videoPlaceholder": "PLACEHOLDER_DATA_PHASE3_VIDEO",
+        "topics": [
+          "Big Data frameworks",
+          "Data pipelines",
+          "Distributed systems",
+          "Cloud platforms",
+          {
+            "name": "Service & Enterprise Companies",
+            "key": "service",
+            "description": "Delivery-focused, client satisfaction, proven processes",
+            "emphasis": [
+              "quality",
+              "delivery",
+              "process",
+              "client_focus"
+            ],
+            "interviewFocus": [
+              "Practical problem-solving",
+              "Communication",
+              "Project delivery"
+            ]
+          }
+        ],
+        "resources": [
+          {
+            "name": "Apache Spark Documentation",
+            "url": "https://spark.apache.org/docs/latest/",
+            "type": "docs"
+          },
+          {
+            "name": "Airflow Tutorial - Data Pipelines",
+            "url": "https://airflow.apache.org/docs/",
+            "type": "docs"
+          },
+          {
+            "name": "AWS Data Pipeline Services",
+            "url": "https://aws.amazon.com/big-data/",
+            "type": "docs"
+          },
+          {
+            "name": "Databricks Learning Academy",
+            "url": "https://academy.databricks.com",
+            "type": "course"
+          },
+          {
+            "name": "Data Engineering with Python - by Joe Reis",
+            "url": "https://www.oreilly.com/library/view/fundamentals-of-data/",
+            "type": "course"
+          }
+        ]
+      },
+      {
+        "phaseNumber": 4,
+        "phaseName": "Interview Prep & Polish",
+        "duration": "2-3 weeks",
+        "focus": "Get ready for your target role",
+        "videoPlaceholder": "PLACEHOLDER_DATA_PHASE4_VIDEO",
+        "topics": [
+          "SQL interviews",
+          "System design",
+          "Behavioral prep",
+          "Case studies",
+          {
+            "name": "Service & Enterprise Companies",
+            "key": "service",
+            "description": "Delivery-focused, client satisfaction, proven processes",
+            "emphasis": [
+              "quality",
+              "delivery",
+              "process",
+              "client_focus"
+            ],
+            "interviewFocus": [
+              "Practical problem-solving",
+              "Communication",
+              "Project delivery"
+            ]
+          }
+        ],
+        "resources": [
+          {
+            "name": "Scaler - SQL Interview Questions",
+            "url": "https://www.scaler.com/interview-questions/sql/",
+            "type": "tutorial"
+          },
+          {
+            "name": "Scaler - Data Engineering Interview Prep",
+            "url": "https://www.scaler.com/interview-questions/data-engineer/",
+            "type": "tutorial"
+          },
+          {
+            "name": "ByteByteGo - System Design",
+            "url": "https://bytebytego.com",
+            "type": "course"
+          },
+          {
+            "name": "Kaggle Datasets - Practice Projects",
+            "url": "https://www.kaggle.com/datasets",
+            "type": "docs"
+          },
+          {
+            "name": "Data Engineering Podcast - Interview Prep",
+            "url": "https://www.dataengineeringpodcast.com",
+            "type": "tutorial"
+          }
+        ]
+      }
+    ]
+  },
+  "companiesInsight": {
+    "title": "What Different Companies Expect",
+    "tabs": [
+      {
+        "name": "High Growth Startups",
+        "key": "startup",
+        "description": "Build analytics from scratch, wear many hats",
+        "emphasis": [
+          "ownership",
+          "impact",
+          "analytics",
+          "learning"
+        ]
+      },
+      {
+        "name": "Scaled Startups",
+        "key": "scaleup",
+        "description": "Large data volumes, optimization critical",
+        "emphasis": [
+          "scaling",
+          "performance",
+          "pipelines",
+          "reliability"
+        ]
+      },
+      {
+        "name": "Big Tech",
+        "key": "bigtech",
+        "description": "Advanced ML, large infrastructure",
+        "emphasis": [
+          "ml",
+          "scale",
+          "best_practices",
+          "research"
+        ]
+      },
+      {
+        "name": "Service & Enterprise Companies",
+        "key": "service",
+        "description": "Delivery-focused, client satisfaction, proven processes",
+        "emphasis": [
+          "quality",
+          "delivery",
+          "process",
+          "client_focus"
+        ],
+        "interviewFocus": [
+          "Practical problem-solving",
+          "Communication",
+          "Project delivery"
+        ]
+      }
+    ]
+  },
+  "interviewPrep": {
+    "title": "Interview Preparation",
+    "description": "Data interviews focus on SQL, system design, and real-world problem solving",
+    "overallStrategy": "Master SQL deeply, understand data pipeline design, and show how you've used data to drive decisions. This is about practical impact, not just algorithms.",
+    "interviewRounds": [
+      {
+        "roundNumber": 1,
+        "roundName": "Phone Screen / Initial Call",
+        "duration": "15-30 minutes",
+        "focus": "Background and technical aptitude",
+        "difficulty": "easy",
+        "prepTips": [
+          "Be ready to discuss your data projects",
+          "Explain a complex analysis or pipeline you've built",
+          "Show understanding of data fundamentals",
+          "Ask about their data stack and team",
+          {
+            "name": "Service & Enterprise Companies",
+            "key": "service",
+            "description": "Delivery-focused, client satisfaction, proven processes",
+            "emphasis": [
+              "quality",
+              "delivery",
+              "process",
+              "client_focus"
+            ],
+            "interviewFocus": [
+              "Practical problem-solving",
+              "Communication",
+              "Project delivery"
+            ]
+          }
+        ],
+        "commonTopics": [
+          "Your data project experience",
+          "SQL proficiency level",
+          "Why data engineering/science interests you",
+          "Familiarity with tools and frameworks"
+        ]
+      },
+      {
+        "roundNumber": 2,
+        "roundName": "SQL & Coding Assessment",
+        "duration": "45-60 minutes",
+        "focus": "SQL queries and Python coding",
+        "difficulty": "medium",
+        "prepTips": [
+          "Practice SQL interview questions daily",
+          "Solve complex joins, aggregations, window functions",
+          "Write Python code for data manipulation",
+          "Explain query optimization approaches",
+          "Think about edge cases and data quality",
+          {
+            "name": "Service & Enterprise Companies",
+            "key": "service",
+            "description": "Delivery-focused, client satisfaction, proven processes",
+            "emphasis": [
+              "quality",
+              "delivery",
+              "process",
+              "client_focus"
+            ],
+            "interviewFocus": [
+              "Practical problem-solving",
+              "Communication",
+              "Project delivery"
+            ]
+          }
+        ],
+        "commonTopics": [
+          "Complex SQL queries (JOINs, GROUP BY, CTEs)",
+          "Query optimization and indexing",
+          "Window functions and analytics",
+          "Python data manipulation (Pandas)",
+          "Data quality and validation"
+        ]
+      },
+      {
+        "roundNumber": 3,
+        "roundName": "Data System Design",
+        "duration": "45-60 minutes",
+        "focus": "Design data pipelines, warehouses, or analytics systems",
+        "difficulty": "hard",
+        "prepTips": [
+          "Clarify requirements and scale upfront",
+          "Design end-to-end data flow",
+          "Discuss technology choices and trade-offs",
+          "Consider data quality, latency, and cost",
+          "Show awareness of real-world constraints",
+          {
+            "name": "Service & Enterprise Companies",
+            "key": "service",
+            "description": "Delivery-focused, client satisfaction, proven processes",
+            "emphasis": [
+              "quality",
+              "delivery",
+              "process",
+              "client_focus"
+            ],
+            "interviewFocus": [
+              "Practical problem-solving",
+              "Communication",
+              "Project delivery"
+            ]
+          }
+        ],
+        "commonTopics": [
+          "ETL/ELT pipeline design",
+          "Data warehouse architecture",
+          "Choosing between batch and real-time processing",
+          "Scalability and performance optimization",
+          "Data quality and monitoring"
+        ]
+      },
+      {
+        "roundNumber": 4,
+        "roundName": "Machine Learning or Analytics",
+        "duration": "45-60 minutes",
+        "focus": "ML model training or analytics insights",
+        "difficulty": "hard",
+        "prepTips": [
+          "Be ready to discuss a complete ML/analytics project",
+          "Explain feature engineering and model selection",
+          "Show how you validated and evaluated results",
+          "Discuss real business impact and metrics",
+          "Think about scaling and productionizing solutions",
+          {
+            "name": "Service & Enterprise Companies",
+            "key": "service",
+            "description": "Delivery-focused, client satisfaction, proven processes",
+            "emphasis": [
+              "quality",
+              "delivery",
+              "process",
+              "client_focus"
+            ],
+            "interviewFocus": [
+              "Practical problem-solving",
+              "Communication",
+              "Project delivery"
+            ]
+          }
+        ],
+        "commonTopics": [
+          "Feature engineering and selection",
+          "Model training and evaluation",
+          "Avoiding data leakage and bias",
+          "A/B testing and statistical methods",
+          "Converting models to production"
+        ]
+      },
+      {
+        "roundNumber": 5,
+        "roundName": "Behavioral & Impact",
+        "duration": "30-45 minutes",
+        "focus": "Communication and business impact",
+        "difficulty": "varies",
+        "prepTips": [
+          "Prepare stories showing data-driven decisions",
+          "Have examples of cross-team collaboration",
+          "Show how you communicated insights to non-technical stakeholders",
+          "Discuss how you've impacted business metrics",
+          "Be authentic about your learning journey",
+          {
+            "name": "Service & Enterprise Companies",
+            "key": "service",
+            "description": "Delivery-focused, client satisfaction, proven processes",
+            "emphasis": [
+              "quality",
+              "delivery",
+              "process",
+              "client_focus"
+            ],
+            "interviewFocus": [
+              "Practical problem-solving",
+              "Communication",
+              "Project delivery"
+            ]
+          }
+        ],
+        "commonTopics": [
+          "A project where data insights drove decisions",
+          "How you've worked with business and engineering teams",
+          "Handling ambiguous or incomplete data",
+          "Scaling analytics or ML solutions",
+          "Your approach to continuous learning"
+        ]
+      },
+      {
+        "name": "Service & Enterprise Companies",
+        "key": "service",
+        "description": "Delivery-focused, client satisfaction, proven processes",
+        "emphasis": [
+          "quality",
+          "delivery",
+          "process",
+          "client_focus"
+        ],
+        "interviewFocus": [
+          "Practical problem-solving",
+          "Communication",
+          "Project delivery"
+        ]
+      }
+    ],
+    "successFactors": [
+      "Strong SQL and Python fundamentals",
+      "Deep understanding of data structures and algorithms",
+      "Experience designing scalable data systems",
+      "Practical ML or statistical knowledge",
+      "Ability to think about data quality and testing",
+      "Clear communication of technical concepts",
+      "Problem-solving approach and debugging skills",
+      "Evidence of business impact from data work"
+    ]
+  },
+  "recommendedProjects": {
+    "title": "Build Real-World Projects",
+    "description": "Projects demonstrating data engineering and analytics capabilities",
+    "projectTiers": [
+      {
+        "tier": "Tier 1: Beginner",
+        "description": "Master fundamentals with practice datasets",
+        "projects": [
+          {
+            "name": "SQL Practice on Kaggle",
+            "description": "Solve real SQL problems on Kaggle datasets",
+            "whyValuable": "Builds SQL foundations with real-world data",
+            "techStack": [
+              "SQL",
+              "PostgreSQL/MySQL",
+              "Kaggle",
+              {
+                "name": "Service & Enterprise Companies",
+                "key": "service",
+                "description": "Delivery-focused, client satisfaction, proven processes",
+                "emphasis": [
+                  "quality",
+                  "delivery",
+                  "process",
+                  "client_focus"
+                ],
+                "interviewFocus": [
+                  "Practical problem-solving",
+                  "Communication",
+                  "Project delivery"
+                ]
+              }
+            ],
+            "timeToComplete": "2-3 weeks",
+            "keyFeatures": [
+              "Writing complex queries",
+              "Query optimization",
+              "Handling edge cases"
+            ]
+          },
+          {
+            "name": "Exploratory Data Analysis Project",
+            "description": "Deep dive into a dataset, find insights, visualize findings",
+            "whyValuable": "Shows ability to explore data and communicate insights",
+            "techStack": [
+              "Python",
+              "Pandas",
+              "Matplotlib/Seaborn",
+              {
+                "name": "Service & Enterprise Companies",
+                "key": "service",
+                "description": "Delivery-focused, client satisfaction, proven processes",
+                "emphasis": [
+                  "quality",
+                  "delivery",
+                  "process",
+                  "client_focus"
+                ],
+                "interviewFocus": [
+                  "Practical problem-solving",
+                  "Communication",
+                  "Project delivery"
+                ]
+              }
+            ],
+            "timeToComplete": "2-3 weeks",
+            "keyFeatures": [
+              "Data cleaning",
+              "Statistical analysis",
+              "Visualization",
+              "Written insights"
+            ]
+          },
+          {
+            "name": "Data Visualization Dashboard",
+            "description": "Create an interactive dashboard from a dataset",
+            "whyValuable": "Demonstrates ability to make data accessible and actionable",
+            "techStack": [
+              "Python",
+              "Streamlit/Dash",
+              "Pandas",
+              "SQL",
+              {
+                "name": "Service & Enterprise Companies",
+                "key": "service",
+                "description": "Delivery-focused, client satisfaction, proven processes",
+                "emphasis": [
+                  "quality",
+                  "delivery",
+                  "process",
+                  "client_focus"
+                ],
+                "interviewFocus": [
+                  "Practical problem-solving",
+                  "Communication",
+                  "Project delivery"
+                ]
+              }
+            ],
+            "timeToComplete": "2-3 weeks",
+            "keyFeatures": [
+              "Real-time data updates",
+              "Interactive filters",
+              "Multiple visualizations"
+            ]
+          }
+        ]
+      },
+      {
+        "tier": "Tier 2: Intermediate",
+        "description": "Build data infrastructure and ML models",
+        "projects": [
+          {
+            "name": "ETL Pipeline Project",
+            "description": "Build a data pipeline that extracts, transforms, and loads data",
+            "whyValuable": "Core data engineering skill, shows production-level thinking",
+            "techStack": [
+              "Python",
+              "Apache Airflow/Prefect",
+              "SQL",
+              "PostgreSQL",
+              {
+                "name": "Service & Enterprise Companies",
+                "key": "service",
+                "description": "Delivery-focused, client satisfaction, proven processes",
+                "emphasis": [
+                  "quality",
+                  "delivery",
+                  "process",
+                  "client_focus"
+                ],
+                "interviewFocus": [
+                  "Practical problem-solving",
+                  "Communication",
+                  "Project delivery"
+                ]
+              }
+            ],
+            "timeToComplete": "3-4 weeks",
+            "keyFeatures": [
+              "Data extraction from APIs",
+              "Transformation logic",
+              "Data quality checks",
+              "Error handling"
+            ]
+          },
+          {
+            "name": "Data Warehouse Project",
+            "description": "Design and build a data warehouse for analytics",
+            "whyValuable": "Shows understanding of data modeling and warehouse design",
+            "techStack": [
+              "SQL",
+              "PostgreSQL/Snowflake",
+              "dbt",
+              "Dimensional modeling",
+              {
+                "name": "Service & Enterprise Companies",
+                "key": "service",
+                "description": "Delivery-focused, client satisfaction, proven processes",
+                "emphasis": [
+                  "quality",
+                  "delivery",
+                  "process",
+                  "client_focus"
+                ],
+                "interviewFocus": [
+                  "Practical problem-solving",
+                  "Communication",
+                  "Project delivery"
+                ]
+              }
+            ],
+            "timeToComplete": "3-4 weeks",
+            "keyFeatures": [
+              "Star schema design",
+              "Fact and dimension tables",
+              "Aggregations",
+              "Documentation"
+            ]
+          },
+          {
+            "name": "Machine Learning Pipeline",
+            "description": "Build a complete ML system: data prep, training, evaluation",
+            "whyValuable": "Demonstrates ML fundamentals and data engineering for ML",
+            "techStack": [
+              "Python",
+              "Scikit-learn",
+              "Pandas",
+              "Jupyter",
+              {
+                "name": "Service & Enterprise Companies",
+                "key": "service",
+                "description": "Delivery-focused, client satisfaction, proven processes",
+                "emphasis": [
+                  "quality",
+                  "delivery",
+                  "process",
+                  "client_focus"
+                ],
+                "interviewFocus": [
+                  "Practical problem-solving",
+                  "Communication",
+                  "Project delivery"
+                ]
+              }
+            ],
+            "timeToComplete": "3-4 weeks",
+            "keyFeatures": [
+              "Feature engineering",
+              "Model training and evaluation",
+              "Cross-validation",
+              "Performance metrics"
+            ]
+          }
+        ]
+      },
+      {
+        "tier": "Tier 3: Advanced",
+        "description": "Production-scale data systems and advanced ML",
+        "projects": [
+          {
+            "name": "Distributed Data Processing Pipeline",
+            "description": "Build a pipeline using Spark or Flink for large-scale data",
+            "whyValuable": "Shows ability to handle massive data at scale",
+            "techStack": [
+              "Apache Spark",
+              "Python",
+              "AWS/GCP",
+              "Distributed computing",
+              {
+                "name": "Service & Enterprise Companies",
+                "key": "service",
+                "description": "Delivery-focused, client satisfaction, proven processes",
+                "emphasis": [
+                  "quality",
+                  "delivery",
+                  "process",
+                  "client_focus"
+                ],
+                "interviewFocus": [
+                  "Practical problem-solving",
+                  "Communication",
+                  "Project delivery"
+                ]
+              }
+            ],
+            "timeToComplete": "5-6 weeks",
+            "keyFeatures": [
+              "Distributed processing",
+              "Optimization for performance",
+              "Handling failures",
+              "Monitoring"
+            ]
+          },
+          {
+            "name": "Real-Time Analytics System",
+            "description": "Build a system for real-time data ingestion and analysis",
+            "whyValuable": "Advanced data engineering: streaming and real-time processing",
+            "techStack": [
+              "Kafka",
+              "Apache Flink/Spark Streaming",
+              "Redis",
+              "PostgreSQL",
+              {
+                "name": "Service & Enterprise Companies",
+                "key": "service",
+                "description": "Delivery-focused, client satisfaction, proven processes",
+                "emphasis": [
+                  "quality",
+                  "delivery",
+                  "process",
+                  "client_focus"
+                ],
+                "interviewFocus": [
+                  "Practical problem-solving",
+                  "Communication",
+                  "Project delivery"
+                ]
+              }
+            ],
+            "timeToComplete": "5-6 weeks",
+            "keyFeatures": [
+              "Event streaming",
+              "Real-time aggregations",
+              "Handling late arrivals",
+              "Scalable architecture"
+            ]
+          },
+          {
+            "name": "Production ML System with MLOps",
+            "description": "Deploy an ML model at scale with monitoring and retraining",
+            "whyValuable": "Shows complete understanding of ML in production",
+            "techStack": [
+              "Python",
+              "TensorFlow/PyTorch",
+              "Docker",
+              "MLflow/Kubeflow",
+              "Kubernetes",
+              {
+                "name": "Service & Enterprise Companies",
+                "key": "service",
+                "description": "Delivery-focused, client satisfaction, proven processes",
+                "emphasis": [
+                  "quality",
+                  "delivery",
+                  "process",
+                  "client_focus"
+                ],
+                "interviewFocus": [
+                  "Practical problem-solving",
+                  "Communication",
+                  "Project delivery"
+                ]
+              }
+            ],
+            "timeToComplete": "6-7 weeks",
+            "keyFeatures": [
+              "Model versioning",
+              "A/B testing",
+              "Monitoring and alerts",
+              "Automated retraining",
+              "CI/CD for ML"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

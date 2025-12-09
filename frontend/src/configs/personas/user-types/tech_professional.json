@@ -1,0 +1,110 @@
+{
+  "metadata": {
+    "userType": "tech_professional",
+    "label": "Tech Professional",
+    "description": "Already working in tech, looking to advance or switch roles"
+  },
+
+  "heroContext": {
+    "subtitle": "Accelerate your growth in the tech industry",
+    "subtext": "Leverage your existing experience to reach your next career milestone"
+  },
+
+  "companiesInsightAdaptation": {
+    "title": "Company Fit for Experienced Engineers",
+    "subtitle": "Where your skills are valued most",
+    "emphasis": "You have the advantage of proven experience - companies will focus on your ability to impact"
+  },
+
+  "interviewPreparationContext": {
+    "title": "Interview Preparation for Experienced Engineers",
+    "subtitle": "Shift focus from fundamentals to impact and complexity",
+    "emphasis": "Your interviews will focus on: architectural thinking, design decisions, leadership, and business impact",
+
+    "keyAreas": [
+      {
+        "area": "System Design",
+        "description": "Deep-dive into complex systems at scale",
+        "focus": "You're expected to discuss trade-offs, optimization, and real production challenges",
+        "videoUrl": "https://youtu.be/example-sd-senior"
+      },
+      {
+        "area": "Architecture & Trade-offs",
+        "description": "Discuss real decisions you've made in production",
+        "focus": "Why did you choose this tech? What were the alternatives? What would you do differently?",
+        "videoUrl": "https://youtu.be/example-architecture"
+      },
+      {
+        "area": "Leadership Experience",
+        "description": "How you've led teams, mentored junior engineers, or driven initiatives",
+        "focus": "Demonstrate impact beyond your own code",
+        "videoUrl": "https://youtu.be/example-leadership"
+      },
+      {
+        "area": "Problem-Solving in Production",
+        "description": "Complex problems you've solved in real systems",
+        "focus": "Debugging, optimization, scaling challenges",
+        "videoUrl": "https://youtu.be/example-production"
+      }
+    ]
+  },
+
+  "learningPathAdaptation": {
+    "title": "Accelerated Learning for Tech Professionals",
+    "emphasis": "Build on your existing foundation rather than starting from scratch",
+    "skipBasics": true,
+    "focusAreas": [
+      "Advanced patterns and architectures",
+      "Next-level complexity in your domain",
+      "Cross-domain knowledge (if switching)",
+      "Soft skills and communication"
+    ]
+  },
+
+  "projectsAdaptation": {
+    "title": "Project Strategy for Experienced Engineers",
+    "subtitle": "Choose projects that showcase next-level thinking",
+    "startingTier": "tier2",
+    "guidance": "As an experienced engineer, focus on projects that demonstrate architectural thinking and complexity. Choose 1-2 major projects over many small ones.",
+    "emphasis": [
+      "Architectural depth over breadth",
+      "Production-like complexity",
+      "Scalability considerations",
+      "Real-world constraints and trade-offs"
+    ]
+  },
+
+  "skillGapAdaptation": {
+    "title": "Your Skill Evolution Assessment",
+    "subtitle": "Identifying gaps in your progression to the next level",
+    "approach": "We're not starting from zero - we're identifying the 20% of skills that will accelerate you 10x",
+    "focus": [
+      "Specialized knowledge in your target domain",
+      "Architectural patterns you haven't mastered",
+      "Emerging technologies relevant to your path",
+      "Soft skills for leadership or specialized roles"
+    ]
+  },
+
+  "timelineContext": {
+    "compressed": true,
+    "baselineAdjustment": 0.75,
+    "reasoning": "Your experience means you'll learn faster, but deep mastery still takes time",
+    "note": "We've adjusted timelines to be 25% shorter based on your experience level, but quality over speed"
+  },
+
+  "targetFocus": {
+    "companies": [
+      "Your goal is not just to find a job, but to find the RIGHT role at the RIGHT company"
+    ],
+    "compensation": [
+      "You should be negotiating for senior-level compensation",
+      "Consider equity, growth, and long-term value"
+    ],
+    "impact": [
+      "Seek roles where your architectural thinking matters",
+      "Look for technical authority and influence",
+      "Consider mentorship opportunities"
+    ]
+  }
+}

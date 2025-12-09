@@ -1,0 +1,137 @@
+{
+  "metadata": {
+    "role": "backend",
+    "roleLabel": "Backend Engineer",
+    "description": "Backend engineer specializing in server-side development, APIs, databases, and system design",
+    "radarCategories": [
+      "Data Structures & Algorithms",
+      "Databases & SQL",
+      "System Design",
+      "Backend Frameworks",
+      "Code Quality"
+    ]
+  },
+
+  "skills": [
+    {
+      "name": "Data Structures & Algorithms",
+      "category": "fundamentals",
+      "radarAxis": "Data Structures & Algorithms",
+      "priority": "critical",
+      "description": "Master DSA concepts for coding interviews and problem-solving",
+      "estimatedWeeks": 6,
+      "interviewCritical": true,
+      "topics": ["Arrays", "Linked Lists", "Trees", "Graphs", "Sorting", "Searching", "Dynamic Programming"]
+    },
+    {
+      "name": "Database Design & SQL",
+      "category": "backend",
+      "radarAxis": "Databases & SQL",
+      "priority": "critical",
+      "description": "SQL, indexing, query optimization, schema design patterns",
+      "estimatedWeeks": 5,
+      "interviewCritical": true,
+      "topics": ["SQL Queries", "Schema Design", "Indexing", "Query Optimization", "Transactions", "Normalization"]
+    },
+    {
+      "name": "API Design (REST/GraphQL)",
+      "category": "backend",
+      "radarAxis": "Backend Frameworks",
+      "priority": "critical",
+      "description": "REST principles, GraphQL, API versioning, security",
+      "estimatedWeeks": 4,
+      "interviewCritical": true,
+      "topics": ["REST Design", "HTTP Methods", "Status Codes", "GraphQL Basics", "API Versioning", "Error Handling"]
+    },
+    {
+      "name": "Backend Frameworks",
+      "category": "backend",
+      "radarAxis": "Backend Frameworks",
+      "priority": "critical",
+      "description": "Express.js, Django, Spring Boot, FastAPI, Go, Java frameworks",
+      "estimatedWeeks": 4,
+      "interviewCritical": true,
+      "topics": ["Framework Architecture", "Routing", "Middleware", "Request/Response Handling", "ORM/Query Builders"]
+    },
+    {
+      "name": "System Design & Architecture",
+      "category": "architecture",
+      "radarAxis": "System Design",
+      "priority": "critical",
+      "description": "Design scalable systems, handle distributed systems, microservices",
+      "estimatedWeeks": 8,
+      "interviewCritical": true,
+      "topics": ["Scalability", "Load Balancing", "Caching", "Database Sharding", "CAP Theorem", "Microservices"]
+    },
+    {
+      "name": "Security & Authentication",
+      "category": "backend",
+      "radarAxis": "Code Quality",
+      "priority": "critical",
+      "description": "OAuth, JWT, SSL/TLS, input validation, OWASP",
+      "estimatedWeeks": 3,
+      "interviewCritical": false,
+      "topics": ["JWT", "OAuth 2.0", "Password Hashing", "HTTPS/SSL", "Input Validation", "OWASP Top 10"]
+    },
+    {
+      "name": "Message Queues & Async Processing",
+      "category": "backend",
+      "radarAxis": "System Design",
+      "priority": "high",
+      "description": "RabbitMQ, Kafka, event-driven architecture, job processing",
+      "estimatedWeeks": 4,
+      "interviewCritical": false,
+      "topics": ["Message Queues", "Event Streaming", "Job Processing", "Pub/Sub Patterns", "Kafka Basics"]
+    },
+    {
+      "name": "Caching Strategies",
+      "category": "backend",
+      "radarAxis": "Databases & SQL",
+      "priority": "high",
+      "description": "Redis, Memcached, caching patterns and tradeoffs",
+      "estimatedWeeks": 3,
+      "interviewCritical": false,
+      "topics": ["Redis", "Cache Invalidation", "Caching Patterns", "TTL", "Memcached Basics"]
+    },
+    {
+      "name": "Testing & Quality Assurance",
+      "category": "quality",
+      "radarAxis": "Code Quality",
+      "priority": "high",
+      "description": "Unit tests, integration tests, mocking, TDD",
+      "estimatedWeeks": 3,
+      "interviewCritical": false,
+      "topics": ["Unit Testing", "Integration Testing", "Mocking", "Test Coverage", "TDD"]
+    },
+    {
+      "name": "Docker & Containerization",
+      "category": "devops",
+      "radarAxis": "Backend Frameworks",
+      "priority": "high",
+      "description": "Docker basics, containerization, image creation",
+      "estimatedWeeks": 2,
+      "interviewCritical": false,
+      "topics": ["Docker Basics", "Dockerfile", "Container Images", "Docker Compose"]
+    },
+    {
+      "name": "Git & Version Control",
+      "category": "tools",
+      "radarAxis": "Code Quality",
+      "priority": "medium",
+      "description": "Git workflows, branching, collaboration",
+      "estimatedWeeks": 1,
+      "interviewCritical": false,
+      "topics": ["Git Basics", "Branching Strategies", "Merging", "Conflict Resolution"]
+    },
+    {
+      "name": "Code Quality & Best Practices",
+      "category": "quality",
+      "radarAxis": "Code Quality",
+      "priority": "medium",
+      "description": "SOLID principles, design patterns, clean code, refactoring",
+      "estimatedWeeks": 2,
+      "interviewCritical": false,
+      "topics": ["SOLID Principles", "Design Patterns", "Code Reviews", "Refactoring", "Best Practices"]
+    }
+  ]
+}

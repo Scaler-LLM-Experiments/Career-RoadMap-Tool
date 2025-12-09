@@ -1,80 +1,135 @@
 /**
- * API Endpoint: GET /api/config/persona/[id]
+ * API Endpoint: POST /api/config/persona
  *
- * Returns persona config file for a given persona ID
- * Supports Next.js dynamic API routes
+ * PURE MODULAR COMPOSITION - NO FALLBACKS, NO LEGACY MODE
  *
- * USAGE:
- * GET /api/config/persona/tech_mid_backend
- * Returns: tech_mid_backend.json config
+ * Accepts quiz responses or modular persona parameters
+ * Decomposes to modular components (role, level, userType, company)
+ * Composes from templates via RoadmapCompositionOrchestrator
+ * Returns fully personalized, enriched roadmap config
+ *
+ * Request body:
+ * {
+ *   "quizResponses": { ... },  // From quiz or
+ *   "modularPersona": { role, level, userType, companyType },  // Direct
+ *   "profileData": { userName, ... }  // Optional
+ * }
  */
 
-import fs from 'fs';
-import path from 'path';
+// Direct import of orchestrator - safe on server-side
+import { generatePersonalizedRoadmap } from '../../../../src/utils/RoadmapCompositionOrchestrator';
 
-export default function handler(req, res) {
-  const { id } = req.query;
-
-  // Validate persona ID to prevent path traversal attacks
-  if (!id || typeof id !== 'string' || !/^[a-z0-9_]+$/.test(id)) {
-    return res.status(400).json({
-      error: 'Invalid persona ID',
-      message: 'Persona ID must contain only lowercase letters, numbers, and underscores'
+export default async function handler(req, res) {
+  // Only POST allowed - pure composition system
+  if (req.method !== 'POST') {
+    return res.status(405).json({
+      error: 'Method not allowed',
+      message: 'This endpoint only accepts POST requests',
+      allowedMethods: ['POST']
     });
   }
 
   try {
-    // Build path to persona config
-    const configPath = path.join(
-      process.cwd(),
-      'src',
-      'configs',
-      'personas',
-      `${id}.json`
-    );
+    const { quizResponses, modularPersona, profileData } = req.body;
 
-    // Check if file exists
-    if (!fs.existsSync(configPath)) {
-      return res.status(404).json({
-        error: 'Persona not found',
-        personaId: id,
-        availablePersonas: [
-          'tech_entry_backend',
-          'tech_entry_frontend',
-          'tech_entry_fullstack',
-          'tech_mid_backend',
-          'tech_mid_frontend',
-          'tech_mid_fullstack',
-          'tech_senior_backend',
-          'tech_senior_frontend',
-          'switcher_early_backend',
-          'switcher_early_frontend',
-          'switcher_advanced_backend',
-          'switcher_advanced_frontend'
-        ]
+    // Validate: must have either quizResponses or modularPersona
+    if (!quizResponses && !modularPersona) {
+      return res.status(400).json({
+        error: 'Missing required data',
+        message: 'Request must include either quizResponses or modularPersona object',
+        example: {
+          quizResponses: {
+            targetRole: 'Backend Engineer',
+            yearsOfExperience: '3-5',
+            background: 'tech',
+            currentSkills: ['Python', 'SQL'],
+            timeline: '6-9 months',
+            timePerWeek: 18
+          }
+        }
       });
     }
 
-    // Read and parse config file
-    const fileContent = fs.readFileSync(configPath, 'utf-8');
-    const config = JSON.parse(fileContent);
+    if (!generatePersonalizedRoadmap) {
+      throw new Error('RoadmapCompositionOrchestrator.generatePersonalizedRoadmap not available');
+    }
 
-    // Add metadata
-    config._metadata = config._metadata || {};
-    config._metadata.loadedAt = new Date().toISOString();
-    config._metadata.source = 'API';
+    // STEP 1: Use quiz responses if provided, otherwise validate modular persona
+    let inputData = quizResponses;
 
-    // Return config with appropriate headers
+    if (modularPersona && !quizResponses) {
+      // Direct modular persona provided - convert to quiz responses for consistency
+      inputData = {
+        targetRole: mapRoleToTargetRole(modularPersona.role),
+        yearsOfExperience: mapLevelToYears(modularPersona.level),
+        background: mapUserTypeToBg(modularPersona.userType),
+        userType: modularPersona.userType,
+        targetCompanyType: modularPersona.companyType,
+        currentSkills: [],
+        timeline: '6-9 months',
+        timePerWeek: 15
+      };
+    }
+
+    // STEP 2: Generate personalized roadmap using modular composition
+    const result = await generatePersonalizedRoadmap(inputData, profileData || {});
+
+    if (!result.success) {
+      throw new Error(result.error || 'Roadmap composition failed');
+    }
+
+    // STEP 3: Return response
     res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Cache-Control', 'public, max-age=3600'); // Cache for 1 hour
-    return res.status(200).json(config);
+    res.setHeader('Cache-Control', 'no-cache'); // Don't cache user-specific data
+
+    return res.status(200).json({
+      success: true,
+      data: result.data,
+      metadata: result.metadata,
+      timestamp: new Date().toISOString()
+    });
+
   } catch (error) {
-    console.error('Error loading persona config:', error);
+    console.error('❌ Persona composition API error:', error);
 
     return res.status(500).json({
-      error: 'Failed to load persona config',
+      error: 'Failed to generate personalized roadmap',
       message: error.message,
-      personaId: id
+      timestamp: new Date().toISOString()
     });
   }
+}
+
+/**
+ * Helper: Map role to targetRole format
+ */
+function mapRoleToTargetRole(role) {
+  const mapping = {
+    backend: 'Backend Engineer',
+    frontend: 'Frontend Engineer',
+    fullstack: 'Full Stack Engineer',
+    devops: 'DevOps Engineer',
+    data: 'Data Science Engineer'
+  };
+  return mapping[role] || role;
+}
+
+/**
+ * Helper: Map level to years of experience
+ */
+function mapLevelToYears(level) {
+  const mapping = {
+    entry: '0-2',
+    mid: '3-5',
+    senior: '5-7'
+  };
+  return mapping[level] || '0-2';
+}
+
+/**
+ * Helper: Map userType to background
+ */
+function mapUserTypeToBg(userType) {
+  if (userType === 'career_switcher') return 'non-tech';
+  return 'tech';
 }

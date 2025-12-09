@@ -1,0 +1,255 @@
+{
+  "metadata": {
+    "companyType": "bigtech",
+    "label": "Big Tech Companies (FAANG+)",
+    "description": "Large established tech companies with structured processes"
+  },
+
+  "learningPathTweaks": {
+    "title": "Learning Path Optimized for Big Tech Success",
+    "subtitle": "What you need to excel at FAANG and similar companies",
+
+    "phaseAdaptations": [
+      {
+        "phase": 1,
+        "emphasis": [
+          "data_structures_and_algorithms",
+          "problem_solving_fundamentals",
+          "coding_patterns"
+        ],
+        "skipTopics": [],
+        "accelerateTopics": [
+          "algorithm_optimization",
+          "space_time_complexity",
+          "leetcode_style_problems"
+        ],
+        "addResources": [
+          "LeetCode Premium subscription",
+          "Cracking the Coding Interview",
+          "Big Tech interview prep guides",
+          "Blind.com company-specific discussions"
+        ],
+        "adjustDuration": 1.15,
+        "note": "Big Tech screens heavily on fundamentals and problem-solving - this is critical"
+      },
+      {
+        "phase": 2,
+        "emphasis": [
+          "system_design",
+          "large_scale_problems",
+          "trade_off_analysis"
+        ],
+        "skipTopics": [],
+        "accelerateTopics": [
+          "distributed_systems",
+          "consistency_models",
+          "database_design_at_scale",
+          "cache_design"
+        ],
+        "addResources": [
+          "System Design Interview",
+          "Designing Data-Intensive Applications",
+          "Papers: Google, Amazon, Uber technical architecture",
+          "Company blog posts on engineering"
+        ],
+        "adjustDuration": 1.1,
+        "note": "System design is weighted heavily in interviews - deep mastery required"
+      },
+      {
+        "phase": 3,
+        "emphasis": [
+          "behavioral_interview_prep",
+          "communication_skills",
+          "cultural_fit"
+        ],
+        "skipTopics": [],
+        "accelerateTopics": [
+          "leadership_stories",
+          "conflict_resolution",
+          "impact_communication"
+        ],
+        "addResources": [
+          "STAR method mastery",
+          "Behavioral interview preparation",
+          "Company values and culture deep dive",
+          "Mock interviews with peers"
+        ],
+        "adjustDuration": 1.0,
+        "note": "Behavioral interviews carry significant weight - don't underestimate"
+      }
+    ]
+  },
+
+  "interviewFocusAreas": {
+    "title": "What Big Tech Looks For",
+    "areas": [
+      {
+        "area": "Algorithm Mastery",
+        "description": "Can you solve complex problems efficiently?",
+        "emphasis": "LeetCode Medium-Hard level problems, time and space complexity analysis"
+      },
+      {
+        "area": "System Design Expertise",
+        "description": "Can you design systems that scale to billions of users?",
+        "emphasis": "Distributed systems, trade-offs, real-world architecture decisions"
+      },
+      {
+        "area": "Technical Depth",
+        "description": "Deep understanding of your domain?",
+        "emphasis": "Specifics of your chosen role, not just surface knowledge"
+      },
+      {
+        "area": "Communication",
+        "description": "Can you explain complex ideas clearly?",
+        "emphasis": "Clear explanations, asking clarifying questions, discussing trade-offs"
+      },
+      {
+        "area": "Cultural Fit",
+        "description": "Do you align with company values?",
+        "emphasis": "Leadership principles, impact, ownership mentality"
+      }
+    ]
+  },
+
+  "roleExpectations": {
+    "title": "What You'll Do at Big Tech",
+    "responsibilities": [
+      "Own well-defined projects within a larger system",
+      "Write high-quality, reviewable code",
+      "Participate in design reviews",
+      "Contribute to team efficiency and reliability",
+      "Work on problems with massive scale",
+      "Follow established processes and best practices"
+    ]
+  },
+
+  "skillPrioritiesForBigTech": {
+    "highPriority": [
+      "Data Structures & Algorithms",
+      "System Design",
+      "Your specific tech stack expertise",
+      "Problem-solving ability",
+      "Code quality and testing",
+      "Communication skills"
+    ],
+    "mediumPriority": [
+      "Performance optimization",
+      "Debugging and troubleshooting",
+      "Cross-team collaboration",
+      "Documentation",
+      "Mentorship"
+    ],
+    "lowPriority": [
+      "Full-stack skills (if specializing)",
+      "DevOps knowledge",
+      "Startup experience"
+    ]
+  },
+
+  "companyFitAnalysis": {
+    "fitScore": 80,
+    "fitLevel": "Great Fit",
+    "reasoning": [
+      "Big Tech values algorithmic and system design thinking",
+      "Clear career progression and learning opportunities",
+      "Strong compensation and benefits",
+      "Working on large-scale problems"
+    ],
+    "whatYouNeed": [
+      "Strong fundamentals in algorithms",
+      "System design expertise",
+      "Ability to handle interview process rigor",
+      "Patience for structured growth"
+    ],
+    "growthOpportunities": [
+      "Senior engineer and staff roles",
+      "Team lead opportunities",
+      "Specialist/principal engineer tracks",
+      "Cross-functional leadership"
+    ]
+  },
+
+  "interviewProcess": {
+    "rounds": [
+      {
+        "number": 1,
+        "name": "Online Assessment",
+        "description": "Coding problems through online platform",
+        "difficulty": "Medium-Hard",
+        "duration": "90 minutes",
+        "focus": "Algorithm and problem-solving"
+      },
+      {
+        "number": 2,
+        "name": "Phone Interview",
+        "description": "Technical problem solving with interviewer",
+        "difficulty": "Hard",
+        "duration": "60 minutes",
+        "focus": "Communication and approach"
+      },
+      {
+        "number": 3,
+        "name": "Onsite - Coding Round",
+        "description": "In-person or virtual coding problems",
+        "difficulty": "Hard",
+        "duration": "120 minutes",
+        "focus": "Real-time problem solving"
+      },
+      {
+        "number": 4,
+        "name": "Onsite - System Design",
+        "description": "Design a large-scale system",
+        "difficulty": "Hard",
+        "duration": "60 minutes",
+        "focus": "Architecture and trade-offs"
+      },
+      {
+        "number": 5,
+        "name": "Onsite - Behavioral",
+        "description": "Culture fit and behavioral assessment",
+        "difficulty": "Medium",
+        "duration": "60 minutes",
+        "focus": "Communication and values alignment"
+      }
+    ]
+  },
+
+  "timelineAdjustment": {
+    "multiplier": 1.1,
+    "explanation": "Big Tech interviews are thorough and competitive - expect longer prep time"
+  },
+
+  "estimatedTimeToHire": {
+    "value": "12-16 weeks",
+    "explanation": "From current level to being job-ready for a Big Tech role"
+  },
+
+  "commonChallengesAndTips": [
+    {
+      "challenge": "Algorithm performance optimization",
+      "tip": "Practice LeetCode problems daily - aim for 30-60 min per day"
+    },
+    {
+      "challenge": "System design depth",
+      "tip": "Study real systems (Google, Amazon, Uber papers) and understand decisions"
+    },
+    {
+      "challenge": "Interview process length",
+      "tip": "Prepare for 4-6 rounds of interviews - mentally prepare for marathon"
+    },
+    {
+      "challenge": "Competitive pool",
+      "tip": "You're competing with strong candidates - consistency over speed matters"
+    },
+    {
+      "challenge": "Behavioral interview weight",
+      "tip": "Practice your stories using STAR method - behavioral can make or break"
+    }
+  ],
+
+  "successStories": [
+    "Strong fundamentals + system design depth = Big Tech success",
+    "Companies hire engineers who think big and code well",
+    "The investment in prep pays off in career growth and compensation"
+  ]
+}

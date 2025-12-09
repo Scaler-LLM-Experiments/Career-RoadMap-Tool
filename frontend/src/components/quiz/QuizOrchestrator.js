@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useProfile } from '../../context/UnifiedContext';
 import styled, { keyframes } from 'styled-components';
 import QuizUI from './QuizUI';
-import { QUIZ_SCREENS, isScreenComplete } from './QuizConfig';
+import { getQuizScreens, isScreenComplete } from './QuizConfig';
 import ScalerLogo from '../../assets/scaler-logo.svg';
 import { CaretLeft, CaretRight, Check, MapTrifold, BookOpen, Buildings, ChartBar, Clock } from 'phosphor-react';
 import ChatBot from '../../assets/ChatBot.png';
@@ -440,15 +440,16 @@ const ChatMessage = styled.div`
 const QuizContent = styled.div`
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: ${props => props.centered ? 'center' : 'flex-start'};
   animation: ${fadeIn} 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   padding: 100px 40px 40px;
 
   @media (max-width: 768px) {
     padding: 0;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: ${props => props.centered ? 'center' : 'flex-start'};
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
@@ -772,10 +773,12 @@ const FinalModeQuiz = ({ onProgressChange }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isMobile, setIsMobile] = useState(false); // Default to false for SSR
   const [showMobileWelcome, setShowMobileWelcome] = useState(true);
+  const [isMounted, setIsMounted] = useState(false); // Track if component is mounted
 
   // Set isMobile on client-side only and listen for window resize
   useEffect(() => {
-    // Set initial value on mount
+    // Mark as mounted and set initial value
+    setIsMounted(true);
     setIsMobile(window.innerWidth <= 768);
 
     const handleResize = () => {
@@ -785,9 +788,11 @@ const FinalModeQuiz = ({ onProgressChange }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Use QUIZ_SCREENS for Career Roadmap Tool
-  const quizScreens = QUIZ_SCREENS;
-  const totalSteps = quizScreens.length; // 2 screens: welcome, skills
+  // Get quiz screens based on background selection (tech or non-tech)
+  // Initially use 'tech' as default, will update when background is selected
+  const userBackground = quizResponses?.background || null;
+  const quizScreens = userBackground ? getQuizScreens(userBackground) : getQuizScreens('tech');
+  const totalSteps = quizScreens.length;
 
   useEffect(() => {
     const progress = ((currentStep + 1) / totalSteps) * 100;
@@ -898,9 +903,12 @@ const FinalModeQuiz = ({ onProgressChange }) => {
           profileDetails={profileDetails}
           questionStartIndex={screenIndex + 1}
           onAutoAdvance={handleNext}
-          hideChat={screenIndex === 1 || screenIndex === 2}
-          showMobileChat={screenIndex === 1 || screenIndex === 2 || screenIndex === 0}
+          hideChat={true}
+          showMobileChat={true}
+          showChatAboveQuestions={currentStep === 0}
+          singleColumn={screen.singleColumn || false}
           moveUpOnDesktop={screen.moveUpOnDesktop || false}
+          isFirstScreen={currentStep === 0}
         />
       );
     }
@@ -956,8 +964,8 @@ const FinalModeQuiz = ({ onProgressChange }) => {
       </TrustBadgeSection>
     );
 
-    // For skills screen (step 1) and timeline screen (step 2), show chatbot
-    if (currentStep === 1 || currentStep === 2) {
+    // For all screens except background (step 0), show chatbot on left
+    if (currentStep > 0 && currentStep < quizScreens.length) {
       const screen = quizScreens[currentStep];
       const chatText = screen?.getDynamicChatText
         ? screen.getDynamicChatText(quizResponses)
@@ -1025,8 +1033,8 @@ const FinalModeQuiz = ({ onProgressChange }) => {
     setShowMobileWelcome(false);
   };
 
-  // Show mobile welcome screen
-  if (isMobile && showMobileWelcome && currentStep === 0) {
+  // Show mobile welcome screen (only after mount to avoid hydration mismatch)
+  if (isMounted && isMobile && showMobileWelcome && currentStep === 0) {
     return (
       <MobileWelcomeScreen>
         <MobileWelcomeContent>
@@ -1108,7 +1116,7 @@ const FinalModeQuiz = ({ onProgressChange }) => {
       </LeftPanel>
 
       <RightPanel>
-        {!isMobile && (
+        {isMounted && !isMobile && (
           <TopNavigationWrapper>
             <DesktopNavigation>
               <BackButton onClick={handlePrevious} disabled={currentStep === 0}>
@@ -1133,13 +1141,13 @@ const FinalModeQuiz = ({ onProgressChange }) => {
           </TopNavigationWrapper>
         )}
 
-        <QuizContent key={currentStep}>
+        <QuizContent key={currentStep} centered={currentStep === 0}>
           {renderContent()}
         </QuizContent>
       </RightPanel>
 
       {/* Mobile bottom navigation */}
-      {isMobile && (
+      {isMounted && isMobile && (
         <BottomNavigation isLastStep={isLastStep}>
           {!isLastStep ? (
             <>

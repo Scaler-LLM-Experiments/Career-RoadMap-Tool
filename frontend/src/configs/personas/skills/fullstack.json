@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "role": "fullstack",
+    "roleLabel": "Full Stack Engineer",
+    "description": "Full stack engineer combining frontend and backend expertise for end-to-end development",
+    "radarCategories": [
+      "Frontend Skills",
+      "Backend Skills",
+      "Database & SQL",
+      "System Design",
+      "DevOps & Deployment"
+    ]
+  },
+
+  "skills": [
+    {"name": "JavaScript/TypeScript Mastery", "category": "fundamentals", "radarAxis": "Frontend Skills", "priority": "critical", "description": "Core language skills for both frontend and backend Node.js development", "estimatedWeeks": 5, "interviewCritical": true, "topics": ["ES6+", "Async/Await", "Closures", "Functional Programming", "TypeScript Basics"]},
+    {"name": "Frontend Framework (React/Vue)", "category": "frontend", "radarAxis": "Frontend Skills", "priority": "critical", "description": "React, Vue, or Angular - building modern user interfaces", "estimatedWeeks": 5, "interviewCritical": true, "topics": ["Components", "Hooks", "State Management", "Routing", "Server-Side Rendering"]},
+    {"name": "Backend Framework (Node/Python)", "category": "backend", "radarAxis": "Backend Skills", "priority": "critical", "description": "Express.js, Django, or similar - building APIs and server logic", "estimatedWeeks": 5, "interviewCritical": true, "topics": ["Framework Architecture", "Routing", "Middleware", "Request/Response Handling", "Authentication"]},
+    {"name": "Data Structures & Algorithms", "category": "fundamentals", "radarAxis": "Backend Skills", "priority": "critical", "description": "DSA fundamentals for interviews and problem-solving", "estimatedWeeks": 5, "interviewCritical": true, "topics": ["Arrays", "Linked Lists", "Trees", "Graphs", "Sorting", "Dynamic Programming"]},
+    {"name": "Database Design & SQL", "category": "backend", "radarAxis": "Database & SQL", "priority": "critical", "description": "SQL, schema design, indexing, query optimization", "estimatedWeeks": 4, "interviewCritical": true, "topics": ["SQL Queries", "Schema Design", "Indexing", "Relationships", "Query Optimization"]},
+    {"name": "API Design (REST/GraphQL)", "category": "backend", "radarAxis": "Backend Skills", "priority": "critical", "description": "RESTful APIs, GraphQL, API versioning and design patterns", "estimatedWeeks": 4, "interviewCritical": true, "topics": ["REST Design", "HTTP Methods", "GraphQL Basics", "Error Handling", "API Documentation"]},
+    {"name": "CSS & Responsive Design", "category": "frontend", "radarAxis": "Frontend Skills", "priority": "high", "description": "CSS fundamentals, Flexbox, Grid, responsive design", "estimatedWeeks": 3, "interviewCritical": false, "topics": ["CSS Flexbox", "CSS Grid", "Responsive Design", "Media Queries", "CSS Preprocessors"]},
+    {"name": "System Design Fundamentals", "category": "architecture", "radarAxis": "System Design", "priority": "high", "description": "Design scalable systems, architecture patterns, microservices basics", "estimatedWeeks": 5, "interviewCritical": true, "topics": ["Scalability", "Load Balancing", "Caching", "Database Sharding", "Microservices Intro"]},
+    {"name": "State Management", "category": "frontend", "radarAxis": "Frontend Skills", "priority": "high", "description": "Redux, Context API, state management patterns", "estimatedWeeks": 3, "interviewCritical": false, "topics": ["Redux Basics", "Context API", "Store Design", "Middleware"]},
+    {"name": "Authentication & Security", "category": "backend", "radarAxis": "Backend Skills", "priority": "high", "description": "JWT, OAuth, password hashing, security best practices", "estimatedWeeks": 2, "interviewCritical": false, "topics": ["JWT", "OAuth 2.0", "Password Hashing", "HTTPS/SSL", "OWASP Top 10"]},
+    {"name": "Docker & Containerization", "category": "devops", "radarAxis": "DevOps & Deployment", "priority": "high", "description": "Docker basics, containerization, deployment fundamentals", "estimatedWeeks": 2, "interviewCritical": false, "topics": ["Dockerfile", "Container Basics", "Image Layers", "Docker Compose"]},
+    {"name": "Testing (Unit & Integration)", "category": "quality", "radarAxis": "Backend Skills", "priority": "medium", "description": "Jest, Mocha, testing strategies, TDD fundamentals", "estimatedWeeks": 2, "interviewCritical": false, "topics": ["Unit Testing", "Integration Testing", "Mocking", "Test Coverage", "TDD"]}
+  ]
+}

@@ -1,0 +1,494 @@
+{
+  "metadata": {
+    "role": "backend",
+    "roleLabel": "Backend Engineer",
+    "description": "Backend engineer specializing in server-side development, APIs, databases, and system design",
+    "skills": [
+      {
+        "name": "System Design",
+        "category": "architecture",
+        "priority": "critical",
+        "description": "Design scalable systems, handle distributed systems, microservices architecture"
+      },
+      {
+        "name": "Data Structures & Algorithms",
+        "category": "fundamentals",
+        "priority": "critical",
+        "description": "Master DSA concepts for coding interviews"
+      },
+      {
+        "name": "Database Design",
+        "category": "backend",
+        "priority": "high",
+        "description": "SQL, indexing, query optimization, database design patterns"
+      },
+      {
+        "name": "API Design",
+        "category": "backend",
+        "priority": "high",
+        "description": "REST, GraphQL, gRPC, API versioning, security"
+      },
+      {
+        "name": "Backend Frameworks",
+        "category": "backend",
+        "priority": "high",
+        "description": "Express, Django, Spring Boot, FastAPI, Go, Java, Python"
+      },
+      {
+        "name": "Microservices Architecture",
+        "category": "architecture",
+        "priority": "high",
+        "description": "Service decomposition, communication patterns, service mesh"
+      },
+      {
+        "name": "Caching Strategies",
+        "category": "backend",
+        "priority": "high",
+        "description": "Redis, Memcached, caching patterns and tradeoffs"
+      },
+      {
+        "name": "Message Queues",
+        "category": "backend",
+        "priority": "medium",
+        "description": "RabbitMQ, Kafka, event-driven architecture"
+      },
+      {
+        "name": "Security & Authentication",
+        "category": "backend",
+        "priority": "high",
+        "description": "OAuth, JWT, SSL/TLS, input validation, OWASP"
+      },
+      {
+        "name": "Deployment & DevOps",
+        "category": "operations",
+        "priority": "medium",
+        "description": "Docker, CI/CD pipelines, monitoring, logging"
+      },
+      {
+        "name": "Testing",
+        "category": "quality",
+        "priority": "medium",
+        "description": "Unit tests, integration tests, mocking, TDD"
+      },
+      {
+        "name": "Code Quality",
+        "category": "quality",
+        "priority": "medium",
+        "description": "Clean code, SOLID principles, design patterns, refactoring"
+      }
+    ]
+  },
+
+  "hero": {
+    "greeting": "Hey {userName}! 👋",
+    "title": "Your personalized roadmap to become a {targetRole} is ready!",
+    "description": "Based on your experience and goals, we've created a focused path to help you reach the next level.",
+    "stats": {
+      "skillsToLearn": {
+        "total": 12,
+        "description": "critical skills you need to master"
+      },
+      "estimatedEffort": {
+        "value": "{hoursPerWeek}",
+        "unit": "hrs/week"
+      },
+      "timeline": "{estimatedTimeline}"
+    },
+    "videoUrl": "PLACEHOLDER_BACKEND_FOUNDER_VIDEO",
+    "videoNotes": "Get personal insights from someone who's been there"
+  },
+
+  "skillsGap": {
+    "title": "Understand Where You Stand Right Now",
+    "description": "See what you already know and what you need to master to reach your goal.",
+    "sections": {
+      "currentSkills": {
+        "title": "Skills You Already Have",
+        "description": "These are your strengths - keep them sharp"
+      },
+      "highPriority": {
+        "title": "Critical Skills to Master",
+        "description": "These are absolute must-haves for the next level",
+        "priority": "critical"
+      },
+      "mediumPriority": {
+        "title": "Important Skills to Build",
+        "description": "These will make you significantly more competitive",
+        "priority": "high"
+      },
+      "lowPriority": {
+        "title": "Nice-to-Have Skills",
+        "description": "Add these after mastering critical ones",
+        "priority": "medium"
+      }
+    }
+  },
+
+  "learningPath": {
+    "title": "Your Personalized Learning Path",
+    "description": "A phased approach to build your skills strategically",
+    "phasesStructure": [
+      {
+        "phaseNumber": 1,
+        "phaseName": "Foundation & Fundamentals",
+        "duration": "4-6 weeks",
+        "focus": "Core concepts every backend engineer needs",
+        "topics": [
+          "Data Structures & Algorithms deep dive",
+          "Database fundamentals (SQL, indexing, optimization)",
+          "API design principles",
+          "Code quality and testing"
+        ],
+        "videoPlaceholder": "PLACEHOLDER_BACKEND_PHASE1_VIDEO",
+        "resources": [
+          {
+            "name": "Python Fundamentals for Beginners",
+            "url": "https://www.mygreatlearning.com/academy/learn-for-free/courses/python-fundamentals-for-beginners",
+            "type": "course"
+          },
+          {
+            "name": "SQL and PostgreSQL Tutorial",
+            "url": "https://www.postgresqltutorial.com/",
+            "type": "tutorial"
+          },
+          {
+            "name": "REST API Design Best Practices",
+            "url": "https://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api",
+            "type": "tutorial"
+          },
+          {
+            "name": "Git Version Control - GitHub Guide",
+            "url": "https://github.blog/developer-skills/programming-languages-and-frameworks/what-is-git-our-beginners-guide-to-version-control/",
+            "type": "tutorial"
+          }
+        ]
+      },
+      {
+        "phaseNumber": 2,
+        "phaseName": "System Design & Architecture",
+        "duration": "6-8 weeks",
+        "focus": "Design thinking for scalable systems",
+        "topics": [
+          "System design concepts",
+          "Microservices architecture",
+          "Caching and message queues",
+          "Distributed systems fundamentals"
+        ],
+        "videoPlaceholder": "PLACEHOLDER_BACKEND_PHASE2_VIDEO",
+        "resources": [
+          {
+            "name": "System Design Primer - GitHub",
+            "url": "https://github.com/donnemartin/system-design-primer",
+            "type": "tutorial"
+          },
+          {
+            "name": "Backend Developer Path - Python & Go",
+            "url": "https://www.boot.dev/tracks/backend-python-golang",
+            "type": "course"
+          },
+          {
+            "name": "AWS Getting Started for Beginners",
+            "url": "https://aws.amazon.com/getting-started/",
+            "type": "docs"
+          }
+        ]
+      },
+      {
+        "phaseNumber": 3,
+        "phaseName": "Advanced Topics & Specialization",
+        "duration": "4-6 weeks",
+        "focus": "Deep dives based on target company/role",
+        "topics": [
+          "Advanced system design patterns",
+          "Performance optimization",
+          "Security best practices",
+          "DevOps and deployment patterns"
+        ],
+        "videoPlaceholder": "PLACEHOLDER_BACKEND_PHASE3_VIDEO",
+        "resources": [
+          {
+            "name": "Microservices & API Gateway Best Practices",
+            "url": "https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design",
+            "type": "docs"
+          },
+          {
+            "name": "Docker and Kubernetes for Backend",
+            "url": "https://www.udemy.com/course/docker-and-kubernetes-for-beginners-devops-journey/",
+            "type": "course"
+          }
+        ]
+      },
+      {
+        "phaseNumber": 4,
+        "phaseName": "Interview Prep & Polish",
+        "duration": "2-3 weeks",
+        "focus": "Get ready for interviews at your target company",
+        "topics": [
+          "Mock interviews",
+          "Communication skills",
+          "Behavioral prep",
+          "Final skill refinement"
+        ],
+        "videoPlaceholder": "PLACEHOLDER_BACKEND_PHASE4_VIDEO",
+        "resources": [
+          {
+            "name": "System Design Interview Guide - IGotAnOffer",
+            "url": "https://igotanoffer.com/blogs/tech/system-design-interviews",
+            "type": "tutorial"
+          },
+          {
+            "name": "LeetCode Interview Crash Course",
+            "url": "https://leetcode.com/explore/interview/",
+            "type": "tutorial"
+          }
+        ]
+      }
+    ]
+  },
+
+  "interviewPrep": {
+    "title": "Interview Preparation",
+    "description": "What to expect and how to prepare",
+    "totalRounds": "4-5 rounds typical",
+    "rounds": [
+      {
+        "roundNumber": 1,
+        "roundName": "Phone Screen / Initial Call",
+        "duration": "15-30 minutes",
+        "focus": "Screening, background, motivation",
+        "difficulty": "easy",
+        "prepTips": [
+          "Prepare 2-3 minute elevator pitch",
+          "Know your projects inside out",
+          "Have 3-5 thoughtful questions ready",
+          "Check technical setup (good internet, quiet space)"
+        ],
+        "commonTopics": ["Background", "Career motivation", "Project experience", "Why this company"]
+      },
+      {
+        "roundNumber": 2,
+        "roundName": "Coding Round",
+        "duration": "45-60 minutes",
+        "focus": "Data structures and algorithms",
+        "difficulty": "medium",
+        "prepTips": [
+          "Practice on LeetCode (50+ problems)",
+          "Time yourself - aim for sub-40 mins",
+          "Explain your approach before coding",
+          "Handle edge cases explicitly",
+          "Write clean, readable code with comments"
+        ],
+        "commonTopics": ["Arrays", "Strings", "Trees", "Graphs", "Hash Maps", "Dynamic Programming"]
+      },
+      {
+        "roundNumber": 3,
+        "roundName": "System Design Round",
+        "duration": "45-60 minutes",
+        "focus": "Design a scalable system",
+        "difficulty": "hard",
+        "prepTips": [
+          "Master the framework: Requirements → Architecture → Deep Dives",
+          "Discuss trade-offs (consistency vs availability, latency vs throughput)",
+          "Talk through monitoring, logging, alerting",
+          "Be prepared to scale to 1M+ users",
+          "Reference real systems (Netflix, Uber, etc)"
+        ],
+        "commonTopics": ["URL Shortener", "Cache", "Database Design", "Message Queues", "Microservices", "Load Balancing"]
+      },
+      {
+        "roundNumber": 4,
+        "roundName": "Behavioral Round",
+        "duration": "30-45 minutes",
+        "focus": "Soft skills, culture fit, communication",
+        "difficulty": "varies",
+        "prepTips": [
+          "Use STAR method (Situation, Task, Action, Result)",
+          "Prepare stories about: conflict resolution, failure, success, learning",
+          "Quantify impact where possible (30% improvement, shipped feature)",
+          "Ask genuine questions about team and culture",
+          "Show genuine interest in the company"
+        ],
+        "commonTopics": ["Teamwork", "Leadership", "Conflict Resolution", "Failure & Learning", "Project Impact"]
+      }
+    ],
+    "overallStrategy": "System design is now mandatory even for mid-level roles. Companies want engineers who think about monitoring, logging, and tracing from the start. Focus on distributed systems expertise and security-first mindset.",
+    "successFactors": [
+      "Flawless code implementation with error handling",
+      "Think out loud - explain your approach",
+      "Discuss trade-offs and alternatives",
+      "Strong DSA fundamentals (no memorization)",
+      "Real production experience",
+      "Can discuss monitoring and alerting",
+      "Security-conscious design thinking",
+      "Clear communication skills"
+    ]
+  },
+
+  "recommendedProjects": {
+    "title": "Build Real-World Projects",
+    "description": "Projects that showcase your backend skills to recruiters",
+    "projectTiers": [
+      {
+        "tier": "Tier 1: Beginner",
+        "description": "Build fundamentals and portfolio",
+        "projects": [
+          {
+            "name": "REST API with Express",
+            "description": "Build a full CRUD API with authentication and database",
+            "whyValuable": "Shows you understand HTTP fundamentals, RESTful principles, and can build a working API",
+            "techStack": ["Node.js", "Express", "PostgreSQL", "JWT"],
+            "timeToComplete": "2-3 weeks",
+            "githubTip": "Add comprehensive README with API docs, setup instructions, and example requests",
+            "keyFeatures": ["User authentication", "CRUD endpoints", "Error handling", "Input validation", "Database migrations"]
+          },
+          {
+            "name": "Todo App Backend",
+            "description": "Simple but complete backend for todo management with user accounts",
+            "whyValuable": "Full-stack thinking: understand how frontend consumes your API",
+            "techStack": ["Python", "Django/FastAPI", "PostgreSQL"],
+            "timeToComplete": "2-3 weeks",
+            "githubTip": "Deploy to Heroku/Railway so recruiters can test it live",
+            "keyFeatures": ["User accounts", "Todo CRUD", "Real API docs", "Basic testing"]
+          },
+          {
+            "name": "Blog Platform API",
+            "description": "REST API for a blogging platform with posts, comments, tags",
+            "whyValuable": "Shows understanding of relationships, filtering, pagination",
+            "techStack": ["Node.js", "Express", "MongoDB"],
+            "timeToComplete": "2-3 weeks",
+            "githubTip": "Include Postman collection for easy API testing",
+            "keyFeatures": ["Posts and comments", "User roles", "Search/filter", "Pagination"]
+          }
+        ]
+      },
+      {
+        "tier": "Tier 2: Intermediate",
+        "description": "Show system design thinking",
+        "projects": [
+          {
+            "name": "Scalable Chat API",
+            "description": "Real-time chat system with WebSockets, message persistence, and scaling considerations",
+            "whyValuable": "Demonstrates understanding of real-time systems and scalability",
+            "techStack": ["Node.js", "Socket.io", "Redis", "PostgreSQL"],
+            "timeToComplete": "3-4 weeks",
+            "githubTip": "Deploy to production and document how you handle 1000+ concurrent users",
+            "keyFeatures": ["WebSocket connections", "Message history", "Room management", "Redis caching", "User presence"]
+          },
+          {
+            "name": "High-Traffic Rate Limiter",
+            "description": "Implement a distributed rate limiter that works across multiple servers",
+            "whyValuable": "Shows understanding of distributed systems and operational concerns",
+            "techStack": ["Python", "FastAPI", "Redis"],
+            "timeToComplete": "3-4 weeks",
+            "githubTip": "Include benchmarks showing throughput and latency metrics",
+            "keyFeatures": ["Token bucket algorithm", "Distributed coordination", "Metrics", "Different rate limit strategies"]
+          },
+          {
+            "name": "E-commerce Order Service",
+            "description": "Microservice for handling orders with inventory management and payment integration",
+            "whyValuable": "Real-world complexity: transactions, third-party APIs, error handling",
+            "techStack": ["Java", "Spring Boot", "PostgreSQL", "Kafka"],
+            "timeToComplete": "4-5 weeks",
+            "githubTip": "Show how you handle payment failures and maintain consistency",
+            "keyFeatures": ["Order management", "Inventory updates", "Payment API integration", "Event streaming"]
+          }
+        ]
+      },
+      {
+        "tier": "Tier 3: Advanced",
+        "description": "Demonstrate distributed systems knowledge",
+        "projects": [
+          {
+            "name": "Distributed Cache Layer",
+            "description": "Build a custom distributed caching system with consistency guarantees",
+            "whyValuable": "Shows deep understanding of caching, consistency, and distributed algorithms",
+            "techStack": ["Go", "Redis", "Raft consensus"],
+            "timeToComplete": "5-6 weeks",
+            "githubTip": "Include research paper references and performance comparisons to Redis",
+            "keyFeatures": ["Consistent hashing", "Replication", "Fault tolerance", "Cache invalidation strategies"]
+          },
+          {
+            "name": "Event-Driven Notification System",
+            "description": "Complex system handling notifications across multiple channels with retries and failure handling",
+            "whyValuable": "Real production concerns: reliability, observability, failure modes",
+            "techStack": ["Node.js", "Kafka", "PostgreSQL", "Docker"],
+            "timeToComplete": "5-6 weeks",
+            "githubTip": "Show how you monitor and alert on failures, include chaos engineering tests",
+            "keyFeatures": ["Multi-channel delivery", "Retry logic", "Idempotency", "Dead letter queues", "Monitoring/alerting"]
+          },
+          {
+            "name": "GraphQL Federation Gateway",
+            "description": "Build a federation gateway for composing multiple GraphQL services",
+            "whyValuable": "Advanced API design: composition, schema stitching, real-world microservices pattern",
+            "techStack": ["Node.js", "Apollo", "GraphQL"],
+            "timeToComplete": "5-6 weeks",
+            "githubTip": "Benchmark query performance and document federation patterns",
+            "keyFeatures": ["Schema composition", "Service mesh", "Query optimization", "Error handling across services"]
+          }
+        ]
+      }
+    ]
+  },
+
+  "companiesInsight": {
+    "title": "What Different Companies Expect",
+    "description": "How interview processes and role expectations differ across company types",
+    "tabs": [
+      {
+        "name": "High Growth Startups",
+        "key": "startup",
+        "description": "Fast-paced, impact-driven, needs full-stack thinking",
+        "emphasis": ["speed", "learning", "impact", "problem-solving"],
+        "interviewFocus": ["System design at scale", "Rapid iteration", "MVP thinking"]
+      },
+      {
+        "name": "Scaled Startups",
+        "key": "scaleup",
+        "description": "Scaling challenges, data at scale, reliability critical",
+        "emphasis": ["scaling", "system_design", "reliability", "trade-offs"],
+        "interviewFocus": ["Distributed systems", "High throughput systems", "Cost optimization"]
+      },
+      {
+        "name": "Big Tech Companies",
+        "key": "bigtech",
+        "description": "Heavy on system design, algorithms, and scale",
+        "emphasis": ["system_design", "scale", "interviews", "best_practices"],
+        "interviewFocus": ["Advanced system design", "Optimal solutions", "Edge cases"]
+      },
+      {
+        "name": "Service & Enterprise Companies",
+        "key": "service",
+        "description": "Delivery-focused, client satisfaction, proven processes",
+        "emphasis": ["quality", "delivery", "process", "client_focus"],
+        "interviewFocus": ["Practical problem-solving", "Communication", "Project delivery"]
+      }
+    ]
+  },
+
+  "successIndicators": {
+    "title": "How to Know You're Ready",
+    "description": "Key milestones before applying to your target role",
+    "indicators": [
+      {
+        "indicator": "Can design systems that handle 1M+ requests/day",
+        "importance": "critical"
+      },
+      {
+        "indicator": "Comfortable with databases and optimization",
+        "importance": "critical"
+      },
+      {
+        "indicator": "Can discuss trade-offs in system design",
+        "importance": "high"
+      },
+      {
+        "indicator": "Have 2-3 solid projects in portfolio",
+        "importance": "high"
+      },
+      {
+        "indicator": "Can solve medium-hard DSA problems",
+        "importance": "high"
+      }
+    ]
+  }
+}
