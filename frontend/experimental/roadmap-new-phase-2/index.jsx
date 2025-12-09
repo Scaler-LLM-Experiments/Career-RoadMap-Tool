@@ -42,7 +42,8 @@ const RoadmapNewExperimental = () => {
 
   /**
    * Load persona config based on quiz responses
-   * Converts quiz responses to the format needed for persona matching
+   * Maps quiz response keys to persona matching format
+   * NO DEFAULTS - Will throw error if data is missing
    */
   useEffect(() => {
     const loadPersonaConfig = async () => {
@@ -52,18 +53,56 @@ const RoadmapNewExperimental = () => {
 
         // Debug: Log what we have in quizResponses
         console.log('🔍 Quiz Responses Raw:', quizResponses);
+        console.log('🔍 Quiz Responses Keys:', Object.keys(quizResponses || {}));
 
-        // Convert quiz responses to format needed for persona matching
-        // Use defaults if quiz responses are empty
-        const matchingInput = {
-          userType: quizResponses?.userType || 'tech_professional',
-          yearsOfExperience: quizResponses?.yearsOfExperience || '3-5',
-          targetRole: quizResponses?.targetRole || 'Senior Backend Engineer',
-          requirementType: quizResponses?.requirementType || 'upskill',
-          targetCompanyType: quizResponses?.targetCompanyType || 'scaleup'
+        // Check if we have quiz responses
+        if (!quizResponses || Object.keys(quizResponses).length === 0) {
+          throw new Error(
+            '⚠️ No quiz responses found. Please complete the quiz first before viewing your roadmap.'
+          );
+        }
+
+        // Helper function to map company type values
+        const mapCompanyType = (value) => {
+          const companyMap = {
+            'faang': 'bigtech',
+            'unicorns': 'scaleup',
+            'startups': 'startup',
+            'service': 'service'
+          };
+          return companyMap[value] || value || 'startup';
         };
 
-        console.log('📋 Matching Input for Persona:', matchingInput);
+        // Map quiz response keys to persona matching format
+        // Quiz stores: background, yearsExperience, targetRole, primaryGoal, targetCompanyType
+        // Orchestrator expects: userType, yearsOfExperience, targetRole, requirementType, targetCompanyType
+        const matchingInput = {
+          // background (tech/non-tech) → userType (tech_professional/career_switcher)
+          userType: quizResponses.background === 'non-tech'
+            ? 'career_switcher'
+            : 'tech_professional',
+
+          // yearsExperience → yearsOfExperience (normalize spaces)
+          yearsOfExperience: quizResponses.yearsExperience,
+
+          // targetRole - use as-is
+          targetRole: quizResponses.targetRole,
+
+          // primaryGoal → requirementType
+          requirementType: quizResponses.primaryGoal ?
+            (quizResponses.primaryGoal.includes('level') ? 'upskill' : quizResponses.primaryGoal)
+            : 'upskill',
+
+          // targetCompanyType - map company values
+          targetCompanyType: mapCompanyType(quizResponses.targetCompanyType)
+        };
+
+        console.log('📋 Mapped Input for Orchestrator:', matchingInput);
+
+        // Validate required fields - NO DEFAULTS
+        if (!matchingInput.targetRole || !matchingInput.yearsOfExperience) {
+          throw new Error('Missing required quiz responses: targetRole and yearsOfExperience are mandatory');
+        }
 
         // Get personalized config
         const config = await getPersonalizedRoadmapConfig(matchingInput);
@@ -78,20 +117,20 @@ const RoadmapNewExperimental = () => {
         console.error('❌ Error loading persona config:', error);
         console.error('Error details:', {
           message: error.message,
-          stack: error.stack
+          stack: error.stack,
+          quizResponses
         });
         setConfigError(error.message);
-        // Set default config as fallback
+        // Do NOT set default config - let user know they need to complete quiz
         setPersonaConfig(null);
       } finally {
         setConfigLoading(false);
       }
     };
 
-    // Load config immediately with defaults
-    // (Don't wait for quiz responses - use defaults)
+    // Load config whenever quizResponses change - DO NOT use empty dependency array
     loadPersonaConfig();
-  }, []);
+  }, [quizResponses]);
 
   // Loader animation - 6 second fake loader (similar to roadmap-new.js)
   useEffect(() => {
