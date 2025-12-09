@@ -14,26 +14,8 @@
  * NO HARDCODING - All data driven by user inputs
  */
 
-// Dynamic imports for Node.js modules - only used in Node.js environment
-// These are loaded dynamically to avoid bundling issues in browser
-let fsModule = null;
-let pathModule = null;
-let __dirname = null;
-
-const isNode = typeof process !== 'undefined' && process.versions && process.versions.node;
-
-async function initNodeModules() {
-  if (!isNode || fsModule) return;
-  try {
-    fsModule = await import('fs');
-    pathModule = await import('path');
-    const { fileURLToPath } = await import('url');
-    const __filename = fileURLToPath(import.meta.url);
-    __dirname = pathModule.dirname(__filename);
-  } catch (e) {
-    // Modules not available
-  }
-}
+// This utility uses only client-side compatible code
+// All config files are imported statically via webpack
 
 /**
  * Deep merge utility - intelligently merges nested objects
@@ -268,29 +250,34 @@ async function loadModularTemplates(modularPersona) {
 }
 
 /**
- * Load a single template from /configs/personas/[path]
- * Works in both Node.js (via fs) and browser (via fetch)
+ * Load a single template from the API endpoint
+ * Browser-safe: fetches from /api/config/template endpoint
  */
 async function loadTemplate(templatePath) {
   try {
-    // Initialize Node.js modules if in Node.js environment
-    await initNodeModules();
+    // Use API endpoint to load templates from server
+    const response = await fetch(`/api/config/template?path=${encodeURIComponent(templatePath)}`);
 
-    // Node.js environment - use fs
-    if (isNode && fsModule && pathModule && __dirname) {
-      const fullPath = pathModule.join(__dirname, '..', 'configs', 'personas', templatePath);
-      const content = fsModule.readFileSync(fullPath, 'utf-8');
-      return JSON.parse(content);
-    }
-
-    // Browser environment - use fetch
-    const response = await fetch(`/configs/personas/${templatePath}`);
     if (!response.ok) {
-      throw new Error(`Template not found: ${templatePath}`);
+      // Get error details from response
+      let errorDetail = `HTTP ${response.status}`;
+      try {
+        const errorData = await response.json();
+        errorDetail = errorData.error || errorDetail;
+      } catch (e) {
+        // Response wasn't JSON
+      }
+      throw new Error(`${errorDetail} - Template: ${templatePath}`);
     }
-    return await response.json();
+
+    const data = await response.json();
+    return data;
   } catch (error) {
-    throw new Error(`Failed to load template ${templatePath}: ${error.message}`);
+    // Provide helpful error message
+    const errorMsg = error instanceof TypeError
+      ? `Network error loading template ${templatePath}: ${error.message}`
+      : `Failed to load template ${templatePath}: ${error.message}`;
+    throw new Error(errorMsg);
   }
 }
 
