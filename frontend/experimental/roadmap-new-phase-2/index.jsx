@@ -196,19 +196,20 @@ const RoadmapNewExperimental = () => {
   }, []);
 
   /**
-   * Build roadmap data from persona config or fallback to mock data
-   * Handles cases where config hasn't loaded yet
+   * Build roadmap data from persona config
+   * NO MOCK DATA - Only uses real data from orchestrator/persona config
+   * Returns data or null if config not loaded
    */
   const buildRoadmapData = () => {
     if (personaConfig) {
-      // Use persona config data
+      // Use persona config data directly from orchestrator
       return {
-        targetRole: personaConfig.metadata?.label || 'Senior Backend Engineer',
+        targetRole: personaConfig.metadata?.roleLabel || quizResponses?.targetRole,
         targetCompany: quizResponses?.targetCompanyType || 'Big-Tech Companies',
         timeline: quizResponses?.timeline || '6-9 months',
-        currentSkills: personaConfig.skillsGap?.currentSkills?.map(s => s.skill) || [],
-        existingSkills: personaConfig.skillsGap?.currentSkills || [],
-        missingSkills: personaConfig.skillsGap?.missingSkills || {
+        effortPerWeek: personaConfig.hero?.stats?.estimatedEffort?.value || '10',
+        currentSkills: personaConfig.currentSkills || [],
+        missingSkills: personaConfig.missingSkills || {
           highPriority: [],
           mediumPriority: [],
           lowPriority: []
@@ -218,32 +219,9 @@ const RoadmapNewExperimental = () => {
       };
     }
 
-    // Fallback to mock data if config not loaded
-    return roadmapData || {
-      targetRole: 'Senior Backend Engineer',
-      targetCompany: 'Big-Tech Companies',
-      timeline: '6-9 months',
-      currentSkills: ['Python', 'JavaScript', 'Git', 'REST APIs'],
-      existingSkills: [
-        { skill: 'Python', priority: 'high' },
-        { skill: 'JavaScript', priority: 'high' },
-        { skill: 'Git', priority: 'medium' }
-      ],
-      missingSkills: {
-        highPriority: [
-          { skill: 'System Design', priority: 'high' },
-          { skill: 'Microservices', priority: 'high' },
-          { skill: 'Docker', priority: 'high' }
-        ],
-        mediumPriority: [
-          { skill: 'Kubernetes', priority: 'medium' },
-          { skill: 'Redis', priority: 'medium' }
-        ],
-        lowPriority: [
-          { skill: 'GraphQL', priority: 'low' }
-        ]
-      }
-    };
+    // NO FALLBACK - Return null if config not loaded
+    // Components should handle null state gracefully
+    return null;
   };
 
   const roadmapDisplay = buildRoadmapData();
@@ -284,6 +262,36 @@ const RoadmapNewExperimental = () => {
     );
   }
 
+  // Show error if no data available
+  if (!roadmapDisplay || configLoading) {
+    return (
+      <>
+        <Navbar />
+        {configError && (
+          <div style={{
+            margin: '40px auto',
+            maxWidth: '800px',
+            padding: '24px',
+            background: '#FEE2E2',
+            border: '1px solid #FCA5A5',
+            borderRadius: '0',
+            color: '#7F1D1D'
+          }}>
+            <h2 style={{ fontSize: '18px', fontWeight: '600', marginBottom: '8px' }}>
+              ⚠️ Unable to Load Roadmap
+            </h2>
+            <p style={{ fontSize: '14px', lineHeight: '1.6' }}>
+              {configError}
+            </p>
+            <p style={{ fontSize: '13px', marginTop: '12px', opacity: 0.8 }}>
+              Please go back and complete the quiz to generate your personalized roadmap.
+            </p>
+          </div>
+        )}
+      </>
+    );
+  }
+
   return (
     <>
       <Navbar />
@@ -293,19 +301,6 @@ const RoadmapNewExperimental = () => {
       <div className="w-full bg-white">
         <div className="mx-auto px-5 py-12 lg:px-[120px] lg:pt-16 lg:pb-40 max-w-[1440px]">
           <div className="w-full space-y-32">
-            {/* Config Status Info - For Testing */}
-            {configError && (
-              <div style={{
-                background: '#FEF3C7',
-                border: '1px solid #F59E0B',
-                padding: '12px 16px',
-                borderRadius: '4px',
-                color: '#92400E'
-              }}>
-                ⚠️ Config Loading Error: {configError}
-              </div>
-            )}
-
             <SkillsSection
               mockRoadmapData={roadmapDisplay}
               quizResponses={quizResponses}
