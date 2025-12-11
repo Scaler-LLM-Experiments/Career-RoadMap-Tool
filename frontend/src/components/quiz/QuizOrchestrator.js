@@ -47,7 +47,7 @@ const QuizContainer = styled.div`
 
 const LeftPanel = styled.div`
   width: 40%;
-  background: #F8F9FA;
+  background: #F5F8FC;
   padding: 32px 60px 60px;
   display: flex;
   flex-direction: column;
