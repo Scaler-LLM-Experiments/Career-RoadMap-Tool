@@ -15,12 +15,27 @@ import React, { createContext, useContext, useReducer, useCallback, useMemo, use
 const UnifiedContext = createContext();
 
 // Load state from localStorage (SSR-aware for Next.js)
+// Only load state if it's less than 24 hours old (prevent stale data)
 const loadStateFromStorage = () => {
   if (typeof window === 'undefined') return null; // Skip during SSR
   try {
     const savedState = localStorage.getItem('scalerCareerRoadmapState');
     if (savedState) {
-      return JSON.parse(savedState);
+      const parsed = JSON.parse(savedState);
+
+      // Check timestamp - clear if older than 24 hours
+      if (parsed._timestamp) {
+        const ageInMs = Date.now() - parsed._timestamp;
+        const ageInHours = ageInMs / (1000 * 60 * 60);
+
+        if (ageInHours > 24) {
+          console.warn('⚠️ Cached state is older than 24 hours. Clearing stale data.');
+          localStorage.removeItem('scalerCareerRoadmapState');
+          return null;
+        }
+      }
+
+      return parsed;
     }
   } catch (error) {
     console.error('Failed to load state from localStorage:', error);
@@ -32,7 +47,12 @@ const loadStateFromStorage = () => {
 const saveStateToStorage = (state) => {
   if (typeof window === 'undefined') return; // Skip during SSR
   try {
-    localStorage.setItem('scalerCareerRoadmapState', JSON.stringify(state));
+    // Add timestamp to track state age
+    const stateWithTimestamp = {
+      ...state,
+      _timestamp: Date.now()
+    };
+    localStorage.setItem('scalerCareerRoadmapState', JSON.stringify(stateWithTimestamp));
   } catch (error) {
     console.error('Failed to save state to localStorage:', error);
   }

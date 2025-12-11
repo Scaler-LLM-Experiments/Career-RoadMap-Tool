@@ -9,9 +9,15 @@
  */
 
 export const VIDEO_IDS = {
-  // HERO SECTION
+  // HERO SECTION - Role-specific founder messages
   hero: {
-    founderMessage: '3Pq9blTtKfE', // Welcome message / Founder intro
+    founderMessage: '3Pq9blTtKfE', // Default welcome message / Founder intro
+    // Role-specific hero videos
+    backend: 'dQw4w9WgXcQ',        // Backend Engineering roadmap
+    frontend: 'jNQXAC9IVRw',       // Frontend Engineering roadmap
+    fullstack: 'aqz-KE-bpKQ',      // Full-stack Engineering roadmap
+    devops: 'DLzxrzFCyEo',         // DevOps & Infrastructure roadmap
+    data: 'qfgfeyuipOo',           // Data Engineering roadmap
   },
 
   // COMPANY INSIGHTS SECTION
@@ -97,11 +103,23 @@ export const getYouTubeEmbedUrl = (videoId) => {
 };
 
 /**
+ * Get role-specific hero video ID
+ */
+export const getHeroVideoForRole = (roleKey) => {
+  const videoId = VIDEO_IDS.hero[roleKey] || VIDEO_IDS.hero.founderMessage;
+  return videoId;
+};
+
+/**
  * Get video ID based on background and context
  */
 export const getContextualVideoId = (section, background = 'tech', context = {}) => {
   switch (section) {
     case 'hero':
+      // If roleKey is provided in context, use role-specific video
+      if (context.roleKey) {
+        return getHeroVideoForRole(context.roleKey);
+      }
       return VIDEO_IDS.hero.founderMessage;
 
     case 'companyInsights':

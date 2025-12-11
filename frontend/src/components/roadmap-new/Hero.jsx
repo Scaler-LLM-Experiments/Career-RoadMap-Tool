@@ -20,13 +20,18 @@ const Hero = ({ roadmapData }) => {
     console.log(`   Missing Skills:`, roadmapData.missingSkills);
   }
 
+  // Use skillsToLearn from roadmapData if available, otherwise calculate from missingSkills
+  const skillsCount = roadmapData.skillsToLearn !== undefined
+    ? roadmapData.skillsToLearn
+    : (roadmapData.missingSkills?.highPriority?.length || 0) +
+      (roadmapData.missingSkills?.mediumPriority?.length || 0) +
+      (roadmapData.missingSkills?.lowPriority?.length || 0);
+
   const stats = [
     {
       icon: Target,
       label: 'Skills to Learn',
-      value: `${(roadmapData.missingSkills?.highPriority?.length || 0) +
-             (roadmapData.missingSkills?.mediumPriority?.length || 0) +
-             (roadmapData.missingSkills?.lowPriority?.length || 0)} skills`
+      value: `${skillsCount} skills`
     },
     {
       icon: ChartBar,
@@ -83,7 +88,7 @@ const Hero = ({ roadmapData }) => {
               <div className="w-full aspect-video relative bg-slate-200 rounded-none overflow-hidden">
                 <iframe
                   className="absolute inset-0 w-full h-full"
-                  src={`https://www.youtube.com/embed/${getVideoId('hero.founderMessage')}`}
+                  src={roadmapData.videoUrl || `https://www.youtube.com/embed/${getVideoId('hero.founderMessage')}`}
                   title="Scaler Career Roadmap"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

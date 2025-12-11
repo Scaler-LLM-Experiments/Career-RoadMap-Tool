@@ -824,10 +824,10 @@ const FinalModeQuiz = ({ onProgressChange }) => {
     } else {
       // Navigate to roadmap page
       try {
-        router.push('/roadmap-experimental');
+        router.push('/roadmap-experimental-v2');
       } catch (error) {
         // Fallback for navigation issues
-        window.location.href = '/roadmap-experimental';
+        window.location.href = '/roadmap-experimental-v2';
       }
     }
   };

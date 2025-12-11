@@ -13,27 +13,99 @@ Career Roadmap Tool is a Next.js application that generates personalized career 
 ## Development Commands
 
 ### Frontend
+
 ```bash
+# Install dependencies (run once after cloning)
+npm install
+
 # Development server (runs on http://localhost:3000)
 npm run dev
 
 # Production build
 npm run build
 
-# Start production build locally
+# Start production build locally (test production build)
 npm start
 
-# Linting
+# Linting (Next.js built-in ESLint integration)
 npm run lint
-
-# Validate persona JSON files (check for syntax errors)
-cd frontend && node -c src/configs/personas/roles/*.json
 ```
 
-**Prerequisites**: Node.js 18.x
+### Persona Configuration Validation
+
+```bash
+# Validate persona JSON files (check for syntax errors)
+cd frontend && node -c src/configs/personas/roles/*.json
+
+# Validate all persona files at once
+for file in frontend/src/configs/personas/roles/*.json; do node -c "$file" && echo "✅ $(basename $file) valid" || echo "❌ $(basename $file) invalid"; done
+```
+
+### Build & Cache Management
+
+```bash
+# Clean build artifacts and cache
+rm -rf frontend/.next
+
+# Full clean rebuild
+npm run build -- --debug
+```
+
+### Testing
+
+**Note**: Currently, no test framework is configured. Manual testing via the browser is the primary validation method. To add automated tests:
+
+1. Install Jest: `npm install --save-dev jest @testing-library/react`
+2. Create `jest.config.js` with Next.js preset
+3. Write tests in `__tests__` directories or `.test.js` files
+4. Add test script to package.json: `"test": "jest"`
+
+For now, testing is done by:
+- Running the dev server and manually testing the UI
+- Using browser DevTools to inspect state and verify composition
+- Validating JSON configs with the `node -c` command above
+
+**Prerequisites**: Node.js 18.x (specified in package.json `engines`)
 
 ### Backend (Reference Only)
-Currently, the backend folder contains Python utility files for skill analysis that serve as reference. These are not deployed. Skill analysis runs entirely on the frontend.
+The backend folder contains Python utility files for skill analysis that serve as reference. These are not deployed. Skill analysis runs entirely on the frontend.
+
+---
+
+## Module Paths & Configuration
+
+### Path Aliases (jsconfig.json)
+
+The project uses path aliases for cleaner imports. Instead of relative imports, use these aliases:
+
+```javascript
+// Instead of:
+import { useUnified } from '../../../context/UnifiedContext';
+
+// Use:
+import { useUnified } from '@/context/UnifiedContext';
+```
+
+Available aliases:
+- `@/components/*` - React components
+- `@/context/*` - React context and state
+- `@/utils/*` - Utility functions
+- `@/configs/*` - JSON configuration files
+- `@/assets/*` - Images, fonts, static assets
+- `@/lib/*` - Library exports
+
+### Environment Variables
+
+- `NEXT_PUBLIC_API_BASE_URL` - Backend API URL (default: `http://localhost:8000`, currently unused as app uses mock data)
+
+### Image Optimization
+
+Next.js image optimization is configured for external image sources from:
+- `cdn.brandfetch.io` - Company logos and branding
+- `img.logo.dev` - Skill and technology logos
+- `logo.clearbit.com` - Alternative company logo source
+
+When adding new external image domains, update the `images.domains` array in [next.config.js](frontend/next.config.js).
 
 ---
 
@@ -220,7 +292,7 @@ After modifying persona JSON files, always validate:
    - See [PERSONA_JSON_SCHEMA.md](PERSONA_JSON_SCHEMA.md) for complete requirements
 
 3. **Test in Browser** - After changes:
-   - Clear localStorage: `localStorage.clear()`
+   - Clear localStorage: `localStorage.clear()` in DevTools console
    - Run the quiz and select the modified role
    - Check browser console for composition errors or warnings
    - Verify all sections load correctly (hero, skillsGap, phases, etc.)
@@ -230,6 +302,30 @@ After modifying persona JSON files, always validate:
    - Missing required fields in skill definitions
    - Invalid priority values (must be: critical, high, medium, low)
    - Array vs object merge confusion in template merging
+
+### Browser DevTools Debugging
+
+**Inspect Quiz State**:
+```javascript
+// In DevTools Console:
+const state = JSON.parse(localStorage.getItem('scalerCareerRoadmapState'));
+console.log(state.quizResponses); // See user's quiz answers
+console.log(state.targetRole, state.yearsOfExperience, state.background); // See decomposed persona
+```
+
+**Test Persona Matching**:
+```javascript
+// Manually set a persona to test roadmap generation:
+const newState = {
+  ...state,
+  targetRole: 'backend',
+  yearsOfExperience: 5,
+  background: 'tech_professional',
+  companyType: 'startup'
+};
+localStorage.setItem('scalerCareerRoadmapState', JSON.stringify(newState));
+location.reload(); // Reload to see changes
+```
 
 ---
 
@@ -284,17 +380,39 @@ Each role file (backend.json, frontend.json, etc.) uses a **data-driven structur
 
 ---
 
-## Common Gotchas
+## Common Gotchas & Troubleshooting
 
-1. **Stale localStorage**: The app stores state for 24 hours. Old data may cause issues. Clear localStorage to reset.
+### Development Issues
 
-2. **Missing Normalizations**: New role names must be added to the mapping table in `normalizeRole()`. Without this, the role won't be recognized.
+1. **Stale localStorage**: The app stores state for 24 hours. Old data may cause issues. Clear with: `localStorage.clear()`
 
-3. **Array vs Object Merge**: In `deepMerge()`, arrays are replaced, not merged. If you want to extend skills from a base template, merge manually or restructure as objects.
+2. **Missing Normalizations**: New role names must be added to the mapping table in `normalizeRole()` in RoadmapCompositionOrchestrator.js. Without this, the role won't be recognized during persona matching.
 
-4. **Next.js SSR**: LocalStorage operations are guarded with `typeof window !== 'undefined'` checks to prevent SSR errors.
+3. **Array vs Object Merge**: In `deepMerge()`, arrays are completely replaced, not merged. If you want to extend skills from a base template, merge manually or restructure as objects.
+
+4. **Next.js SSR**: LocalStorage operations are guarded with `typeof window !== 'undefined'` checks to prevent SSR errors. Any state initialization must happen in `useEffect` hooks.
 
 5. **Video Embeds**: Videos are configured in [videoConfig.js](frontend/src/utils/videoConfig.js). YouTube IDs must be exact or embeds will break.
+
+### Build Issues
+
+- **Build fails with "Cannot find module"**: Ensure you're using correct path aliases (@/components not ../components). Delete `.next` folder and rebuild.
+- **ESLint errors blocking build**: Run `npm run lint` to see all issues. Most are auto-fixable with `npm run lint -- --fix`.
+- **Port 3000 already in use**: Kill the process with `npx lsof -i :3000` then `kill -9 <PID>` or change port with `npm run dev -- -p 3001`.
+
+### Testing Roadmap Generation
+
+The composition system is entirely data-driven. If a roadmap section is missing or incorrect:
+1. Check browser console for composition logs (search for "Decomposing to modular persona")
+2. Verify the role's JSON file exists and is valid
+3. Check that all required fields are present in the role JSON
+4. Look for merge conflicts where later templates override earlier ones
+
+### Performance Considerations
+
+- **Styled Components**: Used for complex CSS. Consider Tailwind alternatives for simple styles.
+- **Recharts**: The skill radar chart re-renders on state changes. Profile rendering with DevTools if performance issues occur.
+- **Large persona JSON files**: Keep skill definitions minimal. Complex data should be computed at runtime.
 
 ---
 
@@ -310,9 +428,21 @@ Each role file (backend.json, frontend.json, etc.) uses a **data-driven structur
 ## Deployment Notes
 
 - **Frontend**: Deployed on Render, Railway, or similar Node.js hosting
-- **Build**: `npm run build` creates `.next/` folder, `npm start` serves it
-- **Environment**: Set `NEXT_PUBLIC_API_BASE_URL` if backend API is needed (currently unused, using mock data)
-- **Node Version**: Must be 18.x (specified in package.json `engines`)
+- **Build**: `npm run build` creates `.next/` folder for production
+- **Start**: `npm start` serves the production build
+- **Build time**: ~2-5 minutes depending on machine
+- **Environment**:
+  - Set `NEXT_PUBLIC_API_BASE_URL` if backend API is needed (currently unused, using mock data)
+  - Node.js must be 18.x (specified in package.json `engines`)
+  - `NODE_ENV=production` is automatically set during deployment
+- **Auto-deploy**: Can be configured to deploy on git push (e.g., on Render)
+
+### Deployment Checklist
+- Run `npm run build` locally to verify build succeeds
+- Run `npm run lint` to ensure no linting errors
+- Validate persona JSON files: `node -c frontend/src/configs/personas/roles/*.json`
+- Test production build locally: `npm run build && npm start`
+- Verify environment variables are set on hosting platform
 
 ---
 

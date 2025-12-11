@@ -20,9 +20,13 @@
 /**
  * Deep merge utility - intelligently merges nested objects
  * Later values override earlier values
+ *
+ * IMPORTANT: This preserves nested properties from target if source doesn't have them
+ * Example: if target.a.b exists and source.a doesn't have b, the result preserves target.a.b
  */
-function deepMerge(target = {}, source = {}) {
+function deepMerge(target = {}, source = {}, depth = 0) {
   const result = { ...target };
+
   for (const key in source) {
     if (source.hasOwnProperty(key)) {
       if (Array.isArray(source[key])) {
@@ -32,7 +36,10 @@ function deepMerge(target = {}, source = {}) {
         source[key] !== null &&
         !Array.isArray(source[key])
       ) {
-        result[key] = deepMerge(result[key] || {}, source[key]);
+        // RECURSIVE MERGE: Merge source into target, preserving target's nested properties
+        // This ensures that if source.skillMap.thresholds doesn't have averageBaseline,
+        // we still keep the averageBaseline from target.skillMap.thresholds
+        result[key] = deepMerge(result[key] || {}, source[key], depth + 1);
       } else {
         result[key] = source[key];
       }
@@ -74,9 +81,10 @@ export async function decomposeToModularPersona(quizResponses) {
 /**
  * Normalize role name to valid role key
  * Handles compound roles like "Data Science Engineer" → "data"
+ * THROWS ERROR if role is not provided or unrecognized - NO FALLBACKS
  */
 function normalizeRole(targetRole) {
-  if (!targetRole) return 'backend'; // Default fallback
+  if (!targetRole) throw new Error('targetRole is required for persona matching');
 
   const role = targetRole.toLowerCase().trim();
 
@@ -154,15 +162,16 @@ function normalizeRole(targetRole) {
     }
   }
 
-  // Default fallback
-  return 'backend';
+  // THROW ERROR - No unrecognized roles allowed
+  throw new Error(`Unrecognized target role: "${targetRole}". Must be one of: backend, frontend, fullstack, devops, data`);
 }
 
 /**
  * Determine experience level from years
+ * THROWS ERROR if yearsOfExperience is not provided - NO FALLBACKS
  */
 function determineLevel(yearsOfExperience) {
-  if (!yearsOfExperience) return 'entry';
+  if (!yearsOfExperience) throw new Error('yearsOfExperience is required to determine experience level');
 
   const years = parseInt(yearsOfExperience);
   if (isNaN(years)) {
@@ -219,7 +228,10 @@ function normalizeCompanyType(targetCompanyType) {
     'corporate': 'service'
   };
 
-  return companyMap[company] || 'startup';
+  // Return mapped value or throw error if company type is not recognized
+  if (companyMap[company]) return companyMap[company];
+  // If unrecognized, return the value as-is (might be a valid company type we don't recognize yet)
+  return company;
 }
 
 /**
@@ -237,6 +249,22 @@ async function loadModularTemplates(modularPersona) {
       loadTemplate(`user-types/${userType}.json`),
       loadTemplate(`company-types/${companyType}.json`)
     ]);
+
+    // DEBUG: Log what we loaded
+    console.log('📦 TEMPLATES LOADED:');
+    console.log('   Role thresholds keys:', roleConfig?.skillMap?.thresholds ? Object.keys(roleConfig.skillMap.thresholds) : 'NO SKILLMAP');
+    console.log('   Level skillMap:', levelConfig?.skillMap ? 'EXISTS' : 'NONE');
+    if (levelConfig?.skillMap?.thresholds) {
+      console.log('   Level thresholds keys:', Object.keys(levelConfig.skillMap.thresholds));
+    }
+    console.log('   UserType skillMap:', userTypeConfig?.skillMap ? 'EXISTS' : 'NONE');
+    if (userTypeConfig?.skillMap?.thresholds) {
+      console.log('   UserType thresholds keys:', Object.keys(userTypeConfig.skillMap.thresholds));
+    }
+    console.log('   CompanyType skillMap:', companyTypeConfig?.skillMap ? 'EXISTS' : 'NONE');
+    if (companyTypeConfig?.skillMap?.thresholds) {
+      console.log('   CompanyType thresholds keys:', Object.keys(companyTypeConfig.skillMap.thresholds));
+    }
 
     return {
       role: roleConfig,
@@ -288,19 +316,101 @@ async function loadTemplate(templatePath) {
  */
 function composeTemplates(templates) {
   let composed = {};
+  const debugInfo = {
+    steps: []
+  };
 
   // Merge in strict priority order
   // Role is the base
+  console.log('🔹 Before merging role template:');
+  console.log('   skillMap exists in role:', !!templates.role.skillMap);
+  console.log('   averageBaseline in role:', !!templates.role?.skillMap?.thresholds?.averageBaseline);
+  if (templates.role?.skillMap?.thresholds?.averageBaseline) {
+    console.log('   averageBaseline keys:', Object.keys(templates.role.skillMap.thresholds.averageBaseline));
+  }
+
   composed = deepMerge(composed, templates.role);
 
+  debugInfo.steps.push({
+    step: 'After role merge',
+    hasAverageBaseline: !!composed?.skillMap?.thresholds?.averageBaseline,
+    thresholdKeys: composed?.skillMap?.thresholds ? Object.keys(composed.skillMap.thresholds) : []
+  });
+
+  console.log('🔹 After merging role template:');
+  console.log('   skillMap exists in composed:', !!composed.skillMap);
+  console.log('   averageBaseline in composed:', !!composed?.skillMap?.thresholds?.averageBaseline);
+  console.log('   thresholds keys in composed:', composed?.skillMap?.thresholds ? Object.keys(composed.skillMap.thresholds) : 'no thresholds');
+
   // Level adjusts for experience
+  console.log('🔹 Before merging level template:');
+  console.log('   skillMap exists in level:', !!templates.level.skillMap);
+  console.log('   level template keys:', Object.keys(templates.level));
+
   composed = deepMerge(composed, templates.level);
 
+  debugInfo.steps.push({
+    step: 'After level merge',
+    hasAverageBaseline: !!composed?.skillMap?.thresholds?.averageBaseline,
+    thresholdKeys: composed?.skillMap?.thresholds ? Object.keys(composed.skillMap.thresholds) : []
+  });
+
+  console.log('🔹 After merging level template:');
+  console.log('   averageBaseline in composed:', !!composed?.skillMap?.thresholds?.averageBaseline);
+  console.log('   thresholds keys in composed:', composed?.skillMap?.thresholds ? Object.keys(composed.skillMap.thresholds) : 'no thresholds');
+
   // UserType adjusts for professional vs switcher
+  console.log('🔹 Before merging userType template:');
+  console.log('   skillMap exists in userType:', !!templates.userType.skillMap);
+  console.log('   userType template keys:', Object.keys(templates.userType));
+
   composed = deepMerge(composed, templates.userType);
 
+  debugInfo.steps.push({
+    step: 'After userType merge',
+    hasAverageBaseline: !!composed?.skillMap?.thresholds?.averageBaseline,
+    thresholdKeys: composed?.skillMap?.thresholds ? Object.keys(composed.skillMap.thresholds) : []
+  });
+
+  console.log('🔹 After merging userType template:');
+  console.log('   averageBaseline in composed:', !!composed?.skillMap?.thresholds?.averageBaseline);
+  console.log('   thresholds keys in composed:', composed?.skillMap?.thresholds ? Object.keys(composed.skillMap.thresholds) : 'no thresholds');
+
   // CompanyType adjusts for target company
+  console.log('🔹 Before merging companyType template:');
+  console.log('   skillMap exists in companyType:', !!templates.companyType.skillMap);
+  console.log('   companyType template keys:', Object.keys(templates.companyType));
+
   composed = deepMerge(composed, templates.companyType);
+
+  debugInfo.steps.push({
+    step: 'After companyType merge',
+    hasAverageBaseline: !!composed?.skillMap?.thresholds?.averageBaseline,
+    thresholdKeys: composed?.skillMap?.thresholds ? Object.keys(composed.skillMap.thresholds) : []
+  });
+
+  console.log('🔹 After merging companyType template:');
+  console.log('   averageBaseline in composed:', !!composed?.skillMap?.thresholds?.averageBaseline);
+  console.log('   thresholds keys in composed:', composed?.skillMap?.thresholds ? Object.keys(composed.skillMap.thresholds) : 'no thresholds');
+  console.log('   Full skillMap structure:', JSON.stringify(composed?.skillMap, null, 2).substring(0, 500));
+  console.log('📋 COMPOSITION DEBUG INFO:', debugInfo);
+
+  // CRITICAL FIX: Ensure averageBaseline is always present in skillMap.thresholds
+  // This should have come from the role template and not be removed during merging
+  if (composed?.skillMap?.thresholds && !composed.skillMap.thresholds.averageBaseline) {
+    console.warn('⚠️ CRITICAL: averageBaseline was lost during composition. This will cause skill map to fail.');
+    console.warn('   Available thresholds:', Object.keys(composed.skillMap.thresholds));
+    // Try to recover from role template's averageBaseline if it exists at top level
+    if (composed?.skillMap?.averageBaseline) {
+      console.log('   Recovering averageBaseline from skillMap.averageBaseline');
+      composed.skillMap.thresholds.averageBaseline = composed.skillMap.averageBaseline;
+    } else {
+      throw new Error('CRITICAL: averageBaseline missing from both thresholds and skillMap root. Composition failed.');
+    }
+  }
+
+  // Attach debug info to composed object for visibility in browser
+  composed._debugCompositionInfo = debugInfo;
 
   return composed;
 }
@@ -422,8 +532,16 @@ function enrichRoadmapConfig(config, quizResponses) {
     medium: allSkills.filter(s => s.priority === 'medium').map(s => s.name)
   };
 
-  // Current skills from user
+  // CRITICAL DEBUG: Log currentSkills being processed
   const currentSkills = quizResponses.currentSkills || [];
+  console.log('🔍 ENRICHMENT: Processing currentSkills');
+  console.log('   Input quizResponses.currentSkills:', quizResponses.currentSkills);
+  console.log('   Parsed currentSkills array:', currentSkills);
+  console.log('   currentSkills count:', currentSkills.length);
+  console.log('   allSkills from config.metadata:', allSkills.length, 'total');
+  console.log('   Critical skills available:', skillsByPriority.critical.length);
+  console.log('   High priority skills available:', skillsByPriority.high.length);
+  console.log('   Medium priority skills available:', skillsByPriority.medium.length);
 
   // Calculate match score based on critical skills
   const criticalMatches = skillsByPriority.critical.filter(skill =>
@@ -433,6 +551,17 @@ function enrichRoadmapConfig(config, quizResponses) {
   const matchScore = skillsByPriority.critical.length > 0
     ? Math.round((criticalMatches / skillsByPriority.critical.length) * 100)
     : 0;
+
+  // Log match score calculation
+  console.log('✅ MATCH SCORE CALCULATED:');
+  console.log('   Critical matches:', criticalMatches, '/', skillsByPriority.critical.length);
+  console.log('   Match score:', matchScore, '%');
+  console.log('   Skills with match:', skillsByPriority.critical.filter(skill =>
+    currentSkills.some(cs => cs.toLowerCase() === skill.toLowerCase())
+  ));
+  console.log('   Missing critical skills:', skillsByPriority.critical.filter(skill =>
+    !currentSkills.some(cs => cs.toLowerCase() === skill.toLowerCase())
+  ));
 
   // Initialize skillsGap if it doesn't exist
   enriched.skillsGap = enriched.skillsGap || {};
@@ -476,6 +605,21 @@ function enrichRoadmapConfig(config, quizResponses) {
     enriched.companiesInsight.types = enriched.companiesInsight.tabs;
   }
 
+  // Create missingSkills structure for components (Hero, Skills sections)
+  // This directly provides what components expect without nested breakdown structure
+  enriched.missingSkills = {
+    highPriority: enriched.skillsGap.personalized.highPriorityBreakdown.missing,
+    mediumPriority: enriched.skillsGap.personalized.mediumPriorityBreakdown.missing,
+    lowPriority: enriched.skillsGap.personalized.lowPriorityBreakdown.missing
+  };
+
+  // Create existingSkills structure for components
+  enriched.existingSkills = {
+    highPriority: enriched.skillsGap.personalized.highPriorityBreakdown.have,
+    mediumPriority: enriched.skillsGap.personalized.mediumPriorityBreakdown.have,
+    lowPriority: enriched.skillsGap.personalized.lowPriorityBreakdown.have
+  };
+
   // Add personalization metadata
   enriched.personalization = {
     userName: quizResponses.userName || 'User',
@@ -514,14 +658,23 @@ export async function generatePersonalizedRoadmap(quizResponses, profileData) {
     console.log('🔄 Step 3: Composing templates via deep merge...');
     let composed = composeTemplates(templates);
     console.log('✅ Templates composed');
+    console.log('   CHECK AFTER COMPOSE: averageBaseline in skillMap?', !!composed?.skillMap?.thresholds?.averageBaseline);
+    if (composed?.skillMap?.thresholds?.averageBaseline) {
+      console.log('   ✅ averageBaseline PRESERVED after compose');
+    } else {
+      console.log('   ❌ averageBaseline LOST after compose!');
+      console.log('   Available thresholds:', Object.keys(composed?.skillMap?.thresholds || {}));
+    }
 
     console.log('🔄 Step 4: Applying user-data-driven customizations...');
     composed = applyUserDataOverrides(composed, quizResponses);
     console.log('✅ Customizations applied');
+    console.log('   CHECK AFTER OVERRIDE: averageBaseline in skillMap?', !!composed?.skillMap?.thresholds?.averageBaseline);
 
     console.log('🔄 Step 5: Enriching with calculated data...');
     composed = enrichRoadmapConfig(composed, quizResponses);
     console.log('✅ Enrichment complete');
+    console.log('   CHECK AFTER ENRICH: averageBaseline in skillMap?', !!composed?.skillMap?.thresholds?.averageBaseline);
 
     console.log('🔄 Step 6: Personalizing hero section...');
     if (composed.hero) {

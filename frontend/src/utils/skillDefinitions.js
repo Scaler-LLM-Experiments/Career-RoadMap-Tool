@@ -1,7 +1,7 @@
 /**
  * Skill Definitions Utility
  *
- * Loads and manages skill definitions for different roles.
+ * Loads and manages skill definitions for different roles from role JSON files.
  * Used for:
  * - Radar chart axes and visualization
  * - Skill gap analysis
@@ -9,21 +9,69 @@
  * - Quiz skill selection
  */
 
-// Import skill definitions
-import backendSkills from '@/configs/personas/skills/backend.json';
-import frontendSkills from '@/configs/personas/skills/frontend.json';
-import fullstackSkills from '@/configs/personas/skills/fullstack.json';
-import devopsSkills from '@/configs/personas/skills/devops.json';
-import dataSkills from '@/configs/personas/skills/data.json';
+// Import role definitions that contain skill data
+import backendRole from '@/configs/personas/roles/backend.json';
+import frontendRole from '@/configs/personas/roles/frontend.json';
+import fullstackRole from '@/configs/personas/roles/fullstack.json';
+import devopsRole from '@/configs/personas/roles/devops.json';
+import dataRole from '@/configs/personas/roles/data.json';
 
-// Map roles to their skill definitions
-const SKILL_DEFINITIONS = {
-  'Backend Engineer': backendSkills,
-  'Frontend Engineer': frontendSkills,
-  'Full Stack Engineer': fullstackSkills,
-  'DevOps Engineer': devopsSkills,
-  'Data Science Engineer': dataSkills,
+// Map roles to their complete definitions
+const ROLE_DEFINITIONS = {
+  'Backend Engineer': backendRole,
+  'Frontend Engineer': frontendRole,
+  'Full Stack Engineer': fullstackRole,
+  'DevOps Engineer': devopsRole,
+  'Data Science Engineer': dataRole,
 };
+
+// Extract skill definitions from role data
+const SKILL_DEFINITIONS = {};
+Object.entries(ROLE_DEFINITIONS).forEach(([roleName, roleData]) => {
+  let skills = [];
+
+  // Try new format first: metadata.skills (array of skill objects)
+  // Some files use 'metadata', others use 'meta'
+  const metaData = roleData.metadata || roleData.meta;
+
+  if (metaData?.skills && Array.isArray(metaData.skills)) {
+    skills = metaData.skills;
+  }
+  // Fall back to old format: skillMap.skillPriorities (object with string arrays)
+  else if (roleData.skillMap?.skillPriorities) {
+    const skillPriorities = roleData.skillMap.skillPriorities;
+
+    // Extract skill names from priority arrays
+    Object.entries(skillPriorities).forEach(([priorityKey, skillList]) => {
+      if (Array.isArray(skillList)) {
+        // Convert string skill names to objects if needed
+        skillList.forEach(skill => {
+          if (typeof skill === 'string') {
+            skills.push({
+              name: skill,
+              priority: priorityKey,
+              category: 'general',
+              description: ''
+            });
+          } else {
+            skills.push(skill);
+          }
+        });
+      }
+    });
+  }
+
+  SKILL_DEFINITIONS[roleName] = {
+    skills: skills,
+    metadata: {
+      radarCategories: (roleData.skillMap?.radarAxes || []).map(axis => axis.label || axis.key),
+    },
+  };
+
+  if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+    console.log(`[skillDefinitions] Loaded ${skills.length} skills for ${roleName}`);
+  }
+});
 
 /**
  * Get skill definition for a specific role

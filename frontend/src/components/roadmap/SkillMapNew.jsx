@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 import { Crosshair, CheckCircle } from 'phosphor-react';
 
-// Skill descriptions for hover tooltips
-const skillDescriptions = {
+// Default skill descriptions (used if radarAxes not provided)
+const defaultSkillDescriptions = {
   'DSA': {
     title: 'Data Structures & Algorithms',
     description: 'Your proficiency in solving coding problems using efficient data structures and algorithmic thinking. Essential for technical interviews and backend optimization.'
@@ -33,7 +33,7 @@ const skillDescriptions = {
 
 // Custom tooltip component for radar chart - positioned above center with down arrow
 // MOBILE: Disabled on mobile devices (< 768px)
-const CustomTooltip = ({ active, payload, position }) => {
+const CustomTooltip = ({ active, payload, position, skillDescriptions = defaultSkillDescriptions }) => {
   // MOBILE CHECK: Disable tooltip on mobile devices
   const [isMobileView, setIsMobileView] = React.useState(false);
 
@@ -61,53 +61,36 @@ const CustomTooltip = ({ active, payload, position }) => {
     const tooltipY = position?.y || 0;
 
     // ========================================
-    // POSITIONING TWEAKS
+    // TOOLTIP POSITIONING - EASILY ADJUSTABLE
     // ========================================
 
-    // HORIZONTAL POSITIONING:
-    // left: '50%' = centers tooltip horizontally on the chart
-    // To move left: decrease (e.g., left: '45%')
-    // To move right: increase (e.g., left: '55%')
+    // HORIZONTAL OFFSET (X-axis)
+    // How much to shift left/right from center
+    // Positive = shift right, Negative = shift left
+    // Examples: 0 = centered, 20 = right, -20 = left
+    const horizontalOffset = 28;
 
-    // VERTICAL POSITIONING:
-    // The tooltip position is calculated as: tooltipY + verticalOffset
-    // tooltipY = current hover point's Y position on the chart
-    // verticalOffset = additional pixels to move up/down from that point
-
-    // TWEAK: Adjust verticalOffset to position tooltip vertically
-    // Current value: -200px
-    // Examples:
-    //   -250 = much higher above the skill map (further away)
-    //   -200 = current position
-    //   -150 = closer to the hover point
-    //   -100 = very close to hover point
-    //   0    = same level as hover point
-    // Use more negative values to move higher, less negative to move lower
-    const verticalOffset = -90;
+    // VERTICAL OFFSET (Y-axis)
+    // How much to shift up/down from hover point
+    // Negative = up (away from chart), Positive = down (toward chart)
+    // Examples: -90 = up, 0 = same level, 50 = down
+    const verticalOffset = -30;
 
     return (
       <TooltipBox style={{
         position: 'absolute',
 
-        // HORIZONTAL: Centers the tooltip (left: '50%' with translateX(-50%))
-        // To shift horizontally, change the left percentage
+        // HORIZONTAL: Centers tooltip and applies offset
         left: '50%',
-        transform: 'translateX(28%)',
+        transform: `translateX(${horizontalOffset}%)`,
 
-        // VERTICAL: Positions tooltip above/below the hover point
-        // Formula: tooltipY (current hover Y) + verticalOffset (your tweak value)
+        // VERTICAL: Positions relative to hover point with offset
         top: `${tooltipY + verticalOffset}px`,
 
         pointerEvents: 'none'
       }}>
         <TooltipTitle>{skillInfo?.title}</TooltipTitle>
         <TooltipDescription>{skillInfo?.description}</TooltipDescription>
-        <TooltipStats>
-          <StatItem>
-            <StatLabel>You: {Math.round(payload[0].value)}%</StatLabel>
-            <StatLabel>Avg: {Math.round(dataPoint.average)}%</StatLabel>
-          </StatItem>
-        </TooltipStats>
       </TooltipBox>
     );
   }
@@ -134,7 +117,19 @@ const SkillBadge = ({ skill }) => {
   );
 };
 
-const SkillMap = ({ currentSkills, targetRole, quizResponses, evaluationResults, background, existingSkills, missingSkills }) => {
+const SkillMap = ({
+  currentSkills,
+  targetRole,
+  quizResponses,
+  evaluationResults,
+  background,
+  existingSkills,
+  missingSkills,
+  // Persona-driven props (optional, falls back to hardcoded if not provided)
+  radarAxes,
+  averageBaseline,
+  skillMapThresholds
+}) => {
   // Check if mobile view
   const [isMobile, setIsMobile] = useState(false);
   const [hoveredPoint, setHoveredPoint] = useState(null);
@@ -149,6 +144,23 @@ const SkillMap = ({ currentSkills, targetRole, quizResponses, evaluationResults,
 
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Build skill descriptions from radarAxes if provided, otherwise use defaults
+  const buildSkillDescriptions = () => {
+    if (radarAxes && Array.isArray(radarAxes)) {
+      const descriptions = {};
+      radarAxes.forEach(axis => {
+        descriptions[axis.label] = {
+          title: axis.title,
+          description: axis.description
+        };
+      });
+      return descriptions;
+    }
+    return defaultSkillDescriptions;
+  };
+
+  const skillDescriptions = buildSkillDescriptions();
 
   // Calculate DSA level based on actual quiz responses
   const calculateDSALevel = () => {
@@ -216,7 +228,7 @@ const SkillMap = ({ currentSkills, targetRole, quizResponses, evaluationResults,
   // Calculate Backend Language proficiency from current skills
   const calculateLanguageLevel = () => {
     const backendLanguages = ['Python', 'Java', 'Node.js', 'JavaScript', 'Go', 'C++', 'Ruby', 'PHP', '.NET', 'C#'];
-    const matchedLanguages = currentSkills.filter(skill =>
+    const matchedLanguages = (currentSkills || []).filter(skill =>
       backendLanguages.some(lang => skill.toLowerCase().includes(lang.toLowerCase()))
     );
 
@@ -230,7 +242,7 @@ const SkillMap = ({ currentSkills, targetRole, quizResponses, evaluationResults,
   // Calculate SQL/Database proficiency from current skills
   const calculateDatabaseLevel = () => {
     const databaseSkills = ['SQL', 'PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Database', 'NoSQL'];
-    const matchedSkills = currentSkills.filter(skill =>
+    const matchedSkills = (currentSkills || []).filter(skill =>
       databaseSkills.some(db => skill.toLowerCase().includes(db.toLowerCase()))
     );
 
@@ -241,8 +253,14 @@ const SkillMap = ({ currentSkills, targetRole, quizResponses, evaluationResults,
     }
   };
 
-  // Get average learner baseline (differs by background)
+  // Get average learner baseline from persona props or use defaults
   const getAverageBaseline = () => {
+    if (averageBaseline && Object.keys(averageBaseline).length > 0) {
+      // Use persona-driven baseline
+      return averageBaseline;
+    }
+
+    // Fall back to hardcoded defaults by background
     if (background === 'tech') {
       return {
         dsa: 45,
@@ -264,39 +282,76 @@ const SkillMap = ({ currentSkills, targetRole, quizResponses, evaluationResults,
 
   const avgBaseline = getAverageBaseline();
 
-  // Prepare data for radar chart using actual calculations
-  const data = [
-    {
-      category: 'DSA',
-      user: calculateDSALevel(),
-      average: avgBaseline.dsa,
-      fullMark: 100,
-    },
-    {
-      category: isMobile ? 'System Des.' : 'System Design',
-      user: calculateSystemDesignLevel(),
-      average: avgBaseline.systemDesign,
-      fullMark: 100,
-    },
-    {
-      category: 'Projects',
-      user: calculateProjectsLevel(),
-      average: avgBaseline.projects,
-      fullMark: 100,
-    },
-    {
-      category: 'Languages',
-      user: calculateLanguageLevel(),
-      average: avgBaseline.language,
-      fullMark: 100,
-    },
-    {
-      category: 'Databases',
-      user: calculateDatabaseLevel(),
-      average: avgBaseline.database,
-      fullMark: 100,
-    },
-  ];
+  // Prepare data for radar chart
+  // If radarAxes provided from persona, build from those; otherwise use hardcoded fallback
+  const buildRadarData = () => {
+    if (radarAxes && Array.isArray(radarAxes) && radarAxes.length > 0) {
+      // Build from persona-driven axes
+      return radarAxes.map(axis => {
+        // Determine user skill level based on axis key
+        let userLevel = 50; // default fallback
+
+        if (axis.key === 'dsa' || axis.key.toLowerCase().includes('dsa')) {
+          userLevel = calculateDSALevel();
+        } else if (axis.key === 'systemDesign' || axis.key.toLowerCase().includes('system')) {
+          userLevel = calculateSystemDesignLevel();
+        } else if (axis.key === 'projects' || axis.key.toLowerCase().includes('project')) {
+          userLevel = calculateProjectsLevel();
+        } else if (axis.key === 'language' || axis.key.toLowerCase().includes('language')) {
+          userLevel = calculateLanguageLevel();
+        } else if (axis.key === 'database' || axis.key.toLowerCase().includes('database')) {
+          userLevel = calculateDatabaseLevel();
+        }
+
+        // Get average from baseline using axis key, fallback to 50
+        const avgKey = axis.key.toLowerCase();
+        const averageValue = avgBaseline[avgKey] || 50;
+
+        return {
+          category: axis.label,
+          user: userLevel,
+          average: averageValue,
+          fullMark: 100,
+        };
+      });
+    }
+
+    // Fall back to hardcoded defaults
+    return [
+      {
+        category: 'DSA',
+        user: calculateDSALevel(),
+        average: avgBaseline.dsa,
+        fullMark: 100,
+      },
+      {
+        category: isMobile ? 'System Des.' : 'System Design',
+        user: calculateSystemDesignLevel(),
+        average: avgBaseline.systemDesign,
+        fullMark: 100,
+      },
+      {
+        category: 'Projects',
+        user: calculateProjectsLevel(),
+        average: avgBaseline.projects,
+        fullMark: 100,
+      },
+      {
+        category: 'Languages',
+        user: calculateLanguageLevel(),
+        average: avgBaseline.language,
+        fullMark: 100,
+      },
+      {
+        category: 'Databases',
+        user: calculateDatabaseLevel(),
+        average: avgBaseline.database,
+        fullMark: 100,
+      },
+    ];
+  };
+
+  const data = buildRadarData();
 
   return (
     <ContentWrapper>
@@ -320,7 +375,7 @@ const SkillMap = ({ currentSkills, targetRole, quizResponses, evaluationResults,
                 domain={[0, 100]}
                 tick={{ fill: '#94a3b8', fontSize: 10 }}
               />
-              <Tooltip content={<CustomTooltip />} />
+              <Tooltip content={<CustomTooltip skillDescriptions={skillDescriptions} />} />
 
               {/* Average learner (dotted outline) */}
               <Radar
@@ -657,35 +712,6 @@ const TooltipDescription = styled.div`
   width: 100%;
   word-wrap: break-word;
   overflow-wrap: break-word;
-`;
-
-const TooltipStats = styled.div`
-  display: flex;
-  gap: 14px;
-  padding-top: 10px;
-  // TWEAK: Divider line between description and stats
-  // Current: 1px solid #404040 (subtle grey line)
-  // Try: #3a3a3a (darker), #505050 (lighter), or rgba(255,255,255,0.1)
-  border-top: 1px solid #404040;
-  width: 100%;
-`;
-
-const StatItem = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-`;
-
-const StatLabel = styled.div`
-  // TWEAK: Stats text font size (10/11/12/13)
-  font-size: 12px;
-  // TWEAK: Stats text color
-  // Current: #e0e0e0 (light grey for contrast)
-  // Try: #ffffff (pure white), #f0f0f0 (off-white)
-  color: #e0e0e0;
-  font-weight: 600;
-  word-wrap: break-word;
 `;
 
 export default SkillMap;

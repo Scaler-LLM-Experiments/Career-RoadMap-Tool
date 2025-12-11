@@ -1,181 +1,214 @@
 {
-  "metadata": {
+  "meta": {
     "level": "mid",
-    "yearsRange": "3-7 years",
-    "description": "Experienced professional aiming for senior role"
+    "description": "Customizations for mid-level professionals (2-5 years experience)"
   },
 
-  "hero": {
-    "greeting": "Hey {userName}! 👋",
-    "title": "Your personalized roadmap to become a Senior {role} Engineer is ready!",
-    "subtitle": "Accelerated path to the next level",
-
-    "stats": {
-      "skillsToLearn": {
-        "total": 12,
-        "description": "critical skills for the next level"
-      },
-      "estimatedEffort": {
-        "value": "12-15",
-        "unit": "hrs/week"
-      },
-      "estimatedDuration": "6-9 months"
+  "skillMap": {
+    "radarAxesConfig": {
+      "tech": [
+        {
+          "key": "dsa",
+          "label": "DSA",
+          "title": "Data Structures & Algorithms",
+          "description": "Your proficiency in solving coding problems efficiently"
+        },
+        {
+          "key": "systemDesign",
+          "label": "System Design",
+          "title": "System Design",
+          "description": "Your ability to design scalable systems"
+        },
+        {
+          "key": "projects",
+          "label": "Projects",
+          "title": "Project Experience",
+          "description": "Your hands-on experience building systems"
+        },
+        {
+          "key": "communication",
+          "label": "Comm.",
+          "title": "Communication",
+          "description": "Your ability to communicate technical ideas"
+        }
+      ],
+      "nonTech": [
+        {
+          "key": "dsa",
+          "label": "DSA",
+          "title": "Data Structures & Algorithms",
+          "description": "Your foundational coding ability"
+        },
+        {
+          "key": "systemDesign",
+          "label": "System Design",
+          "title": "System Design",
+          "description": "Your understanding of architecture"
+        },
+        {
+          "key": "projects",
+          "label": "Projects",
+          "title": "Project Experience",
+          "description": "Real-world projects you have built"
+        },
+        {
+          "key": "communication",
+          "label": "Comm.",
+          "title": "Communication",
+          "description": "Your ability to communicate ideas"
+        }
+      ]
     },
 
-    "videoUrl": "https://youtu.be/example-senior-path",
-    "videoTitle": "Message from Founder"
+    "thresholds": {
+      "dsa": {
+        "tech": {
+          "100+": 85,
+          "51-100": 65,
+          "11-50": 40,
+          "0-10": 15
+        },
+        "nonTech": {
+          "confident": 50,
+          "learning": 30,
+          "beginner": 15,
+          "complete-beginner": 5
+        }
+      },
+      "systemDesign": {
+        "tech": {
+          "100+": 80,
+          "51-100": 60,
+          "11-50": 35,
+          "0-10": 10
+        },
+        "nonTech": {
+          "confident": 60,
+          "learning": 40,
+          "beginner": 20,
+          "complete-beginner": 8
+        }
+      },
+      "projects": {
+        "tech": {
+          "100+": 90,
+          "51-100": 70,
+          "11-50": 45,
+          "0-10": 20
+        },
+        "nonTech": {
+          "confident": 60,
+          "learning": 40,
+          "beginner": 20,
+          "complete-beginner": 10
+        }
+      },
+      "communication": {
+        "tech": {
+          "100+": 75,
+          "51-100": 60,
+          "11-50": 40,
+          "0-10": 15
+        },
+        "nonTech": {
+          "confident": 70,
+          "learning": 50,
+          "beginner": 30,
+          "complete-beginner": 10
+        }
+      },
+      "averageBaseline": {
+        "tech": {
+          "dsa": 45,
+          "systemDesign": 35,
+          "projects": 50,
+          "communication": 40
+        },
+        "nonTech": {
+          "dsa": 25,
+          "systemDesign": 30,
+          "projects": 30,
+          "communication": 35
+        }
+      }
+    }
   },
 
   "learningPath": {
-    "title": "Your Learning Path",
-    "totalPhases": 3,
-    "estimatedDuration": "6-9 months",
-
     "phases": [
       {
         "phaseNumber": 1,
-        "title": "Foundation: Advanced Concepts Deep Dive",
-        "duration": "8 weeks",
-        "description": "Master the advanced fundamentals needed for senior roles",
-
-        "keyTopics": [
-          "System design at scale",
-          "Architectural patterns",
-          "Distributed systems",
-          "Performance optimization",
-          "Advanced databases"
-        ],
-
-        "learningPoints": [
+        "title": "System Design Fundamentals",
+        "duration": "4-6 weeks",
+        "whatYouLearn": [
           {
-            "title": "Scalability & Load Balancing",
-            "description": "Design systems that handle millions of concurrent users"
+            "title": "Scalability Principles",
+            "description": "Learn how to design systems that scale to millions of users"
           },
           {
-            "title": "Advanced Database Optimization",
-            "description": "Indexing strategies, query optimization, sharding, partitioning"
+            "title": "Caching Strategies",
+            "description": "Understand different caching layers and when to use them"
           },
           {
-            "title": "Distributed System Patterns",
-            "description": "CAP theorem, eventual consistency, distributed tracing"
-          },
-          {
-            "title": "Caching & Replication",
-            "description": "Redis, memcached, database replication strategies"
+            "title": "Database Optimization",
+            "description": "Advanced query optimization, indexing, and partitioning"
           }
         ],
-
-        "learningVideoUrl": "https://www.youtube.com/embed/example",
-        "videoPosition": "right",
-
-        "target": {
-          "metric": "10+ Architecture Designs",
-          "description": "Design popular systems like Netflix, Twitter, Uber at scale"
-        },
-
+        "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "target": "Design a system for 10M users",
         "whyItMatters": [
-          "Mandatory skill for senior technical interviews",
-          "Shows architectural thinking",
-          "Required for senior role responsibilities",
-          "Differentiates senior from mid-level engineers"
+          "Differentiates mid-level from junior engineers",
+          "Critical skill for promotions and interviews"
         ]
       },
-
       {
         "phaseNumber": 2,
-        "title": "Specialization: Mastering Your Domain",
-        "duration": "6 weeks",
-        "description": "Deep dive into role-specific advanced topics",
-
-        "keyTopics": [
-          "Role-specific advanced patterns",
-          "Production challenges",
-          "Scalability patterns",
-          "Testing at scale",
-          "Monitoring & observability"
-        ],
-
-        "learningPoints": [
+        "title": "Microservices & Distributed Systems",
+        "duration": "6-8 weeks",
+        "whatYouLearn": [
           {
-            "title": "Advanced Patterns",
-            "description": "Microservices, event sourcing, CQRS, saga patterns"
+            "title": "Service Communication",
+            "description": "REST, gRPC, message queues for inter-service communication"
           },
           {
-            "title": "Production Systems",
-            "description": "Debugging production issues, monitoring, alerting"
+            "title": "API Gateway Pattern",
+            "description": "Routing, rate limiting, authentication at the gateway level"
           },
           {
-            "title": "Reliability & Resilience",
-            "description": "Circuit breakers, retry logic, graceful degradation"
-          },
-          {
-            "title": "Testing Strategies",
-            "description": "Integration testing, performance testing, chaos engineering"
+            "title": "Distributed Tracing",
+            "description": "Debugging and monitoring distributed systems"
           }
         ],
-
-        "learningVideoUrl": "https://www.youtube.com/embed/example",
-        "videoPosition": "left",
-
-        "target": {
-          "metric": "5+ Production Projects",
-          "description": "Build and deploy progressively complex systems at scale"
-        },
-
+        "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "target": "Design a microservices architecture",
         "whyItMatters": [
-          "Required for handling real production systems",
-          "Senior engineers spend most time here",
-          "Shows practical experience",
-          "Demonstrates maturity and responsibility"
+          "Essential for modern backend engineering",
+          "Required for big tech companies"
         ]
       },
-
       {
         "phaseNumber": 3,
-        "title": "Mastery: Interview Prep & Leadership",
-        "duration": "4-6 weeks",
-        "description": "Polish your skills and prepare for senior-level interviews",
-
-        "keyTopics": [
-          "Real-world case studies",
-          "Trade-off analysis",
-          "Cost optimization",
-          "Leadership skills",
-          "Behavioral preparation"
-        ],
-
-        "learningPoints": [
+        "title": "Advanced Topics & Leadership",
+        "duration": "8-10 weeks",
+        "whatYouLearn": [
           {
-            "title": "Case Study Analysis",
-            "description": "Study real systems: Google, Amazon, Netflix, Uber"
+            "title": "Advanced Database Topics",
+            "description": "ACID properties, CAP theorem, consistency models"
           },
           {
-            "title": "Trade-off Thinking",
-            "description": "Master the art of making architectural trade-offs"
+            "title": "Performance Optimization",
+            "description": "Profiling, bottleneck identification, optimization techniques"
           },
           {
-            "title": "Cost Optimization",
-            "description": "Optimize for latency, throughput, cost"
-          },
-          {
-            "title": "Communication Skills",
-            "description": "Explain complex designs clearly to interviewers"
+            "title": "Team Growth & Mentoring",
+            "description": "Code reviews, architectural discussions, mentoring juniors"
           }
         ],
-
-        "learningVideoUrl": "https://www.youtube.com/embed/example",
-        "videoPosition": "right",
-
-        "target": {
-          "metric": "3-5 Mock Interviews",
-          "description": "Complete mock interviews at senior level from target companies"
-        },
-
+        "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "target": "Lead a major system redesign",
         "whyItMatters": [
-          "Proves you're production-ready at senior level",
-          "Interview conversation starters",
-          "Validates technical expertise",
-          "Showcases end-to-end capability"
+          "Path to senior engineering roles",
+          "Develop leadership skills"
         ]
       }
     ]

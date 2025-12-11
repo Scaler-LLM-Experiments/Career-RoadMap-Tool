@@ -88,12 +88,12 @@
         "description": "critical skills you need to master"
       },
       "estimatedEffort": {
-        "value": "{hoursPerWeek}",
+        "value": "11",
         "unit": "hrs/week"
       },
       "timeline": "{estimatedTimeline}"
     },
-    "videoUrl": "PLACEHOLDER_FRONTEND_FOUNDER_VIDEO",
+    "videoUrl": "jNQXAC9IVRw",
     "videoNotes": "Get personal insights from someone who's been there"
   },
   "skillsGap": {
@@ -135,23 +135,7 @@
           "JavaScript ES6+, async/await, closures",
           "DOM manipulation and events",
           "Browser APIs and performance",
-          "Data Structures for coding interviews",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Data Structures for coding interviews"
         ],
         "resources": [
           {
@@ -191,23 +175,7 @@
           "React hooks and component lifecycle",
           "State management patterns",
           "Performance optimization (memoization, code splitting)",
-          "Testing React components",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Testing React components"
         ],
         "resources": [
           {
@@ -247,23 +215,7 @@
           "Web performance and metrics (Core Web Vitals)",
           "Accessibility (a11y) and inclusive design",
           "Design systems and component architecture",
-          "Frontend system design",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Frontend system design"
         ],
         "resources": [
           {
@@ -303,23 +255,7 @@
           "Coding interviews (DSA questions in JavaScript)",
           "System design interviews (frontend focus)",
           "Behavioral preparation",
-          "Portfolio and projects showcase",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Portfolio and projects showcase"
         ],
         "resources": [
           {
@@ -363,23 +299,7 @@
           "speed",
           "learning",
           "impact",
-          "full-stack",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "full-stack"
         ],
         "interviewFocus": [
           "Practical skills",
@@ -395,23 +315,7 @@
           "performance",
           "system_design",
           "optimization",
-          "scalability",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "scalability"
         ],
         "interviewFocus": [
           "Web performance",
@@ -427,23 +331,7 @@
           "interviews",
           "fundamentals",
           "algorithms",
-          "best_practices",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "best_practices"
         ],
         "interviewFocus": [
           "Hard coding problems",
@@ -484,23 +372,7 @@
           "Be ready to explain your current projects concisely",
           "Review basic JavaScript concepts (closures, async/await, prototypes)",
           "Practice explaining your thought process clearly",
-          "Have 2-3 projects ready to talk about in detail",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Have 2-3 projects ready to talk about in detail"
         ],
         "commonTopics": [
           "JavaScript fundamentals",
@@ -520,23 +392,7 @@
           "Code on a shared editor (like CoderPad, not your IDE)",
           "Talk through your approach before coding",
           "Test your code with edge cases",
-          "Optimize for both time and space complexity",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Optimize for both time and space complexity"
         ],
         "commonTopics": [
           "Array and string manipulation",
@@ -557,23 +413,7 @@
           "Handle edge cases: empty states, loading, error states",
           "Implement proper performance optimization patterns",
           "Test your component thoroughly",
-          "Be ready to discuss trade-offs in your design",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Be ready to discuss trade-offs in your design"
         ],
         "commonTopics": [
           "React hooks (useState, useEffect, useCallback, useMemo)",
@@ -594,23 +434,7 @@
           "Think about state management, scalability, and performance",
           "Discuss trade-offs (e.g., bundle size vs. features)",
           "Consider user experience and accessibility",
-          "Suggest optimization strategies and monitoring",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Suggest optimization strategies and monitoring"
         ],
         "commonTopics": [
           "Scalable component architecture",
@@ -631,23 +455,7 @@
           "Have examples of collaboration, conflict resolution, learning",
           "Ask thoughtful questions about the team and role",
           "Be authentic and show genuine interest",
-          "Practice articulating your values and working style",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Practice articulating your values and working style"
         ],
         "commonTopics": [
           "Tell us about a challenging project you worked on",
@@ -655,22 +463,6 @@
           "Describe your approach to learning new technologies",
           "How do you collaborate with designers and product managers?",
           "What interests you about our company?"
-        ]
-      },
-      {
-        "name": "Service & Enterprise Companies",
-        "key": "service",
-        "description": "Delivery-focused, client satisfaction, proven processes",
-        "emphasis": [
-          "quality",
-          "delivery",
-          "process",
-          "client_focus"
-        ],
-        "interviewFocus": [
-          "Practical problem-solving",
-          "Communication",
-          "Project delivery"
         ]
       }
     ],
@@ -701,23 +493,7 @@
               "React",
               "Hooks (useState, useEffect)",
               "CSS/styled-components",
-              "LocalStorage",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "LocalStorage"
             ],
             "timeToComplete": "1-2 weeks",
             "keyFeatures": [
@@ -725,23 +501,7 @@
               "Filter by status (All, Active, Completed)",
               "Persist data to localStorage",
               "Responsive design",
-              "Clean component structure",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Clean component structure"
             ],
             "githubTip": "Include proper README, commit messages, and code comments"
           },
@@ -753,23 +513,7 @@
               "React",
               "OpenWeatherMap API",
               "Axios/Fetch",
-              "CSS Grid/Flexbox",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "CSS Grid/Flexbox"
             ],
             "timeToComplete": "2-3 weeks",
             "keyFeatures": [
@@ -777,23 +521,7 @@
               "Display current weather and 5-day forecast",
               "Show weather icons and animations",
               "Error handling for invalid cities",
-              "Responsive and visually appealing design",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Responsive and visually appealing design"
             ],
             "githubTip": "Add loading states, error handling, and make it look polished"
           },
@@ -805,23 +533,7 @@
               "React",
               "CSS",
               "React Router",
-              "Unsplash API (free tier)",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Unsplash API (free tier)"
             ],
             "timeToComplete": "2-3 weeks",
             "keyFeatures": [
@@ -829,23 +541,7 @@
               "Filter by category/tags",
               "Lightbox view with navigation",
               "Lazy loading for images",
-              "Responsive grid layout",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Responsive grid layout"
             ],
             "githubTip": "Focus on clean code and user experience"
           }
@@ -863,23 +559,7 @@
               "React",
               "WebSockets (Socket.io)",
               "Redux/Context API",
-              "Node.js backend",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Node.js backend"
             ],
             "timeToComplete": "3-4 weeks",
             "keyFeatures": [
@@ -888,23 +568,7 @@
               "Multiple chat rooms",
               "Online user list",
               "Message history",
-              "Typing indicators",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Typing indicators"
             ],
             "githubTip": "Show how you handle state updates and performance optimization"
           },
@@ -916,23 +580,7 @@
               "React",
               "Redux/Zustand",
               "CSS-in-JS",
-              "REST API",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "REST API"
             ],
             "timeToComplete": "3-4 weeks",
             "keyFeatures": [
@@ -941,23 +589,7 @@
               "Pagination and infinite scroll",
               "Search with debounce",
               "Product detail modal",
-              "Add to cart functionality",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Add to cart functionality"
             ],
             "githubTip": "Implement debouncing, memoization, and efficient re-rendering"
           },
@@ -969,23 +601,7 @@
               "React",
               "Intersection Observer API",
               "CSS animations",
-              "Backend API",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Backend API"
             ],
             "timeToComplete": "3-4 weeks",
             "keyFeatures": [
@@ -994,23 +610,7 @@
               "User profiles",
               "Feed caching",
               "Loading skeletons",
-              "Smooth animations",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Smooth animations"
             ],
             "githubTip": "Focus on performance - avoid re-rendering entire feed on updates"
           }
@@ -1028,23 +628,7 @@
               "React",
               "WebSockets",
               "Operational Transformation / CRDT",
-              "Node.js + MongoDB",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Node.js + MongoDB"
             ],
             "timeToComplete": "5-6 weeks",
             "keyFeatures": [
@@ -1053,23 +637,7 @@
               "Conflict resolution",
               "Rich text editing",
               "Version history",
-              "Shared permissions",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Shared permissions"
             ],
             "githubTip": "Show deep understanding of real-time data synchronization"
           },
@@ -1082,23 +650,7 @@
               "D3.js/Recharts",
               "Redux",
               "WebSockets",
-              "React Virtualization",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "React Virtualization"
             ],
             "timeToComplete": "4-5 weeks",
             "keyFeatures": [
@@ -1107,23 +659,7 @@
               "Customizable widgets",
               "Responsive grid layout",
               "Performance monitoring",
-              "Efficient re-rendering with memoization",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Efficient re-rendering with memoization"
             ],
             "githubTip": "Include performance metrics showing optimization techniques used"
           },
@@ -1136,23 +672,7 @@
               "Redux/MobX",
               "React Router",
               "Styled Components",
-              "Node.js backend",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Node.js backend"
             ],
             "timeToComplete": "5-6 weeks",
             "keyFeatures": [
@@ -1162,23 +682,7 @@
               "Form validation and handling",
               "Error boundaries and error handling",
               "Code splitting and lazy loading",
-              "Comprehensive unit and integration tests",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Comprehensive unit and integration tests"
             ],
             "githubTip": "Show architectural decisions, scalability considerations, and testing coverage"
           }
@@ -1191,16 +695,20 @@
     "description": "Key milestones before applying to your target role",
     "indicators": [
       {
-        "indicator": "Can solve medium DSA problems in JavaScript",
-        "importance": "high"
+        "indicator": "Master React and modern JavaScript",
+        "importance": "critical"
       },
       {
-        "indicator": "Build production-ready React components",
+        "indicator": "Build complex UI components with proper state management",
         "importance": "critical"
       },
       {
         "indicator": "Understand web performance and optimization",
         "importance": "critical"
+      },
+      {
+        "indicator": "Can solve medium DSA problems in JavaScript",
+        "importance": "high"
       },
       {
         "indicator": "Have 3+ quality projects in portfolio",
@@ -1211,5 +719,245 @@
         "importance": "high"
       }
     ]
+  },
+  "skillMap": {
+    "title": "Your Skill Map",
+    "description": "Compare your skills against the average Frontend Engineer",
+    "radarAxes": [
+      {
+        "key": "dsa",
+        "label": "DSA",
+        "title": "Data Structures & Algorithms",
+        "description": "Your proficiency in solving coding problems using efficient data structures and algorithmic thinking. Essential for technical interviews and problem-solving."
+      },
+      {
+        "key": "componentArchitecture",
+        "label": "Component Architecture",
+        "labelMobile": "Components",
+        "title": "Component Architecture",
+        "description": "Your ability to design and build scalable React/Vue components, manage state effectively, and create maintainable component hierarchies. Critical for frontend engineering."
+      },
+      {
+        "key": "projects",
+        "label": "Projects",
+        "title": "Project Experience",
+        "description": "Your hands-on experience building real-world frontend projects. Demonstrates practical knowledge of web development and UI implementation."
+      },
+      {
+        "key": "languages",
+        "label": "Languages",
+        "title": "JavaScript/TypeScript",
+        "description": "Your mastery of JavaScript and TypeScript, including ES6+, async/await, type systems, and modern language features. The foundation of frontend development."
+      },
+      {
+        "key": "cssStyling",
+        "label": "CSS/Styling",
+        "title": "CSS & UI Styling",
+        "description": "Your proficiency in CSS, responsive design, Flexbox, Grid, animations, and CSS-in-JS. Essential for creating visually polished and performant UIs."
+      }
+    ],
+    "thresholds": {
+      "dsa": {
+        "tech": {
+          "100+": 85,
+          "51-100": 65,
+          "11-50": 40,
+          "0-10": 15
+        },
+        "nonTech": {
+          "confident": 50,
+          "learning": 30,
+          "beginner": 15,
+          "complete-beginner": 5
+        }
+      },
+      "componentArchitecture": {
+        "tech": {
+          "multiple": 80,
+          "once": 55,
+          "learning": 30,
+          "not-yet": 10
+        },
+        "nonTech": {
+          "default": 10
+        }
+      },
+      "projects": {
+        "tech": {
+          "active-5+": 80,
+          "limited-1-5": 50,
+          "inactive": 25,
+          "none": 10
+        },
+        "nonTech": {
+          "built-projects": 40,
+          "completed-course": 25,
+          "bootcamp": 30,
+          "self-learning": 20,
+          "just-exploring": 5
+        }
+      },
+      "cssStyling": {
+        "tech": {
+          "advanced": 80,
+          "intermediate": 55,
+          "basic": 30,
+          "none": 10
+        },
+        "nonTech": {
+          "advanced": 40,
+          "intermediate": 25,
+          "basic": 10,
+          "none": 5
+        }
+      },
+      "fundamentals": {
+        "nonTech": {
+          "bootcamp": 65,
+          "completed-course": 50,
+          "built-projects": 60,
+          "self-learning": 35,
+          "just-exploring": 15
+        }
+      },
+      "averageBaseline": {
+        "tech": {
+          "dsa": 45,
+          "componentArchitecture": 40,
+          "projects": 50,
+          "languages": 60,
+          "cssStyling": 55
+        },
+        "nonTech": {
+          "dsa": 20,
+          "fundamentals": 25,
+          "projects": 25,
+          "languages": 30,
+          "cssStyling": 30
+        }
+      }
+    },
+    "applicableSkills": {
+      "languages": {
+        "list": [
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "Vue.js",
+          "Angular",
+          "HTML",
+          "CSS",
+          "Node.js",
+          "Python",
+          "Go"
+        ],
+        "multiplier": {
+          "tech": 35,
+          "nonTech": 25
+        }
+      },
+      "cssStyling": {
+        "list": [
+          "CSS",
+          "Tailwind",
+          "Bootstrap",
+          "Styled Components",
+          "CSS-in-JS",
+          "SCSS",
+          "Flexbox",
+          "Grid",
+          "Responsive",
+          "Animation"
+        ],
+        "multiplier": {
+          "tech": 30,
+          "nonTech": 20
+        }
+      }
+    },
+    "averageBaseline": {
+      "tech": {
+        "dsa": 40,
+        "componentArchitecture": 50,
+        "projects": 55,
+        "languages": 65,
+        "cssStyling": 55
+      },
+      "nonTech": {
+        "dsa": 15,
+        "componentArchitecture": 20,
+        "projects": 30,
+        "languages": 35,
+        "cssStyling": 25
+      }
+    },
+    "radarAxesConfig": {
+      "tech": [
+        {
+          "key": "dsa",
+          "label": "DSA",
+          "title": "Data Structures & Algorithms",
+          "description": "Your proficiency in solving coding problems using efficient data structures and algorithmic thinking. Essential for technical interviews and problem-solving."
+        },
+        {
+          "key": "componentArchitecture",
+          "label": "Component Architecture",
+          "labelMobile": "Components",
+          "title": "Component Architecture",
+          "description": "Your ability to design and build scalable React/Vue components, manage state effectively, and create maintainable component hierarchies. Critical for frontend engineering."
+        },
+        {
+          "key": "projects",
+          "label": "Projects",
+          "title": "Project Experience",
+          "description": "Your hands-on experience building real-world frontend projects. Demonstrates practical knowledge of web development and UI implementation."
+        },
+        {
+          "key": "languages",
+          "label": "Languages",
+          "title": "JavaScript/TypeScript",
+          "description": "Your mastery of JavaScript and TypeScript, including ES6+, async/await, type systems, and modern language features. The foundation of frontend development."
+        },
+        {
+          "key": "cssStyling",
+          "label": "CSS/Styling",
+          "title": "CSS & UI Styling",
+          "description": "Your proficiency in CSS, responsive design, Flexbox, Grid, animations, and CSS-in-JS. Essential for creating visually polished and performant UIs."
+        }
+      ],
+      "nonTech": [
+        {
+          "key": "dsa",
+          "label": "DSA",
+          "title": "Data Structures & Algorithms",
+          "description": "Your foundational coding ability. Understanding how to solve problems with efficient structures and logic."
+        },
+        {
+          "key": "fundamentals",
+          "label": "Fundamentals",
+          "labelMobile": "Fund.",
+          "title": "Frontend Fundamentals",
+          "description": "Your grasp of core frontend concepts like HTML, CSS, JavaScript, and DOM manipulation. Foundation for career growth."
+        },
+        {
+          "key": "projects",
+          "label": "Projects",
+          "title": "Project Experience",
+          "description": "Real-world projects you've built. Shows practical application of concepts and portfolio strength."
+        },
+        {
+          "key": "languages",
+          "label": "Languages",
+          "title": "JavaScript/TypeScript",
+          "description": "Your proficiency in JavaScript and TypeScript for frontend development."
+        },
+        {
+          "key": "cssStyling",
+          "label": "CSS/Styling",
+          "title": "CSS & UI Styling",
+          "description": "Your knowledge of CSS and styling techniques for creating visually appealing interfaces."
+        }
+      ]
+    }
   }
 }

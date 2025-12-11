@@ -7,62 +7,74 @@
       {
         "name": "Linux & Command Line",
         "category": "fundamentals",
-        "priority": "critical"
+        "priority": "critical",
+        "description": "System administration, shell commands, file systems, process management"
       },
       {
         "name": "Networking & TCP/IP",
         "category": "fundamentals",
-        "priority": "critical"
+        "priority": "critical",
+        "description": "OSI model, DNS, load balancing, firewalls, network troubleshooting"
       },
       {
         "name": "Docker & Containerization",
         "category": "devops",
-        "priority": "critical"
+        "priority": "critical",
+        "description": "Container creation, multi-stage builds, volumes, networking, best practices"
       },
       {
         "name": "Kubernetes Orchestration",
         "category": "devops",
-        "priority": "critical"
+        "priority": "critical",
+        "description": "Container orchestration, cluster management, scaling strategies, deployments"
       },
       {
         "name": "Cloud Platforms (AWS/GCP/Azure)",
         "category": "infrastructure",
-        "priority": "high"
+        "priority": "high",
+        "description": "Cloud services, compute, storage, networking, cost optimization"
       },
       {
         "name": "Infrastructure as Code",
         "category": "devops",
-        "priority": "high"
+        "priority": "high",
+        "description": "Terraform, CloudFormation, declarative infrastructure, state management"
       },
       {
         "name": "CI/CD Pipelines",
         "category": "devops",
-        "priority": "high"
+        "priority": "high",
+        "description": "Jenkins, GitHub Actions, automated testing, deployment automation"
       },
       {
         "name": "Monitoring & Observability",
         "category": "operations",
-        "priority": "high"
+        "priority": "high",
+        "description": "Prometheus, Grafana, ELK stack, metrics, logging, alerting"
       },
       {
         "name": "Security & Access Control",
         "category": "security",
-        "priority": "high"
+        "priority": "high",
+        "description": "RBAC, secrets management, SSL/TLS, security hardening, compliance"
       },
       {
         "name": "Database Administration",
         "category": "database",
-        "priority": "medium"
+        "priority": "medium",
+        "description": "Database backups, replication, performance tuning, high availability"
       },
       {
         "name": "Scripting (Bash, Python)",
         "category": "fundamentals",
-        "priority": "high"
+        "priority": "high",
+        "description": "Automation scripts, system utilities, API integrations, task scheduling"
       },
       {
         "name": "Problem Solving & System Design",
         "category": "architecture",
-        "priority": "high"
+        "priority": "high",
+        "description": "Infrastructure design, scalability, reliability, disaster recovery"
       }
     ]
   },
@@ -76,16 +88,38 @@
         "description": "critical skills you need to master"
       },
       "estimatedEffort": {
-        "value": "{hoursPerWeek}",
+        "value": "13",
         "unit": "hrs/week"
       },
       "timeline": "{estimatedTimeline}"
     },
-    "videoUrl": "PLACEHOLDER_DEVOPS_FOUNDER_VIDEO"
+    "videoUrl": "DLzxrzFCyEo",
+    "videoNotes": "Get personal insights from someone who's been there"
   },
   "skillsGap": {
     "title": "Understand Where You Stand Right Now",
-    "description": "See what you already know and what you need to master to reach your goal."
+    "description": "See what you already know and what you need to master to reach your goal.",
+    "sections": {
+      "currentSkills": {
+        "title": "Skills You Already Have",
+        "description": "These are your strengths - keep them sharp"
+      },
+      "highPriority": {
+        "title": "Critical Skills to Master",
+        "description": "These are absolute must-haves for the next level",
+        "priority": "critical"
+      },
+      "mediumPriority": {
+        "title": "Important Skills to Build",
+        "description": "These will make you significantly more competitive",
+        "priority": "high"
+      },
+      "lowPriority": {
+        "title": "Nice-to-Have Skills",
+        "description": "Add these after mastering critical ones",
+        "priority": "medium"
+      }
+    }
   },
   "learningPath": {
     "title": "Your Personalized Learning Path",
@@ -101,23 +135,7 @@
           "Linux OS",
           "Networking basics",
           "Command line tools",
-          "SSH & security",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "SSH & security"
         ],
         "resources": [
           {
@@ -157,23 +175,7 @@
           "Docker fundamentals",
           "Kubernetes deep dive",
           "Helm",
-          "Container security",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Container security"
         ],
         "resources": [
           {
@@ -213,23 +215,7 @@
           "Cloud platforms (AWS/GCP)",
           "Terraform & IaC",
           "Deployment automation",
-          "Cost optimization",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Cost optimization"
         ],
         "resources": [
           {
@@ -269,23 +255,7 @@
           "System design",
           "Problem solving",
           "Behavioral prep",
-          "Portfolio projects",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Portfolio projects"
         ],
         "resources": [
           {
@@ -319,6 +289,7 @@
   },
   "companiesInsight": {
     "title": "What Different Companies Expect",
+    "description": "Different company types have different interview processes and value propositions. Here's what to expect at each type.",
     "tabs": [
       {
         "name": "High Growth Startups",
@@ -329,6 +300,11 @@
           "learning",
           "impact",
           "speed"
+        ],
+        "interviewFocus": [
+          "Speed and MVP thinking",
+          "Adaptability",
+          "Growth hacking mindset"
         ]
       },
       {
@@ -340,6 +316,11 @@
           "scaling",
           "security",
           "performance"
+        ],
+        "interviewFocus": [
+          "Balancing speed with quality",
+          "Cross-functional collaboration",
+          "Scalability thinking"
         ]
       },
       {
@@ -351,6 +332,11 @@
           "reliability",
           "security",
           "best_practices"
+        ],
+        "interviewFocus": [
+          "System design and scalability",
+          "Code quality and efficiency",
+          "Architectural decisions"
         ]
       },
       {
@@ -386,23 +372,7 @@
           "Be ready to discuss your infrastructure projects",
           "Explain your Linux and containerization experience",
           "Show understanding of DevOps principles",
-          "Ask about their infrastructure stack",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Ask about their infrastructure stack"
         ],
         "commonTopics": [
           "Your DevOps and infrastructure experience",
@@ -422,23 +392,7 @@
           "Practice bash and Python scripting",
           "Understand file systems, permissions, and processes",
           "Know troubleshooting and debugging commands",
-          "Show problem-solving approach",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Show problem-solving approach"
         ],
         "commonTopics": [
           "Linux system administration",
@@ -459,23 +413,7 @@
           "Design end-to-end infrastructure",
           "Discuss containerization and orchestration",
           "Consider high availability and disaster recovery",
-          "Show awareness of cost and security",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Show awareness of cost and security"
         ],
         "commonTopics": [
           "Microservices infrastructure design",
@@ -496,23 +434,7 @@
           "Show experience with CI/CD tools",
           "Discuss configuration management approaches",
           "Explain your approach to infrastructure reliability",
-          "Show understanding of monitoring and observability",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Show understanding of monitoring and observability"
         ],
         "commonTopics": [
           "Terraform / CloudFormation",
@@ -533,23 +455,7 @@
           "Have examples of improving reliability or performance",
           "Show how you communicate with engineers",
           "Discuss on-call experience and incident response",
-          "Be authentic about your growth in DevOps",
-          {
-            "name": "Service & Enterprise Companies",
-            "key": "service",
-            "description": "Delivery-focused, client satisfaction, proven processes",
-            "emphasis": [
-              "quality",
-              "delivery",
-              "process",
-              "client_focus"
-            ],
-            "interviewFocus": [
-              "Practical problem-solving",
-              "Communication",
-              "Project delivery"
-            ]
-          }
+          "Be authentic about your growth in DevOps"
         ],
         "commonTopics": [
           "Tell us about a production incident and how you resolved it",
@@ -557,22 +463,6 @@
           "Experience with on-call rotations",
           "Your approach to monitoring and alerting",
           "How you collaborate with engineering teams"
-        ]
-      },
-      {
-        "name": "Service & Enterprise Companies",
-        "key": "service",
-        "description": "Delivery-focused, client satisfaction, proven processes",
-        "emphasis": [
-          "quality",
-          "delivery",
-          "process",
-          "client_focus"
-        ],
-        "interviewFocus": [
-          "Practical problem-solving",
-          "Communication",
-          "Project delivery"
         ]
       }
     ],
@@ -601,23 +491,7 @@
             "whyValuable": "Shows foundational Docker and containerization knowledge",
             "techStack": [
               "Docker",
-              "Docker Compose",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Docker Compose"
             ],
             "timeToComplete": "1-2 weeks",
             "keyFeatures": [
@@ -634,23 +508,7 @@
             "techStack": [
               "Kubernetes",
               "Docker",
-              "kubectl",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "kubectl"
             ],
             "timeToComplete": "2-3 weeks",
             "keyFeatures": [
@@ -667,23 +525,7 @@
             "techStack": [
               "GitHub Actions/Jenkins",
               "Docker",
-              "Git",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Git"
             ],
             "timeToComplete": "2-3 weeks",
             "keyFeatures": [
@@ -707,23 +549,7 @@
               "Terraform",
               "AWS/GCP",
               "Docker",
-              "Kubernetes",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Kubernetes"
             ],
             "timeToComplete": "3-4 weeks",
             "keyFeatures": [
@@ -741,23 +567,7 @@
               "Prometheus",
               "ELK Stack/Datadog",
               "Grafana",
-              "Kubernetes",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Kubernetes"
             ],
             "timeToComplete": "3-4 weeks",
             "keyFeatures": [
@@ -775,23 +585,7 @@
               "Terraform",
               "Jenkins/GitHub Actions",
               "Docker",
-              "AWS/GCP",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "AWS/GCP"
             ],
             "timeToComplete": "3-4 weeks",
             "keyFeatures": [
@@ -815,23 +609,7 @@
               "Kubernetes",
               "Helm",
               "Cloud platforms",
-              "Networking & Security",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "Networking & Security"
             ],
             "timeToComplete": "5-6 weeks",
             "keyFeatures": [
@@ -850,23 +628,7 @@
               "Terraform",
               "Cloud platforms",
               "Load balancing",
-              "DNS & Routing",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "DNS & Routing"
             ],
             "timeToComplete": "5-6 weeks",
             "keyFeatures": [
@@ -885,23 +647,7 @@
               "Terraform",
               "CI/CD system",
               "Monitoring",
-              "IaC",
-              {
-                "name": "Service & Enterprise Companies",
-                "key": "service",
-                "description": "Delivery-focused, client satisfaction, proven processes",
-                "emphasis": [
-                  "quality",
-                  "delivery",
-                  "process",
-                  "client_focus"
-                ],
-                "interviewFocus": [
-                  "Practical problem-solving",
-                  "Communication",
-                  "Project delivery"
-                ]
-              }
+              "IaC"
             ],
             "timeToComplete": "6-8 weeks",
             "keyFeatures": [
@@ -916,5 +662,275 @@
         ]
       }
     ]
+  },
+  "successIndicators": {
+    "title": "How to Know You're Ready",
+    "description": "Key milestones before applying to your target role",
+    "indicators": [
+      {
+        "indicator": "Infrastructure automation mastery",
+        "importance": "critical"
+      },
+      {
+        "indicator": "System reliability and scaling",
+        "importance": "critical"
+      },
+      {
+        "indicator": "DevOps tooling expertise",
+        "importance": "critical"
+      },
+      {
+        "indicator": "Deep Linux and container knowledge",
+        "importance": "high"
+      },
+      {
+        "indicator": "Have 2-3 infrastructure projects in portfolio",
+        "importance": "high"
+      },
+      {
+        "indicator": "Can design production-grade infrastructure",
+        "importance": "high"
+      }
+    ]
+  },
+  "skillMap": {
+    "title": "Your Skill Map",
+    "description": "Compare your skills against the average DevOps Engineer",
+    "radarAxes": [
+      {
+        "key": "dsa",
+        "label": "DSA",
+        "title": "Problem-Solving & Scripting",
+        "description": "Your ability to solve problems through scripting and automation. Important for DevOps automation and interviews."
+      },
+      {
+        "key": "infrastructureDesign",
+        "label": "Infrastructure Design",
+        "labelMobile": "Infrastructure",
+        "title": "Infrastructure & Cloud Design",
+        "description": "Your ability to design scalable, reliable infrastructure on cloud platforms. Critical for production systems at scale."
+      },
+      {
+        "key": "projects",
+        "label": "Projects",
+        "title": "Project Experience",
+        "description": "Your hands-on experience managing infrastructure and deployments. Demonstrates practical DevOps knowledge."
+      },
+      {
+        "key": "languages",
+        "label": "Languages",
+        "title": "Scripting Languages",
+        "description": "Your proficiency in Bash, Python, Go, and other scripting languages. The foundation of DevOps automation."
+      },
+      {
+        "key": "monitoring",
+        "label": "Monitoring",
+        "title": "Monitoring & Observability",
+        "description": "Your knowledge of logging, metrics, tracing, and alerting. Essential for maintaining system reliability."
+      }
+    ],
+    "thresholds": {
+      "dsa": {
+        "tech": {
+          "100+": 85,
+          "51-100": 65,
+          "11-50": 40,
+          "0-10": 15
+        },
+        "nonTech": {
+          "confident": 50,
+          "learning": 30,
+          "beginner": 15,
+          "complete-beginner": 5
+        }
+      },
+      "infrastructureDesign": {
+        "tech": {
+          "multiple": 80,
+          "once": 55,
+          "learning": 30,
+          "not-yet": 10
+        },
+        "nonTech": {
+          "default": 10
+        }
+      },
+      "projects": {
+        "tech": {
+          "active-5+": 80,
+          "limited-1-5": 50,
+          "inactive": 25,
+          "none": 10
+        },
+        "nonTech": {
+          "built-projects": 40,
+          "completed-course": 25,
+          "bootcamp": 30,
+          "self-learning": 20,
+          "just-exploring": 5
+        }
+      },
+      "monitoring": {
+        "tech": {
+          "advanced": 80,
+          "intermediate": 55,
+          "basic": 30,
+          "none": 10
+        },
+        "nonTech": {
+          "advanced": 40,
+          "intermediate": 25,
+          "basic": 10,
+          "none": 5
+        }
+      },
+      "fundamentals": {
+        "nonTech": {
+          "bootcamp": 65,
+          "completed-course": 50,
+          "built-projects": 60,
+          "self-learning": 35,
+          "just-exploring": 15
+        }
+      },
+      "averageBaseline": {
+        "tech": {
+          "dsa": 40,
+          "infrastructureDesign": 35,
+          "projects": 45,
+          "languages": 50,
+          "cloudPlatforms": 55
+        },
+        "nonTech": {
+          "dsa": 15,
+          "fundamentals": 20,
+          "projects": 20,
+          "languages": 25,
+          "cloudPlatforms": 30
+        }
+      }
+    },
+    "applicableSkills": {
+      "languages": {
+        "list": [
+          "Bash",
+          "Python",
+          "Go",
+          "JavaScript",
+          "Ruby",
+          "Rust",
+          "Java",
+          "PHP",
+          "Node.js",
+          "PowerShell"
+        ],
+        "multiplier": {
+          "tech": 35,
+          "nonTech": 25
+        }
+      },
+      "monitoring": {
+        "list": [
+          "Prometheus",
+          "Grafana",
+          "ELK",
+          "DataDog",
+          "New Relic",
+          "CloudWatch",
+          "Splunk",
+          "Jaeger",
+          "InfluxDB",
+          "Alerting"
+        ],
+        "multiplier": {
+          "tech": 30,
+          "nonTech": 20
+        }
+      }
+    },
+    "averageBaseline": {
+      "tech": {
+        "dsa": 35,
+        "infrastructureDesign": 45,
+        "projects": 45,
+        "languages": 55,
+        "monitoring": 50
+      },
+      "nonTech": {
+        "dsa": 12,
+        "infrastructureDesign": 15,
+        "projects": 20,
+        "languages": 25,
+        "monitoring": 20
+      }
+    },
+    "radarAxesConfig": {
+      "tech": [
+        {
+          "key": "dsa",
+          "label": "DSA",
+          "title": "Data Structures & Algorithms",
+          "description": "Your proficiency in solving coding problems and scripting. Important for automation and DevOps tooling."
+        },
+        {
+          "key": "infrastructureDesign",
+          "label": "Infrastructure Design",
+          "labelMobile": "Infra Des.",
+          "title": "Infrastructure Design",
+          "description": "Your ability to design scalable cloud infrastructure, CI/CD pipelines, and deployment architectures. Critical for DevOps roles."
+        },
+        {
+          "key": "projects",
+          "label": "Projects",
+          "title": "Project Experience",
+          "description": "Your hands-on experience building real-world infrastructure and automation projects. Demonstrates practical DevOps knowledge."
+        },
+        {
+          "key": "languages",
+          "label": "Languages",
+          "title": "DevOps Languages",
+          "description": "Your proficiency in scripting and programming languages like Python, Go, Bash, etc. Essential for automation."
+        },
+        {
+          "key": "cloudPlatforms",
+          "label": "Cloud Platforms",
+          "title": "Cloud & Container Platforms",
+          "description": "Your knowledge of AWS, GCP, Azure, Docker, Kubernetes, and cloud infrastructure. Fundamental for modern DevOps."
+        }
+      ],
+      "nonTech": [
+        {
+          "key": "dsa",
+          "label": "DSA",
+          "title": "Data Structures & Algorithms",
+          "description": "Your foundational coding ability for scripting and automation."
+        },
+        {
+          "key": "fundamentals",
+          "label": "Fundamentals",
+          "labelMobile": "Fund.",
+          "title": "DevOps Fundamentals",
+          "description": "Your grasp of core DevOps concepts like deployment, infrastructure, and automation. Foundation for career growth."
+        },
+        {
+          "key": "projects",
+          "label": "Projects",
+          "title": "Project Experience",
+          "description": "Real-world infrastructure projects you've built. Shows practical application of DevOps concepts."
+        },
+        {
+          "key": "languages",
+          "label": "Languages",
+          "title": "DevOps Languages",
+          "description": "Your proficiency in scripting and programming for DevOps automation."
+        },
+        {
+          "key": "cloudPlatforms",
+          "label": "Cloud Platforms",
+          "title": "Cloud & Container Platforms",
+          "description": "Your knowledge of cloud platforms and containerization technologies."
+        }
+      ]
+    }
   }
 }
