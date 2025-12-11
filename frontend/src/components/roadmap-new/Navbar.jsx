@@ -11,6 +11,17 @@ const Navbar = () => {
   const lastScrollYRef = useRef(0);
   const lastVisibilityRef = useRef(true);
 
+  // Initialize Tally after component mounts (in case script loaded before DOM)
+  useEffect(() => {
+    // Give Tally script time to load, then re-scan for embeds
+    const timer = setTimeout(() => {
+      if (typeof window !== 'undefined' && window.Tally) {
+        window.Tally.loadEmbeds();
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   // Scroll direction detection for CSAT banner
   useEffect(() => {
     const handleScroll = () => {
@@ -80,13 +91,15 @@ const Navbar = () => {
           }}
           data-tally-open="VLGq9M"
           data-tally-layout="modal"
-          data-tally-width="600"
+          data-tally-width="500"
+          data-tally-hide-title="1"
           data-tally-emoji-text="👋"
           data-tally-emoji-animation="wave"
           data-tally-auto-close="0"
+          data-tally-form-events-forwarding="1"
         >
           <span className="text-white text-sm font-medium">Was this roadmap helpful?</span>
-          <span className="text-white text-sm font-semibold underline">Share your feedback</span>
+          <span className="text-white text-sm font-semibold underline">Please share your feedback</span>
         </button>
 
         {/* Main Navbar */}

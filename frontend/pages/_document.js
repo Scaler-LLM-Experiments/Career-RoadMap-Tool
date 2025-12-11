@@ -45,12 +45,12 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
             rel="stylesheet"
           />
+          {/* Tally Forms Embed Script */}
+          <script async src="https://tally.so/widgets/embed.js"></script>
         </Head>
         <body style={{ width: '100%', margin: 0, padding: 0, overflowX: 'hidden' }}>
           <Main />
           <NextScript />
-          {/* Tally Forms Embed Script */}
-          <script async src="https://tally.so/widgets/embed.js"></script>
         </body>
       </Html>
     );
