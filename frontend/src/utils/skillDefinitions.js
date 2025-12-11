@@ -1,70 +1,86 @@
 /**
- * Skill Definitions Utility
+ * ⚠️ DEPRECATED - DO NOT USE
  *
- * Loads and manages skill definitions for different roles from role JSON files.
- * Used for:
- * - Radar chart axes and visualization
- * - Skill gap analysis
- * - Timeline calculation
- * - Quiz skill selection
+ * This file is deprecated and should not be used in new code.
+ * Skills are now loaded from persona JSON files via quizSkillLoader.js
+ *
+ * ❌ OLD (deprecated):
+ *   import { getAllSkillsForRole } from './skillDefinitions';
+ *
+ * ✅ NEW (use instead):
+ *   import { loadSkillsForQuiz } from './quizSkillLoader';
+ *
+ * Reason for deprecation:
+ * - Persona JSON files are now the single source of truth for all skill data
+ * - Skills are loaded dynamically based on role + level + userType
+ * - Axis mappings and priorities come from persona files
+ * - This file contained hardcoded fallbacks that could get out of sync
+ *
+ * Migration path:
+ * - Use quizSkillLoader.loadSkillsForQuiz(quizResponses) to load skills
+ * - Skills are cached automatically for performance
+ * - All skill metadata (axes, priorities) included in persona files
  */
 
-// Import role definitions that contain skill data
-import backendRole from '@/configs/personas/roles/backend.json';
-import frontendRole from '@/configs/personas/roles/frontend.json';
-import fullstackRole from '@/configs/personas/roles/fullstack.json';
-import devopsRole from '@/configs/personas/roles/devops.json';
-import dataRole from '@/configs/personas/roles/data.json';
-
-// Map roles to their complete definitions
-const ROLE_DEFINITIONS = {
-  'Backend Engineer': backendRole,
-  'Frontend Engineer': frontendRole,
-  'Full Stack Engineer': fullstackRole,
-  'DevOps Engineer': devopsRole,
-  'Data Science Engineer': dataRole,
+// Inline skills mapping for each role
+// MUST match persona JSON files exactly for proper axis calculation
+// Skills are tagged to radar axes in persona files
+const rolesSkillsMapping = {
+  "Backend Engineer": {
+    "high": ["Python", "Java", "Node.js", "SQL", "REST APIs", "Git", "Data Structures", "Algorithms", "System Design Basics", "Database Design"],
+    "medium": ["Microservices", "Docker", "Redis/Caching", "PostgreSQL", "MongoDB", "Message Queues", "CI/CD", "Linux", "API Security", "Performance Optimization"],
+    "low": ["Kubernetes", "Distributed Systems", "Event-Driven Architecture", "GraphQL", "AWS/Cloud", "Monitoring & Logging", "Database Sharding", "Load Balancing"]
+  },
+  "Frontend Engineer": {
+    "high": ["HTML/CSS", "JavaScript", "React", "TypeScript", "Git", "Responsive Design", "State Management", "REST APIs", "CSS Frameworks", "Testing Basics"],
+    "medium": ["Next.js", "Redux/Zustand", "Component Design", "Performance Optimization", "Accessibility", "Build Tools", "Browser DevTools", "API Integration", "CSS-in-JS", "Unit Testing"],
+    "low": ["Server-Side Rendering", "Micro Frontends", "Design Systems", "Web Security", "WebSockets", "PWA", "GraphQL Client", "E2E Testing"]
+  },
+  "Full Stack Engineer": {
+    "high": ["JavaScript", "Node.js", "React", "SQL", "REST APIs", "Git", "HTML/CSS", "Database Basics", "Data Structures", "Algorithms"],
+    "medium": ["TypeScript", "Next.js", "PostgreSQL", "MongoDB", "Docker", "Authentication", "API Design", "State Management", "Testing", "Linux"],
+    "low": ["Microservices", "CI/CD", "AWS/Cloud", "Redis/Caching", "GraphQL", "Kubernetes", "System Design", "Performance Optimization"]
+  },
+  "DevOps Engineer": {
+    "high": ["Linux", "Docker", "Git", "Shell Scripting", "CI/CD", "Networking Basics", "Cloud Basics", "Infrastructure as Code", "Monitoring Basics", "Security Basics"],
+    "medium": ["Kubernetes", "Terraform", "AWS/GCP/Azure", "Ansible", "Jenkins/GitHub Actions", "Prometheus/Grafana", "Log Management", "Container Orchestration", "Networking", "Troubleshooting"],
+    "low": ["Service Mesh", "Advanced Kubernetes", "Multi-Cloud", "Cost Optimization", "Disaster Recovery", "Security Hardening", "Performance Tuning", "Chaos Engineering"]
+  },
+  "Data Science Engineer": {
+    "high": ["Python", "SQL", "Statistics", "Data Analysis", "Git", "Pandas/NumPy", "Data Visualization", "Machine Learning Basics", "Jupyter", "ETL Basics"],
+    "medium": ["Scikit-learn", "Deep Learning", "Feature Engineering", "Model Evaluation", "Big Data Basics", "Spark", "Data Pipelines", "Cloud Platforms", "A/B Testing", "Data Cleaning"],
+    "low": ["MLOps", "Real-time ML", "NLP", "Computer Vision", "Advanced Statistics", "Distributed Computing", "Model Deployment", "AutoML"]
+  }
 };
 
-// Extract skill definitions from role data
+// Build skill definitions from roles skills mapping
 const SKILL_DEFINITIONS = {};
-Object.entries(ROLE_DEFINITIONS).forEach(([roleName, roleData]) => {
+
+Object.entries(rolesSkillsMapping).forEach(([roleName, skillsByPriority]) => {
   let skills = [];
 
-  // Try new format first: metadata.skills (array of skill objects)
-  // Some files use 'metadata', others use 'meta'
-  const metaData = roleData.metadata || roleData.meta;
-
-  if (metaData?.skills && Array.isArray(metaData.skills)) {
-    skills = metaData.skills;
-  }
-  // Fall back to old format: skillMap.skillPriorities (object with string arrays)
-  else if (roleData.skillMap?.skillPriorities) {
-    const skillPriorities = roleData.skillMap.skillPriorities;
-
-    // Extract skill names from priority arrays
-    Object.entries(skillPriorities).forEach(([priorityKey, skillList]) => {
-      if (Array.isArray(skillList)) {
-        // Convert string skill names to objects if needed
-        skillList.forEach(skill => {
-          if (typeof skill === 'string') {
-            skills.push({
-              name: skill,
-              priority: priorityKey,
-              category: 'general',
-              description: ''
-            });
-          } else {
-            skills.push(skill);
-          }
-        });
-      }
-    });
-  }
+  // Extract skill names from priority object (high, medium, low)
+  Object.entries(skillsByPriority).forEach(([priorityKey, skillList]) => {
+    if (Array.isArray(skillList)) {
+      skillList.forEach(skill => {
+        if (typeof skill === 'string') {
+          skills.push({
+            name: skill,
+            priority: priorityKey,
+            category: 'general',
+            description: ''
+          });
+        } else {
+          skills.push(skill);
+        }
+      });
+    }
+  });
 
   SKILL_DEFINITIONS[roleName] = {
     skills: skills,
     metadata: {
-      radarCategories: (roleData.skillMap?.radarAxes || []).map(axis => axis.label || axis.key),
+      radarCategories: ['DSA', 'System Design', 'Projects', 'Communication'] // Default radar axes
     },
   };
 

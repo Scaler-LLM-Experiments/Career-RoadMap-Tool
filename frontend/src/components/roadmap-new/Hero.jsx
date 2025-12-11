@@ -12,20 +12,24 @@ const Hero = ({ roadmapData }) => {
   const heroTitle = roadmapData._fullConfig?.hero?.title ||
                     `Your roadmap to become a ${roadmapData.targetRole} is ready!`;
 
+  // ALWAYS calculate skills count dynamically from missingSkills
+  // This ensures the count matches what's actually shown in the skills table
+  const skillsCount = (roadmapData.missingSkills?.highPriority?.length || 0) +
+    (roadmapData.missingSkills?.mediumPriority?.length || 0) +
+    (roadmapData.missingSkills?.lowPriority?.length || 0);
+
   // Debug: Log what we're receiving
   if (typeof window !== 'undefined') {
-    console.log('🎯 Hero Component Received:');
+    console.log('🎯 Hero Component:');
     console.log(`   Title: "${heroTitle}"`);
     console.log(`   Target Role: "${roadmapData.targetRole}"`);
-    console.log(`   Missing Skills:`, roadmapData.missingSkills);
+    console.log(`   Skills to Learn (calculated): ${skillsCount}`);
+    console.log(`   Missing Skills breakdown:`, {
+      high: roadmapData.missingSkills?.highPriority?.length || 0,
+      medium: roadmapData.missingSkills?.mediumPriority?.length || 0,
+      low: roadmapData.missingSkills?.lowPriority?.length || 0
+    });
   }
-
-  // Use skillsToLearn from roadmapData if available, otherwise calculate from missingSkills
-  const skillsCount = roadmapData.skillsToLearn !== undefined
-    ? roadmapData.skillsToLearn
-    : (roadmapData.missingSkills?.highPriority?.length || 0) +
-      (roadmapData.missingSkills?.mediumPriority?.length || 0) +
-      (roadmapData.missingSkills?.lowPriority?.length || 0);
 
   const stats = [
     {

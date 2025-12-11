@@ -1,27 +1,29 @@
 /**
  * COMPANIES SECTION
  *
- * CLEAN & SIMPLE:
- * - Receives config with companyInsights data from persona
- * - NO hardcoded data, NO fallbacks
- * - Renders only what comes in config
+ * DYNAMIC FIT ANALYSIS:
+ * - fitAnalysis is CALCULATED, not loaded from JSON
+ * - Uses fitCalculator.js to determine fit based on:
+ *   - currentCompanyType (from quiz)
+ *   - targetCompanyType (selected tab)
+ *   - userAxisScores (from axisCalculator)
  *
- * Hardcoded on frontend (ACCEPTABLE):
- * - The 4 company type labels (these are constants, not data)
- * - UI structure and styling
- * - Conditional logic for section headings
- *
- * From Persona JSON (REQUIRED):
+ * From Persona JSON (static data):
  * - companySize, expectedSalary
- * - fitAnalysis (color, message)
- * - whyFeasible, whatYouNeed (bullet points)
  * - companies list
- * - rounds (with name, difficulty, duration, videoUrl, points)
+ * - rounds (interview process)
+ *
+ * Dynamically Generated:
+ * - fitAnalysis.level, color, message
+ * - whyFeasible (based on fit level)
+ * - whatYouNeed (based on user's weak axes)
  */
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Target, CheckCircle, TrendUp, Users, CurrencyDollar, Clock, ChartBar } from 'phosphor-react';
 import CompanyTicker from '../../../src/components/roadmap-new/CompanyTicker';
+import { calculateFitAnalysis } from '../../../src/utils/fitCalculator';
+import { calculateAxisScores, getBaselineScores } from '../../../src/utils/axisCalculator';
 
 // ONLY HARDCODED: The 4 company type labels & descriptions (frontend structure)
 const COMPANY_TYPE_LABELS = {
@@ -38,12 +40,74 @@ const COMPANY_TYPE_DESCRIPTIONS = {
   'big-tech': 'Global tech giants (Google, Amazon, Meta, Microsoft, Apple). World-class pay, cutting-edge tech, excellent work-life balance, and top-tier learning.'
 };
 
-const CompaniesSection = ({ config }) => {
+const CompaniesSection = ({ config, quizResponses = {} }) => {
   const companyTypeKeys = ['high-growth', 'unicorns', 'service', 'big-tech'];
   const [selectedCompanyType, setSelectedCompanyType] = useState('high-growth');
 
   // Get company data directly from persona - NO fallback
   const currentCompany = config?.companyInsights?.[selectedCompanyType];
+
+  // ============================================
+  // DYNAMIC FIT CALCULATION
+  // ============================================
+  // Extract data needed for fit calculation
+  // Tech users: currentRole (swe-product, swe-service, devops, qa)
+  // Non-tech users: currentBackground (sales-marketing, operations, design, finance, other)
+  const userBackground = quizResponses?.background;
+  const currentCompanyType = userBackground === 'tech'
+    ? (quizResponses?.currentRole || 'fresher')
+    : (quizResponses?.currentBackground || 'fresher');
+  const currentSkills = config?.currentSkills || [];
+  const skillPriorities = config?.skillMap?.skillPriorities || {};
+  const thresholds = config?.skillMap?.thresholds || {};
+
+  // Extract all skills from skillPriorities for axis calculation
+  const allSkillsForRole = useMemo(() => {
+    const skills = [];
+    ['high', 'medium', 'low'].forEach(priority => {
+      (skillPriorities[priority] || []).forEach(skill => {
+        skills.push(typeof skill === 'string' ? { name: skill, axes: [] } : skill);
+      });
+    });
+    return skills;
+  }, [skillPriorities]);
+
+  // Calculate user's axis scores
+  const userAxisScores = useMemo(() => {
+    return calculateAxisScores(
+      quizResponses,
+      currentSkills,
+      allSkillsForRole,
+      thresholds,
+      'tech'
+    );
+  }, [quizResponses, currentSkills, allSkillsForRole, thresholds]);
+
+  // Get baseline scores for comparison
+  const baselineScores = useMemo(() => {
+    return getBaselineScores(thresholds);
+  }, [thresholds]);
+
+  // Calculate fit analysis for the selected company type
+  const fitAnalysis = useMemo(() => {
+    return calculateFitAnalysis(
+      currentCompanyType,
+      selectedCompanyType,
+      userAxisScores,
+      baselineScores,
+      currentCompany  // Pass company data from persona
+    );
+  }, [currentCompanyType, selectedCompanyType, userAxisScores, baselineScores, currentCompany]);
+
+  // Debug logging
+  if (typeof window !== 'undefined') {
+    console.log('🏢 CompaniesSection Fit Analysis:');
+    console.log('   Current company type:', currentCompanyType);
+    console.log('   Target company type:', selectedCompanyType);
+    console.log('   User axis scores:', userAxisScores);
+    console.log('   Baseline scores:', baselineScores);
+    console.log('   Fit result:', fitAnalysis);
+  }
 
   const getDifficultyStyle = (difficulty) => {
     const styles = {
@@ -155,51 +219,48 @@ const CompaniesSection = ({ config }) => {
             <h3 className="text-xl font-bold text-slate-900 pt-0.5">Your Fit Analysis</h3>
           </div>
           <div className="md:ml-14 space-y-6">
-            {/* Fit Banner */}
+            {/* Fit Banner - DYNAMIC from fitCalculator */}
             <div className={`flex items-center gap-3 p-4 rounded-none border ${
-              currentCompany?.fitAnalysis?.color === 'green'
+              fitAnalysis.color === 'green'
                 ? 'bg-green-50 border-green-200'
-                : currentCompany?.fitAnalysis?.color === 'blue'
-                ? 'bg-blue-50 border-blue-200'
                 : 'bg-orange-50 border-orange-200'
             }`}>
               <div className={`flex-shrink-0 w-8 h-8 rounded-none flex items-center justify-center ${
-                currentCompany?.fitAnalysis?.color === 'green'
+                fitAnalysis.color === 'green'
                   ? 'bg-green-100'
-                  : currentCompany?.fitAnalysis?.color === 'blue'
-                  ? 'bg-blue-100'
                   : 'bg-orange-100'
               }`}>
                 <Target
                   size={16}
                   weight="fill"
                   className={
-                    currentCompany?.fitAnalysis?.color === 'green'
+                    fitAnalysis.color === 'green'
                       ? 'text-green-600'
-                      : currentCompany?.fitAnalysis?.color === 'blue'
-                      ? 'text-blue-600'
                       : 'text-orange-600'
                   }
                 />
               </div>
-              <p className={`text-sm font-semibold leading-relaxed ${
-                currentCompany?.fitAnalysis?.color === 'green'
-                  ? 'text-green-900'
-                  : currentCompany?.fitAnalysis?.color === 'blue'
-                  ? 'text-blue-900'
-                  : 'text-orange-900'
-              }`}>
-                {currentCompany?.fitAnalysis?.message || 'No fit analysis available'}
-              </p>
+              <div>
+                <span className={`text-xs font-bold uppercase tracking-wide ${
+                  fitAnalysis.color === 'green' ? 'text-green-700' : 'text-orange-700'
+                }`}>
+                  {fitAnalysis.level}
+                </span>
+                <p className={`text-sm font-medium leading-relaxed ${
+                  fitAnalysis.color === 'green' ? 'text-green-900' : 'text-orange-900'
+                }`}>
+                  {fitAnalysis.message}
+                </p>
+              </div>
             </div>
 
-            {/* Two boxes */}
+            {/* Two boxes - DYNAMIC content from fitCalculator */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Left Box - Why Feasible */}
+              {/* Left Box - Why Feasible (from fitAnalysis) */}
               <div className="bg-gradient-to-br from-white to-green-50 p-6 rounded-none">
                 <h4 className="text-lg font-bold text-slate-900 mb-4">Why It's Feasible</h4>
                 <ul className="space-y-3">
-                  {(currentCompany?.whyFeasible || []).map((reason, idx) => (
+                  {(fitAnalysis.whyFeasible || []).map((reason, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-sm text-slate-700">
                       <CheckCircle size={18} weight="fill" className="text-green-600 flex-shrink-0 mt-0.5" />
                       <span>{reason}</span>
@@ -208,11 +269,11 @@ const CompaniesSection = ({ config }) => {
                 </ul>
               </div>
 
-              {/* Right Box - What You Need */}
+              {/* Right Box - What You Need (personalized from weak axes) */}
               <div className="bg-gradient-to-br from-white to-blue-50 p-6 rounded-none">
                 <h4 className="text-lg font-bold text-slate-900 mb-4">What You Need</h4>
                 <ul className="space-y-3">
-                  {(currentCompany?.whatYouNeed || []).map((task, idx) => (
+                  {(fitAnalysis.whatYouNeed || []).map((task, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-sm text-slate-700">
                       <TrendUp size={18} weight="bold" className="text-blue-600 flex-shrink-0 mt-0.5" />
                       <span>{task}</span>

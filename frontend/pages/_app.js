@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   // Hide navigation bar when in final mode on quiz page, landing, or roadmap pages
-  const shouldShowNav = !(quizMode === 'final' && (router.pathname === '/quiz' || router.pathname === '/' || router.pathname === '/roadmap' || router.pathname === '/roadmap-new' || router.pathname === '/roadmap-new-2' || router.pathname === '/roadmap-experimental'));
+  const shouldShowNav = !(quizMode === 'final' && (router.pathname === '/quiz' || router.pathname === '/' || router.pathname === '/roadmap' || router.pathname === '/roadmap-new' || router.pathname === '/roadmap-new-2' || router.pathname === '/roadmap-experimental' || router.pathname === '/roadmap-experimental-v2'));
 
   return (
     <UnifiedProvider>

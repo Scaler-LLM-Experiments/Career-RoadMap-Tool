@@ -17,8 +17,7 @@ import CompaniesSection from './sections/CompaniesSection';
 import LearningPathSection from './sections/LearningPathSection';
 import ProjectsSection from './sections/ProjectsSection';
 import FloatingCTA from './sections/FloatingCTA';
-import { loadPersona, transformPersonaForExperimental } from '../../src/utils/personaLoader';
-import { loadAndMergePersona } from '../../src/utils/personaMerger';
+import { loadPersonaFromQuiz, transformPersonaForExperimental } from '../../src/utils/personaLoader';
 import { useUnified } from '../../src/context/UnifiedContext';
 import { MagnifyingGlass, Target, BriefcaseMetal, ChartLine, Sparkle } from 'phosphor-react';
 
@@ -42,11 +41,15 @@ const RoadmapNewExperimental = () => {
   ];
 
   // Get quiz responses from unified context
+  // NOTE: currentSkills is stored INSIDE quizResponses (quiz question id is 'currentSkills')
   const { quizResponses } = useUnified();
 
+  // Extract currentSkills from quizResponses (this is where the quiz stores selected skills)
+  const userSelectedSkills = quizResponses?.currentSkills || [];
+
   /**
-   * Load and merge persona based on quiz responses
-   * Wired to quiz data - generates personalized roadmap
+   * Load persona based on quiz responses or use default for testing
+   * Simple, no-merge approach: load the complete monolithic persona file
    */
   useEffect(() => {
     const generatePersonaFromQuiz = async () => {
@@ -61,18 +64,29 @@ const RoadmapNewExperimental = () => {
           return;
         }
 
-        // TEMPORARILY DISABLED: Load ONLY test_persona.json for debugging
-        console.log('🔄 LOADING ONLY TEST_PERSONA.JSON (PERSONA MERGING LOGIC DISCONNECTED FOR DEBUGGING)');
-        const testPersona = await loadPersona('test_persona');
-        const config = transformPersonaForExperimental(testPersona, []);
+        // REQUIRE quiz responses - no fallback to test persona
+        if (!quizResponses || Object.keys(quizResponses).length === 0) {
+          throw new Error('No quiz responses found. Complete the quiz to generate your roadmap.');
+        }
+
+        console.log('🔄 Loading persona from quiz responses...');
+        console.log('Quiz responses:', quizResponses);
+        console.log('🎯 User selected skills (from quizResponses.currentSkills):', userSelectedSkills);
+
+        const persona = await loadPersonaFromQuiz(quizResponses);
+        console.log('✅ Loaded persona from quiz');
+        console.log('Persona loaded:', persona.meta);
+
+        const config = transformPersonaForExperimental(persona, userSelectedSkills);
 
         if (config) {
-          console.log('✅ Persona generated successfully from quiz responses');
+          console.log('✅ Persona configured successfully');
           console.log('📊 PERSONA DATA:', {
             role: config.metadata?.roleLabel,
             level: config.metadata?.level,
             skillsToLearn: config.hero?.skillsToLearn,
             radarAxes: config.skillMap?.radarAxes?.length || 0,
+            currentSkillsInConfig: config.currentSkills,
             companies: Object.keys(config.companyInsights || {}).length,
             phases: config.learningPath?.phases?.length || 0,
             projects: config.projects?.projects?.length || 0
@@ -106,9 +120,8 @@ const RoadmapNewExperimental = () => {
       }
     };
 
-    // Load test_persona.json once on mount (no longer dependent on quiz responses)
     generatePersonaFromQuiz();
-  }, []);
+  }, [userSelectedSkills]);
 
   // Loader animation - 6 second fake loader (similar to roadmap-new.js)
   useEffect(() => {
@@ -307,9 +320,9 @@ const RoadmapNewExperimental = () => {
           <div className="w-full space-y-32">
             {personaConfig ? (
               <>
-                <SkillsSection config={personaConfig} />
-                <CompaniesSection config={personaConfig} />
-                <LearningPathSection config={personaConfig} />
+                <SkillsSection config={personaConfig} quizResponses={quizResponses} />
+                <CompaniesSection config={personaConfig} quizResponses={quizResponses} />
+                <LearningPathSection config={personaConfig} quizResponses={quizResponses} />
                 <ProjectsSection config={personaConfig} />
               </>
             ) : (

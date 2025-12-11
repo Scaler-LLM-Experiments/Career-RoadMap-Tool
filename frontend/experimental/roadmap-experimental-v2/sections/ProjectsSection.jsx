@@ -42,24 +42,24 @@ const ProjectsSection = ({ config }) => {
     setIsDrawerOpen(true);
   };
 
-  // Helper function to format tier display
-  const formatTierDisplay = (tier) => {
-    if (!tier) return 'Intermediate';
-    return tier
-      .replace(/tier\d_/, '')
-      .split('_')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
+  // Helper function to get difficulty display label
+  const getDifficultyLabel = (difficulty) => {
+    const labels = {
+      easy: 'Easy',
+      medium: 'Medium',
+      hard: 'Hard'
+    };
+    return labels[difficulty] || 'Medium';
   };
 
-  // Helper function to get tier CSS classes
-  const getTierClasses = (tier) => {
-    if (tier?.includes('foundation')) {
-      return 'bg-green-50 text-green-700 border border-green-200';
-    } else if (tier?.includes('intermediate')) {
-      return 'bg-blue-50 text-blue-700 border border-blue-200';
-    }
-    return 'bg-purple-50 text-purple-700 border border-purple-200';
+  // Helper function to get difficulty styling (matches selection process)
+  const getDifficultyStyle = (difficulty) => {
+    const styles = {
+      easy: { bg: 'bg-green-50', text: 'text-green-700', border: 'border-green-200' },
+      medium: { bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200' },
+      hard: { bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-200' }
+    };
+    return styles[difficulty] || styles.medium;
   };
 
   return (
@@ -89,8 +89,8 @@ const ProjectsSection = ({ config }) => {
               ];
               const colorScheme = iconColors[index % iconColors.length];
               const IconComponent = colorScheme.icon;
-              const tierDisplay = formatTierDisplay(project.tier);
-              const tierClasses = getTierClasses(project.tier);
+              const difficultyLabel = getDifficultyLabel(project.difficulty);
+              const difficultyStyle = getDifficultyStyle(project.difficulty);
 
               return (
                 <div
@@ -108,9 +108,9 @@ const ProjectsSection = ({ config }) => {
 
                   {/* Tags */}
                   <div className="flex items-center gap-2 mb-4">
-                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-none ${tierClasses}`}>
+                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-none ${difficultyStyle.bg} ${difficultyStyle.text} border ${difficultyStyle.border}`}>
                       <Gauge size={12} weight="bold" />
-                      {tierDisplay}
+                      {difficultyLabel}
                     </span>
                     <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-none bg-slate-50 text-slate-700 border border-slate-200">
                       <Timer size={12} weight="bold" />
@@ -199,7 +199,9 @@ const ProjectsSection = ({ config }) => {
                 }}>{selectedProject.title}</h2>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <span style={{
-                    display: 'inline-block',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
                     paddingLeft: '10px',
                     paddingRight: '10px',
                     paddingTop: '4px',
@@ -207,13 +209,14 @@ const ProjectsSection = ({ config }) => {
                     fontSize: '12px',
                     fontWeight: '500',
                     borderRadius: 0,
-                    ...(selectedProject.tier?.includes('foundation')
-                      ? { backgroundColor: '#dcfce7', color: '#15803d', border: '1px solid #bbf7d0' }
-                      : selectedProject.tier?.includes('intermediate')
-                      ? { backgroundColor: '#dbeafe', color: '#1e40af', border: '1px solid #bfdbfe' }
-                      : { backgroundColor: '#f3e8ff', color: '#7c3aed', border: '1px solid #ddd6fe' })
+                    ...(selectedProject.difficulty === 'easy'
+                      ? { backgroundColor: '#f0fdf4', color: '#15803d', border: '1px solid #bbf7d0' }
+                      : selectedProject.difficulty === 'medium'
+                      ? { backgroundColor: '#fffbeb', color: '#b45309', border: '1px solid #fde68a' }
+                      : { backgroundColor: '#fef2f2', color: '#b91c1c', border: '1px solid #fecaca' })
                   }}>
-                    {formatTierDisplay(selectedProject.tier)}
+                    <Gauge size={12} weight="bold" />
+                    {getDifficultyLabel(selectedProject.difficulty)}
                   </span>
                   <span style={{ fontSize: '14px', color: '#4b5563', display: 'flex', alignItems: 'center', gap: '6px' }}>
                     <Clock size={14} weight="bold" />

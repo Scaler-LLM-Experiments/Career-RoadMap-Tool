@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 import { Crosshair, CheckCircle } from 'phosphor-react';
+import { calculateAxisScores, getBaselineScores } from '../../utils/axisCalculator';
 
 // Default skill descriptions (used if radarAxes not provided)
 const defaultSkillDescriptions = {
@@ -128,7 +129,8 @@ const SkillMap = ({
   // Persona-driven props (optional, falls back to hardcoded if not provided)
   radarAxes,
   averageBaseline,
-  skillMapThresholds
+  skillMapThresholds,
+  skillPriorities  // NEW: pass all available skills to calculate skills axis
 }) => {
   // Check if mobile view
   const [isMobile, setIsMobile] = useState(false);
@@ -162,190 +164,95 @@ const SkillMap = ({
 
   const skillDescriptions = buildSkillDescriptions();
 
-  // Calculate DSA level based on actual quiz responses
-  const calculateDSALevel = () => {
-    if (background === 'tech') {
-      // Use problemSolving from tech quiz
-      switch (quizResponses?.problemSolving) {
-        case '100+': return 85;
-        case '51-100': return 65;
-        case '11-50': return 40;
-        case '0-10': return 15;
-        default: return evaluationResults?.interview_readiness?.coding_assessment_percent || 20;
-      }
-    } else {
-      // Use codeComfort from non-tech quiz
-      switch (quizResponses?.codeComfort) {
-        case 'confident': return 50;
-        case 'learning': return 30;
-        case 'beginner': return 15;
-        case 'complete-beginner': return 5;
-        default: return evaluationResults?.interview_readiness?.coding_assessment_percent || 10;
-      }
+  // Extract all skills from skillPriorities to calculate skills axis (as full objects with axes)
+  const extractAllSkills = () => {
+    if (!skillPriorities || typeof skillPriorities !== 'object') {
+      return [];
     }
+
+    const allSkills = [];
+    Object.keys(skillPriorities).forEach(priority => {
+      const skillsAtPriority = skillPriorities[priority] || [];
+      skillsAtPriority.forEach(skill => {
+        // Push the full skill OBJECT (with name and axes), not just the name
+        if (typeof skill === 'string') {
+          allSkills.push({ name: skill, axes: [] });
+        } else if (skill && typeof skill === 'object') {
+          allSkills.push(skill);
+        }
+      });
+    });
+
+    return allSkills;
   };
 
-  // Calculate System Design level based on actual quiz responses
-  const calculateSystemDesignLevel = () => {
-    if (background === 'tech') {
-      // Use systemDesign from tech quiz
-      switch (quizResponses?.systemDesign) {
-        case 'multiple': return 80;
-        case 'once': return 55;
-        case 'learning': return 30;
-        case 'not-yet': return 10;
-        default: return evaluationResults?.interview_readiness?.system_design_percent || 15;
-      }
-    } else {
-      // Non-tech users typically start with low system design knowledge
-      return evaluationResults?.interview_readiness?.system_design_percent || 10;
-    }
-  };
+  const allSkillsForRole = extractAllSkills();
 
-  // Calculate Projects level based on portfolio and experience
-  const calculateProjectsLevel = () => {
-    if (background === 'tech') {
-      switch (quizResponses?.portfolio) {
-        case 'active-5+': return 80;
-        case 'limited-1-5': return 50;
-        case 'inactive': return 25;
-        case 'none': return 10;
-        default: return 30;
-      }
-    } else {
-      // For non-tech, use stepsTaken
-      switch (quizResponses?.stepsTaken) {
-        case 'built-projects': return 40;
-        case 'completed-course': return 25;
-        case 'bootcamp': return 30;
-        case 'self-learning': return 20;
-        case 'just-exploring': return 5;
-        default: return 15;
-      }
-    }
-  };
+  // DEBUG: Log what SkillMapNew is receiving
+  if (typeof window !== 'undefined') {
+    console.log('🗺️ SkillMapNew DEBUG:');
+    console.log('   Props received:');
+    console.log('     - currentSkills:', currentSkills);
+    console.log('     - skillPriorities keys:', Object.keys(skillPriorities || {}));
+    console.log('     - skillPriorities.high count:', skillPriorities?.high?.length || 0);
+    console.log('     - radarAxes:', radarAxes?.map(a => a.key));
+    console.log('   Extracted allSkillsForRole:', allSkillsForRole.length, 'skills');
+    console.log('   First 3 skills with axes:', allSkillsForRole.slice(0, 3).map(s => ({ name: s.name, axes: s.axes })));
+  }
 
-  // Calculate Backend Language proficiency from current skills
-  const calculateLanguageLevel = () => {
-    const backendLanguages = ['Python', 'Java', 'Node.js', 'JavaScript', 'Go', 'C++', 'Ruby', 'PHP', '.NET', 'C#'];
-    const matchedLanguages = (currentSkills || []).filter(skill =>
-      backendLanguages.some(lang => skill.toLowerCase().includes(lang.toLowerCase()))
-    );
+  // Use the axis calculator to get dynamic scores
+  const userAxisScores = calculateAxisScores(
+    quizResponses || {},
+    currentSkills || [],
+    allSkillsForRole,
+    skillMapThresholds || {},
+    background || 'tech'
+  );
 
-    if (background === 'tech') {
-      return Math.min(100, matchedLanguages.length * 35);
-    } else {
-      return Math.min(100, matchedLanguages.length * 25);
-    }
-  };
+  // Get baseline scores from persona (flat structure, no userType needed)
+  const baselineScores = getBaselineScores(skillMapThresholds || {});
 
-  // Calculate SQL/Database proficiency from current skills
-  const calculateDatabaseLevel = () => {
-    const databaseSkills = ['SQL', 'PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Database', 'NoSQL'];
-    const matchedSkills = (currentSkills || []).filter(skill =>
-      databaseSkills.some(db => skill.toLowerCase().includes(db.toLowerCase()))
-    );
-
-    if (background === 'tech') {
-      return Math.min(100, matchedSkills.length * 30);
-    } else {
-      return Math.min(100, matchedSkills.length * 20);
-    }
-  };
-
-  // Get average learner baseline from persona props or use defaults
-  const getAverageBaseline = () => {
-    if (averageBaseline && Object.keys(averageBaseline).length > 0) {
-      // Use persona-driven baseline
-      return averageBaseline;
-    }
-
-    // Fall back to hardcoded defaults by background
-    if (background === 'tech') {
-      return {
-        dsa: 45,
-        systemDesign: 35,
-        projects: 50,
-        language: 60,
-        database: 55
-      };
-    } else {
-      return {
-        dsa: 20,
-        systemDesign: 10,
-        projects: 25,
-        language: 30,
-        database: 20
-      };
-    }
-  };
-
-  const avgBaseline = getAverageBaseline();
-
-  // Prepare data for radar chart
-  // If radarAxes provided from persona, build from those; otherwise use hardcoded fallback
+  // Prepare data for radar chart using dynamic axis scores
   const buildRadarData = () => {
     if (radarAxes && Array.isArray(radarAxes) && radarAxes.length > 0) {
-      // Build from persona-driven axes
+      // Build from persona-driven axes using dynamic scores
       return radarAxes.map(axis => {
-        // Determine user skill level based on axis key
-        let userLevel = 50; // default fallback
+        // Get user score from calculated axis scores
+        // IMPORTANT: Don't lowercase - axisCalculator stores keys as-is (camelCase)
+        const axisKey = axis.key || '';
+        // NO FALLBACK - if score doesn't exist, use 0 (not 50!)
+        let userLevel = userAxisScores[axisKey] !== undefined ? userAxisScores[axisKey] : 0;
 
-        if (axis.key === 'dsa' || axis.key.toLowerCase().includes('dsa')) {
-          userLevel = calculateDSALevel();
-        } else if (axis.key === 'systemDesign' || axis.key.toLowerCase().includes('system')) {
-          userLevel = calculateSystemDesignLevel();
-        } else if (axis.key === 'projects' || axis.key.toLowerCase().includes('project')) {
-          userLevel = calculateProjectsLevel();
-        } else if (axis.key === 'language' || axis.key.toLowerCase().includes('language')) {
-          userLevel = calculateLanguageLevel();
-        } else if (axis.key === 'database' || axis.key.toLowerCase().includes('database')) {
-          userLevel = calculateDatabaseLevel();
-        }
-
-        // Get average from baseline using axis key, fallback to 50
-        const avgKey = axis.key.toLowerCase();
-        const averageValue = avgBaseline[avgKey] || 50;
+        // Get baseline from persona's threshold configuration
+        const baselineValue = baselineScores[axisKey] !== undefined ? baselineScores[axisKey] : 50;
 
         return {
           category: axis.label,
-          user: userLevel,
-          average: averageValue,
+          user: Math.round(userLevel),
+          average: Math.round(baselineValue),
           fullMark: 100,
         };
       });
     }
 
-    // Fall back to hardcoded defaults
+    // Fall back: if no radarAxes, build from calculated scores with default axes
     return [
       {
+        category: 'Skills',
+        user: Math.round(userAxisScores.skills || 0),
+        average: Math.round(baselineScores.skills || 50),
+        fullMark: 100,
+      },
+      {
         category: 'DSA',
-        user: calculateDSALevel(),
-        average: avgBaseline.dsa,
+        user: Math.round(userAxisScores.dsa || 0),
+        average: Math.round(baselineScores.dsa || 50),
         fullMark: 100,
       },
       {
         category: isMobile ? 'System Des.' : 'System Design',
-        user: calculateSystemDesignLevel(),
-        average: avgBaseline.systemDesign,
-        fullMark: 100,
-      },
-      {
-        category: 'Projects',
-        user: calculateProjectsLevel(),
-        average: avgBaseline.projects,
-        fullMark: 100,
-      },
-      {
-        category: 'Languages',
-        user: calculateLanguageLevel(),
-        average: avgBaseline.language,
-        fullMark: 100,
-      },
-      {
-        category: 'Databases',
-        user: calculateDatabaseLevel(),
-        average: avgBaseline.database,
+        user: Math.round(userAxisScores.systemDesign || 0),
+        average: Math.round(baselineScores.systemDesign || 50),
         fullMark: 100,
       },
     ];

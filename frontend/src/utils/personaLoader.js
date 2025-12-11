@@ -1,35 +1,70 @@
 /**
- * PERSONA LOADER - Simple utility to load persona JSON files
+ * PERSONA LOADER - Simple utility to load monolithic persona JSON files
  *
- * No orchestration, no logic - just loads the persona JSON directly
+ * No orchestration, no merging - just loads the complete persona JSON directly.
+ * Uses personaCalculator to determine which file to load based on quiz responses.
  */
+
+import { determinePersonaFile } from './personaCalculator';
 
 /**
  * Load persona data from JSON file using fetch
- * @param {string} personaId - Persona ID (e.g., 'tech_mid_backend')
+ * @param {string} personaId - Persona ID or filename (e.g., 'mid_tech_backend.json')
  * @returns {Promise<Object>} Persona data
  */
 export async function loadPersona(personaId) {
   try {
-    // Use fetch to load persona JSON files from public folder
-    // Next.js serves files from /public directly
-    const response = await fetch(`/personas/${personaId}.json`);
+    // Handle both with and without .json extension
+    const filename = personaId.endsWith('.json') ? personaId : `${personaId}.json`;
+
+    // Load from /public/personas/complete/ directory
+    const path = `/personas/complete/${filename}`;
+    const response = await fetch(path);
 
     if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: File not found`);
+      throw new Error(`HTTP ${response.status}: Persona file not found at ${path}`);
     }
 
     const personaData = await response.json();
 
     if (!personaData) {
-      throw new Error(`No data found in persona file: ${personaId}`);
+      throw new Error(`No data found in persona file: ${filename}`);
     }
 
-    console.log(`✅ Loaded persona: ${personaId}`);
+    console.log(`✅ Loaded persona: ${filename}`);
     return personaData;
   } catch (error) {
     console.error('❌ Error loading persona:', error);
     throw new Error(`Failed to load persona '${personaId}': ${error.message}`);
+  }
+}
+
+/**
+ * Load persona directly from quiz responses
+ * Determines which persona file to load, then loads it
+ * @param {Object} quizResponses - User's quiz responses
+ * @returns {Promise<Object>} Complete persona data
+ */
+export async function loadPersonaFromQuiz(quizResponses) {
+  try {
+    // Use persona calculator to determine which file to load
+    const personaFilename = determinePersonaFile(quizResponses);
+
+    // Load the persona
+    const persona = await loadPersona(personaFilename);
+
+    return persona;
+  } catch (error) {
+    console.error('❌ Error loading persona from quiz:', error);
+
+    // Fallback to mid_tech_backend as safe default
+    console.warn('⚠️ Falling back to default persona: mid_tech_backend.json');
+    try {
+      return await loadPersona('mid_tech_backend.json');
+    } catch (fallbackError) {
+      console.error('❌ Fallback also failed:', fallbackError);
+      throw error;
+    }
   }
 }
 
@@ -51,15 +86,18 @@ export function transformPersonaForFrontend(persona, userSelectedSkills = []) {
   const mediumPrioritySkills = skillPrioritiesData?.medium || [];
   const lowPrioritySkills = skillPrioritiesData?.low || [];
 
+  // Helper to extract skill name (handle both string and object formats)
+  const extractSkillName = (skill) => typeof skill === 'string' ? skill : skill?.name;
+
   // Filter out selected skills from priorities
   const unselectedHigh = highPrioritySkills.filter(
-    skill => !userSelectedSkills.includes(skill)
+    skill => !userSelectedSkills.includes(extractSkillName(skill))
   );
   const unselectedMedium = mediumPrioritySkills.filter(
-    skill => !userSelectedSkills.includes(skill)
+    skill => !userSelectedSkills.includes(extractSkillName(skill))
   );
   const unselectedLow = lowPrioritySkills.filter(
-    skill => !userSelectedSkills.includes(skill)
+    skill => !userSelectedSkills.includes(extractSkillName(skill))
   );
 
   return {
@@ -119,15 +157,18 @@ export function transformPersonaForExperimental(persona, userSelectedSkills = []
   const mediumPrioritySkills = skillPrioritiesData?.medium || [];
   const lowPrioritySkills = skillPrioritiesData?.low || [];
 
+  // Helper to extract skill name (handle both string and object formats)
+  const extractSkillName = (skill) => typeof skill === 'string' ? skill : skill?.name;
+
   // Filter out selected skills from priorities
   const unselectedHigh = highPrioritySkills.filter(
-    skill => !userSelectedSkills.includes(skill)
+    skill => !userSelectedSkills.includes(extractSkillName(skill))
   );
   const unselectedMedium = mediumPrioritySkills.filter(
-    skill => !userSelectedSkills.includes(skill)
+    skill => !userSelectedSkills.includes(extractSkillName(skill))
   );
   const unselectedLow = lowPrioritySkills.filter(
-    skill => !userSelectedSkills.includes(skill)
+    skill => !userSelectedSkills.includes(extractSkillName(skill))
   );
 
   // Get hero data - all personas should have consistent structure now
@@ -183,34 +224,3 @@ export function transformPersonaForExperimental(persona, userSelectedSkills = []
   };
 }
 
-/**
- * Map quiz responses to persona ID
- * Constructs persona ID from user type, level, and target role
- * @param {Object} quizResponses - Quiz responses from context
- * @returns {string} Persona ID (e.g., 'tech_mid_backend')
- */
-export function getPersonaIdFromQuiz(quizResponses) {
-  if (!quizResponses || !quizResponses.targetRole) {
-    throw new Error('Missing required quiz responses: targetRole');
-  }
-
-  // Map user type
-  const userType = quizResponses.background === 'non-tech' ? 'non_tech' : 'tech';
-
-  // Map years of experience to level
-  const yearsMap = {
-    '0-2 years': 'junior',
-    '2-5 years': 'mid',
-    '5-10 years': 'senior',
-    '10+ years': 'lead'
-  };
-  const level = yearsMap[quizResponses.yearsExperience] || 'mid';
-
-  // Normalize role name
-  const roleNormalized = quizResponses.targetRole
-    .toLowerCase()
-    .replace(/\s+/g, '_')
-    .replace(/[^a-z0-9_]/g, '');
-
-  return `${userType}_${level}_${roleNormalized}`;
-}

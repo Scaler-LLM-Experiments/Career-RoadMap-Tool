@@ -28,7 +28,7 @@ import {
   Gear,
   Graph
 } from 'phosphor-react';
-import { getSkillsForRole } from '../../utils/skillsData';
+import { getSkillsFromCache } from '../../utils/quizSkillLoader';
 
 // ============================================================
 // SHARED OPTIONS
@@ -42,59 +42,43 @@ const TARGET_ROLES = [
   { value: 'Data Science Engineer', label: 'Data Science Engineer', icon: <Graph size={24} weight="duotone" />, category: 'Data Science' },
 ];
 
-const TARGET_COMPANIES = [
-  { value: 'faang', label: 'FAANG / Big Tech' },
-  { value: 'unicorns', label: 'Product Unicorns/Scaleups' },
-  { value: 'startups', label: 'High Growth Startups' },
-  { value: 'service', label: 'Service Companies' },
-];
-
 // ============================================================
 // TECH PROFESSIONAL OPTIONS
 // ============================================================
 
 const TECH_CURRENT_ROLES = [
-  { value: 'swe-product', label: 'Software Engineer - Product Company' },
-  { value: 'swe-service', label: 'Software Engineer - Service Company' },
-  { value: 'devops', label: 'DevOps / Cloud / Infrastructure Engineer' },
-  { value: 'qa', label: 'QA / Support / Other Technical Role' },
+  { value: 'swe-product', label: 'Software Engineer - Product Company', icon: <Cube size={24} weight="duotone" /> },
+  { value: 'swe-service', label: 'Software Engineer - Service Company', icon: <Briefcase size={24} weight="duotone" /> },
+  { value: 'devops', label: 'DevOps / Cloud / Infrastructure Engineer', icon: <CloudArrowUp size={24} weight="duotone" /> },
+  { value: 'qa', label: 'QA / Support / Other Technical Role', icon: <ShieldCheck size={24} weight="duotone" /> },
 ];
 
 const TECH_EXPERIENCE = [
-  { value: '0-2', label: '0-2 years' },
-  { value: '2-3', label: '2-3 years' },
-  { value: '3-5', label: '3-5 years' },
-  { value: '5-8', label: '5-8 years' },
-  { value: '8+', label: '8+ years' },
-];
-
-const TECH_PRIMARY_GOALS = [
-  { value: 'better-company', label: 'Move to a better company (same level)' },
-  { value: 'level-up', label: 'Level up (senior role / promotion)' },
-  { value: 'higher-comp', label: 'Higher compensation' },
-  { value: 'switch-domain', label: 'Switch to different tech domain' },
-  { value: 'upskilling', label: 'Upskilling in current role' },
+  { value: '0-2', label: '0-2 years', icon: <Clock size={24} weight="duotone" /> },
+  { value: '2-5', label: '2-5 years', icon: <Briefcase size={24} weight="duotone" /> },
+  { value: '5-8', label: '5-8 years', icon: <FireSimple size={24} weight="duotone" /> },
+  { value: '8+', label: '8+ years', icon: <CheckCircle size={24} weight="duotone" /> },
 ];
 
 const TECH_PROBLEM_SOLVING = [
-  { value: '100+', label: 'Very Active (100+ problems)' },
-  { value: '51-100', label: 'Moderately Active (50-100 problems)' },
-  { value: '11-50', label: 'Somewhat Active (10-50 problems)' },
-  { value: '0-10', label: 'Not Active (0-10 problems)' },
+  { value: '100+', label: 'Very Active (100+ problems)', icon: <Lightning size={24} weight="duotone" /> },
+  { value: '51-100', label: 'Moderately Active (50-100 problems)', icon: <FireSimple size={24} weight="duotone" /> },
+  { value: '11-50', label: 'Somewhat Active (10-50 problems)', icon: <Gauge size={24} weight="duotone" /> },
+  { value: '0-10', label: 'Not Active (0-10 problems)', icon: <Clock size={24} weight="duotone" /> },
 ];
 
 const TECH_SYSTEM_DESIGN = [
-  { value: 'multiple', label: 'Led design discussions' },
-  { value: 'once', label: 'Participated in discussions' },
-  { value: 'learning', label: 'Self-learning only' },
-  { value: 'not-yet', label: 'Not yet, will learn' },
+  { value: 'multiple', label: 'Led design discussions', icon: <Cube size={24} weight="duotone" /> },
+  { value: 'once', label: 'Participated in discussions', icon: <ChartBar size={24} weight="duotone" /> },
+  { value: 'learning', label: 'Self-learning only', icon: <FileCode size={24} weight="duotone" /> },
+  { value: 'not-yet', label: 'Not yet, will learn', icon: <Clock size={24} weight="duotone" /> },
 ];
 
 const TECH_PORTFOLIO = [
-  { value: 'active-5+', label: 'Active (5+ public repos)' },
-  { value: 'limited-1-5', label: 'Limited (1-5 repos)' },
-  { value: 'inactive', label: 'Inactive (old activity)' },
-  { value: 'none', label: 'No portfolio yet' },
+  { value: 'active-5+', label: 'Active (5+ public repos)', icon: <GitBranch size={24} weight="duotone" /> },
+  { value: 'limited-1-5', label: 'Limited (1-5 repos)', icon: <GitBranch size={24} weight="duotone" /> },
+  { value: 'inactive', label: 'Inactive (old activity)', icon: <Clock size={24} weight="duotone" /> },
+  { value: 'none', label: 'No portfolio yet', icon: <GraduationCap size={24} weight="duotone" /> },
 ];
 
 // ============================================================
@@ -102,42 +86,42 @@ const TECH_PORTFOLIO = [
 // ============================================================
 
 const NONTECH_BACKGROUND = [
-  { value: 'sales-marketing', label: 'Sales / Marketing / Business' },
-  { value: 'operations', label: 'Operations / Consulting / PM' },
-  { value: 'design', label: 'Design (UI/UX / Graphic / Product)' },
-  { value: 'finance', label: 'Finance / Accounting / Banking' },
-  { value: 'other', label: 'Other Non-Tech / Fresh Grad' },
+  { value: 'sales-marketing', label: 'Sales / Marketing / Business', icon: <ChartBar size={24} weight="duotone" /> },
+  { value: 'operations', label: 'Operations / Consulting / PM', icon: <Gear size={24} weight="duotone" /> },
+  { value: 'design', label: 'Design (UI/UX / Graphic / Product)', icon: <Cube size={24} weight="duotone" /> },
+  { value: 'finance', label: 'Finance / Accounting / Banking', icon: <Briefcase size={24} weight="duotone" /> },
+  { value: 'other', label: 'Other Non-Tech / Fresh Grad', icon: <GraduationCap size={24} weight="duotone" /> },
 ];
 
 const NONTECH_EXPERIENCE = [
-  { value: '0', label: '0 years (Fresh grad)' },
-  { value: '0-2', label: '0-2 years' },
-  { value: '2-3', label: '2-3 years' },
-  { value: '3-5', label: '3-5 years' },
-  { value: '5+', label: '5+ years' },
+  { value: '0', label: '0 years (Fresh grad)', icon: <GraduationCap size={24} weight="duotone" /> },
+  { value: '0-2', label: '0-2 years', icon: <Clock size={24} weight="duotone" /> },
+  { value: '2-3', label: '2-3 years', icon: <Clock size={24} weight="duotone" /> },
+  { value: '3-5', label: '3-5 years', icon: <Briefcase size={24} weight="duotone" /> },
+  { value: '5+', label: '5+ years', icon: <CheckCircle size={24} weight="duotone" /> },
 ];
 
 const NONTECH_STEPS_TAKEN = [
-  { value: 'bootcamp', label: 'Attended bootcamp/workshop' },
-  { value: 'completed-course', label: 'Completed online courses' },
-  { value: 'built-projects', label: 'Built 1-2 small projects' },
-  { value: 'self-learning', label: 'Self-learning (YouTube/blogs)' },
-  { value: 'just-exploring', label: 'Just exploring, haven\'t started' },
+  { value: 'bootcamp', label: 'Attended bootcamp/workshop', icon: <GraduationCap size={24} weight="duotone" /> },
+  { value: 'completed-course', label: 'Completed online courses', icon: <CheckCircle size={24} weight="duotone" /> },
+  { value: 'built-projects', label: 'Built 1-2 small projects', icon: <Code size={24} weight="duotone" /> },
+  { value: 'self-learning', label: 'Self-learning (YouTube/blogs)', icon: <FileCode size={24} weight="duotone" /> },
+  { value: 'just-exploring', label: 'Just exploring, haven\'t started', icon: <Clock size={24} weight="duotone" /> },
 ];
 
 const NONTECH_TARGET_ROLES = [
-  { value: 'Backend Engineer', label: 'Backend Engineer', category: 'Backend Engineering' },
-  { value: 'Frontend Engineer', label: 'Frontend Engineer', category: 'Frontend Engineering' },
-  { value: 'Full Stack Engineer', label: 'Full-Stack Engineer', category: 'Software Engineering' },
-  { value: 'DevOps Engineer', label: 'DevOps Engineer', category: 'DevOps & Cloud Computing' },
-  { value: 'Data Science Engineer', label: 'Data Science Engineer', category: 'Data Science' },
+  { value: 'Backend Engineer', label: 'Backend Engineer', icon: <Database size={24} weight="duotone" />, category: 'Backend Engineering' },
+  { value: 'Frontend Engineer', label: 'Frontend Engineer', icon: <Code size={24} weight="duotone" />, category: 'Frontend Engineering' },
+  { value: 'Full Stack Engineer', label: 'Full-Stack Engineer', icon: <Cube size={24} weight="duotone" />, category: 'Software Engineering' },
+  { value: 'DevOps Engineer', label: 'DevOps Engineer', icon: <Gear size={24} weight="duotone" />, category: 'DevOps & Cloud Computing' },
+  { value: 'Data Science Engineer', label: 'Data Science Engineer', icon: <Graph size={24} weight="duotone" />, category: 'Data Science' },
 ];
 
 const NONTECH_CODE_COMFORT = [
-  { value: 'confident', label: 'Confident (solve simple problems independently)' },
-  { value: 'learning', label: 'Learning (follow tutorials, struggle alone)' },
-  { value: 'beginner', label: 'Beginner (understand concepts, can\'t code yet)' },
-  { value: 'complete-beginner', label: 'Complete Beginner (haven\'t tried yet)' },
+  { value: 'confident', label: 'Confident (solve simple problems independently)', icon: <CheckCircle size={24} weight="duotone" /> },
+  { value: 'learning', label: 'Learning (follow tutorials, struggle alone)', icon: <FileCode size={24} weight="duotone" /> },
+  { value: 'beginner', label: 'Beginner (understand concepts, can\'t code yet)', icon: <Gauge size={24} weight="duotone" /> },
+  { value: 'complete-beginner', label: 'Complete Beginner (haven\'t tried yet)', icon: <Clock size={24} weight="duotone" /> },
 ];
 
 // ============================================================
@@ -202,48 +186,65 @@ export const getQuizScreens = (background) => {
             type: 'radio-buttons',
             options: TECH_EXPERIENCE
           }
-        ]
+        ],
+        chatResponseMap: {
+          currentRole: {
+            'swe-product': 'Awesome! Product companies offer great learning opportunities and cutting-edge tech stacks.',
+            'swe-service': 'Got it! Many engineers successfully level up from service to product companies.',
+            'devops': 'Great! DevOps and infrastructure engineers are in high demand right now.',
+            'qa': 'Perfect! Many successful engineers started in QA/support roles.'
+          },
+          yearsOfExperience: {
+            '0-2': 'Early in your career - perfect time to build strong foundations!',
+            '2-5': 'Great timing! You\'re building solid experience. Strategic skill development pays off now.',
+            '5-8': 'Solid experience! Time to level up to senior roles or high-growth opportunities.',
+            '8+': 'Impressive! With 8+ years, you can target staff/principal or leadership roles.'
+          }
+        }
       },
 
-      // Screen 3: WHERE YOU WANT TO GO (Goals + Target Role + Company)
+      // Screen 3: TARGET ROLE + DSA PRACTICE
       {
         id: 'tech-goals',
-        initialChatText: "Now, let's talk about your career goals and target role.",
+        initialChatText: "Now, let's understand what you're preparing for.",
         moveUpOnDesktop: true,
         questions: [
           {
-            id: 'primaryGoal',
-            question: 'What\'s your main career goal right now?',
-            type: 'button-grid',
-            options: TECH_PRIMARY_GOALS
-          },
-          {
             id: 'targetRole',
-            question: 'Which role excites you the most?',
+            question: 'Which role are you preparing for?',
             type: 'button-grid',
             options: TARGET_ROLES
           },
           {
-            id: 'targetCompanyType',
-            question: 'What type of company are you targeting?',
-            type: 'button-grid',
-            options: TARGET_COMPANIES
+            id: 'problemSolving',
+            question: 'How active are you with DSA practice?',
+            type: 'radio-buttons',
+            options: TECH_PROBLEM_SOLVING
           }
-        ]
+        ],
+        chatResponseMap: {
+          targetRole: {
+            'Backend Engineer': 'Excellent choice! Backend roles are foundational to every tech company.',
+            'Frontend Engineer': 'Great! Frontend engineers create the experiences users love.',
+            'Full Stack Engineer': 'Perfect! Full-stack engineers are versatile and highly valued.',
+            'DevOps Engineer': 'Awesome! DevOps is critical for modern software delivery.',
+            'Data Science Engineer': 'Fantastic! Data roles are shaping the future of tech.'
+          },
+          problemSolving: {
+            '100+': 'Impressive! You\'re very active with problem-solving. That discipline shows.',
+            '51-100': 'Great work! You\'re consistently practicing. Keep that momentum going.',
+            '11-50': 'Good start! Regular practice will compound quickly.',
+            '0-10': 'Perfect timing to ramp up! Even 15 mins daily makes a huge difference.'
+          }
+        }
       },
 
-      // Screen 4: READINESS ASSESSMENT (Problem Solving + System Design + Portfolio)
+      // Screen 4: READINESS ASSESSMENT (System Design + Portfolio)
       {
         id: 'tech-readiness',
         initialChatText: "Let's assess your current readiness level.",
         moveUpOnDesktop: true,
         questions: [
-          {
-            id: 'problemSolving',
-            question: 'How much have you been practicing coding problems recently?',
-            type: 'radio-buttons',
-            options: TECH_PROBLEM_SOLVING
-          },
           {
             id: 'systemDesign',
             question: 'How comfortable are you with system design?',
@@ -256,7 +257,21 @@ export const getQuizScreens = (background) => {
             type: 'radio-buttons',
             options: TECH_PORTFOLIO
           }
-        ]
+        ],
+        chatResponseMap: {
+          systemDesign: {
+            'multiple': 'Excellent! Leading design discussions shows senior-level thinking.',
+            'once': 'Great! Participating in discussions builds your design intuition.',
+            'learning': 'Perfect timing to deepen your system design knowledge!',
+            'not-yet': 'No worries! System design is learnable with the right guidance.'
+          },
+          portfolio: {
+            'active-5+': 'Fantastic! An active GitHub shows your commitment and passion.',
+            'limited-1-5': 'Good! Let\'s make your portfolio even stronger.',
+            'inactive': 'Let\'s revive your portfolio with some fresh projects!',
+            'none': 'No problem! We\'ll help you build impressive projects to showcase.'
+          }
+        }
       },
 
       // Screen 5: SKILLS SELECTION
@@ -275,10 +290,20 @@ export const getQuizScreens = (background) => {
             },
             type: 'multi-select-pills',
             getDynamicOptions: (responses) => {
-              const selectedRole = responses?.targetRole || 'Backend Engineer';
-              const roleOption = TARGET_ROLES.find(r => r.value === selectedRole);
-              const category = roleOption?.category || 'Backend Engineering';
-              const skills = getSkillsForRole(category);
+              // Load skills from persona cache (skills are preloaded in QuizOrchestrator)
+              const skillObjects = getSkillsFromCache(responses);
+              const skills = skillObjects.map(s => s.name);
+
+              console.log('🎯 getDynamicOptions (TECH) called:', {
+                cacheSize: skillObjects.length,
+                firstFewSkills: skills.slice(0, 3),
+                targetRole: responses?.targetRole
+              });
+
+              if (skills.length === 0) {
+                console.warn('⚠️ WARNING: Skills cache is empty! Skills may not have loaded yet.');
+              }
+
               return skills.map(skill => ({
                 value: skill,
                 label: skill,
@@ -317,7 +342,30 @@ export const getQuizScreens = (background) => {
             type: 'button-grid',
             options: NONTECH_STEPS_TAKEN
           }
-        ]
+        ],
+        chatResponseMap: {
+          currentBackground: {
+            'sales-marketing': 'Excellent! Sales & marketing pros bring valuable customer insights to tech.',
+            'operations': 'Great! Ops and consulting experience is valuable for problem-solving in tech.',
+            'design': 'Perfect! Designers transitioning to tech have a unique advantage in UX.',
+            'finance': 'Wonderful! Analytical skills from finance translate well to data and backend roles.',
+            'other': 'Fantastic! Diverse backgrounds bring fresh perspectives to tech teams.'
+          },
+          yearsOfExperience: {
+            '0': 'Fresh start! Career switchers at this stage adapt quickly and learn fast.',
+            '0-2': 'You bring fresh energy! Career switchers at this stage adapt quickly.',
+            '2-3': 'Great timing! You have professional maturity while still being flexible.',
+            '3-5': 'Perfect! Your experience adds value while you\'re building tech skills.',
+            '5+': 'Excellent! Senior professionals bring leadership and domain expertise to tech.'
+          },
+          stepsTaken: {
+            'bootcamp': 'Great! Bootcamps provide structured learning and hands-on experience.',
+            'completed-course': 'Awesome! Completing courses shows commitment and follow-through.',
+            'built-projects': 'Perfect! Building projects is the best way to learn. Keep going!',
+            'self-learning': 'Excellent start! Self-learning shows initiative and resourcefulness.',
+            'just-exploring': 'Welcome! Everyone starts somewhere. Let\'s build your roadmap together.'
+          }
+        }
       },
 
       // Screen 3: WHERE YOU WANT TO GO (Target Role + Company + Code Comfort)
@@ -333,18 +381,27 @@ export const getQuizScreens = (background) => {
             options: NONTECH_TARGET_ROLES
           },
           {
-            id: 'targetCompanyType',
-            question: 'What type of company would you love to work for?',
-            type: 'button-grid',
-            options: TARGET_COMPANIES
-          },
-          {
             id: 'codeComfort',
             question: 'How comfortable are you with coding right now?',
             type: 'radio-buttons',
             options: NONTECH_CODE_COMFORT
           }
-        ]
+        ],
+        chatResponseMap: {
+          targetRole: {
+            'Backend Engineer': 'Excellent choice! Backend is a solid foundation for any tech career.',
+            'Frontend Engineer': 'Great! Frontend lets you see your work come to life visually.',
+            'Full Stack Engineer': 'Perfect! Full-stack gives you the complete picture.',
+            'DevOps Engineer': 'Awesome! DevOps is crucial and has great career prospects.',
+            'Data Science Engineer': 'Fantastic! Data is transforming every industry right now.'
+          },
+          codeComfort: {
+            'confident': 'Excellent! You\'re ready to build real projects and level up quickly.',
+            'learning': 'Great! You\'re in the learning phase. Consistency is key now.',
+            'beginner': 'Perfect! Understanding concepts first is the right approach.',
+            'complete-beginner': 'Welcome! We\'ll start from the basics and build up systematically.'
+          }
+        }
       },
 
       // Screen 4: SKILLS SELECTION
@@ -363,10 +420,20 @@ export const getQuizScreens = (background) => {
             },
             type: 'multi-select-pills',
             getDynamicOptions: (responses) => {
-              const selectedRole = responses?.targetRole || 'Backend Engineer';
-              const roleOption = NONTECH_TARGET_ROLES.find(r => r.value === selectedRole);
-              const category = roleOption?.category || 'Backend Engineering';
-              const skills = getSkillsForRole(category);
+              // Load skills from persona cache (skills are preloaded in QuizOrchestrator)
+              const skillObjects = getSkillsFromCache(responses);
+              const skills = skillObjects.map(s => s.name);
+
+              console.log('🎯 getDynamicOptions (NON-TECH) called:', {
+                cacheSize: skillObjects.length,
+                firstFewSkills: skills.slice(0, 3),
+                targetRole: responses?.targetRole
+              });
+
+              if (skills.length === 0) {
+                console.warn('⚠️ WARNING: Skills cache is empty! Skills may not have loaded yet.');
+              }
+
               return skills.map(skill => ({
                 value: skill,
                 label: skill,

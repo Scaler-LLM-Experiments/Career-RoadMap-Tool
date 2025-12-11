@@ -9,9 +9,13 @@ const CompanyTicker = ({ companies }) => {
     return null;
   }
 
+  // Filter out companies with poor/missing favicons
+  const excludedCompanies = ['PhonePe', 'Udaan', 'PolicyBazaar', 'Mindtree', 'Mphasis', 'Persistent', 'Zensar', 'Hexaware', 'Genpact'];
+  const filteredCompanies = companies.filter(company => !excludedCompanies.includes(company));
+
   // Split companies into 2 rows
-  const row1 = companies.slice(0, Math.ceil(companies.length / 2));
-  const row2 = companies.slice(Math.ceil(companies.length / 2));
+  const row1 = filteredCompanies.slice(0, Math.ceil(filteredCompanies.length / 2));
+  const row2 = filteredCompanies.slice(Math.ceil(filteredCompanies.length / 2));
 
   // Duplicate multiple times for seamless infinite scroll
   const duplicatedRow1 = [...row1, ...row1, ...row1, ...row1];
@@ -52,14 +56,23 @@ const CompanyTicker = ({ companies }) => {
       'Tech Mahindra': 'techmahindra.com',
       'Accenture': 'accenture.com',
       'Capgemini': 'capgemini.com',
-      'LTI': 'lntinfotech.com',
-      'Mindtree': 'mindtree.com',
+      'LTI': 'ltimindtree.com',
+      'LTIMindtree': 'ltimindtree.com',
+      'Mindtree': 'ltimindtree.com',
       'Mphasis': 'mphasis.com',
       'Persistent': 'persistent.com',
+      'Zensar': 'zensar.com',
+      'KPMG': 'kpmg.com',
+      'Deloitte': 'deloitte.com',
+      'EY': 'ey.com',
+      'PWC': 'pwc.com',
+      'IBM': 'ibm.com',
+      'Genpact': 'genpact.com',
+      'Hexaware': 'hexaware.com',
       'Google': 'google.com',
       'Amazon': 'amazon.com',
       'Microsoft': 'microsoft.com',
-      'Meta': 'meta.com',
+      'Meta': 'facebook.com',
       'Apple': 'apple.com',
       'Netflix': 'netflix.com',
       'Adobe': 'adobe.com',
@@ -67,7 +80,16 @@ const CompanyTicker = ({ companies }) => {
       'Oracle': 'oracle.com',
       'Intel': 'intel.com',
       'Nvidia': 'nvidia.com',
-      'Twitter': 'twitter.com'
+      'Twitter': 'x.com',
+      'Stripe': 'stripe.com',
+      'Figma': 'figma.com',
+      'Canva': 'canva.com',
+      'Notion': 'notion.so',
+      'Slack': 'slack.com',
+      'Discord': 'discord.com',
+      'Loom': 'loom.com',
+      'Retool': 'retool.com',
+      'Scaler': 'scaler.com'
     };
     return domainMap[companyName] || companyName.toLowerCase().replace(/\s+/g, '') + '.com';
   };
@@ -81,27 +103,25 @@ const CompanyTicker = ({ companies }) => {
         {/* Fade Right */}
         <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
-        <div className="flex gap-4 ticker-scroll-left">
+        <div className="flex gap-8 ticker-scroll-left">
           {duplicatedRow1.map((company, idx) => {
             const domain = getCompanyDomain(company);
-            const logoUrl = `/api/logo/${domain}`;
+            const logoUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
             return (
               <div
                 key={idx}
-                className="flex-shrink-0 w-14 h-14 bg-white rounded-none flex items-center justify-center p-2 shadow-sm"
+                className="flex-shrink-0 w-12 h-12 bg-white rounded-none flex items-center justify-center p-2 shadow-sm border border-slate-100"
               >
                 <img
                   src={logoUrl}
                   alt={company}
-                  className="w-full h-full object-contain"
-                  crossOrigin="anonymous"
-                  referrerPolicy="no-referrer"
+                  className="w-8 h-8 object-contain"
                   onError={(e) => {
                     e.target.onerror = null;
                     // Fallback to generic company icon placeholder
                     e.target.style.display = 'none';
                     if (e.target.parentElement) {
-                      e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center text-xs font-bold text-slate-700 bg-slate-100">${company.substring(0, 2).toUpperCase()}</div>`;
+                      e.target.parentElement.innerHTML = `<div class="w-8 h-8 flex items-center justify-center text-xs font-bold text-slate-700 bg-slate-100">${company.substring(0, 2).toUpperCase()}</div>`;
                     }
                   }}
                 />
@@ -118,27 +138,25 @@ const CompanyTicker = ({ companies }) => {
         {/* Fade Right */}
         <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
-        <div className="flex gap-4 ticker-scroll-right">
+        <div className="flex gap-8 ticker-scroll-right">
           {duplicatedRow2.map((company, idx) => {
             const domain = getCompanyDomain(company);
-            const logoUrl = `/api/logo/${domain}`;
+            const logoUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
             return (
               <div
                 key={idx}
-                className="flex-shrink-0 w-14 h-14 bg-white rounded-none flex items-center justify-center p-2 shadow-sm"
+                className="flex-shrink-0 w-12 h-12 bg-white rounded-none flex items-center justify-center p-2 shadow-sm border border-slate-100"
               >
                 <img
                   src={logoUrl}
                   alt={company}
-                  className="w-full h-full object-contain"
-                  crossOrigin="anonymous"
-                  referrerPolicy="no-referrer"
+                  className="w-8 h-8 object-contain"
                   onError={(e) => {
                     e.target.onerror = null;
                     // Fallback to generic company icon placeholder
                     e.target.style.display = 'none';
                     if (e.target.parentElement) {
-                      e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center text-xs font-bold text-slate-700 bg-slate-100">${company.substring(0, 2).toUpperCase()}</div>`;
+                      e.target.parentElement.innerHTML = `<div class="w-8 h-8 flex items-center justify-center text-xs font-bold text-slate-700 bg-slate-100">${company.substring(0, 2).toUpperCase()}</div>`;
                     }
                   }}
                 />

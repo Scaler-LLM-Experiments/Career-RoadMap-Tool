@@ -321,36 +321,11 @@ export function enrichRoadmapConfig(config, quizResponses, profileData) {
   }
 
   // ========== 2. COMPANY FIT ANALYSIS ==========
-  if (enriched.companiesInsight?.types) {
-    enriched.companiesInsight.types.forEach(companyType => {
-      // Adjust fit score based on user profile
-      if (companyType.fitAnalysis) {
-        let adjustedScore = companyType.fitAnalysis.fitScore;
-
-        // Adjust based on experience
-        const yearsExp = parseInt(profileData.yearsExperience?.split('-')[0] || '0');
-        if (yearsExp < 2 && companyType.type === 'bigtech') {
-          adjustedScore -= 15; // Less fit for early-career at big tech
-        }
-        if (yearsExp > 5 && companyType.type === 'startup') {
-          adjustedScore -= 10; // Less fit for senior engineers at startups
-        }
-
-        companyType.fitAnalysis.fitScore = Math.max(0, Math.min(100, adjustedScore));
-
-        // Update fit level based on score
-        if (adjustedScore >= 90) {
-          companyType.fitAnalysis.fitLevel = 'Excellent Fit';
-        } else if (adjustedScore >= 80) {
-          companyType.fitAnalysis.fitLevel = 'Great Fit';
-        } else if (adjustedScore >= 70) {
-          companyType.fitAnalysis.fitLevel = 'Good Fit';
-        } else {
-          companyType.fitAnalysis.fitLevel = 'Moderate Fit';
-        }
-      }
-    });
-  }
+  // REMOVED: Fit analysis is now handled dynamically by fitCalculator.js
+  // CompaniesSection calculates fit on-the-fly based on:
+  // - currentCompanyType from quiz (currentRole for tech, currentBackground for non-tech)
+  // - targetCompanyType (selected tab)
+  // - userAxisScores from axisCalculator.js
 
   // ========== 3. LEARNING PATH CALCULATIONS ==========
   if (enriched.learningPath?.phases) {

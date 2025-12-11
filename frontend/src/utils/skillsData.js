@@ -1,8 +1,21 @@
 /**
- * Skills Data - Integrated with Modular Skill Definitions
+ * ⚠️ DEPRECATED - DO NOT USE
  *
- * This module provides dynamic skill loading based on target roles.
- * Skills are now loaded from role-specific JSON files with priorities.
+ * This file is deprecated and should not be used in new code.
+ * Skills are now loaded from persona JSON files via quizSkillLoader.js
+ *
+ * ❌ OLD (deprecated):
+ *   import { getSkillsForRole } from './skillsData';
+ *
+ * ✅ NEW (use instead):
+ *   import { loadSkillsForQuiz } from './quizSkillLoader';
+ *
+ * Reason for deprecation:
+ * - Persona JSON files are now the single source of truth
+ * - This wrapper added unnecessary indirection
+ * - Skills need level + userType context, not just role
+ *
+ * See skillDefinitions.js deprecation notice for full migration details.
  */
 
 import { getAllSkillsForRole } from './skillDefinitions';

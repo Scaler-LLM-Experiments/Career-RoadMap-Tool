@@ -1,41 +1,56 @@
 /**
- * SKILLS SECTION - FINAL REDESIGN
- * Prominent title + Two-column layout with modern table
+ * SKILLS SECTION
+ * Two-column layout: Skill Map (radar) + Skills Table
  *
- * CONFIG INTEGRATION:
- * Uses persona config data from mockRoadmapData._fullConfig.skillsGap
- * Falls back to mock data if config not available
+ * SKILL TABLE LOGIC:
+ * Simply shows (all persona skills) - (user selected skills)
+ * Organized by priority: high, medium, low
  */
 
 import React from 'react';
 import { GraduationCap } from 'phosphor-react';
 import SkillMapNew from '../../../src/components/roadmap/SkillMapNew.jsx';
+import { getSkillDescription } from '../../../src/utils/skillDescriptions.js';
 
-const SkillsSection = ({ config }) => {
-  // Get skills from persona config
+const SkillsSection = ({ config, quizResponses = {} }) => {
+  // Section header
   const sectionTitle = config?.skillsGap?.title || 'Understand Where You Stand Right Now';
   const sectionDescription = config?.skillsGap?.description || 'Identify your skill gaps and focus on what matters most.';
 
-  // Get missing skills from persona
-  const missingSkillsConfig = config?.missingSkills;
+  // Get data from config
+  const skillPriorities = config?.skillMap?.skillPriorities || {};
+  const currentSkills = config?.currentSkills || [];
 
-  const highPrioritySkills = (missingSkillsConfig?.highPriority || []).map(skill => ({
-    name: skill,
-    description: 'From persona',
-    priority: 'high'
-  }));
+  // Helper to get skill name
+  const getSkillName = (skill) => typeof skill === 'string' ? skill : skill?.name;
 
-  const mediumPrioritySkills = (missingSkillsConfig?.mediumPriority || []).map(skill => ({
-    name: skill,
-    description: 'From persona',
-    priority: 'medium'
-  }));
+  // SIMPLE LOGIC: Skills to learn = All persona skills - User selected skills
+  const filterUnselectedSkills = (skillsArray) => {
+    return (skillsArray || [])
+      .filter(skill => !currentSkills.includes(getSkillName(skill)))
+      .map(skill => ({
+        name: getSkillName(skill),
+        description: getSkillDescription(getSkillName(skill)),
+        priority: 'high'
+      }));
+  };
 
-  const lowPrioritySkills = (missingSkillsConfig?.lowPriority || []).map(skill => ({
-    name: skill,
-    description: 'From persona',
-    priority: 'low'
-  }));
+  const highPrioritySkills = filterUnselectedSkills(skillPriorities.high);
+  const mediumPrioritySkills = filterUnselectedSkills(skillPriorities.medium);
+  const lowPrioritySkills = filterUnselectedSkills(skillPriorities.low);
+
+  // Total skills to learn (for Hero section to use)
+  const totalSkillsToLearn = highPrioritySkills.length + mediumPrioritySkills.length + lowPrioritySkills.length;
+
+  // Debug logging
+  if (typeof window !== 'undefined') {
+    console.log('📋 Skills Section:');
+    console.log('   User selected:', currentSkills);
+    console.log('   Skills to learn:', totalSkillsToLearn);
+    console.log('   High priority:', highPrioritySkills.map(s => s.name));
+    console.log('   Medium priority:', mediumPrioritySkills.map(s => s.name));
+    console.log('   Low priority:', lowPrioritySkills.map(s => s.name));
+  }
 
   return (
     <section id="skills" className="scroll-mt-24">
@@ -71,17 +86,12 @@ const SkillsSection = ({ config }) => {
             {config?.skillMap ? (
               <SkillMapNew
                 radarAxes={config?.skillMap?.radarAxes || []}
-                averageBaseline={config?.skillMap?.thresholds?.averageBaseline?.[config?.metadata?.userType === 'tech' ? 'tech' : 'nonTech'] || {}}
                 skillMapThresholds={config?.skillMap?.thresholds || {}}
                 background={config?.metadata?.userType === 'tech' ? 'tech' : 'nonTech'}
-                quizResponses={{
-                  problemSolving: '51-100',
-                  codeComfort: 'learning',
-                  stepsTaken: 'learning',
-                  portfolio: 'some-projects',
-                  systemDesign: '11-50',
-                  communication: '51-100'
-                }}
+                quizResponses={quizResponses}
+                currentSkills={config?.currentSkills || []}
+                skillPriorities={config?.skillMap?.skillPriorities || {}}
+                targetRole={config?.metadata?.roleLabel || 'Engineer'}
               />
             ) : (
               <p className="text-slate-500">Loading skill map...</p>
@@ -115,11 +125,13 @@ const SkillsSection = ({ config }) => {
               {/* High Priority */}
               <div className="flex flex-col gap-2">
                 {highPrioritySkills.map((skill, idx) => (
-                  <div key={idx} className="group flex items-center gap-1 px-2 py-1.5 bg-red-50 border border-red-200 rounded-none relative">
-                    <GraduationCap size={12} weight="fill" className="text-red-600 flex-shrink-0" />
-                    <span className="text-red-800 text-xs font-medium break-words hyphens-auto">{skill.name}</span>
-                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block z-20">
-                      <div className="bg-slate-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">{skill.description}</div>
+                  <div key={idx} className="group flex items-start gap-1 px-2 py-1.5 bg-red-50 border border-red-200 rounded-none relative">
+                    <GraduationCap size={12} weight="fill" className="text-red-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-red-800 text-xs font-medium break-words hyphens-auto leading-tight">{skill.name}</span>
+                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block z-30 pointer-events-none">
+                      <div className="bg-slate-900 text-white text-xs rounded px-3 py-2 shadow-lg w-[150px] whitespace-normal text-center">
+                        {skill.description}
+                      </div>
                       <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-slate-900"></div>
                     </div>
                   </div>
@@ -129,11 +141,13 @@ const SkillsSection = ({ config }) => {
               {/* Medium Priority */}
               <div className="flex flex-col gap-2">
                 {mediumPrioritySkills.map((skill, idx) => (
-                  <div key={idx} className="group flex items-center gap-1 px-2 py-1.5 bg-orange-50 border border-orange-200 rounded-none relative">
-                    <GraduationCap size={12} weight="fill" className="text-orange-600 flex-shrink-0" />
-                    <span className="text-orange-800 text-xs font-medium break-words hyphens-auto">{skill.name}</span>
-                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block z-20">
-                      <div className="bg-slate-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">{skill.description}</div>
+                  <div key={idx} className="group flex items-start gap-1 px-2 py-1.5 bg-orange-50 border border-orange-200 rounded-none relative">
+                    <GraduationCap size={12} weight="fill" className="text-orange-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-orange-800 text-xs font-medium break-words hyphens-auto leading-tight">{skill.name}</span>
+                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block z-30 pointer-events-none">
+                      <div className="bg-slate-900 text-white text-xs rounded px-3 py-2 shadow-lg w-[150px] whitespace-normal text-center">
+                        {skill.description}
+                      </div>
                       <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-slate-900"></div>
                     </div>
                   </div>
@@ -143,11 +157,13 @@ const SkillsSection = ({ config }) => {
               {/* Low Priority */}
               <div className="flex flex-col gap-2">
                 {lowPrioritySkills.map((skill, idx) => (
-                  <div key={idx} className="group flex items-center gap-1 px-2 py-1.5 bg-slate-100 border border-slate-300 rounded-none relative">
-                    <GraduationCap size={12} weight="fill" className="text-slate-600 flex-shrink-0" />
-                    <span className="text-slate-700 text-xs font-medium break-words hyphens-auto">{skill.name}</span>
-                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block z-20">
-                      <div className="bg-slate-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">{skill.description}</div>
+                  <div key={idx} className="group flex items-start gap-1 px-2 py-1.5 bg-slate-100 border border-slate-300 rounded-none relative">
+                    <GraduationCap size={12} weight="fill" className="text-slate-600 flex-shrink-0 mt-0.5" />
+                    <span className="text-slate-700 text-xs font-medium break-words hyphens-auto leading-tight">{skill.name}</span>
+                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block z-30 pointer-events-none">
+                      <div className="bg-slate-900 text-white text-xs rounded px-3 py-2 shadow-lg w-[150px] whitespace-normal text-center">
+                        {skill.description}
+                      </div>
                       <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-slate-900"></div>
                     </div>
                   </div>

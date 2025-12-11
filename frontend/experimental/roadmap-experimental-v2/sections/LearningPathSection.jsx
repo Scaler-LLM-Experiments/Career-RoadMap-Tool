@@ -1,19 +1,59 @@
-import React, { useState } from 'react';
-import { Target, Check, Rocket, Crown, Lightbulb } from 'phosphor-react';
+/**
+ * LEARNING PATH SECTION
+ *
+ * DYNAMIC PHASE GENERATION:
+ * - Phases are CALCULATED, not loaded from JSON
+ * - Uses learningPathCalculator.js to determine phases based on:
+ *   - Skill coverage (% of skills selected)
+ *   - DSA level (problemSolving quiz answer)
+ *   - System Design level (systemDesign quiz answer)
+ *   - Target role (backend, frontend, etc.)
+ *
+ * Phase Logic:
+ * - Phase 1: Skills (varies by coverage + DSA level)
+ * - Phase 2: System Design (if weak) OR Role-specific (if SD strong)
+ * - Phase 3: Role-specific OR Interview Prep
+ * - Phase 4: Projects & Portfolio (always)
+ */
 
-const LearningPathSection = ({ config }) => {
+import React, { useState, useMemo } from 'react';
+import { Target, Check, Rocket, Crown, Lightbulb, Books } from 'phosphor-react';
+import { calculateLearningPath } from '../../../src/utils/learningPathCalculator';
+
+const LearningPathSection = ({ config, quizResponses = {} }) => {
   const [selectedPhaseIndex, setSelectedPhaseIndex] = useState(0);
-  const phases = config?.learningPath?.phases || [];
+
+  // Extract data needed for learning path calculation
+  const skillPriorities = config?.skillMap?.skillPriorities || {};
+  const role = config?.metadata?.role || config?.meta?.role || 'backend';
+
+  // Extract all skills from skillPriorities
+  const allSkills = useMemo(() => {
+    const skills = [];
+    ['high', 'medium', 'low'].forEach(priority => {
+      (skillPriorities[priority] || []).forEach(skill => {
+        const name = typeof skill === 'string' ? skill : skill?.name;
+        if (name) skills.push(name);
+      });
+    });
+    return skills;
+  }, [skillPriorities]);
+
+  // DYNAMIC: Calculate phases from persona based on quiz responses
+  const phases = useMemo(() => {
+    return calculateLearningPath(config, quizResponses, allSkills);
+  }, [config, quizResponses, allSkills]);
 
   // DEBUG: Log the data structure
-  console.log('📚 LearningPathSection DEBUG:');
-  console.log('  config.learningPath:', config?.learningPath);
-  console.log('  phases:', phases);
-  console.log('  phases.length:', phases.length);
-  if (phases.length > 0) {
-    console.log('  First phase:', phases[0]);
-    console.log('  First phase whatYouLearn:', phases[0]?.whatYouLearn);
-    console.log('  First phase videoUrl:', phases[0]?.videoUrl);
+  if (typeof window !== 'undefined') {
+    console.log('📚 LearningPathSection DEBUG:');
+    console.log('  Quiz responses:', quizResponses);
+    console.log('  All skills count:', allSkills.length);
+    console.log('  Role:', role);
+    console.log('  Generated phases:', phases.length);
+    if (phases.length > 0) {
+      console.log('  Phase titles:', phases.map(p => p.title));
+    }
   }
 
   if (!phases || phases.length === 0) {

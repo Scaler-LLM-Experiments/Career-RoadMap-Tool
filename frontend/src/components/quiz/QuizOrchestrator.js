@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { useProfile } from '../../context/UnifiedContext';
 import styled, { keyframes } from 'styled-components';
@@ -7,6 +7,7 @@ import { getQuizScreens, isScreenComplete } from './QuizConfig';
 import ScalerLogo from '../../assets/scaler-logo.svg';
 import { CaretLeft, CaretRight, Check, MapTrifold, BookOpen, Buildings, ChartBar, Clock } from 'phosphor-react';
 import ChatBot from '../../assets/ChatBot.png';
+import { loadSkillsForQuiz } from '../../utils/quizSkillLoader';
 
 const fadeIn = keyframes`
   0% {
@@ -16,6 +17,17 @@ const fadeIn = keyframes`
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+`;
+
+const slideInFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 `;
 
@@ -233,6 +245,7 @@ const LeftPanelChatBubble = styled.div`
   position: relative;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   flex: 1;
+  max-width: 600px;
 
   &::before {
     content: '';
@@ -265,6 +278,7 @@ const LeftPanelChatText = styled.div`
   color: #1e293b;
   line-height: 1.6;
   white-space: pre-line;
+  animation: ${slideInFromLeft} 0.6s ease-out;
 `;
 
 const WelcomeTitle = styled.h1`
@@ -364,17 +378,6 @@ const ChatbotContainer = styled.div`
   max-width: 440px;
 `;
 
-const slideInFromLeft = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
 const ChatbotWrapper = styled.div`
   display: flex;
   gap: 12px;
@@ -444,11 +447,12 @@ const QuizContent = styled.div`
   align-items: center;
   justify-content: ${props => props.centered ? 'center' : 'flex-start'};
   animation: ${fadeIn} 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  padding: 100px 40px 40px;
+  padding: ${props => props.centered ? '40px 24px' : '100px 24px 40px'};
+  width: 100%;
 
   @media (max-width: 768px) {
-    padding: 0;
-    align-items: flex-start;
+    padding: ${props => props.centered ? '20px 0' : '0'};
+    align-items: ${props => props.centered ? 'center' : 'flex-start'};
     justify-content: ${props => props.centered ? 'center' : 'flex-start'};
     width: 100%;
     max-width: 100%;
@@ -530,6 +534,35 @@ const DesktopNavigation = styled.div`
   display: flex;
   gap: 12px;
   align-items: center;
+`;
+
+const SmallCTAButton = styled.button`
+  background: #B30158;
+  color: white;
+  border: 2px solid #B30158;
+  border-radius: 0;
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  white-space: nowrap;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: #8A0145;
+    border-color: #8A0145;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 `;
 
 const CarouselDotsContainer = styled.div`
@@ -774,6 +807,8 @@ const FinalModeQuiz = ({ onProgressChange }) => {
   const [isMobile, setIsMobile] = useState(false); // Default to false for SSR
   const [showMobileWelcome, setShowMobileWelcome] = useState(true);
   const [isMounted, setIsMounted] = useState(false); // Track if component is mounted
+  const [skillsLoaded, setSkillsLoaded] = useState(false); // Track if skills are loaded
+  const [chatText, setChatText] = useState("Let's get started with your profile"); // Dynamic chat text
 
   // Set isMobile on client-side only and listen for window resize
   useEffect(() => {
@@ -788,32 +823,88 @@ const FinalModeQuiz = ({ onProgressChange }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Debug: Log quiz state on mount and when it changes
+  useEffect(() => {
+    console.log('🔄 Quiz State Update:', {
+      currentStep,
+      quizResponsesKeys: Object.keys(quizResponses || {}),
+      quizResponses: quizResponses,
+      skillsLoaded
+    });
+  }, [currentStep, quizResponses, skillsLoaded]);
+
   // Get quiz screens based on background selection (tech or non-tech)
   // Initially use 'tech' as default, will update when background is selected
   const userBackground = quizResponses?.background || null;
-  const quizScreens = userBackground ? getQuizScreens(userBackground) : getQuizScreens('tech');
+  // Memoize quizScreens to prevent useEffect from running on every render
+  const quizScreens = useMemo(() => {
+    return userBackground ? getQuizScreens(userBackground) : getQuizScreens('tech');
+  }, [userBackground]);
   const totalSteps = quizScreens.length;
+
+  // Update chat text when screen changes (NOT when responses change within same screen)
+  useEffect(() => {
+    if (currentStep >= 0 && currentStep < quizScreens.length) {
+      const screen = quizScreens[currentStep];
+      const initialText = screen.getDynamicChatText
+        ? screen.getDynamicChatText(quizResponses)
+        : screen.initialChatText;
+      console.log('🔄 [QuizOrchestrator] useEffect updating chatText:', initialText);
+      setChatText(initialText || "Let's continue!");
+    }
+  }, [currentStep, quizScreens]); // Removed quizResponses to prevent race condition
 
   useEffect(() => {
     const progress = ((currentStep + 1) / totalSteps) * 100;
     onProgressChange?.(progress);
   }, [currentStep, totalSteps, onProgressChange]);
 
+  // Preload skills from persona BEFORE reaching the skills screen
+  useEffect(() => {
+    // Check if we have enough info to determine persona (role + level)
+    const hasRole = quizResponses?.targetRole;
+    const hasLevel = quizResponses?.yearsOfExperience;
+    const hasBackground = quizResponses?.background;
+
+    if (hasRole && hasLevel && hasBackground) {
+      // Reset loaded state when persona changes
+      setSkillsLoaded(false);
+
+      // Preload skills early so they're ready when user reaches skills screen
+      loadSkillsForQuiz(quizResponses)
+        .then((skills) => {
+          console.log(`✅ Preloaded ${skills.length} skills from persona (early loading)`);
+          setSkillsLoaded(true); // Force re-render
+        })
+        .catch((error) => {
+          console.error('❌ Failed to preload skills:', error);
+          setSkillsLoaded(false);
+        });
+    }
+  }, [quizResponses?.targetRole, quizResponses?.yearsOfExperience, quizResponses?.background]);
+
   const handleQuizResponse = (questionId, option) => {
+    console.log('📝 Quiz Response:', { questionId, option, type: typeof option });
+
     // For Career Roadmap Tool - store responses
     if (Array.isArray(option)) {
       // Multi-select (skills)
+      console.log('  → Multi-select:', option.length, 'items');
       setQuizResponse(questionId, option);
     } else if (typeof option === 'string') {
       // Single select (timeline)
+      console.log('  → String value:', option);
       setQuizResponse(questionId, option);
     } else if (option && typeof option === 'object') {
       // Object with value/label
+      console.log('  → Object value:', option.value, 'label:', option.label);
       setQuizResponse(questionId, option.value);
       const labelFields = ['currentRole', 'targetRole', 'targetCompany'];
       if (labelFields.includes(questionId)) {
         setQuizResponse(`${questionId}Label`, option.label);
       }
+    } else {
+      console.warn('  ⚠️ Unexpected option type or null/undefined');
     }
   };
 
@@ -847,8 +938,20 @@ const FinalModeQuiz = ({ onProgressChange }) => {
     if (screenIndex >= 0 && screenIndex < quizScreens.length) {
       const screen = quizScreens[screenIndex];
 
+      // CRITICAL FIX: Block navigation if next screen is skills and skills aren't loaded yet
+      const nextScreenIndex = screenIndex + 1;
+      if (nextScreenIndex < quizScreens.length) {
+        const nextScreen = quizScreens[nextScreenIndex];
+        if (nextScreen?.id === 'skills' && !skillsLoaded) {
+          console.log('⏳ Blocking navigation: Skills not loaded yet');
+          return false;
+        }
+      }
+
       // Use isScreenComplete from QuizConfig
-      return isScreenComplete(screen, quizResponses, quizResponses);
+      const complete = isScreenComplete(screen, quizResponses, quizResponses);
+      console.log(`🔍 Can proceed? ${complete} (Screen: ${screen.id || screenIndex})`);
+      return complete;
     }
 
     return false;
@@ -864,11 +967,6 @@ const FinalModeQuiz = ({ onProgressChange }) => {
       if (!screen || !screen.questions) {
         return <div>Error: Invalid screen configuration</div>;
       }
-
-      // Process dynamic chat text
-      const chatText = screen.getDynamicChatText
-        ? screen.getDynamicChatText(quizResponses)
-        : screen.initialChatText;
 
       // Process dynamic profile details (for welcome screen)
       const profileDetails = screen.getDynamicProfileDetails
@@ -894,12 +992,20 @@ const FinalModeQuiz = ({ onProgressChange }) => {
 
       console.log('Processed questions:', processedQuestions);
 
+      const handleChatTextChange = (newText) => {
+        console.log('📤 [QuizOrchestrator] onChatTextChange callback called with:', newText);
+        setChatText(newText);
+      };
+
       return (
         <QuizUI
+          key={`screen-${screenIndex}-${skillsLoaded}`} // Force re-render when skills load
           questions={processedQuestions}
           responses={quizResponses}
           onResponse={handleQuizResponse}
           initialChatText={chatText}
+          chatResponseMap={screen.chatResponseMap}
+          onChatTextChange={handleChatTextChange}
           profileDetails={profileDetails}
           questionStartIndex={screenIndex + 1}
           onAutoAdvance={handleNext}
@@ -966,11 +1072,7 @@ const FinalModeQuiz = ({ onProgressChange }) => {
 
     // For all screens except background (step 0), show chatbot on left
     if (currentStep > 0 && currentStep < quizScreens.length) {
-      const screen = quizScreens[currentStep];
-      const chatText = screen?.getDynamicChatText
-        ? screen.getDynamicChatText(quizResponses)
-        : screen?.initialChatText;
-
+      console.log('🖥️  [Desktop] Rendering LeftPanelChatText with chatText:', chatText);
       return (
         <>
           {logoSection}
@@ -979,7 +1081,7 @@ const FinalModeQuiz = ({ onProgressChange }) => {
               <img src={ChatBot.src || ChatBot} alt="Chat Bot" />
             </LeftPanelBotAvatar>
             <LeftPanelChatBubble>
-              <LeftPanelChatText>{chatText}</LeftPanelChatText>
+              <LeftPanelChatText key={chatText}>{chatText}</LeftPanelChatText>
             </LeftPanelChatBubble>
           </LeftPanelChatContainer>
           {trustBadgeSection}
@@ -1122,7 +1224,16 @@ const FinalModeQuiz = ({ onProgressChange }) => {
               <BackButton onClick={handlePrevious} disabled={currentStep === 0}>
                 <CaretLeft size={20} weight="regular" />
               </BackButton>
-              {!isLastStep ? (
+              {/* Show "Build my roadmap" CTA on skills screen */}
+              {quizScreens[currentStep]?.id === 'skills' && (
+                <SmallCTAButton
+                  onClick={handleNext}
+                  disabled={!canProceed()}
+                >
+                  Build my roadmap
+                </SmallCTAButton>
+              )}
+              {!isLastStep && quizScreens[currentStep]?.id !== 'skills' ? (
                 <NextButton onClick={handleNext} disabled={!canProceed()}>
                   <CaretRight size={20} weight="regular" />
                 </NextButton>

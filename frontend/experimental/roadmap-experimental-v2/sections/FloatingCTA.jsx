@@ -23,7 +23,7 @@ const FloatingCTA = () => {
       </div>
 
       {/* Desktop: Full text button */}
-      <span className="whitespace-nowrap hidden md:flex md:items-center md:gap-2.5">
+      <span className="whitespace-nowrap hidden md:flex md:items-center md:gap-2.5" style={{ letterSpacing: '0.8px' }}>
         <Phone size={20} weight="fill" className="flex-shrink-0" />
         Book a Free Career Call
       </span>

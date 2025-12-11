@@ -63,7 +63,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0;
   gap: 36px;
   align-items: flex-start;
@@ -147,6 +147,7 @@ const MobileChatText = styled.div`
   color: #1e293b;
   line-height: 1.6;
   white-space: pre-line;
+  animation: ${slideInFromLeft} 0.6s ease-out;
 `;
 
 const Header = styled.div`
@@ -312,6 +313,8 @@ const QuestionsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 48px;
+  align-self: stretch;
+  width: 100%;
 
   @media (max-width: 768px) {
     gap: 32px;
@@ -340,7 +343,7 @@ const QuestionLabel = styled.div`
   line-height: 1.5;
   margin-bottom: 20px;
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   text-align: left;
@@ -351,20 +354,21 @@ const QuestionLabel = styled.div`
     word-wrap: break-word;
     overflow-wrap: break-word;
     font-size: 1rem;
+    text-align: left;
   }
 `;
 
 const OptionsRow = styled.div`
   display: grid;
   grid-template-columns: ${props => props.singleColumn ? '1fr' : 'repeat(2, 1fr)'};
-  gap: 16px;
+  gap: 12px;
   width: 100%;
-  max-width: ${props => props.singleColumn ? '600px' : '800px'};
-  margin: 0 auto;
+  max-width: ${props => props.isFirstScreen ? '600px' : '100%'};
+  margin: 0;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 10px;
     max-width: 100%;
     overflow-x: hidden;
   }
@@ -375,12 +379,15 @@ const MultiSelectPillsContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 16px 20px;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 
   @media (max-width: 968px) {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px 8px;
     overflow-x: hidden;
     width: 100%;
+    max-width: 100%;
     padding: 0;
   }
 
@@ -389,6 +396,7 @@ const MultiSelectPillsContainer = styled.div`
     gap: 8px 6px;
     overflow-x: hidden;
     width: 100%;
+    max-width: 100%;
     padding: 0;
   }
 `;
@@ -490,7 +498,7 @@ const OptionPill = styled.button`
   color: ${props => props.selected ? '#0041CA' : '#1e293b'};
   border: 2px solid ${props => props.selected ? '#0041CA' : '#e2e8f0'};
   border-radius: 0;
-  padding: 12px 16px;
+  padding: 16px 20px;
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
@@ -498,8 +506,12 @@ const OptionPill = styled.button`
   text-align: left;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
   width: 100%;
+  max-width: 100%;
+  min-height: 64px;
+  box-sizing: border-box;
+  overflow: hidden;
 
   &:hover {
     border-color: #0041CA;
@@ -515,12 +527,18 @@ const OptionPill = styled.button`
   &:active {
     transform: translateY(0);
   }
+
+  @media (max-width: 768px) {
+    padding: 12px 14px;
+    min-height: 56px;
+    gap: 10px;
+  }
 `;
 
 const OptionIconWrapper = styled.div`
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 0;
   background: ${props => props.selected ? '#0041CA' : '#f1f5f9'};
   color: ${props => props.selected ? 'white' : '#64748b'};
@@ -528,6 +546,11 @@ const OptionIconWrapper = styled.div`
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 const OptionContent = styled.div`
@@ -553,7 +576,7 @@ const OptionTextColumn = styled.div`
 `;
 
 const OptionLabel = styled.div`
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #1e293b;
   font-weight: 600;
   line-height: 1.3;
@@ -563,10 +586,11 @@ const OptionLabel = styled.div`
 `;
 
 const OptionDescription = styled.div`
-  font-size: 0.8125rem;
+  font-size: 0.8rem;
   color: #64748b;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.4;
+  margin-top: 2px;
 `;
 
 const RecommendedBadge = styled.span`
@@ -759,14 +783,23 @@ const GroupedQuestionScreen = ({
 }) => {
   const [chatText, setChatText] = useState(initialChatText);
 
+  // Sync local chatText state when initialChatText prop changes (e.g., when navigating between screens)
+  useEffect(() => {
+    setChatText(initialChatText);
+  }, [initialChatText]);
+
   // Safety check
   if (!questions || questions.length === 0) {
     return <div>Loading questions...</div>;
   }
 
   // Helper function to check if all questions on this screen are answered
-  const areAllQuestionsAnswered = () => {
-    return questions.every(q => responses[q.id] !== undefined && responses[q.id] !== null && responses[q.id] !== '');
+  // Can optionally pass updatedResponses for checking before state updates
+  const areAllQuestionsAnswered = (responsesToCheck = responses) => {
+    return questions.every(q => {
+      const value = responsesToCheck[q.id];
+      return value !== undefined && value !== null && value !== '';
+    });
   };
 
   const handleCTAClick = (questionId, ctaValue, shouldSaveResponse = true) => {
@@ -815,15 +848,30 @@ const GroupedQuestionScreen = ({
 
     // Only update chat bubble if NOT (single question OR last question on screen)
     // This prevents jarring chat text changes right before auto-advance
+    console.log('🔍 Chat Update Debug:', {
+      questionId,
+      optionValue: option.value,
+      isSingleQuestion,
+      isLastQuestion,
+      hasChatResponseMap: !!chatResponseMap,
+      chatResponseMapKeys: chatResponseMap ? Object.keys(chatResponseMap) : [],
+      chatResponseForQuestion: chatResponseMap?.[questionId],
+      shouldUpdate: !isSingleQuestion && !isLastQuestion
+    });
+
     if (!isSingleQuestion && !isLastQuestion) {
       if (chatResponseMap && chatResponseMap[questionId] && chatResponseMap[questionId][option.value]) {
         const newChatText = chatResponseMap[questionId][option.value];
+        console.log('✅ Updating chat text to:', newChatText);
         setChatText(newChatText);
 
         // Call the parent callback to update chat in left panel
         if (onChatTextChange) {
+          console.log('📤 Calling onChatTextChange callback');
           onChatTextChange(newChatText);
         }
+      } else {
+        console.log('❌ No chat response found for:', { questionId, optionValue: option.value });
       }
     }
 
@@ -839,14 +887,14 @@ const GroupedQuestionScreen = ({
     }
 
     // Auto-advance if all questions on this screen are answered
-    // Check on next tick to ensure response is updated
+    // Use updatedResponses to check immediately without waiting for state
     if (isLastQuestion && onAutoAdvance) {
-      setTimeout(() => {
-        if (areAllQuestionsAnswered()) {
+      if (areAllQuestionsAnswered(updatedResponses)) {
+        setTimeout(() => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
           onAutoAdvance();
-        }
-      }, 100);
+        }, 300); // Slight delay for visual feedback before advancing
+      }
     }
   };
 
@@ -871,7 +919,7 @@ const GroupedQuestionScreen = ({
             <img src="/ChatBot.png" alt="Chat Bot" />
           </MobileBotAvatar>
           <MobileChatBubble>
-            <MobileChatText>{initialChatText}</MobileChatText>
+            <MobileChatText key={chatText}>{chatText}</MobileChatText>
           </MobileChatBubble>
         </MobileChatHeader>
       )}
@@ -907,7 +955,7 @@ const GroupedQuestionScreen = ({
                 </CTAButtonWrapper>
               ) : question.type === 'multi-select-pills' ? (
                 <>
-                  <QuestionLabel>{question.question}</QuestionLabel>
+                  <QuestionLabel fullWidth>{question.question}</QuestionLabel>
                   <MultiSelectPillsContainer>
                     {question.options && question.options.map((option) => {
                       const isSelected = currentSelections.includes(option.value);
@@ -942,7 +990,7 @@ const GroupedQuestionScreen = ({
               ) : question.type === 'button-grid' ? (
                 <>
                   <QuestionLabel>{question.question}</QuestionLabel>
-                  <OptionsRow singleColumn={singleColumn}>
+                  <OptionsRow singleColumn={singleColumn} isFirstScreen={isFirstScreen}>
                     {question.options && question.options.map((option) => {
                       const isSelected = responses[question.id] === option.value;
                       return (
@@ -973,7 +1021,7 @@ const GroupedQuestionScreen = ({
               ) : question.type === 'radio-buttons' ? (
                 <>
                   <QuestionLabel>{question.question}</QuestionLabel>
-                  <OptionsRow>
+                  <OptionsRow isFirstScreen={isFirstScreen}>
                     {question.options && question.options.map((option) => {
                       const isSelected = responses[question.id] === option.value;
                       return (
@@ -1012,7 +1060,7 @@ const GroupedQuestionScreen = ({
                       {question.subtitle}
                     </QuestionLabel>
                   )}
-                  <OptionsRow singleColumn>
+                  <OptionsRow singleColumn isFirstScreen={isFirstScreen}>
                     {question.options && question.options.map((option) => {
                       const isSelected = responses[question.id] === option.value;
                       return (
@@ -1052,7 +1100,7 @@ const GroupedQuestionScreen = ({
               ) : (
                 <>
                   <QuestionLabel>{question.question}</QuestionLabel>
-                  <OptionsRow>
+                  <OptionsRow isFirstScreen={isFirstScreen}>
                     {question.options && question.options.map((option) => {
                       const isSelected = responses[question.id] === option.value;
                       return (

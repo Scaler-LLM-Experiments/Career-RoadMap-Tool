@@ -74,6 +74,7 @@ const HorizontalNavigation = ({ activeSection, onSectionChange }) => {
           padding: 10px 12px;
           font-size: 14px;
           font-weight: 600;
+          letter-spacing: 0.5px;
           border: none;
           border-radius: 0px;
           cursor: pointer;
@@ -106,7 +107,7 @@ const HorizontalNavigation = ({ activeSection, onSectionChange }) => {
           padding: 10px 16px;
           font-size: 11px;
           font-weight: 700;
-          letter-spacing: 0.6px;
+          letter-spacing: 1px;
           border: none;
           border-radius: 0px;
           cursor: pointer;
@@ -176,7 +177,7 @@ const HorizontalNavigation = ({ activeSection, onSectionChange }) => {
             className="nav-cta"
           >
             <Phone size={16} weight="fill" />
-            <span>Book Free Career Call</span>
+            <span>Book a Free Career Call</span>
           </button>
         </div>
       </div>
@@ -200,7 +201,7 @@ const HorizontalNavigation = ({ activeSection, onSectionChange }) => {
             cursor: 'pointer',
             boxShadow: '0 4px 14px rgba(179, 1, 88, 0.39)',
             textTransform: 'uppercase',
-            letterSpacing: '0.6px',
+            letterSpacing: '1px',
             whiteSpace: 'nowrap'
           }}
           onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#8A0145'}

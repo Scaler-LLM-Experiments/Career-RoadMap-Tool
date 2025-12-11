@@ -49,6 +49,8 @@ export default class MyDocument extends Document {
         <body style={{ width: '100%', margin: 0, padding: 0, overflowX: 'hidden' }}>
           <Main />
           <NextScript />
+          {/* Tally Forms Embed Script */}
+          <script async src="https://tally.so/widgets/embed.js"></script>
         </body>
       </Html>
     );
