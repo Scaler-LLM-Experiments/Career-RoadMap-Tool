@@ -57,3 +57,22 @@ fix-cache.md
 .cache/
 tmp/
 temp/
+
+# Vercel
+.vercel/
+
+# TypeScript
+*.tsbuildinfo
+
+# ESLint
+.eslintcache
+
+# Storybook
+storybook-static/
+
+# Testing
+*.lcov
+
+# Windows
+Thumbs.db
+ehthumbs.db
